@@ -1,0 +1,12 @@
+
+function StartGame() {
+    
+    
+}
+    
+    
+    
+    
+    module.exports = {
+        StartGame,
+      };
