@@ -3,6 +3,7 @@ const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
+const hitormiss = require("./HitOrMiss");
 // const userGoes = require("./StartGame");
 
 const userPokemon = [
@@ -67,7 +68,6 @@ const compTypeStrengthModifier = strengthPowerMod.modifier(
 var randomUserMove = moveSelect.randMove(userPokemon);
 var randomCompMove = moveSelect.randMove(compPokemon);
 
-
 // console.log(randomUserMove); //move #
 // console.log(randomCompMove); //move #
 
@@ -92,8 +92,8 @@ if (HorT == 1 || HorT == 2) {
 function StartGame() {
   randomUserMove = moveSelect.randMove(userPokemon);
   randomCompMove = moveSelect.randMove(compPokemon);
-  
-  if (userPokemon[0].hp <= 0){
+
+  if (userPokemon[0].hp <= 0) {
     compWon();
   } else if (compPokemon[0].hp <= 0) {
     userWon();
@@ -103,39 +103,75 @@ function StartGame() {
 }
 
 function battle() {
+  console.log(userTypeWeaknessModifier); //weakeness modifier #
+  console.log(userTypeStrengthModifier); //strength modifier #
+  console.log(compTypeWeaknessModifier); //weakeness modifier #
+  console.log(compTypeStrengthModifier); //strength modifier #
 
-console.log(userTypeWeaknessModifier); //weakeness modifier #
-console.log(userTypeStrengthModifier); //strength modifier #
-console.log(compTypeWeaknessModifier); //weakeness modifier #
-console.log(compTypeStrengthModifier); //strength modifier #
+  console.log("=========================");
 
-console.log('=========================');
+  if (hitormiss.flip() == 10) {
+    compPokemon[0].hp = compPokemon[0].hp - 0;
+    console.log(
+      "You're pokemon " +
+        userPokemon[0].name +
+        ` missed you have ` +
+        userPokemon[0].hp +
+        " hp left! and your opponent has " +
+        compPokemon[0].hp +
+        " hp left!"
+    );
+  } else {
+    const damage =
+      Math.trunc(randomUserMove * 0.1 * userTypeWeaknessModifier) *
+      userTypeStrengthModifier;
+    compPokemon[0].hp = compPokemon[0].hp - damage;
+    console.log(
+      "You're pokemon " +
+        userPokemon[0].name +
+        ` used ${randomUserMove} it did ${damage} damage you have ` +
+        userPokemon[0].hp +
+        " hp left! and your opponent has " +
+        compPokemon[0].hp +
+        " hp left!"
+    );
+  }
 
-  
-  const damage = (Math.trunc((randomUserMove * 0.1) * userTypeWeaknessModifier) * userTypeStrengthModifier);
-  compPokemon[0].hp = compPokemon[0].hp - damage;
-
-  console.log("You're pokemon "+userPokemon[0].name+` used ${randomUserMove} it did ${damage} damage you have ` +userPokemon[0].hp+ " hp left! and your opponent has "+compPokemon[0].hp+ " hp left!");
-
-  
-
-  const damageTwo = (Math.trunc((randomCompMove * 0.1) * compTypeWeaknessModifier) * compTypeStrengthModifier);
-  userPokemon[0].hp = userPokemon[0].hp - damageTwo;
-
-  console.log("The opponent's pokemon "+compPokemon[0].name+` used ${randomCompMove} it did ${damageTwo} damage they have ` +compPokemon[0].hp+ " hp left! and you have "+userPokemon[0].hp+ " hp left!");
+  if (hitormiss.flip() == 10) {
+    userPokemon[0].hp = userPokemon[0].hp - 0;
+    console.log(
+      "Opponent's pokemon " +
+        compPokemon[0].name +
+        ` missed you have ` +
+        compPokemon[0].hp +
+        " hp left! and your opponent has " +
+        userPokemon[0].hp +
+        " hp left!"
+    );
+  } else {
+    const damageTwo =
+      Math.trunc(randomCompMove * 0.1 * compTypeWeaknessModifier) *
+      compTypeStrengthModifier;
+    userPokemon[0].hp = userPokemon[0].hp - damageTwo;
+    console.log(
+      "The opponent's pokemon " +
+        compPokemon[0].name +
+        ` used ${randomCompMove} it did ${damageTwo} damage they have ` +
+        compPokemon[0].hp +
+        " hp left! and you have " +
+        userPokemon[0].hp +
+        " hp left!"
+    );
+  }
 
   console.log("\n\n");
 
-
-StartGame();
+  StartGame();
 }
 
-function userWon () {
-  console.log('you win!!');
-  
+function userWon() {
+  console.log("you win!!");
 }
-function compWon () {
-  console.log('you lose');
-
+function compWon() {
+  console.log("you lose");
 }
-
