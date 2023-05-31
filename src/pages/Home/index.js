@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <div>
     <body style={cardStyle}>
-    <div className="card img-responsive">
+    <div className="container">
+    <div className="row">
           
           <div className="col-12 card-text2">
-            <div className="portada"></div>
             <div className="title-total">
               <h2>trainer.name</h2>
 
@@ -38,6 +38,7 @@ export default function Home() {
                 </button>
               </div> */}
             </div>
+          </div>
           </div>
         </div>
     </body>
