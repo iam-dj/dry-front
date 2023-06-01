@@ -47,7 +47,21 @@ const API = {
         }
       });
   },
-  
+  setTrainer: (userObj) => {
+    return fetch(`${URL_PREFIX}/api/trainers`, {
+      method: "POST",
+      body: JSON.stringify(userObj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("falied to create");
+      }
+    });
+  },
 };
 
 export default API;

@@ -81,7 +81,7 @@ export default function AuthForm(props) {
             props.setUsername(data.user.username);
             props.setToken(data.token);
             localStorage.setItem("token", data.token);
-            window.location.assign("/");
+            window.location.assign("/createtrainer");
           } else {
             console.log("ERROR");
           }
