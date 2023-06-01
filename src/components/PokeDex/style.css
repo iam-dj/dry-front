@@ -1,0 +1,18 @@
+.tab-link {
+    background-color: white !important;
+    font-weight:normal;
+    color: black !important;
+    transition: transform 0.3s;
+
+  }
+  .tab-link:hover {
+    transform: scale(1.2);
+
+  }
+
+  .space-tab {
+  
+    border-radius: 5px;
+    position: relative;
+    top: 20px; 
+  }
