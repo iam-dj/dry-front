@@ -1,0 +1,12 @@
+.imgFix{
+    width:50px;
+    padding: px;
+    /* align-items: center; */
+    transition: transform 0.3s;
+
+
+}
+
+.imgFix:hover {
+  transform: scale(1.2);
+}
