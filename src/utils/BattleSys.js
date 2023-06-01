@@ -8,80 +8,187 @@ const hitormiss = require("./HitOrMiss");
 
 const userPokemon = [
   {
-    name: "Venusaur",
-    type: "Grass",
-    secondary_type: "Poison",
-    weakness: "fire",
-    strength: "water",
-    tier: 3,
-    move1: 73,
-    move2: 74,
-    move3: 73,
-    move4: 74,
-    rarity: "very rare",
-    evolutionId: 3,
-    img_url:
-      "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896179/003venusaur_zkyiww.png",
-    hp: 100,
-  },
+    "id": 4,
+    "name": "Ash Ketchum",
+    "age": 16,
+    "numwins": 32,
+    "numLosses": 12,
+    "boulder_badge": true,
+    "cascade_badge": true,
+    "thunder_badge": true,
+    "rainbow_badge": true,
+    "soul_badge": true,
+    "marsh_badge": true,
+    "volcano_badge": true,
+    "earth_badge": true,
+    "pokemons": [
+      {
+        "id": 151,
+        "name": "Mew",
+        "type": "psychic",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 100,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
+        "evolutionId": 1,
+        "rarity": "Legendary",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 1,
+        "move2Id": 5,
+        "move3Id": 140,
+        "move4Id": 211,
+        "npcId": null,
+        "move1": {
+          "id": 1,
+          "name": "Pound",
+          "power": 15,
+          "type": "Normal",
+          "description": "The target is physically pounded with a long tail or a forelimb, etc.",
+          "npcId": null
+        },
+        "move2": {
+          "id": 5,
+          "name": "Mega Punch",
+          "power": 80,
+          "type": "Normal",
+          "description": "The target is slugged with a punch thrown at maximum power.",
+          "npcId": null
+        },
+        "move3": {
+          "id": 7,
+          "name": "Gut Punch",
+          "power": 69,
+          "type": "Normal",
+          "description": "The target is slugged with a punch thrown at maximum power.",
+          "npcId": null
+        },
+        "move4": {
+          "id": 9,
+          "name": "Scratch",
+          "power": 40,
+          "type": "Normal",
+          "description": "Hard, pointed, sharp claws rake the target to inflict damage.",
+          "npcId": null
+        }
+      }
+    ]
+  }
 ];
 const compPokemon = [
   {
-    name: "Charizard",
-    type: "Fire",
-    secondary_type: "Dragon",
-    weakness: "water",
-    strength: "grass",
-    tier: 3,
-    move1: 32,
-    move2: 21,
-    move3: 73,
-    move4: 74,
-    rarity: "very rare",
-    evolutionId: 3,
-    img_url:
-      "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896179/003venusaur_zkyiww.png",
-    hp: 100,
-  },
+    "id": 4,
+    "name": "Ash Ketchum",
+    "age": 16,
+    "numwins": 32,
+    "numLosses": 12,
+    "boulder_badge": true,
+    "cascade_badge": true,
+    "thunder_badge": true,
+    "rainbow_badge": true,
+    "soul_badge": true,
+    "marsh_badge": true,
+    "volcano_badge": true,
+    "earth_badge": true,
+    "pokemons": [
+      {
+        "id": 151,
+        "name": "Mew",
+        "type": "psychic",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 100,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
+        "evolutionId": 1,
+        "rarity": "Legendary",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 1,
+        "move2Id": 5,
+        "move3Id": 140,
+        "move4Id": 211,
+        "npcId": null,
+        "move1": {
+          "id": 1,
+          "name": "Pound",
+          "power": 49,
+          "type": "Normal",
+          "description": "The target is physically pounded with a long tail or a forelimb, etc.",
+          "npcId": null
+        },
+        "move2": {
+          "id": 5,
+          "name": "Mega Punch",
+          "power": 85,
+          "type": "Normal",
+          "description": "The target is slugged with a punch thrown at maximum power.",
+          "npcId": null
+        },
+        "move3": {
+          "id": 7,
+          "name": "Mega Punch",
+          "power": 30,
+          "type": "Normal",
+          "description": "The target is slugged with a punch thrown at maximum power.",
+          "npcId": null
+        },
+        "move4": {
+          "id": 9,
+          "name": "Scratch",
+          "power": 10,
+          "type": "Normal",
+          "description": "Hard, pointed, sharp claws rake the target to inflict damage.",
+          "npcId": null
+        }
+      }
+    ]
+  }
 ];
 
-const userTypeWeaknessModifier = weaknessPowerMod.modifier(
-  userPokemon[0].type.toLowerCase(),
-  compPokemon[0].type.toLowerCase()
-);
-const userTypeStrengthModifier = strengthPowerMod.modifier(
-  userPokemon[0].type.toLowerCase(),
-  compPokemon[0].type.toLowerCase()
-);
-const compTypeWeaknessModifier = weaknessPowerMod.modifier(
-  compPokemon[0].type.toLowerCase(),
-  userPokemon[0].type.toLowerCase()
-);
-const compTypeStrengthModifier = strengthPowerMod.modifier(
-  compPokemon[0].type.toLowerCase(),
-  userPokemon[0].type.toLowerCase()
-);
+
+
+const userPoke = userPokemon[0].pokemons; //userPoke.type geys your type
+// const userPokeMove = userPoke[0].move1;
+
+const compPoke = compPokemon[0].pokemons; //compPoke.type geys your type
+// const compPokeMove = compPoke[0].move1;
+
+// console.log(userPoke);
+// console.log(pokeMove);
+
+var userTypeWeaknessModifier = 0;
+var userTypeStrengthModifier = 0;
+var compTypeWeaknessModifier = 0;
+var compTypeStrengthModifier = 0;
+
 
 // console.log(userTypeWeaknessModifier); //weakeness modifier #
 // console.log(userTypeStrengthModifier); //strength modifier #
 
-var randomUserMove = moveSelect.randMove(userPokemon);
-var randomCompMove = moveSelect.randMove(compPokemon);
+var randomUserMovePower = 0;
+var randomCompMovePower = 0;
 
-// console.log(randomUserMove); //move #
-// console.log(randomCompMove); //move #
+// console.log(randomUserMovePower.randomMyMove); //move #
+// console.log(randomUserMovePower.randomMoveType); //move #
 
-const updateMyHP = hpModify.updateHP(userPokemon);
-const updateCompHP = hpModify.updateHP(compPokemon);
+// console.log(randomCompMovePower.randomMyMove); //move #
+// console.log(randomCompMovePower.randomMoveType); //move #
+
+const updateMyHP = hpModify.updateHP(userPoke);
+const updateCompHP = hpModify.updateHP(compPoke);
 
 // console.log(updateMyHP); //update to hp
 // console.log(updateCompHP); //update to hp
 
 // console.log(coinflip.flip());
-//flips either 1-heads or 2-tails
+// flips either 1-heads or 2-tails
 
-userPokemon[0].hp = userPokemon[0].hp + updateMyHP;
-compPokemon[0].hp = compPokemon[0].hp + updateCompHP;
+userPoke[0].hp = userPoke[0].hp + updateMyHP;
+compPoke[0].hp = compPoke[0].hp + updateCompHP;
 
 const HorT = coinflip.flip();
 
@@ -90,12 +197,29 @@ if (HorT == 1 || HorT == 2) {
 }
 
 function StartGame() {
-  randomUserMove = moveSelect.randMove(userPokemon);
-  randomCompMove = moveSelect.randMove(compPokemon);
+   randomUserMovePower = moveSelect.randMovePower(userPoke);
+   randomCompMovePower = moveSelect.randMovePower(compPoke);
 
-  if (userPokemon[0].hp <= 0) {
+  userTypeWeaknessModifier = weaknessPowerMod.modifier(
+    randomUserMovePower.randomMoveType.toLowerCase(),
+    compPoke[0].type.toLowerCase()
+  );
+  userTypeStrengthModifier = strengthPowerMod.modifier(
+    randomUserMovePower.randomMoveType.toLowerCase(),
+    compPoke[0].type.toLowerCase()
+  );
+  compTypeWeaknessModifier = weaknessPowerMod.modifier(
+    randomCompMovePower.randomMoveType.toLowerCase(),
+    userPoke[0].type.toLowerCase()
+  );
+  compTypeStrengthModifier = strengthPowerMod.modifier(
+    randomCompMovePower.randomMoveType.toLowerCase(),
+    userPoke[0].type.toLowerCase()
+  );
+
+  if (userPoke[0].hp <= 0) {
     compWon();
-  } else if (compPokemon[0].hp <= 0) {
+  } else if (compPoke[0].hp <= 0) {
     userWon();
   } else {
     battle();
@@ -111,56 +235,65 @@ function battle() {
   console.log("=========================");
 
   if (hitormiss.flip() == 10) {
-    compPokemon[0].hp = compPokemon[0].hp - 0;
+    compPoke[0].hp = compPoke[0].hp - 0;
     console.log(
       "You're pokemon " +
-        userPokemon[0].name +
+        userPoke[0].name +
         ` missed you have ` +
-        userPokemon[0].hp +
+        userPoke[0].hp +
         " hp left! and your opponent has " +
-        compPokemon[0].hp +
-        " hp left!"
+        compPoke[0].hp +
+        " hp left! \n"
     );
   } else {
     const damage =
-      Math.trunc(randomUserMove * 0.1 * userTypeWeaknessModifier) *
+      Math.trunc(randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessModifier) *
       userTypeStrengthModifier;
-    compPokemon[0].hp = compPokemon[0].hp - damage;
+    compPoke[0].hp = compPoke[0].hp - damage;
+    if(damage>=7){
+      console.log('YOUR ATTACK WAS SUPER EFFECTIVE! \n');
+      
+    }
     console.log(
       "You're pokemon " +
-        userPokemon[0].name +
-        ` used ${randomUserMove} it did ${damage} damage you have ` +
-        userPokemon[0].hp +
+        userPoke[0].name +
+        ` used ${randomUserMovePower.randomMoveName} it did ${damage} damage you have ` +
+        userPoke[0].hp +
         " hp left! and your opponent has " +
-        compPokemon[0].hp +
-        " hp left!"
+        compPoke[0].hp +
+        " hp left! \n"
     );
   }
 
   if (hitormiss.flip() == 10) {
-    userPokemon[0].hp = userPokemon[0].hp - 0;
+    userPoke[0].hp = userPoke[0].hp - 0;
     console.log(
       "Opponent's pokemon " +
-        compPokemon[0].name +
+        compPoke[0].name +
         ` missed you have ` +
-        compPokemon[0].hp +
+        compPoke[0].hp +
         " hp left! and your opponent has " +
-        userPokemon[0].hp +
-        " hp left!"
+        userPoke[0].hp +
+        " hp left! \n"
     );
   } else {
     const damageTwo =
-      Math.trunc(randomCompMove * 0.1 * compTypeWeaknessModifier) *
+      Math.trunc(randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier) *
       compTypeStrengthModifier;
-    userPokemon[0].hp = userPokemon[0].hp - damageTwo;
+    userPoke[0].hp = userPoke[0].hp - damageTwo;
+    
+    if(damageTwo>=7){
+      console.log('YOUR OPPONENTS ATTACK WAS SUPER EFFECTIVE! \n');
+      
+    }
     console.log(
       "The opponent's pokemon " +
-        compPokemon[0].name +
-        ` used ${randomCompMove} it did ${damageTwo} damage they have ` +
-        compPokemon[0].hp +
+        compPoke[0].name +
+        ` used ${randomCompMovePower.randomMoveName} it did ${damageTwo} damage they have ` +
+        compPoke[0].hp +
         " hp left! and you have " +
-        userPokemon[0].hp +
-        " hp left!"
+        userPoke[0].hp +
+        " hp left! \n"
     );
   }
 

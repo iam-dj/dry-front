@@ -1,34 +1,34 @@
 
-function modifier(attackerType, defenderType) {
-    if (attackerType === 'grass' && (defenderType === 'fire' || defenderType === 'ice' || defenderType === 'bug')) {
+function modifier(attackerMoveType, defenderPokemonType) {
+    if (attackerMoveType === 'grass' && (defenderPokemonType === 'fire' || defenderPokemonType === 'ice' || defenderPokemonType === 'bug')) {
         return 0.75;
-    } else if (attackerType === 'fire' && (defenderType === 'water' || defenderType === 'ground' || defenderType === 'rock')) {
+    } else if (attackerMoveType === 'fire' && (defenderPokemonType === 'water' || defenderPokemonType === 'ground' || defenderPokemonType === 'rock')) {
         return 0.75;
-    } else if (attackerType === 'water' && (defenderType === 'electric' || defenderType === 'grass')) {
+    } else if (attackerMoveType === 'water' && (defenderPokemonType === 'electric' || defenderPokemonType === 'grass')) {
         return 0.75;
-    } else if (attackerType === 'electric' && (defenderType === 'rock' || defenderType === 'ground')) {
+    } else if (attackerMoveType === 'electric' && (defenderPokemonType === 'rock' || defenderPokemonType === 'ground')) {
         return 0.75;
-    } else if (attackerType === 'rock' && (defenderType === 'water' || defenderType === 'grass' || defenderType === 'ground')) {
+    } else if (attackerMoveType === 'rock' && (defenderPokemonType === 'water' || defenderPokemonType === 'grass' || defenderPokemonType === 'ground')) {
         return 0.75;
-    } else if (attackerType === 'ground' && (defenderType === 'fighting' || defenderType === 'grass' || defenderType === 'water')) {
+    } else if (attackerMoveType === 'ground' && (defenderPokemonType === 'fighting' || defenderPokemonType === 'grass' || defenderPokemonType === 'water')) {
         return 0.75;
-    } else if (attackerType === 'fighting' && (defenderType === 'ghost' || defenderType === 'psychic' || defenderType === 'flying')) {
+    } else if (attackerMoveType === 'fighting' && (defenderPokemonType === 'ghost' || defenderPokemonType === 'psychic' || defenderPokemonType === 'flying')) {
         return 0.75;
-    } else if (attackerType === 'ghost' && (defenderType === 'psychic' || defenderType === 'ghost')) {
+    } else if (attackerMoveType === 'ghost' && (defenderPokemonType === 'psychic' || defenderPokemonType === 'ghost')) {
         return 0.75;
-    } else if (attackerType === 'psychic' && (defenderType === 'bug' || defenderType === 'ghost' || defenderType === 'dark')) {
+    } else if (attackerMoveType === 'psychic' && (defenderPokemonType === 'bug' || defenderPokemonType === 'ghost' || defenderPokemonType === 'dark')) {
         return 0.75;
-    } else if (attackerType === 'flying' && (defenderType === 'electric' || defenderType === 'ice' || defenderType === 'rock')) {
+    } else if (attackerMoveType === 'flying' && (defenderPokemonType === 'electric' || defenderPokemonType === 'ice' || defenderPokemonType === 'rock')) {
         return 0.75;
-    } else if (attackerType === 'dragon' && (defenderType === 'ice' || defenderType === 'dragon')) {
+    } else if (attackerMoveType === 'dragon' && (defenderPokemonType === 'ice' || defenderPokemonType === 'dragon')) {
         return 0.75;
-    } else if (attackerType === 'ice' && (defenderType === 'rock' || defenderType === 'fire' || defenderType === 'fighting')) {
+    } else if (attackerMoveType === 'ice' && (defenderPokemonType === 'rock' || defenderPokemonType === 'fire' || defenderPokemonType === 'fighting')) {
         return 0.75;
-    } else if (attackerType === 'normal' && (defenderType === 'fighting' || defenderType === '')) {
+    } else if (attackerMoveType === 'normal' && (defenderPokemonType === 'fighting' || defenderPokemonType === '')) {
         return 0.75;
-    } else if (attackerType === 'bug' && (defenderType === 'normal' || defenderType === 'flying' || defenderType === 'fighting')) {
+    } else if (attackerMoveType === 'bug' && (defenderPokemonType === 'normal' || defenderPokemonType === 'flying' || defenderPokemonType === 'fighting')) {
         return 0.75;
-    } else if (attackerType === 'poison' && (defenderType === 'psychic' || defenderType === 'ground')) {
+    } else if (attackerMoveType === 'poison' && (defenderPokemonType === 'psychic' || defenderPokemonType === 'ground')) {
         return 0.75;
     } else {
         return 1;

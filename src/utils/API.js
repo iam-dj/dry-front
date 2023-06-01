@@ -43,7 +43,7 @@ const API = {
         if (res.ok) {
           return res.json();
         } else {
-          throw new Error("falied signup");
+          throw new Error("Bad token");
         }
       });
   },

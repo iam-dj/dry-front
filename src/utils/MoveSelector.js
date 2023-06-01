@@ -1,13 +1,20 @@
 
-function randMove(pokemon) {
+function randMovePower(pokemon) {
     
 const myPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
 
-const myMoveIndex = Math.floor(Math.random() * 4);
+// console.log('===============');
 
-const randomMyMove = myPokemon[`move${myMoveIndex + 1}`];
+const myMoveIndex = Math.floor(Math.random() * 4)+1;
 
-return randomMyMove;
+const randomMyMove = myPokemon['move' + myMoveIndex].power;
+const randomMoveType = myPokemon['move' + myMoveIndex].type;
+const randomMoveName = myPokemon['move' + myMoveIndex].name;
+
+
+// console.log(randomMyMove);
+
+return {randomMyMove, randomMoveType, randomMoveName};
 }
 
 
@@ -18,6 +25,6 @@ return randomMyMove;
 
 
 module.exports = {
-    randMove,
+    randMovePower,
   };
 
