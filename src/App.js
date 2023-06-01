@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
+import CreateTrainer from "./pages/CreateTrainer";
 import Battle from "./pages/Battle";
 import Home from "./pages/Home";
 // import NewPallet from "./pages/NewPallet";
@@ -60,6 +61,15 @@ function App() {
               setUserId={setUserId}
               setUsername={setUsername}
               setToken={setToken}
+            />
+          }
+        />
+        <Route
+          path="/createtrainer"
+          element={
+            <CreateTrainer
+              usage="Create"
+              
             />
           }
         />
