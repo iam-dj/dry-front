@@ -40,7 +40,7 @@ export default function Home(props) {
   useEffect(() => {
     API.getOneTrainer(props.trainerId)
       .then((data) => {
-        console.log(data);
+        console.log("data", data);
         setTrainer(data);
         setIsLoading(false);
       })
@@ -49,6 +49,7 @@ export default function Home(props) {
       });
   }, []);
 
+  console.log(trainer);
   return (
     <>
       {trainer ? (

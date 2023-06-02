@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 import "./style.css";
 import bfg from "./assets/poke_bg.png";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthForm(props) {
+  const navigate = useNavigate();
   const cardStyle = {
     backgroundImage: `url(${bfg})`,
     backgroundPosition: "center",
@@ -60,7 +62,7 @@ export default function AuthForm(props) {
             props.setUsername(data.user.username);
             props.setToken(data.token);
             localStorage.setItem("token", data.token);
-            // window.location.assign("/");
+            navigate("/");
           } else {
             console.log("ERROR");
           }
@@ -81,7 +83,7 @@ export default function AuthForm(props) {
             props.setUsername(data.user.username);
             props.setToken(data.token);
             localStorage.setItem("token", data.token);
-            window.location.assign("/createtrainer");
+            navigate("/createtrainer");
           } else {
             console.log("ERROR");
           }
