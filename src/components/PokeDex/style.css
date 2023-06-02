@@ -1,12 +1,12 @@
 .tab-link {
-    background-color: white !important;
+    /* background-color: white !important; */
     font-weight:normal;
     color: black !important;
     transition: transform 0.3s;
 
   }
   .tab-link:hover {
-    transform: scale(1.2);
+    transform: scale(1.13);
 
   }
 
@@ -16,3 +16,31 @@
     position: relative;
     top: 20px; 
   }
+
+  .pokemon-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pokemon-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  

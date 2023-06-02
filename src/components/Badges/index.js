@@ -16,7 +16,7 @@ export default function Badges() {
   return (
     <div>
       <Container className="">
-        <Row className="justify-content-center cardtwo">
+        <Row className="justify-content-center ">
           <Col xs={1} className="p-1">
             <img className="imgFix" alt="boulder" src={one} />
           </Col>
