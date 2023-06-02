@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import API from "../../utils/API";
 import "./style.css";
 import bfg from "./assets/bg.png";
 import Container from "react-bootstrap/Container";
@@ -7,10 +8,22 @@ import Col from "react-bootstrap/Col";
 import PokeDex from "../../components/PokeDex";
 import Badges from "../../components/Badges";
 import Button from "../../components/Buttons";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 import ash from "./ash.json";
 
-export default function Home() {
+export default function Home(props) {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.token === null ) {
+      navigate("/login");
+    }
+  }, [props.token]);
+
   const {
     name,
     age,
@@ -29,15 +42,33 @@ export default function Home() {
 
   const cardStyle = {
     backgroundImage: `url(${bfg})`,
-    backgroundSize: "cover",
+    backgroundSize: "auto",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     width: "100%",
+    height: "auto",
   };
+  const [trainer, setTrainer] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    API.getOneTrainer(props.userId)
+      .then((data) => {
+        setTrainer(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
+    <>
+      {props.token ? (
     <div>
       <body style={cardStyle}>
-
         <Container className="card">
           <Row>
             <Col xs={4} md={3}>
@@ -67,9 +98,13 @@ export default function Home() {
               />
             </Col>
 
-            <Col xs={4} md={3} className="d-flex justify-content-center align-items-center">
-      <Button>Button</Button>
-    </Col>
+            <Col
+              xs={4}
+              md={3}
+              className="d-flex justify-content-center align-items-center"
+            >
+              <Button>Button</Button>
+            </Col>
           </Row>
         </Container>
 
@@ -78,5 +113,9 @@ export default function Home() {
         <PokeDex />
       </body>
     </div>
+    ) : (
+      <h1>Login to see page!</h1>
+    )}
+  </>
   );
 }

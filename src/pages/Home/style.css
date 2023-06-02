@@ -10,6 +10,10 @@ html,body, #root {
   height: 100%;
 }
 
+.hljk{
+background-size: auto;
+}
+
 
 .profile{
     width:250px;

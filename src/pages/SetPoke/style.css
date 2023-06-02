@@ -1,0 +1,12 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  .choose-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 35px;
+  }

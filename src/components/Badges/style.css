@@ -10,3 +10,8 @@
 .imgFix:hover {
   transform: scale(1.2);
 }
+
+.badge-disabled {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
