@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
 import bfg from "./assets/poke_bg.png";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTrainer(props) {
+  const navigate = useNavigate();
   const cardStyle = {
     backgroundImage: `url(${bfg})`,
     backgroundPosition: "center",
@@ -43,9 +45,10 @@ export default function CreateTrainer(props) {
       user_id: props.userId,
     })
       .then((data) => {
+        console.log(data.id);
         if (data.name && data.age) {
-          props.setTrainer(data.id);
-          window.location.assign("/");
+          props.setTrainerId(data.id);
+          navigate("/");
         } else {
           console.log("ERROR");
         }

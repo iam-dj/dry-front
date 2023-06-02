@@ -23,6 +23,7 @@ function App() {
     if (storedToken) {
       API.verifyToken(storedToken)
         .then((data) => {
+          console.log(data);
           setToken(storedToken);
           setUserId(data.id);
           setTrainerId(data.Trainer.id);
