@@ -62,6 +62,19 @@ const API = {
       }
     });
   },
-};
+  
+  getOneTrainer:trainerId=>{
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}`).then(res=>{
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("falied to fetch trainer " + trainerId);
+      }
+    })
+  },
+
+  };
+
+
 
 export default API;

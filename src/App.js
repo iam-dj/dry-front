@@ -5,9 +5,11 @@ import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Battle from "./pages/Battle";
 import Home from "./pages/Home";
+import Catch from "./pages/Catch";
+import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
-// import NewPallet from "./pages/NewPallet";
 import API from "./utils/API";
+
 function App() {
   const [userId, setUserId] = useState();
   const [username, setUsername] = useState("");
@@ -42,7 +44,7 @@ function App() {
     <Router>
       <Navbar userId={userId} logout={logout} username={username} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home token={token} userId={userId} />} />
         <Route
           path="/login"
           element={
@@ -67,26 +69,43 @@ function App() {
         />
         <Route
           path="/createtrainer"
-          element={
-            <CreateTrainer
-              usage="Create"
-              setToken={setToken}
-            />
-          }
+          element={<CreateTrainer usage="Create" setToken={setToken} />}
         />
         <Route
           path="/setpoke"
           element={
             <SetPoke
+              setUserId={setUserId}
+
               // usage="Create"
-              // setToken={setToken}
+              token={token}
             />
           }
         />
-        {/* <Route path="/users/:username" element={<h2>profile page</h2>} /> */}
-        {/* <Route path="/trainers" element={<h2>all trainers page</h2>} /> */}
-        {/* <Route path="/newpallet" element={<NewPallet token={token}/>} /> */}
-        <Route path="/battle" element={<Battle />} />
+        <Route
+          path="/catch"
+          element={
+            <Catch
+              setUserId={setUserId}
+
+              // usage="Create"
+              token={token}
+            />
+          }
+        />
+        <Route
+          path="/gym"
+          element={
+            <Gym
+              setUserId={setUserId}
+
+              // usage="Create"
+              token={token}
+            />
+          }
+        />
+
+        <Route path="/battle" element={<Battle token={token} />} />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>
     </Router>

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import battlebg from "./assets/battle.jpg";
 // import { fetchNPCData, simulateBattle } from "./pokemon_db"; // Example functions for fetching NPC data and simulating battle
@@ -10,17 +10,14 @@ import Dropdown from "react-bootstrap/Dropdown";
 // import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 
-
-export default function Battle(props) {
+export default function Gym(props) {
   const navigate = useNavigate();
 
-  console.log(props.token)
   useEffect(() => {
     if (props.token === null ) {
       navigate("/login");
     }
   }, [props.token]);
-  
 
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
@@ -50,7 +47,7 @@ export default function Battle(props) {
   };
 
   return (
-    <>
+     <>
       {props.token ? (
     <div style={cardStyle}>
       <Dropdown>
@@ -65,7 +62,7 @@ export default function Battle(props) {
       </Dropdown>
 
     </div>
-     ) : (
+    ) : (
       <h1>Login to see page!</h1>
     )}
   </>
