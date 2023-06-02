@@ -7,16 +7,23 @@ import PokeDex from "../../components/PokeDex";
 import Buttons from "../../components/Buttons";
 
 import ash from "./ash.json";
+import { json } from "sequelize";
 
 const RunPutFunction = async () => {
     try {
       // Fetch NPC data from the database
       // call API.SetFighter route to update isMain to true and set old isMain to false.
-      
+
     } catch (error) {
       console.error("Error starting battle:", error);
     }
   };
+
+//   how do i check the ash json
+
+const check = ash; 
+
+console.log(check)
 
 export default function Home() {
  
