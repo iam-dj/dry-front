@@ -56,11 +56,11 @@ export default function AuthForm(props) {
           if (data.user) {
             console.log(data);
             props.setUserId(data.user.id);
+            props.setTrainerId(data.user.Trainer.id);
             props.setUsername(data.user.username);
             props.setToken(data.token);
             localStorage.setItem("token", data.token);
-            window.location.assign("/");
-
+            // window.location.assign("/");
           } else {
             console.log("ERROR");
           }

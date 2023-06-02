@@ -25,67 +25,66 @@ export default function CreateTrainer(props) {
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-//   let profilePicUploadUrl = "";
-
+  //   let profilePicUploadUrl = "";
 
   const handleChange = (e) => {
     if (e.target.name === "name") {
-        setName(e.target.value);
-      
+      setName(e.target.value);
     } else {
-        setAge(e.target.value);
+      setAge(e.target.value);
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
-      API.setTrainer({
-        name: name,
-        age: age,
+    API.createTrainer({
+      name: name,
+      age: age,
+      user_id: props.userId,
+    })
+      .then((data) => {
+        if (data.name && data.age) {
+          props.setTrainer(data.id);
+          window.location.assign("/");
+        } else {
+          console.log("ERROR");
+        }
       })
-        .then((data) => {
-            if (data.name && data.age) {
-                props.setToken(data.token);
-                
-            // window.location.assign("/");
-
-          } else {
-            console.log("ERROR");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
+      .catch((err) => {
+        console.log(err);
         //   localStorage.removeItem("token");
-        });
-   
+      });
   };
   return (
     <div>
-       <main className="AuthForm" style={cardStyle}>
-      <form style={formStyle} onSubmit={handleSubmit}>
-        <input
-          style={{ margin: 10 + "px" }}
-          name="name"
-          onChange={handleChange}
-          value={name}
-          placeholder="name"
-        />
-        <input
-          name="age"
-          onChange={handleChange}
-          value={age}
-          type="age"
-          placeholder="age"
-        />
-        {/* if i need additional form fields for signup: */}
-        {/* // email is an example of signup only field, not in use for this app */}
-        {/* {props.usage==="Signup"&& <input name="email" onChange={handleChange} placeholder="email" value={email}/>} */}
-        {/* {props.usage==="Signup"?<input placeholder='signup only'/> :null} */}
-        <button style={{ margin: 10 + "px" }} className="btn btn-sm btn-danger">
-          {props.usage}
-        </button>
-      </form>
-    </main>
+      <main className="AuthForm" style={cardStyle}>
+        <form style={formStyle} onSubmit={handleSubmit}>
+          <input
+            style={{ margin: 10 + "px" }}
+            name="name"
+            onChange={handleChange}
+            value={name}
+            placeholder="name"
+          />
+          <input
+            name="age"
+            onChange={handleChange}
+            value={age}
+            type="age"
+            placeholder="age"
+          />
+          {/* if i need additional form fields for signup: */}
+          {/* // email is an example of signup only field, not in use for this app */}
+          {/* {props.usage==="Signup"&& <input name="email" onChange={handleChange} placeholder="email" value={email}/>} */}
+          {/* {props.usage==="Signup"?<input placeholder='signup only'/> :null} */}
+          <button
+            style={{ margin: 10 + "px" }}
+            className="btn btn-sm btn-danger"
+          >
+            {props.usage}
+          </button>
+        </form>
+      </main>
     </div>
   );
 }

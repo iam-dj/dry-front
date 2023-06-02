@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import "./style.css";
 import bfg from "./assets/bg.png";
@@ -11,34 +11,21 @@ import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-
 import ash from "./ash.json";
 
 export default function Home(props) {
   const params = useParams();
   const navigate = useNavigate();
 
+  const [trainer, setTrainer] = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    if (props.token === null ) {
+    if (props.userId === null) {
       navigate("/login");
     }
-  }, [props.token]);
-
-  const {
-    name,
-    age,
-    profilePicUrl,
-    numWins,
-    numLosses,
-    boulder_badge,
-    cascade_badge,
-    thunder_badge,
-    rainbow_badge,
-    soul_badge,
-    marsh_badge,
-    volcano_badge,
-    earth_badge,
-  } = ash[0];
+  }, [props.userId]);
 
   const cardStyle = {
     backgroundImage: `url(${bfg})`,
@@ -49,13 +36,11 @@ export default function Home(props) {
     width: "100%",
     height: "auto",
   };
-  const [trainer, setTrainer] = useState({});
-
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    API.getOneTrainer(props.userId)
+    API.getOneTrainer(props.trainerId)
       .then((data) => {
+        console.log(data);
         setTrainer(data);
         setIsLoading(false);
       })
@@ -66,56 +51,56 @@ export default function Home(props) {
 
   return (
     <>
-      {props.token ? (
-    <div>
-      <body style={cardStyle}>
-        <Container className="card">
-          <Row>
-            <Col xs={4} md={3}>
-              <img
-                className="profile img-fluid"
-                alt="profile"
-                src={profilePicUrl}
-              />
-            </Col>
-            <Col className="profile2">
-              <h1 className="profile-name">{name}</h1>
-              <h2 className="profile-age">Age: {age}</h2>
-              <h6 className="profile-record">
-                Record: {numWins} 🥇 ➖ {numLosses} 🚫
-              </h6>
-              <Badges
-                badges={[
-                  boulder_badge,
-                  cascade_badge,
-                  thunder_badge,
-                  rainbow_badge,
-                  soul_badge,
-                  marsh_badge,
-                  volcano_badge,
-                  earth_badge,
-                ]}
-              />
-            </Col>
+      {trainer ? (
+        <div>
+          <body style={cardStyle}>
+            <Container className="card">
+              <Row>
+                <Col xs={4} md={3}>
+                  <img
+                    className="profile img-fluid"
+                    alt="profile"
+                    src={trainer.profilePicUrl}
+                  />
+                </Col>
+                <Col className="profile2">
+                  <h1 className="profile-name">{trainer.name}</h1>
+                  <h2 className="profile-age">Age: {trainer.age}</h2>
+                  <h6 className="profile-record">
+                    Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
+                  </h6>
+                  <Badges
+                    badges={[
+                      trainer.boulder_badge,
+                      trainer.cascade_badge,
+                      trainer.thunder_badge,
+                      trainer.rainbow_badge,
+                      trainer.soul_badge,
+                      trainer.marsh_badge,
+                      trainer.volcano_badge,
+                      trainer.earth_badge,
+                    ]}
+                  />
+                </Col>
 
-            <Col
-              xs={4}
-              md={3}
-              className="d-flex justify-content-center align-items-center"
-            >
-              <Button>Button</Button>
-            </Col>
-          </Row>
-        </Container>
+                <Col
+                  xs={4}
+                  md={3}
+                  className="d-flex justify-content-center align-items-center"
+                >
+                  <Button>Button</Button>
+                </Col>
+              </Row>
+            </Container>
 
-        <br />
+            <br />
 
-        <PokeDex />
-      </body>
-    </div>
-    ) : (
-      <h1>Login to see page!</h1>
-    )}
-  </>
+            <PokeDex />
+          </body>
+        </div>
+      ) : (
+        <h1>Login to see page!</h1>
+      )}
+    </>
   );
 }
