@@ -1,0 +1,12 @@
+.battle-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #ff0000;
+    border-color: #ff0000;
+    transition: transform 0.3s;
+  }
+  
+  .battle-button:hover {
+    transform: scale(1.1);
+  }
+  

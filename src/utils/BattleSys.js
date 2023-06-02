@@ -151,160 +151,146 @@ const compPokemon = [
 
 
 
-const userPoke = userPokemon[0].pokemons; //userPoke.type geys your type
-// const userPokeMove = userPoke[0].move1;
+function startBattle(userPokemon, opponentPokemon) {
+  const userPoke = userPokemon[0].pokemons;
+  const compPoke = opponentPokemon[0].pokemons;
 
-const compPoke = compPokemon[0].pokemons; //compPoke.type geys your type
-// const compPokeMove = compPoke[0].move1;
+  let userTypeWeaknessModifier = 0;
+  let userTypeStrengthModifier = 0;
+  let compTypeWeaknessModifier = 0;
+  let compTypeStrengthModifier = 0;
 
-// console.log(userPoke);
-// console.log(pokeMove);
+  let randomUserMovePower = 0;
+  let randomCompMovePower = 0;
 
-var userTypeWeaknessModifier = 0;
-var userTypeStrengthModifier = 0;
-var compTypeWeaknessModifier = 0;
-var compTypeStrengthModifier = 0;
+  const updateMyHP = hpModify.updateHP(userPoke);
+  const updateCompHP = hpModify.updateHP(compPoke);
 
+  userPoke[0].hp = userPoke[0].hp + updateMyHP;
+  compPoke[0].hp = compPoke[0].hp + updateCompHP;
 
-// console.log(userTypeWeaknessModifier); //weakeness modifier #
-// console.log(userTypeStrengthModifier); //strength modifier #
+  const HorT = coinflip.flip();
 
-var randomUserMovePower = 0;
-var randomCompMovePower = 0;
-
-// console.log(randomUserMovePower.randomMyMove); //move #
-// console.log(randomUserMovePower.randomMoveType); //move #
-
-// console.log(randomCompMovePower.randomMyMove); //move #
-// console.log(randomCompMovePower.randomMoveType); //move #
-
-const updateMyHP = hpModify.updateHP(userPoke);
-const updateCompHP = hpModify.updateHP(compPoke);
-
-// console.log(updateMyHP); //update to hp
-// console.log(updateCompHP); //update to hp
-
-// console.log(coinflip.flip());
-// flips either 1-heads or 2-tails
-
-userPoke[0].hp = userPoke[0].hp + updateMyHP;
-compPoke[0].hp = compPoke[0].hp + updateCompHP;
-
-const HorT = coinflip.flip();
-
-if (HorT == 1 || HorT == 2) {
-  StartGame();
-}
-
-function StartGame() {
-   randomUserMovePower = moveSelect.randMovePower(userPoke);
-   randomCompMovePower = moveSelect.randMovePower(compPoke);
-
-  userTypeWeaknessModifier = weaknessPowerMod.modifier(
-    randomUserMovePower.randomMoveType.toLowerCase(),
-    compPoke[0].type.toLowerCase()
-  );
-  userTypeStrengthModifier = strengthPowerMod.modifier(
-    randomUserMovePower.randomMoveType.toLowerCase(),
-    compPoke[0].type.toLowerCase()
-  );
-  compTypeWeaknessModifier = weaknessPowerMod.modifier(
-    randomCompMovePower.randomMoveType.toLowerCase(),
-    userPoke[0].type.toLowerCase()
-  );
-  compTypeStrengthModifier = strengthPowerMod.modifier(
-    randomCompMovePower.randomMoveType.toLowerCase(),
-    userPoke[0].type.toLowerCase()
-  );
-
-  if (userPoke[0].hp <= 0) {
-    compWon();
-  } else if (compPoke[0].hp <= 0) {
-    userWon();
-  } else {
-    battle();
+  if (HorT === 1 || HorT === 2) {
+    startGame();
   }
-}
 
-function battle() {
-  console.log(userTypeWeaknessModifier); //weakeness modifier #
-  console.log(userTypeStrengthModifier); //strength modifier #
-  console.log(compTypeWeaknessModifier); //weakeness modifier #
-  console.log(compTypeStrengthModifier); //strength modifier #
+  function startGame() {
+    randomUserMovePower = moveSelect.randMovePower(userPoke);
+    randomCompMovePower = moveSelect.randMovePower(compPoke);
 
-  console.log("=========================");
-
-  if (hitormiss.flip() == 10) {
-    compPoke[0].hp = compPoke[0].hp - 0;
-    console.log(
-      "You're pokemon " +
-        userPoke[0].name +
-        ` missed you have ` +
-        userPoke[0].hp +
-        " hp left! and your opponent has " +
-        compPoke[0].hp +
-        " hp left! \n"
+    userTypeWeaknessModifier = weaknessPowerMod.modifier(
+      randomUserMovePower.randomMoveType.toLowerCase(),
+      compPoke[0].type.toLowerCase()
     );
-  } else {
-    const damage =
-      Math.trunc(randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessModifier) *
-      userTypeStrengthModifier;
-    compPoke[0].hp = compPoke[0].hp - damage;
-    if(damage>=7){
-      console.log('YOUR ATTACK WAS SUPER EFFECTIVE! \n');
-      
+    userTypeStrengthModifier = strengthPowerMod.modifier(
+      randomUserMovePower.randomMoveType.toLowerCase(),
+      compPoke[0].type.toLowerCase()
+    );
+    compTypeWeaknessModifier = weaknessPowerMod.modifier(
+      randomCompMovePower.randomMoveType.toLowerCase(),
+      userPoke[0].type.toLowerCase()
+    );
+    compTypeStrengthModifier = strengthPowerMod.modifier(
+      randomCompMovePower.randomMoveType.toLowerCase(),
+      userPoke[0].type.toLowerCase()
+    );
+
+    if (userPoke[0].hp <= 0) {
+      compWon();
+    } else if (compPoke[0].hp <= 0) {
+      userWon();
+    } else {
+      battle();
     }
-    console.log(
-      "You're pokemon " +
-        userPoke[0].name +
-        ` used ${randomUserMovePower.randomMoveName} it did ${damage} damage you have ` +
-        userPoke[0].hp +
-        " hp left! and your opponent has " +
-        compPoke[0].hp +
-        " hp left! \n"
-    );
   }
 
-  if (hitormiss.flip() == 10) {
-    userPoke[0].hp = userPoke[0].hp - 0;
-    console.log(
-      "Opponent's pokemon " +
-        compPoke[0].name +
-        ` missed you have ` +
-        compPoke[0].hp +
-        " hp left! and your opponent has " +
-        userPoke[0].hp +
-        " hp left! \n"
-    );
-  } else {
-    const damageTwo =
-      Math.trunc(randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier) *
-      compTypeStrengthModifier;
-    userPoke[0].hp = userPoke[0].hp - damageTwo;
-    
-    if(damageTwo>=7){
-      console.log('YOUR OPPONENTS ATTACK WAS SUPER EFFECTIVE! \n');
-      
+  function battle() {
+    console.log(userTypeWeaknessModifier); // weakness modifier #
+    console.log(userTypeStrengthModifier); // strength modifier #
+    console.log(compTypeWeaknessModifier); // weakness modifier #
+    console.log(compTypeStrengthModifier); // strength modifier #
+    console.log("=========================");
+
+    if (hitormiss.flip() === 10) {
+      compPoke[0].hp = compPoke[0].hp - 0;
+      console.log(
+        "Your pokemon " +
+          userPoke[0].name +
+          ` missed. You have ` +
+          userPoke[0].hp +
+          " hp left! Your opponent has " +
+          compPoke[0].hp +
+          " hp left!\n"
+      );
+    } else {
+      const damage =
+        Math.trunc(
+          randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessModifier
+        ) * userTypeStrengthModifier;
+      compPoke[0].hp = compPoke[0].hp - damage;
+      if (damage >= 7) {
+        console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
+      }
+      console.log(
+        "Your pokemon " +
+          userPoke[0].name +
+          ` used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ` +
+          userPoke[0].hp +
+          " hp left! Your opponent has " +
+          compPoke[0].hp +
+          " hp left!\n"
+      );
     }
-    console.log(
-      "The opponent's pokemon " +
-        compPoke[0].name +
-        ` used ${randomCompMovePower.randomMoveName} it did ${damageTwo} damage they have ` +
-        compPoke[0].hp +
-        " hp left! and you have " +
-        userPoke[0].hp +
-        " hp left! \n"
-    );
+
+    if (hitormiss.flip() === 10) {
+      userPoke[0].hp = userPoke[0].hp - 0;
+      console.log(
+        "Opponent's pokemon " +
+          compPoke[0].name +
+          ` missed. You have ` +
+          compPoke[0].hp +
+          " hp left! Your opponent has " +
+          userPoke[0].hp +
+          " hp left!\n"
+      );
+    } else {
+      const damageTwo =
+        Math.trunc(
+          randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier
+        ) * compTypeStrengthModifier;
+      userPoke[0].hp = userPoke[0].hp - damageTwo;
+
+      if (damageTwo >= 7) {
+        console.log("YOUR OPPONENT'S ATTACK WAS SUPER EFFECTIVE!\n");
+      }
+      console.log(
+        "The opponent's pokemon " +
+          compPoke[0].name +
+          ` used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ` +
+          compPoke[0].hp +
+          " hp left! You have " +
+          userPoke[0].hp +
+          " hp left!\n"
+      );
+    }
+
+    console.log("\n\n");
+
+    startGame();
   }
 
-  console.log("\n\n");
+  function userWon() {
+    console.log("You win!!");
+  }
 
-  StartGame();
+  function compWon() {
+    console.log("You lose");
+  }
+
+  startGame();
 }
 
-function userWon() {
-  console.log("you win!!");
-}
-function compWon() {
-  console.log("you lose");
-}
+module.exports = {
+  startBattle,
+};

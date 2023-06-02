@@ -1,40 +1,73 @@
-import React from "react";
-import Nav from 'react-bootstrap/Nav';
+import React, { useState } from "react";
 import "./style.css";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+import ash from "./ash.json";
 
 export default function PokeDex() {
-  const pokemonTypes = [
-    "Fire",
-    "Flying",
-    "Dragon",
-    "Water",
-    "Grass",
-    "Electric",
-    "Rock",
-    "Ground",
-    "Ice",
-    "Psychic",
-    "Bug",
-    "Poison",
-    "Normal",
-    "Fighting",
-  ];
+  const pokemon = ash[0].pokemons;
+  const [activeType, setActiveType] = useState(pokemon[0].type);
+  const [showCaughtPokemon, setShowCaughtPokemon] = useState(false);
+
+  // Get unique list of Pokemon types
+  const pokemonTypes = [...new Set(pokemon.map((p) => p.type))];
+
+  // Filter Pokemon by selected type
+  const filteredPokemon = pokemon.filter((p) => p.type === activeType);
+
+  // Filter caught and uncaught Pokemon if the button is toggled
+  const caughtPokemon = showCaughtPokemon
+    ? filteredPokemon.filter((p) => p.isCaught)
+    : filteredPokemon;
+
+  const caughtButtonLabel = showCaughtPokemon ? "Showing Caught" : "Showing Uncaught";
+
   return (
     <div>
       <Container className="space-tab">
-        <Nav variant="tabs" defaultActiveKey="/home">
-          {pokemonTypes.map((type, index) => (
-            <Nav.Item key={index}>
-              <Nav.Link eventKey={`link-${index}`} className="tab-link">
-                {type}
-              </Nav.Link>
-            </Nav.Item>
+        <div className="button-row d-flex justify-content-center">
+          {pokemonTypes.map((type) => (
+            <Button
+              key={type}
+              variant={type === activeType ? "primary" : "dark"}
+              onClick={() => setActiveType(type)}
+              className="btn btn-sm"
+            >
+              {type}
+            </Button>
           ))}
-          <div></div>
-        </Nav>
+          <Button
+            variant={showCaughtPokemon ? "success" : "danger"}
+            onClick={() => setShowCaughtPokemon(!showCaughtPokemon)}
+            className="btn btn-sm ml-2"
+          >
+            {caughtButtonLabel}
+          </Button>
+        </div>
+
+        <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row">
+          {caughtPokemon.map((p) => (
+            <Col key={p.id} className="mb-3">
+              <Card className="pokemon-card">
+                <div className="card-content">
+                  <Card.Img variant="top" src={p.img_url} alt={p.name} className="pokemon-image" />
+
+                  <Card.Body>
+                    <Card.Title>{p.name}</Card.Title>
+                    <Card.Text>Type: {p.type}</Card.Text>
+                  </Card.Body>
+                </div>
+              </Card>
+            </Col>
+          ))}
+          {caughtPokemon.length === 0 && !showCaughtPokemon && (
+            <p className="text-center mt-3">No Pokémon found.</p>
+          )}
+        </Row>
       </Container>
     </div>
   );

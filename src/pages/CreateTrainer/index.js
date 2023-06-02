@@ -44,9 +44,10 @@ export default function CreateTrainer(props) {
         age: age,
       })
         .then((data) => {
-          if (data.name && data.age) {
-            console.log(data);
-            window.location.assign("/profile");
+            if (data.name && data.age) {
+                props.setToken(data.token);
+                
+            // window.location.assign("/");
 
           } else {
             console.log("ERROR");

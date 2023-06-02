@@ -69,7 +69,7 @@ function App() {
           element={
             <CreateTrainer
               usage="Create"
-              
+              setToken={setToken}
             />
           }
         />
