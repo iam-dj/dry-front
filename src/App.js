@@ -5,6 +5,7 @@ import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Battle from "./pages/Battle";
 import Home from "./pages/Home";
+import SetPoke from "./pages/SetPoke";
 // import NewPallet from "./pages/NewPallet";
 import API from "./utils/API";
 function App() {
@@ -70,6 +71,15 @@ function App() {
             <CreateTrainer
               usage="Create"
               setToken={setToken}
+            />
+          }
+        />
+        <Route
+          path="/setpoke"
+          element={
+            <SetPoke
+              // usage="Create"
+              // setToken={setToken}
             />
           }
         />
