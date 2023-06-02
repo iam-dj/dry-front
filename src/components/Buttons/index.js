@@ -29,7 +29,7 @@ export default function Buttons() {
         <Link to="/gym">
           <img src={btn7} alt="Button 7" className="button" />
         </Link>
-        <Link to="/set">
+        <Link to="/setpoke">
           <img src={btn9} alt="Button 9" className="button" />
         </Link>
       </div>
