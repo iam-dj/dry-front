@@ -12,8 +12,11 @@ import API from "./utils/API";
 
 function App() {
   const [userId, setUserId] = useState();
+  const [trainerId, setTrainerId] = useState();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
+
+  console.log(trainerId);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -22,6 +25,7 @@ function App() {
         .then((data) => {
           setToken(storedToken);
           setUserId(data.id);
+          setTrainerId(data.Trainer.id);
           setUsername(data.username);
         })
         .catch((err) => {
@@ -36,6 +40,7 @@ function App() {
     localStorage.removeItem("token");
     setUserId(null);
     setUsername("");
+    setTrainerId(null);
     setToken("");
     window.location.assign("/login");
   }
@@ -44,7 +49,10 @@ function App() {
     <Router>
       <Navbar userId={userId} logout={logout} username={username} />
       <Routes>
-        <Route path="/" element={<Home token={token} userId={userId} />} />
+        <Route
+          path="/"
+          element={<Home token={token} userId={userId} trainerId={trainerId} />}
+        />
         <Route
           path="/login"
           element={
@@ -53,6 +61,7 @@ function App() {
               setUserId={setUserId}
               setUsername={setUsername}
               setToken={setToken}
+              setTrainerId={setTrainerId}
             />
           }
         />
@@ -69,14 +78,19 @@ function App() {
         />
         <Route
           path="/createtrainer"
-          element={<CreateTrainer usage="Create" setToken={setToken} />}
+          element={
+            <CreateTrainer
+              usage="Create"
+              userId={userId}
+              setTrainerId={setTrainerId}
+            />
+          }
         />
         <Route
           path="/setpoke"
           element={
             <SetPoke
               setUserId={setUserId}
-
               // usage="Create"
               token={token}
             />
@@ -87,7 +101,6 @@ function App() {
           element={
             <Catch
               setUserId={setUserId}
-
               // usage="Create"
               token={token}
             />
@@ -98,7 +111,6 @@ function App() {
           element={
             <Gym
               setUserId={setUserId}
-
               // usage="Create"
               token={token}
             />

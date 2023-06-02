@@ -34,20 +34,20 @@ const API = {
       }
     });
   },
-  verifyToken:(token)=>{
-    return fetch(`${URL_PREFIX}/api/users/verifytoken`,{
-        headers:{
-            "authorization":`Bearer ${token}`
-        }
+  verifyToken: (token) => {
+    return fetch(`${URL_PREFIX}/api/users/verifytoken`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error("Bad token");
-        }
-      });
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Bad token");
+      }
+    });
   },
-  setTrainer: (userObj) => {
+  createTrainer: (userObj) => {
     return fetch(`${URL_PREFIX}/api/trainers`, {
       method: "POST",
       body: JSON.stringify(userObj),
@@ -62,19 +62,28 @@ const API = {
       }
     });
   },
-  
-  getOneTrainer:trainerId=>{
-    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}`).then(res=>{
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("falied to fetch trainer " + trainerId);
-      }
-    })
+
+  getOneTrainer: (trainerId) => {
+    console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          // if (res.ok) {
+          //   res.json();
+          //   console.log(data);
+          //   return data;
+          // } else {
+          //   throw new Error("falied to fetch trainer " + trainerId);
+          // }
+          console.log(data);
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
   },
-
-  };
-
-
+};
 
 export default API;
