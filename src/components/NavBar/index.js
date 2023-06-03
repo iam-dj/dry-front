@@ -16,7 +16,7 @@ function NavTabs(props) {
           Battle
         </Link>
         <Link className="nav-link text-dark" to="/catch">
-          Catch
+          Catch 'em All
         </Link>
         <Link className="nav-link text-dark" to="/dashboard">
           Dashboard

@@ -12,9 +12,7 @@ import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import ash from "./ash.json";
-
-const STORAGE_KEY = "home_trainer_state"; // Define the key for storing the state in localStorage
+const STORAGE_KEY = "home_trainer_state";
 
 export default function Dashboard(props) {
   const params = useParams();
@@ -25,7 +23,7 @@ export default function Dashboard(props) {
     return storedState ? JSON.parse(storedState) : null;
   });
 
-  const [isLoading, setIsLoading] = useState(!trainer); // Set isLoading to true if trainer is not present in localStorage
+  const [isLoading, setIsLoading] = useState(!trainer);
 
   useEffect(() => {
     if (props.userId === null) {
@@ -44,19 +42,21 @@ export default function Dashboard(props) {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await API.getOneTrainer(props.trainerId);
+        setTrainer(data);
+        setIsLoading(false);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    };
+
     if (!trainer) {
-      // Fetch the trainer data if not present in state
-      setIsLoading(true); // Set isLoading to true before fetching the data
-      API.getOneTrainer(props.trainerId)
-        .then((data) => {
-          setTrainer(data);
-          setIsLoading(false);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); // Store the fetched trainer data in localStorage
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsLoading(false);
-        });
+      fetchData();
     }
   }, [props.trainerId, trainer]);
 
@@ -112,7 +112,6 @@ export default function Dashboard(props) {
             <br />
 
             <PokeDex trainer={trainer} />
-            <SetPoke trainer={trainer} />
           </body>
         </div>
       )}

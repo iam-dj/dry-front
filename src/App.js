@@ -4,7 +4,7 @@ import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Battle from "./pages/Battle";
-import Home from "./pages/HomePage";
+import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
 import Dashboard from "./pages/Dashboard";
 import Gym from "./pages/Gym";
@@ -52,7 +52,7 @@ function App() {
           path="/"
           element={
             userId ? (
-              <Home token={token} userId={userId} trainerId={trainerId} />
+              <HomePage token={token} userId={userId} trainerId={trainerId} />
             ) : (
               <Navigate to="/login" replace />
             )
@@ -93,7 +93,7 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard userId={userId} setTrainerId={setTrainerId} />}
+          element={<Dashboard token={token} userId={userId} trainerId={trainerId} />}
         />
         <Route
           path="/setpoke"
