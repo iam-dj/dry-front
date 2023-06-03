@@ -26,8 +26,8 @@ export default function CreateTrainer(props) {
     padding: "20px",
   };
 
-  const [imageUrl, setImageUrl] = useState("");
-  const [error, updateError] = useState();
+  let imageUrl = "";
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   //   let profilePicUploadUrl = "";
@@ -50,7 +50,7 @@ export default function CreateTrainer(props) {
     })
       .then((data) => {
         console.log(data.id);
-        if (data.name && data.age) {
+        if (data.name && data.age && data.profilePicUrl) {
           props.setTrainerId(data.id);
           navigate("/");
         } else {
@@ -72,7 +72,8 @@ export default function CreateTrainer(props) {
       (error, result) => {
         if (!error && result && result.event === "success") {
           console.log(result.info.url);
-          setImageUrl(result.url);
+          // setImageUrl(result.url);
+          imageUrl = result.info.url;
         }
       }
     );
