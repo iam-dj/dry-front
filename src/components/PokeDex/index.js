@@ -6,10 +6,10 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import ash from "./ash.json";
+// import ash from "./ash.json";
 
-export default function PokeDex() {
-  const pokemon = ash[0].pokemons;
+export default function PokeDex(props) {
+  const pokemon = props.trainer.pokemons;
   const [activeType, setActiveType] = useState(pokemon[0].type);
   const [showCaughtPokemon, setShowCaughtPokemon] = useState(false);
 
@@ -24,7 +24,9 @@ export default function PokeDex() {
     ? filteredPokemon.filter((p) => p.isCaught)
     : filteredPokemon;
 
-  const caughtButtonLabel = showCaughtPokemon ? "Showing Caught" : "Showing Uncaught";
+  const caughtButtonLabel = showCaughtPokemon
+    ? "Showing Caught"
+    : "Showing Uncaught";
 
   return (
     <div>
@@ -54,11 +56,21 @@ export default function PokeDex() {
             <Col key={p.id} className="mb-3">
               <Card className="pokemon-card">
                 <div className="card-content">
-                  <Card.Img variant="top" src={p.img_url} alt={p.name} className="pokemon-image" />
+                  <Card.Img
+                    variant="top"
+                    src={p.img_url}
+                    alt={p.name}
+                    className="pokemon-image"
+                  />
 
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
                     <Card.Text>Type: {p.type}</Card.Text>
+                    <Card.Text>
+                      Move 1: {p.move1.name} - {p.move1.description}
+                    </Card.Text>
+                    {/* <Card.Text>Type: {p.move2}</Card.Text> */}
+                    {/* <Card.Text>Type: {p.move3}</Card.Text> */}
                   </Card.Body>
                 </div>
               </Card>

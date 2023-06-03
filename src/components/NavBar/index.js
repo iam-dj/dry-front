@@ -10,13 +10,16 @@ function NavTabs(props) {
     {props.userId ? (
       <>
         <Link className="nav-link text-dark" to="/">
-          Home
+          Home Page
         </Link>
         <Link className="nav-link text-dark" to="/battle">
           Battle
         </Link>
         <Link className="nav-link text-dark" to="/catch">
-          Catch
+          Catch 'em All
+        </Link>
+        <Link className="nav-link text-dark" to="/dashboard">
+          Dashboard
         </Link>
         <Link className="nav-link text-dark" to="/setpoke">
           Set Your Pokemon
@@ -30,6 +33,7 @@ function NavTabs(props) {
       </>
     ) : (
       <>
+        <Link className="nav-link text-dark" to="/login"></Link>
         <Link className="nav-link text-dark" to="/login"></Link>
         <Link className="nav-link text-dark" to="/login"></Link>
         <Link className="nav-link text-dark" to="/login"></Link>
