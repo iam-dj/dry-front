@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import API from "../../utils/API";
 import bfg from "./assets/poke_bg.png";
 import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../components/uploadWidget";
 
 export default function CreateTrainer(props) {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ export default function CreateTrainer(props) {
     padding: "20px",
   };
 
+  let imageUrl = "";
+
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   //   let profilePicUploadUrl = "";
@@ -42,11 +45,12 @@ export default function CreateTrainer(props) {
     API.createTrainer({
       name: name,
       age: age,
+      profilePicUrl: imageUrl,
       user_id: props.userId,
     })
       .then((data) => {
         console.log(data.id);
-        if (data.name && data.age) {
+        if (data.name && data.age && data.profilePicUrl) {
           props.setTrainerId(data.id);
           navigate("/");
         } else {
@@ -58,6 +62,24 @@ export default function CreateTrainer(props) {
         //   localStorage.removeItem("token");
       });
   };
+
+  function handleOpenWidget() {
+    var myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "duaznt4wg",
+        uploadPreset: "drty_nomads_upload",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log(result.info.url);
+          // setImageUrl(result.url);
+          imageUrl = result.info.url;
+        }
+      }
+    );
+    myWidget.open();
+  }
+
   return (
     <div>
       <main className="AuthForm" style={cardStyle}>
@@ -80,6 +102,13 @@ export default function CreateTrainer(props) {
           {/* // email is an example of signup only field, not in use for this app */}
           {/* {props.usage==="Signup"&& <input name="email" onChange={handleChange} placeholder="email" value={email}/>} */}
           {/* {props.usage==="Signup"?<input placeholder='signup only'/> :null} */}
+          <button
+            id="upload_widget"
+            className="cloudinary-button"
+            onClick={() => handleOpenWidget()}
+          >
+            Upload files
+          </button>
           <button
             style={{ margin: 10 + "px" }}
             className="btn btn-sm btn-danger"

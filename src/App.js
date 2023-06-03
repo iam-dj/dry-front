@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
@@ -10,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
 import API from "./utils/API";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -93,19 +99,28 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard token={token} userId={userId} trainerId={trainerId} />}
+          element={
+            <Dashboard token={token} userId={userId} trainerId={trainerId} />
+          }
         />
         <Route
           path="/setpoke"
           element={
-            <SetPoke setUserId={setUserId} token={token} trainerId={trainerId} />
+            <SetPoke
+              setUserId={setUserId}
+              token={token}
+              trainerId={trainerId}
+            />
           }
         />
         <Route
           path="/catch"
           element={<Catch setUserId={setUserId} token={token} />}
         />
-        <Route path="/gym" element={<Gym setUserId={setUserId} token={token} />} />
+        <Route
+          path="/gym"
+          element={<Gym setUserId={setUserId} token={token} />}
+        />
         <Route path="/battle" element={<Battle token={token} />} />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>

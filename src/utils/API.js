@@ -76,7 +76,7 @@ const API = {
           // } else {
           //   throw new Error("falied to fetch trainer " + trainerId);
           // }
-          console.log(data);
+          // console.log(data);
           return data;
         })
         .catch((err) => {
