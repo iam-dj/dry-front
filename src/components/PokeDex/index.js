@@ -24,7 +24,9 @@ export default function PokeDex(props) {
     ? filteredPokemon.filter((p) => p.isCaught)
     : filteredPokemon;
 
-  const caughtButtonLabel = showCaughtPokemon ? "Showing Caught" : "Showing Uncaught";
+  const caughtButtonLabel = showCaughtPokemon
+    ? "Showing Caught"
+    : "Showing Uncaught";
 
   return (
     <div>
@@ -54,11 +56,21 @@ export default function PokeDex(props) {
             <Col key={p.id} className="mb-3">
               <Card className="pokemon-card">
                 <div className="card-content">
-                  <Card.Img variant="top" src={p.img_url} alt={p.name} className="pokemon-image" />
+                  <Card.Img
+                    variant="top"
+                    src={p.img_url}
+                    alt={p.name}
+                    className="pokemon-image"
+                  />
 
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
                     <Card.Text>Type: {p.type}</Card.Text>
+                    <Card.Text>
+                      Move 1: {p.move1.name} - {p.move1.description}
+                    </Card.Text>
+                    {/* <Card.Text>Type: {p.move2}</Card.Text> */}
+                    {/* <Card.Text>Type: {p.move3}</Card.Text> */}
                   </Card.Body>
                 </div>
               </Card>
