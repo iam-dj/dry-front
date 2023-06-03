@@ -9,12 +9,19 @@ import Catch from "./pages/Catch";
 import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
 import API from "./utils/API";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 function App() {
   const [userId, setUserId] = useState();
   const [trainerId, setTrainerId] = useState();
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
+
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "duaznt4wg",
+    },
+  });
 
   console.log(trainerId);
 
