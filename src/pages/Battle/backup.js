@@ -1,21 +1,4 @@
-import React, { useState } from "react";
-import bfg from "./assets/bg.png";
-import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/Button";
-
-export default function Catch(props) {
-  const cardStyle = {
-    backgroundImage: `url(${bfg})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
-  const [isFetching, setIsFetching] = useState(false);
+const [isFetching, setIsFetching] = useState(false);
 
   const handleButtonClick = () => {
     setIsFetching(true);

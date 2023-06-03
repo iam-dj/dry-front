@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Battle from "./pages/Battle";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
+import Dashboard from "./pages/Dashboard";
 import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
 import API from "./utils/API";
@@ -16,14 +17,11 @@ function App() {
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
 
-  console.log(trainerId);
-
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       API.verifyToken(storedToken)
         .then((data) => {
-          console.log(data);
           setToken(storedToken);
           setUserId(data.id);
           setTrainerId(data.Trainer.id);
@@ -37,14 +35,14 @@ function App() {
     }
   }, []);
 
-  function logout() {
-    localStorage.removeItem("token");
+  const logout = () => {
+    localStorage.clear();
     setUserId(null);
     setUsername("");
     setTrainerId(null);
     setToken("");
     window.location.assign("/login");
-  }
+  };
 
   return (
     <Router>
@@ -52,7 +50,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home token={token} userId={userId} trainerId={trainerId} />}
+          element={
+            userId ? (
+              <HomePage token={token} userId={userId} trainerId={trainerId} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
         />
         <Route
           path="/login"
@@ -88,36 +92,20 @@ function App() {
           }
         />
         <Route
+          path="/dashboard"
+          element={<Dashboard token={token} userId={userId} trainerId={trainerId} />}
+        />
+        <Route
           path="/setpoke"
           element={
-            <SetPoke
-              setUserId={setUserId}
-              // usage="Create"
-              token={token}
-            />
+            <SetPoke setUserId={setUserId} token={token} trainerId={trainerId} />
           }
         />
         <Route
           path="/catch"
-          element={
-            <Catch
-              setUserId={setUserId}
-              // usage="Create"
-              token={token}
-            />
-          }
+          element={<Catch setUserId={setUserId} token={token} />}
         />
-        <Route
-          path="/gym"
-          element={
-            <Gym
-              setUserId={setUserId}
-              // usage="Create"
-              token={token}
-            />
-          }
-        />
-
+        <Route path="/gym" element={<Gym setUserId={setUserId} token={token} />} />
         <Route path="/battle" element={<Battle token={token} />} />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>

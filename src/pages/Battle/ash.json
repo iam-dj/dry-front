@@ -1,0 +1,71 @@
+[
+	{
+	  "id": 4,
+	  "name": "Ash Ketchum",
+	  "age": 16,
+	  "numwins": 32,
+	  "numLosses": 12,
+	  "boulder_badge": true,
+	  "cascade_badge": true,
+	  "thunder_badge": true,
+	  "rainbow_badge": true,
+	  "soul_badge": true,
+	  "marsh_badge": true,
+	  "volcano_badge": true,
+	  "earth_badge": true,
+	  "pokemons": [
+		{
+		  "id": 151,
+		  "name": "Mew",
+		  "type": "psychic",
+		  "secondary_type": null,
+		  "level": 1,
+		  "hp": 100,
+		  "experience": 0,
+		  "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
+		  "evolutionId": 1,
+		  "rarity": "Legendary",
+		  "tier": 3,
+		  "isCaught": false,
+		  "TrainerId": 4,
+		  "move1Id": 1,
+		  "move2Id": 5,
+		  "move3Id": 140,
+		  "move4Id": 211,
+		  "npcId": null,
+		  "move1": {
+			"id": 1,
+			"name": "Pound",
+			"power": 49,
+			"type": "Normal",
+			"description": "The target is physically pounded with a long tail or a forelimb, etc.",
+			"npcId": null
+		  },
+		  "move2": {
+			"id": 5,
+			"name": "Mega Punch",
+			"power": 85,
+			"type": "Normal",
+			"description": "The target is slugged with a punch thrown at maximum power.",
+			"npcId": null
+		  },
+		  "move3": {
+			"id": 7,
+			"name": "Mega Punch",
+			"power": 30,
+			"type": "Normal",
+			"description": "The target is slugged with a punch thrown at maximum power.",
+			"npcId": null
+		  },
+		  "move4": {
+			"id": 9,
+			"name": "Scratch",
+			"power": 10,
+			"type": "Normal",
+			"description": "Hard, pointed, sharp claws rake the target to inflict damage.",
+			"npcId": null
+		  }
+		}
+	  ]
+	}
+  ]

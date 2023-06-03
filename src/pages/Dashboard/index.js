@@ -6,20 +6,24 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PokeDex from "../../components/PokeDex";
+import SetPoke from "../SetPoke";
 import Badges from "../../components/Badges";
 import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import ash from "./ash.json";
+const STORAGE_KEY = "home_trainer_state";
 
-export default function Home(props) {
+export default function Dashboard(props) {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [trainer, setTrainer] = useState();
+  const [trainer, setTrainer] = useState(() => {
+    const storedState = localStorage.getItem(STORAGE_KEY);
+    return storedState ? JSON.parse(storedState) : null;
+  });
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!trainer);
 
   useEffect(() => {
     if (props.userId === null) {
@@ -38,21 +42,31 @@ export default function Home(props) {
   };
 
   useEffect(() => {
-    API.getOneTrainer(props.trainerId)
-      .then((data) => {
-        console.log("data", data);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await API.getOneTrainer(props.trainerId);
         setTrainer(data);
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    };
 
-  console.log(trainer);
+    if (!trainer) {
+      fetchData();
+    }
+  }, [props.trainerId, trainer]);
+
   return (
     <>
-      {trainer ? (
+      {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <img src="https://media2.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif?cid=ecf05e47k85t9m2qyl4mmumvieo89xc5yj3f1zyb23gax2r2&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
+        </div>
+      ) : (
         <div>
           <body style={cardStyle}>
             <Container className="card">
@@ -71,6 +85,7 @@ export default function Home(props) {
                     Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
                   </h6>
                   <Badges
+                    trainer={trainer}
                     badges={[
                       trainer.boulder_badge,
                       trainer.cascade_badge,
@@ -96,11 +111,9 @@ export default function Home(props) {
 
             <br />
 
-            <PokeDex />
+            <PokeDex trainer={trainer} />
           </body>
         </div>
-      ) : (
-        <h1>Login to see page!</h1>
       )}
     </>
   );

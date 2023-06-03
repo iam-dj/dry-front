@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import battlebg from "./assets/battle.jpg";
-// import { fetchNPCData, simulateBattle } from "./pokemon_db"; // Example functions for fetching NPC data and simulating battle
-import BattleSys from "../../utils/BattleSys"; // Example functions for fetching NPC data and simulating battle
-// import Button from "react-bootstrap/Button";
-// import Modal from "react-bootstrap/Modal";
-import Dropdown from "react-bootstrap/Dropdown";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import BattleSys from "../../utils/BattleSys";
 import { useNavigate } from "react-router-dom";
+import one from "./assets/one.png";
+import two from "./assets/two.png";
+import three from "./assets/three.png";
+import four from "./assets/four.png";
+import five from "./assets/five.png";
+import six from "./assets/six.png";
+import seven from "./assets/seven.png";
+import eight from "./assets/eight.png";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function Gym(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (props.token === null ) {
+    if (props.token === null) {
       navigate("/login");
     }
   }, [props.token]);
@@ -30,41 +35,72 @@ export default function Gym(props) {
     alignItems: "center",
   };
 
-  const [show, setShow] = useState(false);
+  const imageStyle = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    transition: "transform 0.3s",
+  };
 
-  const startBattleWithNPC = async () => {
-    try {
-      // Fetch NPC data from the database
-      // const npcData = await fetchNPCData(); // Replace with your implementation of fetching NPC data
-      
-      // Simulate battle between player and NPC
-      BattleSys.startBattle(); // Replace with your implementation of simulating battle
-      
-      console.log(); // Do something with the battle result, e.g., display it to the user
-    } catch (error) {
-      console.error("Error starting battle:", error);
-    }
+  const linkStyle = {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textDecoration: "none",
+    overflow: "hidden",
+  };
+
+  const gridContainerStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "1rem",
+  };
+
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
+
+  const images = [one, two, three, four, five, six, seven, eight];
+
+  const handleImageHover = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleImageLeave = () => {
+    setHoveredIndex(-1);
+  };
+
+  const handleImageClick = (index) => {
+    console.log("Clicked image index:", index);
   };
 
   return (
-     <>
-      {props.token ? (
     <div style={cardStyle}>
-      <Dropdown>
-        <Dropdown.Toggle variant="secondary" id="dropdown-battle">
-          Battle Menu
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={startBattleWithNPC}>Battle NPC</Dropdown.Item>
-          <Dropdown.Item>Friendly Battle</Dropdown.Item>
-          <Dropdown.Item>Suprise Me</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
+      <Container>
+        <Row className="justify-content-center">
+          <Col xs={12} md={6} lg={4}>
+            <div style={gridContainerStyle}>
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  onMouseEnter={() => handleImageHover(index)}
+                  onMouseLeave={handleImageLeave}
+                  onClick={() => handleImageClick(index)}
+                  style={{
+                    ...linkStyle,
+                    transform:
+                      hoveredIndex === index ? "scale(1.05)" : "scale(1)",
+                  }}
+                >
+                  <a href="#">
+                    <img src={image} alt={`Image ${index}`} style={imageStyle} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
-    ) : (
-      <h1>Login to see page!</h1>
-    )}
-  </>
   );
 }

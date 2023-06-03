@@ -6,10 +6,10 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import ash from "./ash.json";
+// import ash from "./ash.json";
 
-export default function PokeDex() {
-  const pokemon = ash[0].pokemons;
+export default function PokeDex(props) {
+  const pokemon = props.trainer.pokemons;
   const [activeType, setActiveType] = useState(pokemon[0].type);
   const [showCaughtPokemon, setShowCaughtPokemon] = useState(false);
 
