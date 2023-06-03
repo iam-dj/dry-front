@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PokeDex from "../../components/PokeDex";
+import SetPoke from "../SetPoke";
 import Badges from "../../components/Badges";
 import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +14,18 @@ import { useParams } from "react-router-dom";
 
 import ash from "./ash.json";
 
-export default function Home(props) {
+const STORAGE_KEY = "home_trainer_state"; // Define the key for storing the state in localStorage
+
+export default function Dashboard(props) {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [trainer, setTrainer] = useState();
+  const [trainer, setTrainer] = useState(() => {
+    const storedState = localStorage.getItem(STORAGE_KEY);
+    return storedState ? JSON.parse(storedState) : null;
+  });
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!trainer); // Set isLoading to true if trainer is not present in localStorage
 
   useEffect(() => {
     if (props.userId === null) {
@@ -38,21 +44,29 @@ export default function Home(props) {
   };
 
   useEffect(() => {
-    API.getOneTrainer(props.trainerId)
-      .then((data) => {
-        console.log("data", data);
-        setTrainer(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (!trainer) {
+      // Fetch the trainer data if not present in state
+      setIsLoading(true); // Set isLoading to true before fetching the data
+      API.getOneTrainer(props.trainerId)
+        .then((data) => {
+          setTrainer(data);
+          setIsLoading(false);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); // Store the fetched trainer data in localStorage
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
+    }
+  }, [props.trainerId, trainer]);
 
-  console.log(trainer);
   return (
     <>
-      {trainer ? (
+      {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <img src="https://media2.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif?cid=ecf05e47k85t9m2qyl4mmumvieo89xc5yj3f1zyb23gax2r2&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
+        </div>
+      ) : (
         <div>
           <body style={cardStyle}>
             <Container className="card">
@@ -71,6 +85,7 @@ export default function Home(props) {
                     Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
                   </h6>
                   <Badges
+                    trainer={trainer}
                     badges={[
                       trainer.boulder_badge,
                       trainer.cascade_badge,
@@ -96,11 +111,10 @@ export default function Home(props) {
 
             <br />
 
-            <PokeDex />
+            <PokeDex trainer={trainer} />
+            <SetPoke trainer={trainer} />
           </body>
         </div>
-      ) : (
-        <h1>Login to see page!</h1>
       )}
     </>
   );

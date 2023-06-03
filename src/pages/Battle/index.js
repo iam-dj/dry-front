@@ -14,9 +14,9 @@ import { useNavigate } from "react-router-dom";
 export default function Battle(props) {
   const navigate = useNavigate();
 
-  console.log(props.token)
+  // console.log(props.token)
   useEffect(() => {
-    if (props.token === null ) {
+    if (props.token == null ) {
       navigate("/login");
     }
   }, [props.token]);
