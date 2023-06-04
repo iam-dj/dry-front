@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import battlebg from "./assets/battle.jpg";
 import BattleSys from "../../utils/BattleSys";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 
 export default function Battle(props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
@@ -23,51 +23,44 @@ export default function Battle(props) {
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const handleButtonClick = (trainerId) => {
-    console.log('hello');
+  const handleButtonClick = () => {
     
-    if (trainerId == props.trainerId) {
-      console.log("you can't battle yourself");
-    } else {
-      console.log("you've chosen to battle:", trainerId);
+      // console.log("you've chosen to battle:", trainerId);
 
-      const generateBattle = async (trainerId) => {
+      const generateBattle = async () => {
         try {
-          const myTrainerData = await API.getBattlePoke(props.trainerId);
-          console.log("myTrainerData", myTrainerData);
+          const myTrainerData = await API.getOneTrainer(props.trainerId);
 
           const randomNPC = NPC[Math.floor(Math.random() * NPC.length)];
-          // console.log("randomNPC", randomNPC.pokemon_1);
+          const NPCz = [randomNPC];
+          // console.log("NPCz", NPCz[0].pokemons);
+          const name = NPCz[0].name;
 
           function filterMainPokemon(myTrainerData) {
             return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
           }
 
-          const myFilteredPokemons = filterMainPokemon(myTrainerData);
+          const myFilteredPokemons = filterMainPokemon(myTrainerData)
+
+          console.log("myFilteredPokemons", myFilteredPokemons);
 
           setIsFetching(true);
           setTimeout(() => {
             setIsFetching(false);
-            // const result = BattleSys.startBattle(
-            //   myFilteredPokemons,
-            //   randomNPC.pokemon_1
-            // );
-            // console.log(result);
-            // if () {
-            //   //update the wins
-            //   //update the hp
-            //   //update localstorage
-            // } else {
-            //   //update losses
-            // }
+             BattleSys.startBattle(
+              myFilteredPokemons, 
+              NPCz[0].pokemons, 
+              name
+            );
+            
           }, 3000);
         } catch (error) {
           console.log(error);
         }
       };
 
-      generateBattle(trainerId);
-    }
+      generateBattle();
+    
   };
 
   return (
@@ -77,7 +70,7 @@ export default function Battle(props) {
           className="btn-danger"
           variant="secondary"
           id="dropdown-battle"
-          onClick={() => handleButtonClick(props.trainerId)}
+          onClick={() => handleButtonClick()}
           disabled={isFetching}
         >
           {isFetching ? (

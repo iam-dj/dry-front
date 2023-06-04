@@ -2,7 +2,7 @@
 	{
 	  "name": "Red",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722666/Red_hznvmi.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 1,
 		"name": "Bulbasaur",
 		"type": "grass",
@@ -49,12 +49,12 @@
 		  "type": "Normal",
 		  "description": "In this two-turn attack, the user gathers energy and blasts a bundled beam on the next turn."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Blue",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722668/blue_tshn8s.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 21,
 		"name": "Spearow",
 		"type": "normal",
@@ -101,12 +101,12 @@
 		  "type": "Flying",
 		  "description": "The user confounds the target with a swift and cutting air current. This attack always strikes first and cannot be evaded."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Leaf",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722665/leaf_xu3ine.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 44,
 		"name": "Gloom",
 		"type": "grass",
@@ -153,12 +153,12 @@
 		  "type": "Poison",
 		  "description": "The user strikes the target with a sludge bomb. It may also poison the target."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Ethan",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722666/ethan_x0f6xs.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 51,
 		"name": "Dugtrio",
 		"type": "ground",
@@ -205,12 +205,12 @@
 		  "type": "Rock",
 		  "description": "The user stabs the target from below with sharpened stones. Critical hits land more easily."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Silver",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722668/silver_vpxq44.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 54,
 		"name": "Psyduck",
 		"type": "water",
@@ -257,12 +257,12 @@
 		  "type": "Water",
 		  "description": "The target is blasted with a giant volume of water launched under great pressure."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Brendan",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722670/brenden_q2h0mi.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 59,
 		"name": "Arcanine",
 		"type": "fire",
@@ -309,12 +309,12 @@
 		  "type": "Fire",
 		  "description": "The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "May",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722676/may_krwkdl.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 64,
 		"name": "Kadabra",
 		"type": "psychic",
@@ -361,12 +361,12 @@
 		  "type": "Psychic",
 		  "description": "The target is hit by a strong telekinetic force. It may also reduce the target's Special Defense stat."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Lucas",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722675/lucas_x7nw0a.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 67,
 		"name": "Machoke",
 		"type": "Fighting",
@@ -413,12 +413,12 @@
 		  "type": "Fighting",
 		  "description": "The user grabs the target and recklessly dives for the ground. It also hurts the user slightly."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Dawn",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722670/dawn_y6tp57.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 70,
 		"name": "Weepinbell",
 		"type": "grass",
@@ -465,12 +465,12 @@
 		  "type": "Grass",
 		  "description": "The user violently whips its vines or tentacles to strike the target. This may also make the target flinch."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Hilbert",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722673/hilbert_ifubtc.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 75,
 		"name": "Graveler",
 		"type": "rock",
@@ -517,12 +517,12 @@
 		  "type": "Ground",
 		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Hilda",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722666/hilda_zneihg.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 80,
 		"name": "Slowbro",
 		"type": "psychic",
@@ -569,12 +569,12 @@
 		  "type": "Ice",
 		  "description": "The target is struck with an icy-cold beam. It may freeze the target solid."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Nate",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722985/nate_bv6gpd.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 81,
 		"name": "Magnemite",
 		"type": "electric",
@@ -621,12 +621,12 @@
 		  "type": "Steel",
 		  "description": "The user gathers all its light energy and releases it at once. It may also lower the target's Special Defense stat."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Rosa",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722667/rosa_c9as9t.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 85,
 		"name": "Dodrio",
 		"type": "normal",
@@ -673,12 +673,12 @@
 		  "type": "Fighting",
 		  "description": "The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Calem",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722669/calem_gxazcg.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 87,
 		"name": "Dewgong",
 		"type": "Ice",
@@ -725,12 +725,12 @@
 		  "type": "Ice",
 		  "description": "A howling blizzard is summoned to strike opposing Pokémon. It may freeze them solid."
 		}
-	  }
+	  }]
 	},
 	{
 	  "name": "Serena",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685722666/selena_toofud.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 93,
 		"name": "Haunter",
 		"type": "Ghost",
@@ -777,489 +777,13 @@
 		  "type": "Dark",
 		  "description": "The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch."
 		}
-	  }
+	  }]
 	},
-	{
-	  "name": "LeBron James",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726545/lebron_ewlov0.png",
-	  "pokemon_1": {
-		"id": 150,
-		"name": "Mewtwo",
-		"type": "psychic",
-		"secondary_type": null,
-		"level": 1,
-		"hp": 900,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896178/150mewtwo_nl7c61.png",
-		"evolutionId": 1,
-		"rarity": "Legendary",
-		"tier": 3,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 388,
-		"move2Id": 140,
-		"move3Id": 211,
-		"move4Id": 171,
-		"move1": {
-		  "id": 388,
-		  "name": "Confusion",
-		  "power": 50,
-		  "type": "Psychic",
-		  "description": "The target is struck by a peculiar ray. This may also leave the target confused."
-		},
-		"move2": {
-		  "id": 140,
-		  "name": "Barrage",
-		  "power": 15,
-		  "type": "Normal",
-		  "description": "Round objects are hurled at the target to strike two to five times in a row."
-		},
-		"move3": {
-		  "id": 211,
-		  "name": "Psychic",
-		  "power": 90,
-		  "type": "Psychic",
-		  "description": "The target is hit by a strong telekinetic force. It may also reduce the target's Special Defense stat."
-		},
-		"move4": {
-		  "id": 171,
-		  "name": "Nightmare",
-		  "power": 80,
-		  "type": "Ghost",
-		  "description": "A sleeping target sees a nightmare that inflicts some damage every turn."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Steph Curry",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726532/steph_xnnt8v.jpg",
-	  "pokemon_1": {
-		"id": 146,
-		"name": "Moltres",
-		"type": "fire",
-		"secondary_type": "flying",
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896198/146moltres_vlxywq.png",
-		"evolutionId": 1,
-		"rarity": "Legendary",
-		"tier": 3,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 17,
-		"move2Id": 50,
-		"move3Id": 177,
-		"move4Id": 126,
-		"move1": {
-		  "id": 17,
-		  "name": "Wing Attack",
-		  "power": 60,
-		  "type": "Flying",
-		  "description": "The target is struck with large, imposing wings spread wide to inflict damage."
-		},
-		"move2": {
-		  "id": 50,
-		  "name": "Ember",
-		  "power": 40,
-		  "type": "Fire",
-		  "description": "The target is attacked with small flames. It may also leave the target with a burn."
-		},
-		"move3": {
-		  "id": 177,
-		  "name": "Aeroblast",
-		  "power": 100,
-		  "type": "Flying",
-		  "description": "A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
-		},
-		"move4": {
-		  "id": 126,
-		  "name": "Fire Blast",
-		  "power": 110,
-		  "type": "Fire",
-		  "description": "The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Kevin Durant",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726532/kevin_durant_tohq11.png",
-	  "pokemon_1": {
-		"id": 149,
-		"name": "Dragonite",
-		"type": "dragon",
-		"secondary_type": "flying",
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896198/149dragonite_b1vnar.png",
-		"evolutionId": 3,
-		"rarity": "rare",
-		"tier": 3,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 80,
-		"move2Id": 218,
-		"move3Id": 177,
-		"move4Id": 61,
-		"move1": {
-		  "id": 80,
-		  "name": "Dragon Rage",
-		  "power": null,
-		  "type": "Dragon",
-		  "description": "This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage."
-		},
-		"move2": {
-		  "id": 218,
-		  "name": "Draco Meteor",
-		  "power": 130,
-		  "type": "Dragon",
-		  "description": "Comets are summoned down from the sky onto the target. The attack's recoil harshly lowers the user's Special Attack stat."
-		},
-		"move3": {
-		  "id": 177,
-		  "name": "Aeroblast",
-		  "power": 100,
-		  "type": "Flying",
-		  "description": "A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
-		},
-		"move4": {
-		  "id": 61,
-		  "name": "Hyper Beam",
-		  "power": 150,
-		  "type": "Normal",
-		  "description": "The target is attacked with a powerful beam. The user can't move on the next turn."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Giannis Antetokounmpo",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726528/giannis_yzgpbj.png",
-	  "pokemon_1": {
-		"id": 99,
-		"name": "Kingler",
-		"type": "water",
-		"secondary_type": null,
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896191/099kingler_t10ern.png",
-		"evolutionId": 2,
-		"rarity": "uncommon",
-		"tier": 2,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 145,
-		"move2Id": 11,
-		"move3Id": 152,
-		"move4Id": 12,
-		"move1": {
-		  "id": 145,
-		  "name": "Bubble",
-		  "power": 40,
-		  "type": "Water",
-		  "description": "A spray of countless bubbles is jetted at the opposing team. It may lower the targets' Speed stats."
-		},
-		"move2": {
-		  "id": 11,
-		  "name": "Vice Grip",
-		  "power": 55,
-		  "type": "Normal",
-		  "description": "The target is gripped and squeezed from both sides to inflict damage."
-		},
-		"move3": {
-		  "id": 152,
-		  "name": "Crabhammer",
-		  "power": 100,
-		  "type": "Water",
-		  "description": "The target is hammered with a large pincer. Critical hits land more easily."
-		},
-		"move4": {
-		  "id": 12,
-		  "name": "Guillotine",
-		  "power": 100,
-		  "type": "Normal",
-		  "description": "A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "James Harden",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726529/james_harden_o08ezm.png",
-	  "pokemon_1": {
-		"id": 112,
-		"name": "Rhydon",
-		"type": "ground",
-		"secondary_type": "rock",
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/112rhydon_qag8rn.png",
-		"evolutionId": 2,
-		"rarity": "rare",
-		"tier": 3,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 29,
-		"move2Id": 22,
-		"move3Id": 157,
-		"move4Id": 280,
-		"move1": {
-		  "id": 29,
-		  "name": "Horn Attack",
-		  "power": 65,
-		  "type": "Ground",
-		  "description": "The target is jabbed with a sharply pointed horn to inflict damage."
-		},
-		"move2": {
-		  "id": 22,
-		  "name": "Stomp",
-		  "power": 65,
-		  "type": "Normal",
-		  "description": "The target is stomped with a big foot. It may also make the target flinch."
-		},
-		"move3": {
-		  "id": 157,
-		  "name": "Rock Slide",
-		  "power": 75,
-		  "type": "Rock",
-		  "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
-		},
-		"move4": {
-		  "id": 280,
-		  "name": "Earthquake",
-		  "power": 100,
-		  "type": "Ground",
-		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Kawhi Leonard",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726531/kawhi_gznvb6.png",
-	  "pokemon_1": {
-		"id": 100,
-		"name": "Voltorb",
-		"type": "electric",
-		"secondary_type": null,
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896191/100voltorb_wqm1xu.png",
-		"evolutionId": 1,
-		"rarity": "common",
-		"tier": 1,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 32,
-		"move2Id": 407,
-		"move3Id": 129,
-		"move4Id": 243,
-		"move1": {
-		  "id": 32,
-		  "name": "Tackle",
-		  "power": 40,
-		  "type": "Normal",
-		  "description": "A physical attack in which the user charges and slams into the target with its whole body."
-		},
-		"move2": {
-		  "id": 407,
-		  "name": "Rock Throw",
-		  "power": 50,
-		  "type": "Rock",
-		  "description": "The user throws rocks at the target to inflict damage."
-		},
-		"move3": {
-		  "id": 129,
-		  "name": "Swift",
-		  "power": 60,
-		  "type": "Normal",
-		  "description": "Star-shaped rays are shot at the target. This attack never misses."
-		},
-		"move4": {
-		  "id": 243,
-		  "name": "Thunderbolt",
-		  "power": 90,
-		  "type": "Electric",
-		  "description": "A strong electric blast is loosed at the target. It may also paralyze the target."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Anthony Davis",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726529/AD_fgnbzh.png",
-	  "pokemon_1": {
-		"id": 27,
-		"name": "Sandshrew",
-		"type": "ground",
-		"secondary_type": null,
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896181/027sandshrew_xpsxma.png",
-		"evolutionId": 1,
-		"rarity": "common",
-		"tier": 1,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 10,
-		"move2Id": 39,
-		"move3Id": 163,
-		"move4Id": 280,
-		"move1": {
-		  "id": 10,
-		  "name": "Scratch",
-		  "power": 40,
-		  "type": "Normal",
-		  "description": "Hard, pointed, sharp claws rake the target to inflict damage."
-		},
-		"move2": {
-		  "id": 39,
-		  "name": "Poison Sting",
-		  "power": 15,
-		  "type": "Poison",
-		  "description": "The user stabs the target with a poisonous stinger. This may also poison the target."
-		},
-		"move3": {
-		  "id": 163,
-		  "name": "Slash",
-		  "power": 70,
-		  "type": "Normal",
-		  "description": "The target is attacked with a slash of claws or blades. Critical hits land more easily."
-		},
-		"move4": {
-		  "id": 280,
-		  "name": "Earthquake",
-		  "power": 100,
-		  "type": "Ground",
-		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Luka Dončić",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726535/Luka_o66xhc.png",
-	  "pokemon_1": {
-		"id": 34,
-		"name": "Nidoking",
-		"type": "poison",
-		"secondary_type": "ground",
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896183/034nidoking_qrecwj.png",
-		"evolutionId": 3,
-		"rarity": "rare",
-		"tier": 3,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 33,
-		"move2Id": 280,
-		"move3Id": 29,
-		"move4Id": 130,
-		"move1": {
-		  "id": 33,
-		  "name": "Body Slam",
-		  "power": 85,
-		  "type": "Normal",
-		  "description": "The user drops onto the target with its full body weight. It may also leave the target with paralysis."
-		},
-		"move2": {
-		  "id": 280,
-		  "name": "Earthquake",
-		  "power": 100,
-		  "type": "Ground",
-		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
-		},
-		"move3": {
-		  "id": 29,
-		  "name": "Horn Attack",
-		  "power": 65,
-		  "type": "Ground",
-		  "description": "The target is jabbed with a sharply pointed horn to inflict damage."
-		},
-		"move4": {
-		  "id": 130,
-		  "name": "Skull Bash",
-		  "power": 130,
-		  "type": "Rock",
-		  "description": "The user tucks in its head to raise its Defense stat on the first turn, then rams the target on the next turn."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
-	{
-	  "name": "Joel Embiid",
-	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726533/joel_embiid_rifm2m.png",
-	  "pokemon_1": {
-		"id": 41,
-		"name": "Zubat",
-		"type": "poison",
-		"secondary_type": "flying",
-		"level": 1,
-		"hp": 100,
-		"experience": 0,
-		"img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896184/041zubat_rodkvz.png",
-		"evolutionId": 1,
-		"rarity": "common",
-		"tier": 1,
-		"isCaught": false,
-		"TrainerId": 4,
-		"move1Id": 101,
-		"move2Id": 89,
-		"move3Id": 207,
-		"move4Id": 396,
-		"move1": {
-		  "id": 101,
-		  "name": "Leech Life",
-		  "power": 80,
-		  "type": "Bug",
-		  "description": "The user drains the target's blood. The user's HP is restored by half the damage taken by the target."
-		},
-		"move2": {
-		  "id": 89,
-		  "name": "Wing Attack",
-		  "power": 60,
-		  "type": "Flying",
-		  "description": "The target is struck with large, imposing wings spread wide to inflict damage."
-		},
-		"move3": {
-		  "id": 207,
-		  "name": "Air Cutter",
-		  "power": 60,
-		  "type": "Flying",
-		  "description": "The user launches razor-like wind to slash the opposing team. Critical hits land more easily."
-		},
-		"move4": {
-		  "id": 396,
-		  "name": "Poison Fang",
-		  "power": 50,
-		  "type": "Poison",
-		  "description": "The user bites the target with toxic fangs. It may also leave the target badly poisoned."
-		}
-	  },
-	  "pokemon_2": null,
-	  "pokemon_3": null
-	},
+	
 	{
 	  "name": "Damian Lillard",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726530/dame_yfukyx.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 40,
 		"name": "Wigglytuff",
 		"type": "fairy",
@@ -1305,14 +829,14 @@
 		  "type": "Fairy",
 		  "description": "The user damages opposing Pokémon by emitting a powerful flash."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Zion Williamson",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726533/zion_r8ulll.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 38,
 		"name": "Ninetales",
 		"type": "fire",
@@ -1358,14 +882,14 @@
 		  "type": "Normal",
 		  "description": "In this two-turn attack, the user gathers energy and blasts a bundled beam on the next turn."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Nikola Jokić",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726534/joker_ev1ls2.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 145,
 		"name": "Zapdos",
 		"type": "electric",
@@ -1411,14 +935,14 @@
 		  "type": "Electric",
 		  "description": "A strong electric blast is loosed at the target. It may also paralyze the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Devin Booker",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726534/dbook_p5jrcg.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 144,
 		"name": "Articuno",
 		"type": "Ice",
@@ -1464,14 +988,14 @@
 		  "type": "Flying",
 		  "description": "A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Jayson Tatum",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726535/tatum_g6hnwy.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 17,
 		"name": "Pidgeotto",
 		"type": "normal",
@@ -1517,14 +1041,14 @@
 		  "type": "Flying",
 		  "description": "A corkscrewing attack that strikes the target with a sharp beak acting as a drill."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Donovan Mitchell",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726529/donovan_mitchell_gcmgsx.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 14,
 		"name": "Kakuna",
 		"type": "bug",
@@ -1570,14 +1094,14 @@
 		  "type": "Grass",
 		  "description": "A nutrient-draining attack. The user's HP is restored by half the damage taken by the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Karl-Anthony Towns",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726542/KAT_m3wgbq.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 19,
 		"name": "Rattata",
 		"type": "normal",
@@ -1623,14 +1147,14 @@
 		  "type": "Normal",
 		  "description": "Hard, pointed, sharp claws rake the target to inflict damage."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Ben Simmons",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726546/ben_simmons_exm96r.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 21,
 		"name": "Spearow",
 		"type": "normal",
@@ -1676,14 +1200,14 @@
 		  "type": "Flying",
 		  "description": "The user confounds the target with a swift and cutting air current. This attack always strikes first and cannot be evaded."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Anthony Edwards",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726544/anthony_edwards_kmak00.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 23,
 		"name": "Ekans",
 		"type": "poison",
@@ -1729,14 +1253,14 @@
 		  "type": "Grass",
 		  "description": "The opposing Pokémon are attacked with a spray of harsh acid. This may also lower their Sp. Def stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Ja Morant",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726537/Ja_morant_zo9tdm.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 25,
 		"name": "Pikachu",
 		"type": "electric",
@@ -1782,14 +1306,14 @@
 		  "type": "Electric",
 		  "description": "A strong electric blast is loosed at the target. It may also paralyze the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Michael Jordan",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726532/michael_jordan_oh7vqm.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 44,
 		"name": "Gloom",
 		"type": "grass",
@@ -1835,14 +1359,14 @@
 		  "type": "Poison",
 		  "description": "The user strikes the target with a sludge bomb. It may also poison the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Mickey Mouse",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728070/mickey_d5yz8w.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 43,
 		"name": "Oddish",
 		"type": "grass",
@@ -1888,14 +1412,14 @@
 		  "type": "Fairy",
 		  "description": "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Donald Duck",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728069/donald_duck_nxsmst.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 42,
 		"name": "Golbat",
 		"type": "poison",
@@ -1941,14 +1465,14 @@
 		  "type": "Fighting",
 		  "description": "The user tucks in its wings and charges from a low altitude. This also damages the user quite a lot."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Goofy",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728069/goofy_ubu4nb.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 33,
 		"name": "Nidorino",
 		"type": "poison",
@@ -1994,14 +1518,14 @@
 		  "type": "Normal",
 		  "description": "The user rampages and attacks for two to three turns. It then becomes confused."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Mulan",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728071/mulan_aeow5w.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 29,
 		"name": "Nidoran♀",
 		"type": "poison",
@@ -2047,14 +1571,14 @@
 		  "type": "Poison",
 		  "description": "Unsanitary sludge is hurled at the target. It may also poison the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Simba",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728071/simba_g858p4.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 25,
 		"name": "Pikachu",
 		"type": "electric",
@@ -2100,14 +1624,14 @@
 		  "type": "Electric",
 		  "description": "A strong electric blast is loosed at the target. It may also paralyze the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Ariel",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728069/ariel_aay5ya.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 21,
 		"name": "Spearow",
 		"type": "normal",
@@ -2153,14 +1677,14 @@
 		  "type": "Flying",
 		  "description": "The user confounds the target with a swift and cutting air current. This attack always strikes first and cannot be evaded."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Buzz Lightyear",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728068/buzz_lightyear_g4an6q.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 19,
 		"name": "Rattata",
 		"type": "normal",
@@ -2206,14 +1730,14 @@
 		  "type": "Normal",
 		  "description": "Hard, pointed, sharp claws rake the target to inflict damage."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Elsa",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728069/elsa_ve79om.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 16,
 		"name": "Pidgey",
 		"type": "normal",
@@ -2259,14 +1783,14 @@
 		  "type": "Flying",
 		  "description": "A corkscrewing attack that strikes the target with a sharp beak acting as a drill."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Woody",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728073/woody_thxlpd.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 19,
 		"name": "Rattata",
 		"type": "normal",
@@ -2312,14 +1836,14 @@
 		  "type": "Normal",
 		  "description": "Hard, pointed, sharp claws rake the target to inflict damage."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Cinderella",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728071/cinderella_ht54ya.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 21,
 		"name": "Spearow",
 		"type": "normal",
@@ -2365,14 +1889,14 @@
 		  "type": "Flying",
 		  "description": "The user confounds the target with a swift and cutting air current. This attack always strikes first and cannot be evaded."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Pocahontas",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728076/pocahontas_ly2imk.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 23,
 		"name": "Ekans",
 		"type": "poison",
@@ -2418,14 +1942,14 @@
 		  "type": "Grass",
 		  "description": "The opposing Pokémon are attacked with a spray of harsh acid. This may also lower their Sp. Def stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Aladdin",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728068/aladdin_c781qe.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 35,
 		"name": "Clefairy",
 		"type": "fairy",
@@ -2471,14 +1995,14 @@
 		  "type": "Fairy",
 		  "description": "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Belle",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728068/belle_d52usb.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 37,
 		"name": "Vulpix",
 		"type": "fire",
@@ -2524,14 +2048,14 @@
 		  "type": "Fire",
 		  "description": "The target becomes trapped within a fierce vortex of fire that continues to burn and deal damage for several turns."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Peter Pan",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728071/peter_pan_o6e4fj.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 41,
 		"name": "Zubat",
 		"type": "poison",
@@ -2577,14 +2101,14 @@
 		  "type": "Poison",
 		  "description": "The user bites the target with toxic fangs. It may also leave the target badly poisoned."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Jasmine",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728076/jasmine_xt55hv.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 43,
 		"name": "Oddish",
 		"type": "grass",
@@ -2630,14 +2154,14 @@
 		  "type": "Fairy",
 		  "description": "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Mowgli",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728070/mowgli_fccf4p.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 46,
 		"name": "Paras",
 		"type": "bug",
@@ -2683,14 +2207,14 @@
 		  "type": "Grass",
 		  "description": "The user slams a barrage of hard-shelled seeds down on the target from above."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Rapunzel",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728077/rapunzel_rwgm64.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 48,
 		"name": "Venonat",
 		"type": "bug",
@@ -2736,14 +2260,14 @@
 		  "type": "Bug",
 		  "description": "The user attacks with a sinister beam of light. It may also confuse the target."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Dory",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728088/dory_glsr0j.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 50,
 		"name": "Diglett",
 		"type": "ground",
@@ -2789,14 +2313,14 @@
 		  "type": "Ground",
 		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Hercules",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728070/hercules_nrstfr.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 52,
 		"name": "Meowth",
 		"type": "normal",
@@ -2842,14 +2366,14 @@
 		  "type": "Ghost",
 		  "description": "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target's Defense stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Mufasa",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685728068/mufasa_vnexw8.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 54,
 		"name": "Psyduck",
 		"type": "water",
@@ -2895,14 +2419,14 @@
 		  "type": "Water",
 		  "description": "The target is blasted with a giant volume of water launched under great pressure."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Rick Sanchez",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730244/rick_horsbt.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 151,
 		"name": "Mew",
 		"type": "psychic",
@@ -2948,14 +2472,14 @@
 		  "type": "Psychic",
 		  "description": "The target is hit by a strong telekinetic force. It may also reduce the target's Special Defense stat."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Morty Smith",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730244/morty_pkuiun.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 143,
 		"name": "Snorlax",
 		"type": "normal",
@@ -3001,14 +2525,14 @@
 		  "type": "Fighting",
 		  "description": "The user grabs the target and recklessly dives for the ground. It also hurts the user slightly."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Summer Smith",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730253/summer_smith_wddrxl.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 148,
 		"name": "Dragonair",
 		"type": "dragon",
@@ -3054,14 +2578,14 @@
 		  "type": "Dragon",
 		  "description": "This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Beth Smith",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/beth_smith_ds9wo7.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 141,
 		"name": "Kabutops",
 		"type": "rock",
@@ -3107,14 +2631,14 @@
 		  "type": "Water",
 		  "description": "The target is blasted with a giant volume of water launched under great pressure."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Jerry Smith",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730251/jerry_smith_c53b2l.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 139,
 		"name": "Omastar",
 		"type": "rock",
@@ -3160,14 +2684,14 @@
 		  "type": "Rock",
 		  "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Birdperson",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730246/birdperson_b28sc5.jpg",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 128,
 		"name": "Tauros",
 		"type": "normal",
@@ -3213,14 +2737,14 @@
 		  "type": "Normal",
 		  "description": "The target is attacked with a powerful beam. The user can't move on the next turn."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Squanchy",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/squanchy_fmfvkc.jpg",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 124,
 		"name": "Jynx",
 		"type": "psychic",
@@ -3266,14 +2790,14 @@
 		  "type": "Ice",
 		  "description": "A howling blizzard is summoned to strike opposing Pokémon. It may freeze them solid."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Mr. Meeseeks",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730243/mr_meeseeks_knqsl6.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 119,
 		"name": "Seaking",
 		"type": "water",
@@ -3319,14 +2843,14 @@
 		  "type": "Water",
 		  "description": "The user attacks everything around it by swamping its surroundings with a giant wave."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Evil Morty",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/evil_morty_pjmxoc.jpg",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 117,
 		"name": "Seadra",
 		"type": "water",
@@ -3372,14 +2896,14 @@
 		  "type": "Water",
 		  "description": "The target is blasted with a giant volume of water launched under great pressure."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Snowball",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730247/snowball_sqvord.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 115,
 		"name": "Kangaskhan",
 		"type": "normal",
@@ -3425,14 +2949,14 @@
 		  "type": "Fighting",
 		  "description": "The target is hit with rhythmically launched punches that may also leave it confused."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Unity",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730244/unity_g5ular.jpg",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 110,
 		"name": "Weezing",
 		"type": "poison",
@@ -3478,14 +3002,14 @@
 		  "type": "Fire",
 		  "description": "The user explodes to inflict damage on all Pokémon in battle. The user faints upon using this move."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Noob-Noob",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730243/noob_noob_vjzqfm.jpg",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 105,
 		"name": "Marowak",
 		"type": "ground",
@@ -3531,14 +3055,14 @@
 		  "type": "Ground",
 		  "description": "The user sets off an earthquake that strikes every Pokémon around it."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	},
 	{
 	  "name": "Pickle Rick",
 	  "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/pickle_rick_u3xghq.png",
-	  "pokemon_1": {
+	  "pokemons":[ {
 		"id": 103,
 		"name": "Exeggutor",
 		"type": "grass",
@@ -3584,7 +3108,7 @@
 		  "type": "Normal",
 		  "description": "In this two-turn attack, the user gathers energy and blasts a bundled beam on the next turn."
 		}
-	  },
+	  }],
 	  "pokemon_2": null,
 	  "pokemon_3": null
 	}

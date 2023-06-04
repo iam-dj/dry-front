@@ -46,24 +46,28 @@ export default function HomePage(props) {
       //run api on trainer id and return the pokemon isMain
       const fetchBattlePokemon = async (trainerId) => {
         try {
-          const opponentData = await API.getBattlePoke(trainerId);
+          // const opp = await API.getBattlePoke(trainerId);
+          const opponentData = await API.getOneTrainer(trainerId);
 
           const myTrainerData = await API.getOneTrainer(props.trainerId);
 
-          console.log("Battle Pokemon opponentData:", opponentData);
+          const name = opponentData.name;
 
           function filterMainPokemon(myTrainerData) {
             return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
           }
 
           const myFilteredPokemons = filterMainPokemon(myTrainerData);
+          const oppFilteredPokemons = filterMainPokemon(myTrainerData);
 
           setIsFetching(true);
           setTimeout(() => {
             setIsFetching(false);
-            const result = BattleSys.startBattle(
+            const result = 0
+            BattleSys.startBattle(
               myFilteredPokemons,
-              opponentData
+              oppFilteredPokemons, 
+              name
             );
             console.log(result);
             if (result === 1) {
