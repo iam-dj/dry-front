@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import bfg from "./assets/bg.png";
-
+import BattleSys from "../../utils/BattleSys"; // Example functions for fetching NPC data and simulating battle
+// import HandleWins from "../../utils/HandleWins";
 
 const ALL_TRAINERS = "all_trainer_state";
 
@@ -25,12 +26,66 @@ export default function HomePage(props) {
     backgroundRepeat: "no-repeat",
     height: "100vh",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+  };
+  const cardStylee = {
+    width: "250px",
+    height: "250px",
+    objectFit: "cover",
   };
 
+  const [isFetching, setIsFetching] = useState(false);
+
   const handleBattle = (trainerId) => {
-    console.log("Battle with trainer:", trainerId);
+    if (trainerId === props.trainerId) {
+      console.log("you can't battle yourself");
+    } else {
+      console.log("you've chosen to battle:", trainerId);
+
+      //run api on trainer id and return the pokemon isMain
+      const fetchBattlePokemon = async (trainerId) => {
+        try {
+          // const opp = await API.getBattlePoke(trainerId);
+          const opponentData = await API.getOneTrainer(trainerId);
+
+          const myTrainerData = await API.getOneTrainer(props.trainerId);
+
+          const name = opponentData.name;
+
+          function filterMainPokemon(myTrainerData) {
+            return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
+          }
+
+          const myFilteredPokemons = filterMainPokemon(myTrainerData);
+          const oppFilteredPokemons = filterMainPokemon(myTrainerData);
+
+          setIsFetching(true);
+          setTimeout(() => {
+            setIsFetching(false);
+            const result = 0
+            BattleSys.startBattle(
+              myFilteredPokemons,
+              oppFilteredPokemons, 
+              name
+            );
+            console.log(result);
+            if (result === 1) {
+              //update the wins
+              //update the hp
+              //update localstorage
+            } else {
+              //update losses
+            }
+          }, 3000);
+        } 
+        catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchBattlePokemon(trainerId);
+    }
   };
 
   useEffect(() => {
@@ -68,9 +123,10 @@ export default function HomePage(props) {
                 <Card>
                   <Card.Body>
                     <img
-                      className="profile img-fluid"
+                      className="profile img-fluid mx-auto d-block"
                       alt="profile"
                       src={trainer.profilePicUrl}
+                      style={cardStylee}
                     />
                     <Card.Title>{trainer.name}</Card.Title>
                     <Card.Text>Age: {trainer.age}</Card.Text>
@@ -78,10 +134,20 @@ export default function HomePage(props) {
                       Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
                     </Card.Text>
                     <Button
-                      variant="primary"
+                      variant="primary mx-auto d-block"
                       onClick={() => handleBattle(trainer.id)}
+                      disabled={isFetching}
+                      type="button"
                     >
-                      Battle
+                      {isFetching ? (
+                        <img
+                          src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                          alt="fetching-pokemon"
+
+                        />
+                      ) : (
+                        "Battle Your Pokemon"
+                      )}
                     </Button>
                   </Card.Body>
                 </Card>

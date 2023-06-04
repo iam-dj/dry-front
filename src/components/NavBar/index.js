@@ -12,8 +12,8 @@ function NavTabs(props) {
         <Link className="nav-link text-dark" to="/">
           Home Page
         </Link>
-        <Link className="nav-link text-dark" to="/battle">
-          Battle
+        <Link className="nav-link text-dark" to="/train">
+          Train
         </Link>
         <Link className="nav-link text-dark" to="/catch">
           Catch 'em All

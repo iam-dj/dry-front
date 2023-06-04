@@ -8,14 +8,14 @@ import {
 import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
-import Battle from "./pages/Battle";
+import Train from "./pages/Train";
 import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
 import Dashboard from "./pages/Dashboard";
 import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
 import API from "./utils/API";
-import { Cloudinary } from "@cloudinary/url-gen";
+// import { Cloudinary } from "@cloudinary/url-gen";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -115,13 +115,13 @@ function App() {
         />
         <Route
           path="/catch"
-          element={<Catch setUserId={setUserId} token={token} />}
+          element={<Catch setUserId={setUserId} trainerId={trainerId} token={token} />}
         />
         <Route
           path="/gym"
           element={<Gym setUserId={setUserId} token={token} />}
         />
-        <Route path="/battle" element={<Battle token={token} />} />
+        <Route path="/train" element={<Train token={token} trainerId={trainerId} />} />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>
     </Router>
