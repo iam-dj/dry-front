@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 
-export default function Battle(props) {
+export default function Train(props) {
   // const navigate = useNavigate();
 
   const cardStyle = {
@@ -40,6 +40,10 @@ export default function Battle(props) {
             return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
           }
 
+          
+
+          
+
           const myFilteredPokemons = filterMainPokemon(myTrainerData)
 
           console.log("myFilteredPokemons", myFilteredPokemons);
@@ -47,12 +51,37 @@ export default function Battle(props) {
           setIsFetching(true);
           setTimeout(() => {
             setIsFetching(false);
-             BattleSys.startBattle(
+             const result = BattleSys.startBattle(
               myFilteredPokemons, 
               NPCz[0].pokemons, 
               name
-            );
-            
+
+              );
+              console.log('result',result)
+              if (result === 1) {
+                const winner = async () => {
+                  try {
+                    await API.updateWin(props.trainerId);
+                    console.log("Win updated!");
+                  } catch (error) {
+                    console.log(error);
+                  }
+                };
+              
+                winner();
+              } else {
+                const loser = async () => {
+                  try {
+                    await API.updateLoss(props.trainerId);
+                    console.log("Loss updated!");
+                  } catch (error) {
+                    console.log(error);
+                  }
+                };
+              
+                loser();
+              }
+              
           }, 3000);
         } catch (error) {
           console.log(error);
@@ -79,7 +108,7 @@ export default function Battle(props) {
               alt="fetching-pokemon"
             />
           ) : (
-            "Check console to see NPC Battle"
+            "Battle NPC's to earn HP"
           )}
         </Button>
       </div>

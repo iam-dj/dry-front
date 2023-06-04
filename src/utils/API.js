@@ -88,6 +88,24 @@ const API = {
   });
 },
 
+  catchPokemon: (trainerId, pokemonName) => {
+  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/iscaught/${pokemonName}`, {
+    method: "PUT",
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error("Failed to update main Pokemon");
+    }
+  });
+},
+
+getAllPoke: () => {
+  return fetch(`${URL_PREFIX}/api/pokemon`)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+    });
+},
+
   getBattlePoke: (trainerId) => {
   return fetch(`${URL_PREFIX}/api/trainers/main/${trainerId}`).then((res) =>
     res.json().then((data) => {
@@ -101,29 +119,32 @@ const API = {
 },
 
 updateWin: (trainerId) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins`).then((res) =>
-    res.json().then((data) => {
+  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins`, {
+    method: "PUT",
+  })
+    .then((res) => res.json())
+    .then((data) => {
       return data;
     })
-  .catch((err) => {
-    console.log(err);
-  })
-  );
+    .catch((err) => {
+      console.log(err);
+    });
 },
 
+
 updateLoss: (trainerId) => {
-  return fetch(`${URL_PREFIX}api/trainers/${trainerId}/increment-num-loss`).then((res) =>
-    res
-      .json()
-      .then((data) => {
-        
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  );
+  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-loss`, {
+    method: "PUT",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 },
+
 
 
   getAllTrainers: () => {

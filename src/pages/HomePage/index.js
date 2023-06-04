@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import bfg from "./assets/bg.png";
 import BattleSys from "../../utils/BattleSys"; // Example functions for fetching NPC data and simulating battle
-import HandleWins from "../../utils/HandleWins";
+// import HandleWins from "../../utils/HandleWins";
 
 const ALL_TRAINERS = "all_trainer_state";
 
@@ -38,7 +38,7 @@ export default function HomePage(props) {
   const [isFetching, setIsFetching] = useState(false);
 
   const handleBattle = (trainerId) => {
-    if (trainerId == props.trainerId) {
+    if (trainerId === props.trainerId) {
       console.log("you can't battle yourself");
     } else {
       console.log("you've chosen to battle:", trainerId);
@@ -137,11 +137,13 @@ export default function HomePage(props) {
                       variant="primary mx-auto d-block"
                       onClick={() => handleBattle(trainer.id)}
                       disabled={isFetching}
+                      type="button"
                     >
                       {isFetching ? (
                         <img
                           src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
                           alt="fetching-pokemon"
+
                         />
                       ) : (
                         "Battle Your Pokemon"
