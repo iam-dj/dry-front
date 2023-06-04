@@ -14,7 +14,7 @@ export default function Buttons() {
         <Link to="/catch">
           <img src={btn4} alt="Button 4" className="button" />
         </Link>
-        <Link to="/battle">
+        <Link to="/train">
           <img src={btn5} alt="Button 5" className="button" />
         </Link>
       </div>

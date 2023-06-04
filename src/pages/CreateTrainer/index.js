@@ -104,7 +104,7 @@ export default function CreateTrainer(props) {
           {/* {props.usage==="Signup"?<input placeholder='signup only'/> :null} */}
           <button
             id="upload_widget"
-            className="cloudinary-button"
+            className="cloudinary-button btn btn-sm btn-danger"
             onClick={handleOpenWidget}
             type="button"
           >

@@ -11,6 +11,14 @@ import CreateTrainer from "./pages/CreateTrainer";
 import Train from "./pages/Train";
 import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
+import BoulderBadge from "./pages/BoulderBadge";
+import CascadeBadge from "./pages/CascadeBadge";
+import ThunderBadge from "./pages/ThunderBadge";
+import RainbowBadge from "./pages/RainbowBadge";
+import SoulBadge from "./pages/SoulBadge";
+import MarshBadge from "./pages/MarshBadge";
+import VolcanoBadge from "./pages/VolcanoBadge";
+import EarthBadge from "./pages/EarthBadge";
 import Dashboard from "./pages/Dashboard";
 import Gym from "./pages/Gym";
 import SetPoke from "./pages/SetPoke";
@@ -115,13 +123,106 @@ function App() {
         />
         <Route
           path="/catch"
-          element={<Catch setUserId={setUserId} trainerId={trainerId} token={token} />}
+          element={
+            <Catch setUserId={setUserId} trainerId={trainerId} token={token} />
+          }
         />
         <Route
           path="/gym"
           element={<Gym setUserId={setUserId} token={token} />}
         />
-        <Route path="/train" element={<Train token={token} trainerId={trainerId} />} />
+        <Route
+          path="/boulder-badge"
+          element={
+            <BoulderBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/cascade-badge"
+          element={
+            <CascadeBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/thunder-badge"
+          element={
+            <ThunderBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/rainbow-badge"
+          element={
+            <RainbowBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/soul-badge"
+          element={
+            <SoulBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/marsh-badge"
+          element={
+            <MarshBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/volcano-badge"
+          element={
+            <VolcanoBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/earth-badge"
+          element={
+            <EarthBadge
+              setUserId={setUserId}
+              setUsername={setUsername}
+              setToken={setToken}
+              setTrainerId={setTrainerId}
+            />
+          }
+        />
+        <Route
+          path="/train"
+          element={<Train token={token} trainerId={trainerId} />}
+        />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>
     </Router>

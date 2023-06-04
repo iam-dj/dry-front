@@ -1,10 +1,41 @@
 .Navbar {
-    background:whitesmoke;
-    display: flex;
-    justify-content: space-around;
+  background: whitesmoke;
+  /* display: ; */
+  justify-content: space-between;
+  /* right: 100px!important; */
+  height: 40px;
 }
 
-.Navbar > *{
-    font-size:2em;
-    padding:5px;
+.dropdown-menu {
+  background-color: whitesmoke; /* Replace with your desired background color */
+}
+
+.dropdown-submenu {
+  background-color: whitesmoke; /* Replace with your desired background color */
+}
+.Navbar > * {
+  font-size: 3em;
+  padding: 10px;
+}
+
+.my-btn {
+  padding: 15px;
+}
+.pokemon-image {
+  /* width: 25px !important; */
+  width: 100%;
+  position: relative;
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fbab7e 13%,
+    #f7ce68 32%,
+    #ffffff 58%,
+    #ffffff 100%
+  );
+  background-size: cover;
+  /* right: 0;
+    top:0; */
+  /* clip-path: inset(15px 0 15px 0)!important; */
 }
