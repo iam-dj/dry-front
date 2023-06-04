@@ -4,152 +4,9 @@ const moveSelect = require("./MoveSelector");
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
-// const userGoes = require("./StartGame");
 
-// const userPokemon = [
-//   {
-//     "id": 4,
-//     "name": "Ash Ketchum",
-//     "age": 16,
-//     "numwins": 32,
-//     "numLosses": 12,
-//     "boulder_badge": true,
-//     "cascade_badge": true,
-//     "thunder_badge": true,
-//     "rainbow_badge": true,
-//     "soul_badge": true,
-//     "marsh_badge": true,
-//     "volcano_badge": true,
-//     "earth_badge": true,
-//     "pokemons": [
-//       {
-//         "id": 151,
-//         "name": "Mew",
-//         "type": "psychic",
-//         "secondary_type": null,
-//         "level": 1,
-//         "hp": 100,
-//         "experience": 0,
-//         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
-//         "evolutionId": 1,
-//         "rarity": "Legendary",
-//         "tier": 3,
-//         "isCaught": false,
-//         "TrainerId": 4,
-//         "move1Id": 1,
-//         "move2Id": 5,
-//         "move3Id": 140,
-//         "move4Id": 211,
-//         "npcId": null,
-//         "move1": {
-//           "id": 1,
-//           "name": "Pound",
-//           "power": 15,
-//           "type": "Normal",
-//           "description": "The target is physically pounded with a long tail or a forelimb, etc.",
-//           "npcId": null
-//         },
-//         "move2": {
-//           "id": 5,
-//           "name": "Mega Punch",
-//           "power": 80,
-//           "type": "Normal",
-//           "description": "The target is slugged with a punch thrown at maximum power.",
-//           "npcId": null
-//         },
-//         "move3": {
-//           "id": 7,
-//           "name": "Gut Punch",
-//           "power": 69,
-//           "type": "Normal",
-//           "description": "The target is slugged with a punch thrown at maximum power.",
-//           "npcId": null
-//         },
-//         "move4": {
-//           "id": 9,
-//           "name": "Scratch",
-//           "power": 40,
-//           "type": "Normal",
-//           "description": "Hard, pointed, sharp claws rake the target to inflict damage.",
-//           "npcId": null
-//         }
-//       }
-//     ]
-//   }
-// ];
-// const compPokemon = [
-//   {
-//     "id": 4,
-//     "name": "Ash Ketchum",
-//     "age": 16,
-//     "numwins": 32,
-//     "numLosses": 12,
-//     "boulder_badge": true,
-//     "cascade_badge": true,
-//     "thunder_badge": true,
-//     "rainbow_badge": true,
-//     "soul_badge": true,
-//     "marsh_badge": true,
-//     "volcano_badge": true,
-//     "earth_badge": true,
-//     "pokemons": [
-//       {
-//         "id": 151,
-//         "name": "Mew",
-//         "type": "psychic",
-//         "secondary_type": null,
-//         "level": 1,
-//         "hp": 100,
-//         "experience": 0,
-//         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
-//         "evolutionId": 1,
-//         "rarity": "Legendary",
-//         "tier": 3,
-//         "isCaught": false,
-//         "TrainerId": 4,
-//         "move1Id": 1,
-//         "move2Id": 5,
-//         "move3Id": 140,
-//         "move4Id": 211,
-//         "npcId": null,
-//         "move1": {
-//           "id": 1,
-//           "name": "Pound",
-//           "power": 49,
-//           "type": "Normal",
-//           "description": "The target is physically pounded with a long tail or a forelimb, etc.",
-//           "npcId": null
-//         },
-//         "move2": {
-//           "id": 5,
-//           "name": "Mega Punch",
-//           "power": 85,
-//           "type": "Normal",
-//           "description": "The target is slugged with a punch thrown at maximum power.",
-//           "npcId": null
-//         },
-//         "move3": {
-//           "id": 7,
-//           "name": "Mega Punch",
-//           "power": 30,
-//           "type": "Normal",
-//           "description": "The target is slugged with a punch thrown at maximum power.",
-//           "npcId": null
-//         },
-//         "move4": {
-//           "id": 9,
-//           "name": "Scratch",
-//           "power": 10,
-//           "type": "Normal",
-//           "description": "Hard, pointed, sharp claws rake the target to inflict damage.",
-//           "npcId": null
-//         }
-//       }
-//     ]
-//   }
-// ];
-
-
+var lost = 0;    
+var win = 1;
 
 function startBattle(userPokemon, opponentPokemon) {
   const userPoke = userPokemon;
@@ -197,19 +54,15 @@ function startBattle(userPokemon, opponentPokemon) {
     );
 
     if (userPoke[0].hp <= 0) {
-      compWon();
+      return compWon(); // Return 0 if the opponent wins
     } else if (compPoke[0].hp <= 0) {
-      userWon();
+      return userWon(); // Return 1 if the user wins
     } else {
       battle();
     }
   }
 
   function battle() {
-    // console.log(userTypeWeaknessModifier); // weakness modifier #
-    // console.log(userTypeStrengthModifier); // strength modifier #
-    // console.log(compTypeWeaknessModifier); // weakness modifier #
-    // console.log(compTypeStrengthModifier); // strength modifier #
     console.log("=========================");
 
     if (hitormiss.flip() === 10) {
@@ -282,13 +135,15 @@ function startBattle(userPokemon, opponentPokemon) {
 
   function userWon() {
     console.log("You win!!");
+    return win;
   }
 
   function compWon() {
     console.log("You lose");
+    return lost;
   }
 
-  startGame();
+  return startGame(); // Start the battle and return the result
 }
 
 module.exports = {

@@ -105,7 +105,8 @@ export default function CreateTrainer(props) {
           <button
             id="upload_widget"
             className="cloudinary-button"
-            onClick={() => handleOpenWidget()}
+            onClick={handleOpenWidget}
+            type="button"
           >
             Upload files
           </button>

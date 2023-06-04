@@ -121,7 +121,7 @@ function App() {
           path="/gym"
           element={<Gym setUserId={setUserId} token={token} />}
         />
-        <Route path="/battle" element={<Battle token={token} />} />
+        <Route path="/battle" element={<Battle token={token} trainerId={trainerId} />} />
         <Route path="/*" element={<h2>page not found</h2>} />
       </Routes>
     </Router>

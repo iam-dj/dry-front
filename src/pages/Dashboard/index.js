@@ -47,8 +47,9 @@ export default function Dashboard(props) {
         setIsLoading(true);
         const data = await API.getOneTrainer(props.trainerId);
         setTrainer(data);
+        console.log('data',data)
         setIsLoading(false);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        // localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (error) {
         console.log(error);
         setIsLoading(false);
