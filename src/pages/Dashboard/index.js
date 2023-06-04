@@ -11,6 +11,7 @@ import Badges from "../../components/Badges";
 import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { Background } from "@cloudinary/url-gen/qualifiers";
 
 const STORAGE_KEY = "home_trainer_state";
 
@@ -74,12 +75,12 @@ export default function Dashboard(props) {
               <Row>
                 <Col xs={4} md={3}>
                   <img
-                    className="profile img-fluid"
+                    className="profile "
                     alt="profile"
                     src={trainer.profilePicUrl}
                   />
                 </Col>
-                <Col className="profile2">
+                <Col className="profile2" >
                   <h1 className="profile-name">{trainer.name}</h1>
                   <h2 className="profile-age">Age: {trainer.age}</h2>
                   <h6 className="profile-record">

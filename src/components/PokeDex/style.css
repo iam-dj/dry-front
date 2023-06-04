@@ -40,7 +40,15 @@
   
   .pokemon-image {
     width: 100px;
-    height: 100px;
-    object-fit: contain;
+    height: 140px;
+    object-fit:contain;
   }
   
+  .pokemon-card {
+    border: 15px solid rgb(240, 241, 200);
+    border-radius: 10px;
+    width:250px;
+    font-size: x-small;
+    font-weight: bolder;
+    font-family:  Helvetica, sans-serif;
+  }

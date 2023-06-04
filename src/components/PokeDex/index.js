@@ -6,16 +6,22 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+// import Tabs from "react-bootstrap/Tabs";
 
 export default function PokeDex(props) {
   const pokemon = props.trainer.pokemons;
   const [activeType, setActiveType] = useState(pokemon[0].type);
   const [showCaughtPokemon, setShowCaughtPokemon] = useState(false);
   const [showMainPokemon, setShowMainPokemon] = useState(false);
+  const [activePokemonMoves, setActivePokemonMoves] = useState([]);
+
 
   // Get unique list of Pokemon types
   const pokemonTypes = [...new Set(pokemon.map((p) => p.type))];
+  
+  const handlePokemonClick = (moves) => {
+    setActivePokemonMoves(moves);
+  };
 
   // Filter Pokemon by selected type
   const filteredPokemon = pokemon.filter((p) => p.type === activeType);
@@ -69,11 +75,11 @@ export default function PokeDex(props) {
 
           <Tab.Content>
             <Tab.Pane eventKey="all-pokemon">
-              <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row">
+              <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row ">
                 {mainPokemon.map((p) => (
                   <Col key={p.id} className="mb-3">
                     <Card className="pokemon-card">
-                      <div className="card-content">
+                      <div className="pokemon-card card-content">
                         <Card.Img
                           variant="top"
                           src={p.img_url}
@@ -83,6 +89,7 @@ export default function PokeDex(props) {
                         <Card.Body>
                           <Card.Title>{p.name}</Card.Title>
                           <Card.Text>Type: {p.type}</Card.Text>
+                          
                         </Card.Body>
                       </div>
                     </Card>

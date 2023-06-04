@@ -46,8 +46,8 @@ export default function Train(props) {
 
           const myFilteredPokemons = filterMainPokemon(myTrainerData)
 
-          console.log("myFilteredPokemons", myFilteredPokemons);
-
+          // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
+          
           setIsFetching(true);
           setTimeout(() => {
             setIsFetching(false);
@@ -63,6 +63,13 @@ export default function Train(props) {
                   try {
                     await API.updateWin(props.trainerId);
                     console.log("Win updated!");
+                    const mypokename = myFilteredPokemons[0].name
+                    const newHp = Math.floor(Math.random() * 16);                  
+                    console.log("newHp", newHp);
+                    if(newHp >= 7){
+                      await API.updatePokemonHp(props.trainerId,mypokename);
+                      console.log(`You've earned 15 health points for your pokemon!`);
+                    }
                   } catch (error) {
                     console.log(error);
                   }

@@ -88,6 +88,22 @@ const API = {
   });
 },
 
+updatePokemonHp: (trainerId, pokemonName) => {
+  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/hp/${pokemonName}`, {
+    method: "PUT",
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update Pokemon HP");
+      }
+    })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+    });
+},
+
+
   catchPokemon: (trainerId, pokemonName) => {
   return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/iscaught/${pokemonName}`, {
     method: "PUT",

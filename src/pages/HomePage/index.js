@@ -8,6 +8,9 @@ import Button from "react-bootstrap/Button";
 import bfg from "./assets/bg.png";
 import BattleSys from "../../utils/BattleSys"; // Example functions for fetching NPC data and simulating battle
 // import HandleWins from "../../utils/HandleWins";
+import poke from "./assets/pokemon.png"
+import "./style.css";
+
 
 const ALL_TRAINERS = "all_trainer_state";
 
@@ -46,7 +49,7 @@ export default function HomePage(props) {
       //run api on trainer id and return the pokemon isMain
       const fetchBattlePokemon = async (trainerId) => {
         try {
-          // const opp = await API.getBattlePoke(trainerId);
+          const opp = await API.getBattlePoke(trainerId);
           const opponentData = await API.getOneTrainer(trainerId);
 
           const myTrainerData = await API.getOneTrainer(props.trainerId);
@@ -58,7 +61,7 @@ export default function HomePage(props) {
           }
 
           const myFilteredPokemons = filterMainPokemon(myTrainerData);
-          const oppFilteredPokemons = filterMainPokemon(myTrainerData);
+          // const oppFilteredPokemons = filterMainPokemon(myTrainerData);
 
           setIsFetching(true);
           setTimeout(() => {
@@ -66,7 +69,7 @@ export default function HomePage(props) {
             const result = 0
             BattleSys.startBattle(
               myFilteredPokemons,
-              oppFilteredPokemons, 
+              opp, 
               name
             );
             console.log(result);
@@ -77,7 +80,7 @@ export default function HomePage(props) {
             } else {
               //update losses
             }
-          }, 3000);
+          }, 30);
         } 
         catch (error) {
           console.log(error);
@@ -110,6 +113,7 @@ export default function HomePage(props) {
   return (
     <div style={cardStyle}>
       <Container>
+        <img src={poke} className="profile32 mx-auto d-block" alt="logo for pokemon"></img>
         <Row className="justify-content-center">
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center">
@@ -119,18 +123,18 @@ export default function HomePage(props) {
             </div>
           ) : (
             loadedTrainer.map((trainer) => (
-              <Col key={trainer.id} xs={12} md={6} lg={4} className="mb-4">
+              <Col key={trainer.id} xs={12} md={6} lg={4} className="">
                 <Card>
                   <Card.Body>
                     <img
-                      className="profile img-fluid mx-auto d-block"
+                      className="imgcalb mx-auto d-block"
                       alt="profile"
                       src={trainer.profilePicUrl}
                       style={cardStylee}
                     />
-                    <Card.Title>{trainer.name}</Card.Title>
-                    <Card.Text>Age: {trainer.age}</Card.Text>
-                    <Card.Text>
+                    <Card.Title className="profile-name2">{trainer.name}</Card.Title>
+                    <Card.Text className="profile-age2">Age: {trainer.age}</Card.Text>
+                    <Card.Text className="profile-record2">
                       Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
                     </Card.Text>
                     <Button
@@ -146,7 +150,7 @@ export default function HomePage(props) {
 
                         />
                       ) : (
-                        "Battle Your Pokemon"
+                        "Friendly Battle"
                       )}
                     </Button>
                   </Card.Body>

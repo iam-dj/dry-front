@@ -6,131 +6,137 @@
     background-attachment: fixed;
 } */
 
-html,body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
-.hljk{
-background-size: auto;
+.hljk {
+  background-size: auto;
 }
 
-
-.profile{
-    width:250px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.profile {
+  width: 310px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-size: cover;
+  
 }
-.profile2{
-    padding-top: 15px;
-    /* padding-left: 5px; */
+.profile2 {
+  padding-top: 15px;
+
+  /* padding-left: 5px; */
 }
 
 .card {
-    background: #fff;
-    /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  background-color: #3366af;
+  /* background-image: linear-gradient(62deg, #3366af 0%, #3366af 100%); */
+  /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
     max-width: 800px;
     display: flex;
     flex-direction: row;
     border-radius: 25px;*/
-    position: relative;
-    top: 30px; 
-  }
+  position: relative;
+  border: 15px solid rgb(235, 237, 127);
+
+  top: 30px;
+}
 .cardtwo {
-    background: #fff;
-    /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
+  background: #1a0b0b;
+  /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
     max-width: 800px;
     display: flex;
     flex-direction: row;*/
-    border-radius: 5px;
-    position: relative;
-    top: 10px; 
-  }
+  border-radius: 5px;
+  position: relative;
+  top: 10px;
+}
 
-  .profile-name {
-    color: #ff0000; /* Red */
-    font-size: 3.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    /* Additional styles */
-  }
-  
-  .profile-age {
-    font-size: 2rem;
-    font-weight: bolder;
+.profile-name {
+  color: #ff0000; /* Red */
+  font-size: 5.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  /* Additional styles */
+}
 
-    /* Additional styles */
-  }
-  
-  .profile-record {
-    font-size: 1.2rem;
-    font-weight: bolder;
+.profile-age {
+  font-size: 2rem;
+  font-weight: bolder;
 
-    /* Additional styles */
-  }
-  
-  
+  /* Additional styles */
+}
 
-  /* .card h2 {
+.profile-record {
+  font-size: 2.2rem;
+  font-weight: bolder;
+
+  /* Additional styles */
+}
+
+/* .card h2 {
     margin: 0;
     padding: 0 1rem;
   } */
-  .card .title {
-    padding: 1rem;
-    /* text-align: right; */
-    color: black;
-    font-weight: bold;
-    font-size: 12px;
-  }
-  .card .desc {
-    padding: 0.5rem 1rem;
-    font-size: 12px;
-  }
-  .card .actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    padding: 0.5rem 1rem;
-  }
-  .card svg {
-    width: 85px;
-    height: 85px;
-    margin: 0 auto;
-  }
-  
-  .img-avatar {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    border: 6px solid white;
-    background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
-    top: 15px;
-    left: 85px;
-  }
-  
-  /* .card-text2 {
+.card .title {
+  padding: 1rem;
+  /* text-align: right; */
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+}
+.card .desc {
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+}
+.card .actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.card svg {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto;
+}
+
+.img-avatar {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  border-radius: 50%;
+  background-size: contain;
+  border: 6px solid white;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+  top: 15px;
+  left: 85px;
+}
+
+/* .card-text2 {
     display: grid;
     grid-template-columns: 1fr 2fr;
   } */
-  
-  .title-total {
-    padding: 2.5em 1.5em 1.5em 1.5em;
-  }
-  
-  path {
-    fill: white;
-  }
-  
-  .img-portada {
-    width: 100%;
-  }
-  
-  .portada {
-    width: 100%;
-    height: 100%;
-    /* border-top-left-radius: 20px; */
-    /* border-bottom-left-radius: 20px; */
-    /* background-image: url("/public/"); */
-    background-position: bottom center;
-    background-size: cover;
-  }
+
+.title-total {
+  padding: 2.5em 1.5em 1.5em 1.5em;
+}
+
+path {
+  fill: white;
+}
+
+.img-portada {
+  width: 100%;
+}
+
+.portada {
+  width: 100%;
+  height: 100%;
+  /* border-top-left-radius: 20px; */
+  /* border-bottom-left-radius: 20px; */
+  /* background-image: url("/public/"); */
+  background-position: bottom center;
+  background-size: cover;
+}
