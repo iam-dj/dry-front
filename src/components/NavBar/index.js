@@ -8,11 +8,11 @@ import ditto from "./assets/ditto.png";
 
 function NavTabs(props) {
   const dropdownMenuStyles = {
-    backgroundColor: "whitesmoke"
+    backgroundColor: "whitesmoke",
   };
 
   const dropdownSubmenuStyles = {
-    backgroundColor: "whitesmoke"
+    backgroundColor: "whitesmoke",
   };
 
   return (
@@ -23,52 +23,108 @@ function NavTabs(props) {
           {props.userId ? (
             <>
               <Dropdown style={dropdownMenuStyles} as={Nav.Item}>
-                <Dropdown.Toggle style={dropdownMenuStyles} as={Nav.Link} variant="link">
+                <Dropdown.Toggle
+                  style={dropdownMenuStyles}
+                  as={Nav.Link}
+                  variant="link"
+                >
                   Pokemon Journey
                 </Dropdown.Toggle>
-                <Dropdown.Menu style={dropdownMenuStyles} >
+                <Dropdown.Menu style={dropdownMenuStyles}>
                   <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/">
                     Home Page
                   </Dropdown.Item>
-                  <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/train">
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
+                    to="/train"
+                  >
                     Train Your Pokemon
                   </Dropdown.Item>
-                  <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/catch">
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
+                    to="/catch"
+                  >
                     Catch 'em All
                   </Dropdown.Item>
-                  <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/dashboard">
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
+                    to="/dashboard"
+                  >
                     Dashboard
                   </Dropdown.Item>
-                  <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/setpoke">
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
+                    to="/setpoke"
+                  >
                     Set Your Pokemon
                   </Dropdown.Item>
                   <Dropdown style={dropdownMenuStyles} as={Nav.Item}>
-                    <Dropdown.Toggle style={dropdownMenuStyles} as={Nav.Link} variant="link">
+                    <Dropdown.Toggle
+                      style={dropdownMenuStyles}
+                      as={Nav.Link}
+                      variant="link"
+                    >
                       Gym Battle
                     </Dropdown.Toggle>
                     <Dropdown.Menu style={dropdownSubmenuStyles}>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/boulder-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/boulder-badge"
+                      >
                         Boulder Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/cascade-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/cascade-badge"
+                      >
                         Cascade Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/thunder-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/thunder-badge"
+                      >
                         Thunder Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/rainbow-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/rainbow-badge"
+                      >
                         Rainbow Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/soul-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/soul-badge"
+                      >
                         Soul Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/marsh-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/marsh-badge"
+                      >
                         Marsh Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/volcano-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/volcano-badge"
+                      >
                         Volcano Badge
                       </Dropdown.Item>
-                      <Dropdown.Item style={dropdownMenuStyles} as={Link} to="/earth-badge">
+                      <Dropdown.Item
+                        style={dropdownMenuStyles}
+                        as={Link}
+                        to="/earth-badge"
+                      >
                         Earth Badge
                       </Dropdown.Item>
                     </Dropdown.Menu>
@@ -76,13 +132,17 @@ function NavTabs(props) {
                 </Dropdown.Menu>
               </Dropdown>
 
-              <button className="my-btn btn" onClick={props.logout}>
+              <button className="my-btn btn" style={{ marginRight: 10 + "px",marginLeft: 10 + "px",paddingBottom: 0 + "px"  }} onClick={props.logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-primary " to="/signup">
+              <Link
+                style={{ marginRight: 10 + "px",marginLeft: 10 + "px"  }}
+                className="btn btn-primary "
+                to="/signup"
+              >
                 Sign Up
               </Link>
               <Link className="btn btn-primary " to="/login">
