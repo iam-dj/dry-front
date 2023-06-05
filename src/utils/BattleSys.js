@@ -75,7 +75,7 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       //   `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       // );
       battleLogData.push(
-        `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+        `Your pokemon ${userPoke[0].name} missed. ${userPoke[0].name} has ${userPoke[0].hp} hp left!  ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
       );
     } else {
       const damage =
@@ -91,7 +91,7 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       //   `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       // );
       battleLogData.push(
-        `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+        `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. ${userPoke[0].name} has ${userPoke[0].hp} hp left! ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
       );
     }
 
@@ -101,7 +101,7 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       //   `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       // );
       battleLogData.push(
-        `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+        `${name}'s pokemon ${compPoke[0].name} missed. Your ${userPoke[0].name} has ${userPoke[0].hp} hp left! ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
       );
     } else {
       const damageTwo =
@@ -118,7 +118,7 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       //   `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
       // );
       battleLogData.push(
-        `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
+        `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! Your ${userPoke[0].name} has ${userPoke[0].hp} hp left!\n`
       );
     }
 

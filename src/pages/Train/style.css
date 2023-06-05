@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.battle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.npc-profile-photo,
+.trainer-profile-photo {
+  max-width: 300px;
+  max-height: 300px;
+}
+
 .battle-button {
   display: block;
   margin: 0 auto;
@@ -12,13 +28,16 @@
 
 .battle-log-overlay {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 25%;
   width: 1000px;
   font-family: "Press Start 2P", cursive;
+
   height: 200px;
   z-index: 9999;
   background-color: rgba(184, 181, 181, 0.7);
+  border-radius: 10px;
+  border: #030303;
 }
 
 .battle-log {
@@ -27,12 +46,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #030303;
-  font-family: "Press Start 2P", sans-serif;
+  font-family: "Press Start 2P", cursive;
+
   font-size: 30px;
   text-align: center;
-}
-
-.read-log-entry {
-  opacity: 0.5; /* Adjust the styling as desired */
-  /* Additional styling for read log entries */
 }
