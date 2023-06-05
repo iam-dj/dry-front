@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 const weaknessPowerMod = require("./WeaknessPowerModifier");
 const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
@@ -5,15 +6,15 @@ const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
 
-var lost = 0;    
+var lost = 0;
 var win = 1;
+var battleLogData = [];
 
 function startBattle(userPokemon, opponentPokemon, opp) {
+  battleLogData = [];
   const userPoke = userPokemon;
   const compPoke = opponentPokemon;
   const name = opp;
-
-  
 
   let userTypeWeaknessModifier = 0;
   let userTypeStrengthModifier = 0;
@@ -67,10 +68,13 @@ function startBattle(userPokemon, opponentPokemon, opp) {
 
   function battle() {
     console.log("=========================");
-  
+
     if (hitormiss.flip() === 10) {
       compPoke[0].hp = compPoke[0].hp - 0;
       console.log(
+        `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      );
+      battleLogData.push(
         `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
     } else {
@@ -85,11 +89,17 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       console.log(
         `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
+      battleLogData.push(
+        `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      );
     }
-  
+
     if (hitormiss.flip() === 10) {
       userPoke[0].hp = userPoke[0].hp - 0;
       console.log(
+        `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      );
+      battleLogData.push(
         `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
     } else {
@@ -98,34 +108,45 @@ function startBattle(userPokemon, opponentPokemon, opp) {
           randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier
         ) * compTypeStrengthModifier;
       userPoke[0].hp = userPoke[0].hp - damageTwo;
-  
+
       if (damageTwo >= 7) {
         console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
+        battleLogData.push(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
       }
       console.log(
         `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
       );
+      battleLogData.push(
+        `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
+      );
     }
-  
+
     console.log("\n\n");
-  
+
     startGame();
   }
-  
 
   function userWon() {
     console.log("You win!!");
-    return win;
+    // console.log(battleLogData);
+    battleLogData.push("You win!!");
+    return {
+      result: win,
+      battleLogData: battleLogData,
+    };
   }
 
   function compWon() {
     console.log("You lose");
-    return lost;
+    // console.log(battleLogData);
+    battleLogData.push("You lose");
+    return {
+      result: lost,
+      battleLogData: battleLogData,
+    };
   }
 
   return startGame(); // Start the battle and return the result
 }
 
-module.exports = {
-  startBattle,
-};
+export default { startBattle };

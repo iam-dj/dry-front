@@ -1,12 +1,38 @@
 .battle-button {
-    display: block;
-    margin: 0 auto;
-    background-color: #ff0000;
-    border-color: #ff0000;
-    transition: transform 0.3s;
-  }
-  
-  .battle-button:hover {
-    transform: scale(1.1);
-  }
-  
+  display: block;
+  margin: 0 auto;
+  background-color: #ff0000;
+  border-color: #ff0000;
+  transition: transform 0.3s;
+}
+
+.battle-button:hover {
+  transform: scale(1.1);
+}
+
+.battle-log-overlay {
+  position: fixed;
+  top: 0;
+  left: 25%;
+  width: 1000px;
+  font-family: "Press Start 2P", cursive;
+  height: 200px;
+  z-index: 9999;
+  background-color: rgba(184, 181, 181, 0.7);
+}
+
+.battle-log {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #030303;
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 10px;
+  text-align: center;
+}
+
+.read-log-entry {
+  opacity: 0.5; /* Adjust the styling as desired */
+  /* Additional styling for read log entries */
+}
