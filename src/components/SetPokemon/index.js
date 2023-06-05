@@ -10,7 +10,7 @@ import API from "../../utils/API";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Home(props) {
+export default function SetPokemon(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
@@ -30,7 +30,7 @@ const handleSelectButtonClick = async (trainerId, pokemonName) => {
   // console.log('pokemonName',pokemonName);
   try {
     await API.updateMainPokemon(trainerId, pokemonName);
-    console.log('pokemonName',pokemonName);
+    // console.log('pokemonName',pokemonName);
     navigate("/dashboard");
 
   } catch (error) {

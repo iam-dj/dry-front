@@ -50,7 +50,7 @@ export default function Dashboard(props) {
         setTrainer(data);
         console.log("data", data);
         setIsLoading(false);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        // localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -80,19 +80,22 @@ export default function Dashboard(props) {
                     src={trainer.profilePicUrl}
                   />
                 </Col>
-                <Col className="col-4">
+
+                <Col noGutters className="col-4">
                   <Row>
                     <h1 className="profile-name">{trainer.name}</h1>
                   </Row>
                   <Row>
-                    <h2 className="profile-age"> <span className="age-heading" >Age:</span> {trainer.age}</h2>
+                    <h2 style={{ paddingBottom: 5 + "px"  }}
+className="profile-age"> <span className="age-heading" >Age:</span> {trainer.age}</h2>
                     </Row>
+
                   <Row>
                     <h6 className="profile-record">
                     <span className="age-heading" >Record:</span> <span className="numEffect">{trainer.numWins}</span> - <span className="numEffect">{trainer.numLosses}</span> 
                     </h6>
                     </Row>
-                  <Row>
+                  <Row >
                     <Badges
                       trainer={trainer}
                       badges={[
@@ -109,13 +112,10 @@ export default function Dashboard(props) {
                   </Row>
                 </Col>
 
-                <Col
-                  xs={4}
-                  md={3}
-                  className=" col-4 "
-                  // d-flex justify-content-center align-items-center"
+                <Col noGutters
+                  className="col-4 "
                 >
-                  <Button>Button</Button>
+                  <Button/>
                 </Col>
               </Row>
             </Container>
