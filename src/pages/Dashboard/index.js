@@ -38,8 +38,8 @@ export default function Dashboard(props) {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    width: "100%",
-    height: "auto",
+    // width: "100%",
+    // height: "auto",
   };
 
   useEffect(() => {
@@ -48,9 +48,9 @@ export default function Dashboard(props) {
         setIsLoading(true);
         const data = await API.getOneTrainer(props.trainerId);
         setTrainer(data);
-        console.log('data',data)
+        console.log("data", data);
         setIsLoading(false);
-        // localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (error) {
         console.log(error);
         setIsLoading(false);
@@ -71,40 +71,49 @@ export default function Dashboard(props) {
       ) : (
         <div>
           <body style={cardStyle}>
-            <Container className="card">
+            <Container className="prof-card">
               <Row>
-                <Col xs={4} md={3}>
+                <Col className="col-4 image-col ">
                   <img
                     className="profile "
                     alt="profile"
                     src={trainer.profilePicUrl}
                   />
                 </Col>
-                <Col className="profile2" >
-                  <h1 className="profile-name">{trainer.name}</h1>
-                  <h2 className="profile-age">Age: {trainer.age}</h2>
-                  <h6 className="profile-record">
-                    Record: {trainer.numWins} 🥇 ➖ {trainer.numLosses} 🚫
-                  </h6>
-                  <Badges
-                    trainer={trainer}
-                    badges={[
-                      trainer.boulder_badge,
-                      trainer.cascade_badge,
-                      trainer.thunder_badge,
-                      trainer.rainbow_badge,
-                      trainer.soul_badge,
-                      trainer.marsh_badge,
-                      trainer.volcano_badge,
-                      trainer.earth_badge,
-                    ]}
-                  />
+                <Col className="col-4">
+                  <Row>
+                    <h1 className="profile-name">{trainer.name}</h1>
+                  </Row>
+                  <Row>
+                    <h2 className="profile-age"> <span className="age-heading" >Age:</span> {trainer.age}</h2>
+                    </Row>
+                  <Row>
+                    <h6 className="profile-record">
+                    <span className="age-heading" >Record:</span> <span className="numEffect">{trainer.numWins}</span> - <span className="numEffect">{trainer.numLosses}</span> 
+                    </h6>
+                    </Row>
+                  <Row>
+                    <Badges
+                      trainer={trainer}
+                      badges={[
+                        trainer.boulder_badge,
+                        trainer.cascade_badge,
+                        trainer.thunder_badge,
+                        trainer.rainbow_badge,
+                        trainer.soul_badge,
+                        trainer.marsh_badge,
+                        trainer.volcano_badge,
+                        trainer.earth_badge,
+                      ]}
+                    />
+                  </Row>
                 </Col>
 
                 <Col
                   xs={4}
                   md={3}
-                  className="d-flex justify-content-center align-items-center"
+                  className=" col-4 "
+                  // d-flex justify-content-center align-items-center"
                 >
                   <Button>Button</Button>
                 </Col>

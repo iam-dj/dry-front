@@ -115,7 +115,7 @@ export default function AuthForm(props) {
         {/* // email is an example of signup only field, not in use for this app */}
         {/* {props.usage==="Signup"&& <input name="email" onChange={handleChange} placeholder="email" value={email}/>} */}
         {/* {props.usage==="Signup"?<input placeholder='signup only'/> :null} */}
-        <button style={{ margin: 10 + "px" }} className="btn btn-sm btn-danger">
+        <button style={{ margin: 20 + "px" }} className="btn btn-sm btn-danger">
           {props.usage}
         </button>
       </form>

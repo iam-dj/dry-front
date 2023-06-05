@@ -48,6 +48,7 @@
     border: 15px solid rgb(240, 241, 200);
     border-radius: 10px;
     width:250px;
+    /* padding-right: 25px; */
     font-size: x-small;
     font-weight: bolder;
     font-family:  Helvetica, sans-serif;

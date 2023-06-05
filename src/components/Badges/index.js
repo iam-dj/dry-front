@@ -38,20 +38,21 @@ export default function Badges(props) {
   ];
 
   return (
-    <div>
-      <Container>
-        <Row className="justify-content-center">
-          {badges.map((badge, index) => (
-            <Col xs={1} className="p-1" key={index}>
-              <img
-                className={`imgFix ${!badge.badge && "badge-disabled"}`}
-                alt={badge.name}
-                src={badge.image}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+    <div className="d-flex flex-grow-0">
+        {badges.map((badge, index) => (
+            <img
+              xs={0}
+              className={`imgFix ${!badge.badge && "badge-disabled"}`}
+              key={index}
+              alt={badge.name}
+              src={badge.image}
+              style={{
+                // marginRight: "10px",
+                // marginLeft: "10px",
+                paddingBottom: "0px",
+              }}
+            />
+        ))}
     </div>
   );
 }
