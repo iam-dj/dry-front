@@ -12,9 +12,12 @@ export default function Train(props) {
   const [battleLog, setBattleLog] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isBattleInProgress, setIsBattleInProgress] = useState(false);
-  const [currentLogIndex, setCurrentLogIndex] = useState(0);
+  const [currentLogIndex, setCurrentLogIndex] = useState(20);
   const [currentCharIndex, setCurrentCharIndex] = useState({});
   const [renderedLogEntries, setRenderedLogEntries] = useState([]);
+  const [pokemonChangeAlertWin, setPokemonChangeAlertWin] = useState([]);
+  const [pokemonChangeAlertLoss, setPokemonChangeAlertLoss] = useState([]);
+  const [battleResult, setBattleResult] = useState();
 
   //this adds time interval to each state change
 
@@ -27,6 +30,9 @@ export default function Train(props) {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  };
+  const showAlert = (alertMessage) => {
+    window.alert(alertMessage);
   };
 
   const [isFetching, setIsFetching] = useState(false);
@@ -66,37 +72,77 @@ export default function Train(props) {
           console.log("battleLog", battleLog);
           console.log("battle result is working?", battleLogData);
           console.log("result", result);
-          if (result === 1) {
-            const winner = async () => {
-              try {
+
+          const handleWin = async () => {
+            try {
+              const { experienceGained, levelChange, hpChange } =
                 await API.updateWin(props.trainerId);
-                console.log("Win updated!");
-                const mypokename = myFilteredPokemons[0].name;
-                const newHp = Math.floor(Math.random() * 16);
-                console.log("newHp", newHp);
-                if (newHp >= 7) {
-                  await API.updatePokemonHp(props.trainerId, mypokename);
-                  console.log(
-                    `You've earned 15 health points for your pokemon!`
-                  );
-                }
-              } catch (error) {
-                console.log(error);
-              }
-            };
+              console.log("battle sys Experience Change:", experienceGained);
+              console.log("battle sys Level Change:", levelChange);
+              console.log("battle sys HP Change:", hpChange);
 
-            winner();
-          } else {
-            const loser = async () => {
-              try {
+              const alerts = [];
+              alerts.push("You Won!");
+              if (experienceGained > 0) {
+                alerts.push(
+                  `Your pokemon earned: ${experienceGained} experience!\n`
+                );
+              }
+              if (levelChange > 0) {
+                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+              }
+              if (hpChange > 0) {
+                alerts.push(
+                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                );
+              }
+
+              const alertMessage = alerts.join("\n");
+              console.log("win Log", alerts);
+              setPokemonChangeAlertWin(alertMessage);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+
+          const handleLoss = async () => {
+            try {
+              const { experienceChange, levelChange, hpChange } =
                 await API.updateLoss(props.trainerId);
-                console.log("Loss updated!");
-              } catch (error) {
-                console.log(error);
-              }
-            };
+              console.log("battle sys Experience Change:", experienceChange);
+              console.log("battle sys Level Change:", levelChange);
+              console.log("battle sys HP Change:", hpChange);
 
-            loser();
+              const alerts = [];
+              alerts.push("You Lost... :(");
+              if (experienceChange > 0) {
+                alerts.push(
+                  `Your pokemon earned: ${experienceChange} experience!\n`
+                );
+              }
+              if (levelChange > 0) {
+                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+              }
+              if (hpChange > 0) {
+                alerts.push(
+                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                );
+              }
+
+              const alertMessage = alerts.join("\n");
+              console.log("loss log", alerts);
+              setPokemonChangeAlertLoss(alertMessage);
+              console.log("Loss updated!");
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          if (result === 1) {
+            setBattleResult(1);
+            handleWin();
+          } else if (result === 0) {
+            setBattleResult(0);
+            handleLoss();
           }
         }, 3000);
       } catch (error) {
@@ -112,7 +158,16 @@ export default function Train(props) {
     let charIndex = 0;
 
     const animateLogEntry = () => {
-      if (logIndex >= battleLog.length) return;
+      if (logIndex >= battleLog.length) {
+        if (battleResult === 1) {
+          showAlert(pokemonChangeAlertWin);
+          console.log("useEffect log", pokemonChangeAlertWin);
+        } else {
+          showAlert(pokemonChangeAlertLoss);
+          console.log("useEffect log", pokemonChangeAlertLoss);
+        }
+        return;
+      }
 
       const logEntry = battleLog[logIndex];
       console.log(logEntry);
@@ -129,18 +184,18 @@ export default function Train(props) {
           clearTimeout(timeoutId);
 
           // Move to the next log entry
-          logIndex += 5;
+          logIndex += 8;
           setCurrentLogIndex(logIndex);
           console.log("logIndex", logIndex);
           charIndex = 0;
 
           // Start animating the next log entry after a delay
-          setTimeout(animateLogEntry, 10); // Adjust the delay duration as desired (in milliseconds)
+          setTimeout(animateLogEntry, 5); // Adjust the delay duration as desired (in milliseconds)
         } else {
           // Continue animating the current log entry
           animateLogEntry();
         }
-      }, 40); // Adjust the interval duration as desired (in milliseconds)
+      }, 20); // Adjust the interval duration as desired (in milliseconds)
 
       timeoutIds.push(timeoutId);
     };
@@ -152,7 +207,7 @@ export default function Train(props) {
       // Clear all the timeouts when component unmounts
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };
-  }, [battleLog]);
+  }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
   return (
     <>
       <div className="battle-log-overlay">
