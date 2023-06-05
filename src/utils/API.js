@@ -69,7 +69,6 @@ const API = {
       res
         .json()
         .then((data) => {
-          
           return data;
         })
         .catch((err) => {
@@ -79,89 +78,101 @@ const API = {
   },
 
   updateMainPokemon: (trainerId, pokemonName) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/ismain/${pokemonName}`, {
-    method: "PUT",
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error("Failed to update main Pokemon");
-    }
-  });
-},
-
-updatePokemonHp: (trainerId, pokemonName) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/hp/${pokemonName}`, {
-    method: "PUT",
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to update Pokemon HP");
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/ismain/${pokemonName}`,
+      {
+        method: "PUT",
       }
-    })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update main Pokemon");
+      }
     });
-},
+  },
 
+  updatePokemonHp: (trainerId, pokemonName) => {
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/hp/${pokemonName}`, {
+      method: "PUT",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to update Pokemon HP");
+        }
+      })
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 
   catchPokemon: (trainerId, pokemonName) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/iscaught/${pokemonName}`, {
-    method: "PUT",
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error("Failed to update main Pokemon");
-    }
-  });
-},
-
-getAllPoke: () => {
-  return fetch(`${URL_PREFIX}/api/pokemon`)
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/iscaught/${pokemonName}`,
+      {
+        method: "PUT",
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to update main Pokemon");
+      }
     });
-},
+  },
+
+  getAllPoke: () => {
+    return fetch(`${URL_PREFIX}/api/pokemon`)
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 
   getBattlePoke: (trainerId) => {
-  return fetch(`${URL_PREFIX}/api/trainers/main/${trainerId}`).then((res) =>
-    res.json().then((data) => {
-      // Filter the Pokémon array to show only the main Pokémon
-      const mainPokemon = data.pokemons.filter((pokemon) => pokemon.isMain);
-      return mainPokemon;
+    return fetch(`${URL_PREFIX}/api/trainers/main/${trainerId}`)
+      .then((res) =>
+        res.json().then((data) => {
+          // Filter the Pokémon array to show only the main Pokémon
+          const mainPokemon = data.pokemons.filter((pokemon) => pokemon.isMain);
+          return mainPokemon;
+        })
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  updateWin: (trainerId) => {
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins`, {
+      method: "PUT",
     })
-  ).catch((err) => {
-    console.log(err);
-  });
-},
+      .then((res) => res.json())
+      .then((data) => {
+        const { experienceGained, levelChange, hpChange } = data;
+        console.log("API Experience Change:", experienceGained);
+        console.log("API Level Change:", levelChange);
+        console.log("API HP Change:", hpChange);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 
-updateWin: (trainerId) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins`, {
-    method: "PUT",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
+  updateLoss: (trainerId) => {
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-loss`, {
+      method: "PUT",
     })
-    .catch((err) => {
-      console.log(err);
-    });
-},
-
-
-updateLoss: (trainerId) => {
-  return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/increment-num-loss`, {
-    method: "PUT",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-},
-
-
+      .then((res) => res.json())
+      .then((data) => {
+        const { experienceChange, levelChange, hpChange } = data;
+        console.log("API Experience Change:", experienceChange);
+        console.log("API Level Change:", levelChange);
+        console.log("API HP Change:", hpChange);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 
   getAllTrainers: () => {
     return fetch(`${URL_PREFIX}/api/trainers`)
@@ -170,7 +181,6 @@ updateLoss: (trainerId) => {
         console.log(err);
       });
   },
-
 };
 
 export default API;

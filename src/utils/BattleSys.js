@@ -71,9 +71,9 @@ function startBattle(userPokemon, opponentPokemon, opp) {
 
     if (hitormiss.flip() === 10) {
       compPoke[0].hp = compPoke[0].hp - 0;
-      console.log(
-        `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
@@ -84,11 +84,12 @@ function startBattle(userPokemon, opponentPokemon, opp) {
         ) * userTypeStrengthModifier;
       compPoke[0].hp = compPoke[0].hp - damage;
       if (damage >= 7) {
-        console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
+        // console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
+        battleLogData.push("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
       }
-      console.log(
-        `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
@@ -96,9 +97,9 @@ function startBattle(userPokemon, opponentPokemon, opp) {
 
     if (hitormiss.flip() === 10) {
       userPoke[0].hp = userPoke[0].hp - 0;
-      console.log(
-        `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       );
@@ -110,18 +111,18 @@ function startBattle(userPokemon, opponentPokemon, opp) {
       userPoke[0].hp = userPoke[0].hp - damageTwo;
 
       if (damageTwo >= 7) {
-        console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
+        // console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
         battleLogData.push(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
       }
-      console.log(
-        `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
       );
     }
 
-    console.log("\n\n");
+    // console.log("\n\n");
 
     startGame();
   }
