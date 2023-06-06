@@ -14,6 +14,11 @@ import { useNavigate } from "react-router-dom";
 export default function SetPokemon(props) {
   const [showModal, setShowModal] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPicture, setSelectedPicture] = useState('');
+  const [selectedName, setSelectedName] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedHp, setSelectedHp] = useState('');
 
   const handleButtonClick = () => {
     setShowModal(true);
@@ -30,12 +35,18 @@ export default function SetPokemon(props) {
     // console.log('pokemonName',pokemonName);
     try {
       await API.updateMainPokemon(trainerId, pokemonName);
+      const myPoke = await API.getBattlePoke(trainerId);
+
       
-      
-      navigate("/dashboard");
-      // console.log('data',data)
-      // setPokemonPic(mainPokemon.img_url);
-      // console.log("all",allPokemon);
+      // navigate("/dashboard");
+      console.log(myPoke[0].img_url)
+      setSelectedPicture(myPoke[0].img_url);
+      setSelectedName(myPoke[0].name);
+      setSelectedType(myPoke[0].type);
+      setSelectedLevel(myPoke[0].level);
+      setSelectedHp(myPoke[0].hp);
+      setSelectedPicture(myPoke[0].img_url);
+      console.log("myPoke",myPoke);
 
     } catch (error) {
       console.log(error);
@@ -47,7 +58,7 @@ export default function SetPokemon(props) {
 
   const allPokemon = props.myTrainerData.pokemons;
   const mainPokemon = allPokemon.filter((p) => p.isMain);
-  // console.log(mainPokemon)
+  console.log(selectedPicture)
   const caughtPokemon = allPokemon.filter((p) => p.isCaught);
 
   const handleDropdownSelect = (eventKey) => {
@@ -76,8 +87,8 @@ export default function SetPokemon(props) {
                     variant="top"
                     //f0f1c8
                     // src={pokemonPic}
-                    src={p.img_url}
-                    alt={p.name}
+                    src={selectedPicture || p.img_url}
+                    alt={selectedName || p.name}
                     className="pokemon-image "
                     style={{ background: "#f0f1c8"  }}
                     
@@ -94,11 +105,13 @@ export default function SetPokemon(props) {
                     <Dropdown.Item eventKey="move4">{p.move4.name} - {p.move4.power} - {p.move4.type}</Dropdown.Item>
                   </DropdownButton>
                 </div>
-                <Card.Body                     style={{ background: "#f0f1c8"  }}
+                <Card.Body                     
+                // style={{ background: "#f0f1c8"  }}
  >
-                  <Card.Title>{p.name}</Card.Title>
-                  <Card.Text>Type: {p.type}</Card.Text>
-                  <Card.Text>HP: {p.hp}</Card.Text>
+                  <Card.Title>{selectedName ||p.name}</Card.Title>
+                  <Card.Text>Type: {selectedType ||p.type}</Card.Text>
+                  <Card.Text>Level: {selectedLevel ||p.level}</Card.Text>
+                  <Card.Text>HP: {selectedHp ||p.hp}</Card.Text>
                 </Card.Body>
               </div>
             </div>
@@ -114,6 +127,7 @@ export default function SetPokemon(props) {
               marginRight: 10 + "px",
               marginBottom: 10 + "px",
               marginLeft: 10 + "px",
+              // paddingTop: 600 + "px",
               paddingBottom: 0 + "px",
               // background: "#f0f1c8",
 
@@ -177,6 +191,7 @@ export default function SetPokemon(props) {
                     style={{
                       border: "none",
                       background: "#f0f1c8",
+                      objectFit: "contain"
                     }}
                     variant="top"
                     src={p.img_url}
@@ -206,6 +221,8 @@ export default function SetPokemon(props) {
                     }}
                   >
                     Type: {p.type}
+                    <Card.Text>Level: {p.level}</Card.Text>
+
                     <Card.Text>HP: {p.hp}</Card.Text>
 
                   </Card.Text>

@@ -44,10 +44,10 @@ export default function HomePage(props) {
     backgroundImage: `url(${bfg})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
-    height: "100vh",
-    display: "flex",
+    backgroundRepeat: "no-repeat",
+    // maxHeight: "100vh",
+    // display: "flex",
     // justifyContent: "center",
     // alignItems: "center",
   };

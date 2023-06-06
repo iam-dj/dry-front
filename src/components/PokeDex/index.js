@@ -44,65 +44,66 @@ export default function PokeDex(props) {
 
   return (
     <div>
-      <Container className="space-tab">
-        <Tab.Container defaultActiveKey="all-pokemon">
-          <div className="button-row d-flex justify-content-center ">
-            {pokemonTypes.map((type) => (
-              <Button
-                key={type}
-                variant={type === activeType ? "primary" : "dark"}
-                onClick={() => setActiveType(type)}
-                className="btn btn-sm"
-              >
-                {type}
-              </Button>
-            ))}
+    <Container className="space-tab">
+      <Tab.Container defaultActiveKey="all-pokemon">
+        <div className="button-row d-flex justify-content-center">
+          {pokemonTypes.map((type) => (
             <Button
-              variant={caughtButtonVariant}
-              onClick={() => setShowCaughtPokemon(!showCaughtPokemon)}
-              className="btn btn-sm ml-2"
+              key={type}
+              variant={type === activeType ? "primary" : "dark"}
+              onClick={() => setActiveType(type)}
+              className="btn btn-sm"
             >
-              {caughtButtonLabel}
+              {type}
             </Button>
-            <Button
-              variant={mainButtonVariant}
-              onClick={() => setShowMainPokemon(!showMainPokemon)}
-              className="btn btn-sm ml-2"
-            >
-              {mainButtonLabel}
-            </Button>
-          </div>
-
-          <Tab.Content>
-            <Tab.Pane eventKey="all-pokemon">
-              <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row ">
-                {mainPokemon.map((p) => (
-                  <Col key={p.id} className="mb-3">
-                    <Card className="pokemon-card">
-                      <div className="pokemon-card card-content">
-                        <Card.Img
-                          variant="top"
-                          src={p.img_url}
-                          alt={p.name}
-                          className="pokemon-image"
-                        />
-                        <Card.Body>
-                          <Card.Title>{p.name}</Card.Title>
-                          <Card.Text>Type: {p.type}</Card.Text>
-                          
-                        </Card.Body>
-                      </div>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-              {mainPokemon.length === 0 && (
-                <p className="text-center mt-3">No main Pokemon found.</p>
-              )}
-            </Tab.Pane>
-          </Tab.Content>
-        </Tab.Container>
-      </Container>
-    </div>
+          ))}
+          <Button
+            variant={caughtButtonVariant}
+            onClick={() => setShowCaughtPokemon(!showCaughtPokemon)}
+            className="btn btn-sm ml-2"
+          >
+            {caughtButtonLabel}
+          </Button>
+          <Button
+            variant={mainButtonVariant}
+            onClick={() => setShowMainPokemon(!showMainPokemon)}
+            className="btn btn-sm ml-2"
+          >
+            {mainButtonLabel}
+          </Button>
+        </div>
+  
+        <Tab.Content>
+          <Tab.Pane eventKey="all-pokemon">
+            <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row">
+              {mainPokemon.map((p) => (
+                <Col key={p.id} className="mb-3">
+                  <Card className="pokemon-card">
+                    <div className="pokemon-card card-content">
+                      <Card.Img
+                        variant="top"
+                        src={p.img_url}
+                        alt={p.name}
+                        className="pokemon-image"
+                      />
+                      <Card.Body>
+                        <Card.Title>{p.name}</Card.Title>
+                        <Card.Text>Type: {p.type}</Card.Text>
+                        {/* Additional card content */}
+                      </Card.Body>
+                    </div>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+            {mainPokemon.length === 0 && (
+              <p className="text-center mt-3">No main Pokemon found.</p>
+            )}
+          </Tab.Pane>
+        </Tab.Content>
+      </Tab.Container>
+    </Container>
+  </div>
+  
   );
 }

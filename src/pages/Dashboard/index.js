@@ -86,6 +86,7 @@ export default function Dashboard(props) {
           <span className="age-heading">Age:</span> {trainer.age}
         </h2>
       </Row>
+      <br></br>
       <Row>
         <h6 className="profile-record">
           <span className="age-heading">Record:</span>{" "}

@@ -13,7 +13,7 @@ export default function SetPoke(props) {
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    height: "100vh",
+    // maxHeight: "100vh",
   };
 
   const trainerId = props.trainerId;
