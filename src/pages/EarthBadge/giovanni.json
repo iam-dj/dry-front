@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Giovanni",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/giovanni_q50use.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 111,
+        "name": "Rhyhorn",
+        "type": "ground",
+        "secondary_type": "rock",
+        "level": 1,
+        "hp": 430,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/111rhyhorn_yi6s1w.png",
+        "evolutionId": 1,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 29,
+        "move2Id": 22,
+        "move3Id": 157,
+        "move4Id": 280,
+        "move1": {
+          "id": 29,
+          "name": "Horn Attack",
+          "power": 65,
+          "type": "Ground",
+          "description": "The target is jabbed with a sharply pointed horn to inflict damage."
+        },
+        "move2": {
+          "id": 22,
+          "name": "Stomp",
+          "power": 65,
+          "type": "Normal",
+          "description": "The target is stomped with a big foot. It may also make the target flinch."
+        },
+        "move3": {
+          "id": 157,
+          "name": "Rock Slide",
+          "power": 75,
+          "type": "Rock",
+          "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
+        },
+        "move4": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        }
+      },
+      {
+        "id": 51,
+        "name": "Dugtrio",
+        "type": "ground",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 700,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896185/051dugtrio_cl3zuz.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 163,
+        "move2Id": 327,
+        "move3Id": 280,
+        "move4Id": 189,
+        "move1": {
+          "id": 163,
+          "name": "Slash",
+          "power": 70,
+          "type": "Normal",
+          "description": "The target is attacked with a slash of claws or blades. Critical hits land more easily."
+        },
+        "move2": {
+          "id": 327,
+          "name": "Earth Power",
+          "power": 90,
+          "type": "Ground",
+          "description": "The user makes the ground under the target erupt with power. It may also lower the target's Sp. Def."
+        },
+        "move3": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        },
+        "move4": {
+          "id": 189,
+          "name": "Stone Edge",
+          "power": 100,
+          "type": "Rock",
+          "description": "The user stabs the target from below with sharpened stones. Critical hits land more easily."
+        }
+      },
+      {
+        "id": 31,
+        "name": "Nidoqueen",
+        "type": "poison",
+        "secondary_type": "ground",
+        "level": 1,
+        "hp": 910,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896182/031nidoqueen_iyzwmv.png",
+        "evolutionId": 3,
+        "rarity": "rare",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 33,
+        "move2Id": 280,
+        "move3Id": 29,
+        "move4Id": 130,
+        "move1": {
+          "id": 33,
+          "name": "Body Slam",
+          "power": 85,
+          "type": "Normal",
+          "description": "The user drops onto the target with its full body weight. It may also leave the target with paralysis."
+        },
+        "move2": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        },
+        "move3": {
+          "id": 29,
+          "name": "Horn Attack",
+          "power": 65,
+          "type": "Ground",
+          "description": "The target is jabbed with a sharply pointed horn to inflict damage."
+        },
+        "move4": {
+          "id": 130,
+          "name": "Skull Bash",
+          "power": 130,
+          "type": "Rock",
+          "description": "The user tucks in its head to raise its Defense stat on the first turn, then rams the target on the next turn."
+        }
+      }
+    ],
+
+    "gymId": 8
+  }
+]
