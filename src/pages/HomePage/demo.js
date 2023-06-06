@@ -1,0 +1,1 @@
+BattleSys.startBattle(myFilteredPokemons, opp, name);

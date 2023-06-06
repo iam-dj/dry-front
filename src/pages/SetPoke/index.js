@@ -11,8 +11,9 @@ export default function SetPoke(props) {
     backgroundImage: `url(${battlebg})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
+    backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    height: "100vh",
+    // maxHeight: "100vh",
   };
 
   const trainerId = props.trainerId;

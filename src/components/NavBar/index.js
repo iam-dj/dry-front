@@ -132,7 +132,7 @@ function NavTabs(props) {
                 </Dropdown.Menu>
               </Dropdown>
 
-              <button className="my-btn btn" style={{ marginRight: 10 + "px",marginLeft: 10 + "px",paddingBottom: 0 + "px"  }} onClick={props.logout}>
+              <button className="my-btn btn" style={{ marginRight: 10 + "px",marginLeft: 10 + "px",paddingBottom: 10 + "px"  }} onClick={props.logout}>
                 Logout
               </button>
             </>

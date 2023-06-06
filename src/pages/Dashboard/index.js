@@ -71,58 +71,56 @@ export default function Dashboard(props) {
       ) : (
         <div>
           <body style={cardStyle}>
-            <Container className="prof-card">
-              <Row>
-                <Col className="col-4 image-col ">
-                  <img
-                    className="profile "
-                    alt="profile"
-                    src={trainer.profilePicUrl}
-                  />
-                </Col>
+          <Container className="prof-card">
+  <Row>
+    <Col xs={12} md={4} className="image-col">
+      <img className="profile" alt="profile" src={trainer.profilePicUrl} />
+    </Col>
 
-                <Col noGutters className="col-4">
-                  <Row>
-                    <h1 className="profile-name">{trainer.name}</h1>
-                  </Row>
-                  <Row>
-                    <h2 style={{ paddingBottom: 5 + "px"  }}
-className="profile-age"> <span className="age-heading" >Age:</span> {trainer.age}</h2>
-                    </Row>
+    <Col xs={12} md={4}>
+      <Row>
+        <h1 className="profile-name">{trainer.name}</h1>
+      </Row>
+      <Row>
+        <h2 className="profile-age">
+          <span className="age-heading">Age:</span> {trainer.age}
+        </h2>
+      </Row>
+      <br></br>
+      <Row>
+        <h6 className="profile-record">
+          <span className="age-heading">Record:</span>{" "}
+          <span className="numEffect">{trainer.numWins}</span> -{" "}
+          <span className="numEffect">{trainer.numLosses}</span>
+        </h6>
+      </Row>
+      <Row>
+        <Badges
+          trainer={trainer}
+          badges={[
+            trainer.boulder_badge,
+            trainer.cascade_badge,
+            trainer.thunder_badge,
+            trainer.rainbow_badge,
+            trainer.soul_badge,
+            trainer.marsh_badge,
+            trainer.volcano_badge,
+            trainer.earth_badge,
+          ]}
+        />
+      </Row>
+    </Col>
 
-                  <Row>
-                    <h6 className="profile-record">
-                    <span className="age-heading" >Record:</span> <span className="numEffect">{trainer.numWins}</span> - <span className="numEffect">{trainer.numLosses}</span> 
-                    </h6>
-                    </Row>
-                  <Row >
-                    <Badges
-                      trainer={trainer}
-                      badges={[
-                        trainer.boulder_badge,
-                        trainer.cascade_badge,
-                        trainer.thunder_badge,
-                        trainer.rainbow_badge,
-                        trainer.soul_badge,
-                        trainer.marsh_badge,
-                        trainer.volcano_badge,
-                        trainer.earth_badge,
-                      ]}
-                    />
-                  </Row>
-                </Col>
+    <Col xs={12} md={4}>
+      <Button variant="primary">Click me</Button>
+    </Col>
+  </Row>
+</Container>
 
-                <Col noGutters
-                  className="col-4 "
-                >
-                  <Button/>
-                </Col>
-              </Row>
-            </Container>
 
             <br />
 
-            <PokeDex trainer={trainer} />
+            <PokeDex style={{ paddingRight: 20 + "px" }} trainer={trainer} />
           </body>
         </div>
       )}

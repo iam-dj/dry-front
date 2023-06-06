@@ -31,6 +31,13 @@ function App() {
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
 
+  const cardStyle = {
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat",
+  }
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
@@ -66,7 +73,7 @@ function App() {
           path="/"
           element={
             userId ? (
-              <HomePage token={token} userId={userId} trainerId={trainerId} />
+              <HomePage style={cardStyle} token={token} userId={userId} trainerId={trainerId} />
             ) : (
               <Navigate to="/login" replace />
             )
@@ -108,7 +115,7 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <Dashboard token={token} userId={userId} trainerId={trainerId} />
+            <Dashboard style={cardStyle} token={token} userId={userId} trainerId={trainerId} />
           }
         />
         <Route
