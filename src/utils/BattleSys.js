@@ -27,15 +27,13 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   var userMercyHelp;
   var compMercyHelp;
 
-  if (gym == false)
-  {
-     userMercyHelp = mercy.mercyRule(userPoke, compPoke);
-     compMercyHelp = mercy.mercyRule(compPoke, userPoke);
+  if (gym == false) {
+    userMercyHelp = mercy.mercyRule(userPoke, compPoke);
+    compMercyHelp = mercy.mercyRule(compPoke, userPoke);
   }
 
   const updateMyHP = hpModify.updateHP(userPoke);
   const updateCompHP = hpModify.updateHP(compPoke);
-
 
   userPoke[0].hp = userPoke[0].hp + updateMyHP;
   compPoke[0].hp = compPoke[0].hp + updateCompHP;
@@ -90,7 +88,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     } else {
       const damage =
         Math.trunc(
-          randomUserMovePower.randomMyMove * (0.1+userMercyHelp) * userTypeWeaknessModifier
+          randomUserMovePower.randomMyMove *
+            (0.1 + userMercyHelp) *
+            userTypeWeaknessModifier
         ) * userTypeStrengthModifier;
       compPoke[0].hp = compPoke[0].hp - damage;
       if (damage >= 7) {
@@ -116,7 +116,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     } else {
       const damageTwo =
         Math.trunc(
-          randomCompMovePower.randomMyMove * (0.1+compMercyHelp) * compTypeWeaknessModifier
+          randomCompMovePower.randomMyMove *
+            (0.1 + compMercyHelp) *
+            compTypeWeaknessModifier
         ) * compTypeStrengthModifier;
       userPoke[0].hp = userPoke[0].hp - damageTwo;
 
