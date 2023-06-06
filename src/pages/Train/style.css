@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Press+Start+2P&display=swap");
+
+.font-text {
+  font-family: "Atma", cursive;
+  font-family: "Press Start 2P", cursive;
+}
 
 .battle-container {
   display: flex;
@@ -28,26 +33,30 @@
 
 .battle-log-overlay {
   position: fixed;
-  bottom: 0;
-  left: 25%;
-  width: 1000px;
-  font-family: "Press Start 2P", cursive;
-
-  height: 200px;
-  z-index: 9999;
+  /* bottom: 5%; */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 150px;
+  /* z-index: 9999; */
   background-color: rgba(184, 181, 181, 0.7);
   border-radius: 10px;
-  border: #030303;
+    border: 5px solid rgb(24, 23, 23); 
+
 }
 
 .battle-log {
   position: absolute;
-  top: 50%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #030303;
-  font-family: "Press Start 2P", cursive;
-
-  font-size: 30px;
+  font-size: 10px;
   text-align: center;
+}
+
+.gifConfig {
+  width: 450px;
+  height: 200px;
+  background-size: cover;
 }

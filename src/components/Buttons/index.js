@@ -16,7 +16,7 @@ export default function Buttons() {
     <>
       <Row noGutters>
         <Col className="remove-it"  xs={12} sm={6}>
-          <Link to="/catch">
+          <Link to="/">
             <img
               style={{ marginTop: 10 + "px",marginLeft: 10 + "px" }}
               src={btn4}
@@ -26,7 +26,7 @@ export default function Buttons() {
           </Link>
         </Col>
         <Col className="remove-it" xs={12} sm={6}>
-          <Link to="/train">
+          <Link to="/catch">
             <img
               style={{ marginTop: 10 + "px",marginLeft: 5 + "px" }}
               src={btn5}
@@ -46,7 +46,7 @@ export default function Buttons() {
           </Link>
         </Col>
         <Col className="remove-it" xs={12} sm={6}>
-          <Link to="/gym">
+          <Link to="/boulder-badge">
             <img
               style={{ marginTop: 10 + "px",marginLeft: 5 + "px" }}
               src={btn7}
@@ -66,7 +66,7 @@ export default function Buttons() {
           </Link>
         </Col>
         <Col className="remove-it" xs={12} sm={6}>
-          <Link to="/setpoke">
+          <Link to="#">
             <img
               style={{ marginTop: 10 + "px",marginLeft: 5 + "px" }}
               src={btn9}

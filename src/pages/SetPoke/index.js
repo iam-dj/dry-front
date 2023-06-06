@@ -11,6 +11,7 @@ export default function SetPoke(props) {
     backgroundImage: `url(${battlebg})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
+    backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
     height: "100vh",
   };

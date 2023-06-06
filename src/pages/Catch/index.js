@@ -3,7 +3,8 @@ import bfg from "./assets/bg.png";
 // import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
-
+import PokeDex from "../../components/PokeDex";
+import Toast from "react-bootstrap/Toast";
 
 export default function Catch(props) {
   const cardStyle = {
@@ -17,53 +18,197 @@ export default function Catch(props) {
     alignItems: "center",
   };
   const pokemonNames = [
-    "Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise",
-    "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata",
-    "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew", "Sandslash", "Nidoran♀",
-    "Nidorina", "Nidoqueen", "Nidoran♂", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Vulpix", "Ninetales",
-    "Jigglypuff", "Wigglytuff", "Zubat", "Golbat", "Oddish", "Gloom", "Vileplume", "Paras", "Parasect", "Venonat",
-    "Venomoth", "Diglett", "Dugtrio", "Meowth", "Persian", "Psyduck", "Golduck", "Mankey", "Primeape", "Growlithe",
-    "Arcanine", "Poliwag", "Poliwhirl", "Poliwrath", "Abra", "Kadabra", "Alakazam", "Machop", "Machoke", "Machamp",
-    "Bellsprout", "Weepinbell", "Victreebel", "Tentacool", "Tentacruel", "Geodude", "Graveler", "Golem", "Ponyta",
-    "Rapidash", "Slowpoke", "Slowbro", "Magnemite", "Magneton", "Farfetch'd", "Doduo", "Dodrio", "Seel", "Dewgong",
-    "Grimer", "Muk", "Shellder", "Cloyster", "Gastly", "Haunter", "Gengar", "Onix", "Drowzee", "Hypno", "Krabby",
-    "Kingler", "Voltorb", "Electrode", "Exeggcute", "Exeggutor", "Cubone", "Marowak", "Hitmonlee", "Hitmonchan",
-    "Lickitung", "Koffing", "Weezing", "Rhyhorn", "Rhydon", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Seadra",
-    "Goldeen", "Seaking", "Staryu", "Starmie", "Mr. Mime", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros",
-    "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar",
-    "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite",
-    "Mewtwo", "Mew"
+    "Bulbasaur",
+    "Ivysaur",
+    "Venusaur",
+    "Charmander",
+    "Charmeleon",
+    "Charizard",
+    "Squirtle",
+    "Wartortle",
+    "Blastoise",
+    "Caterpie",
+    "Metapod",
+    "Butterfree",
+    "Weedle",
+    "Kakuna",
+    "Beedrill",
+    "Pidgey",
+    "Pidgeotto",
+    "Pidgeot",
+    "Rattata",
+    "Raticate",
+    "Spearow",
+    "Fearow",
+    "Ekans",
+    "Arbok",
+    "Pikachu",
+    "Raichu",
+    "Sandshrew",
+    "Sandslash",
+    "Nidoran♀",
+    "Nidorina",
+    "Nidoqueen",
+    "Nidoran♂",
+    "Nidorino",
+    "Nidoking",
+    "Clefairy",
+    "Clefable",
+    "Vulpix",
+    "Ninetales",
+    "Jigglypuff",
+    "Wigglytuff",
+    "Zubat",
+    "Golbat",
+    "Oddish",
+    "Gloom",
+    "Vileplume",
+    "Paras",
+    "Parasect",
+    "Venonat",
+    "Venomoth",
+    "Diglett",
+    "Dugtrio",
+    "Meowth",
+    "Persian",
+    "Psyduck",
+    "Golduck",
+    "Mankey",
+    "Primeape",
+    "Growlithe",
+    "Arcanine",
+    "Poliwag",
+    "Poliwhirl",
+    "Poliwrath",
+    "Abra",
+    "Kadabra",
+    "Alakazam",
+    "Machop",
+    "Machoke",
+    "Machamp",
+    "Bellsprout",
+    "Weepinbell",
+    "Victreebel",
+    "Tentacool",
+    "Tentacruel",
+    "Geodude",
+    "Graveler",
+    "Golem",
+    "Ponyta",
+    "Rapidash",
+    "Slowpoke",
+    "Slowbro",
+    "Magnemite",
+    "Magneton",
+    "Farfetch'd",
+    "Doduo",
+    "Dodrio",
+    "Seel",
+    "Dewgong",
+    "Grimer",
+    "Muk",
+    "Shellder",
+    "Cloyster",
+    "Gastly",
+    "Haunter",
+    "Gengar",
+    "Onix",
+    "Drowzee",
+    "Hypno",
+    "Krabby",
+    "Kingler",
+    "Voltorb",
+    "Electrode",
+    "Exeggcute",
+    "Exeggutor",
+    "Cubone",
+    "Marowak",
+    "Hitmonlee",
+    "Hitmonchan",
+    "Lickitung",
+    "Koffing",
+    "Weezing",
+    "Rhyhorn",
+    "Rhydon",
+    "Chansey",
+    "Tangela",
+    "Kangaskhan",
+    "Horsea",
+    "Seadra",
+    "Goldeen",
+    "Seaking",
+    "Staryu",
+    "Starmie",
+    "Mr. Mime",
+    "Scyther",
+    "Jynx",
+    "Electabuzz",
+    "Magmar",
+    "Pinsir",
+    "Tauros",
+    "Magikarp",
+    "Gyarados",
+    "Lapras",
+    "Ditto",
+    "Eevee",
+    "Vaporeon",
+    "Jolteon",
+    "Flareon",
+    "Porygon",
+    "Omanyte",
+    "Omastar",
+    "Kabuto",
+    "Kabutops",
+    "Aerodactyl",
+    "Snorlax",
+    "Articuno",
+    "Zapdos",
+    "Moltres",
+    "Dratini",
+    "Dragonair",
+    "Dragonite",
+    "Mewtwo",
+    "Mew",
   ];
-  
+
   const [isFetching, setIsFetching] = useState(false);
+  const [isToast, setIsToast] = useState('');
+  const [isTrainer, setIsTrainer] = useState()
+  const [showA, setShowA] = useState(true);
 
-    const handleButtonClick = () => {
+  const toggleShowA = () => {
+      setIsToast('');
+      setShowA(false);
+  }
 
-      const getPoke = async () => {
-        try {
-          
-          // const allPokemon = await API.getAllPoke();
+  const handleButtonClick = () => {
+    const getPoke = async () => {
+      try {
+        // const allPokemon = await API.getAllPoke();
 
-          const randPoke = pokemonNames[Math.floor(Math.random()*pokemonNames.length)]
+        const randPoke =
+          pokemonNames[Math.floor(Math.random() * pokemonNames.length)];
 
-          console.log('poke',randPoke);
+        console.log("poke", randPoke);
 
-          await API.catchPokemon(props.trainerId,randPoke)
+        await API.catchPokemon(props.trainerId, randPoke);
+        const data = await API.getOneTrainer(props.trainerId);
+        setIsTrainer(data);
+        console.log("data", data);
 
-          setIsFetching(true);
-          setTimeout(() => {
-            setIsFetching(false);
-           
-            alert(`Congrats you captured a ${randPoke}`);
-            
-          }, 3000);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+        setIsFetching(true);
+        setTimeout(() => {
+          setIsFetching(false);
 
-      getPoke();
-    
+          // alert(`Congrats you captured a ${randPoke}`);
+          setIsToast(`You caught a ${randPoke}`);
+        }, 3000);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getPoke();
   };
 
   return (
@@ -72,7 +217,8 @@ export default function Catch(props) {
         className="btn-danger"
         variant="secondary"
         id="dropdown-battle"
-        onClick={handleButtonClick}
+        onClick={()=>{handleButtonClick();
+          toggleShowA();}}
         disabled={isFetching}
       >
         {isFetching ? (
@@ -83,7 +229,11 @@ export default function Catch(props) {
         ) : (
           "Catch 'em All"
         )}
+        <Toast>
+          <Toast.Body style={{ backgroundColor: "white",borderRadius: "10px", color: "black" }}>{isToast}</Toast.Body>
+        </Toast>
       </Button>
+      {/* <PokeDex isTrainer={isTrainer}/> */}
     </div>
   );
 }

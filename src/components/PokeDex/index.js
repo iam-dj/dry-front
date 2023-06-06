@@ -46,7 +46,7 @@ export default function PokeDex(props) {
     <div>
       <Container className="space-tab">
         <Tab.Container defaultActiveKey="all-pokemon">
-          <div className="button-row d-flex justify-content-center">
+          <div className="button-row d-flex justify-content-center ">
             {pokemonTypes.map((type) => (
               <Button
                 key={type}
