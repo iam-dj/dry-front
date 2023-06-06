@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bfg from "./assets/bg.png";
+import pokevideo from "./assets/pokeVideo.mp4";
 // import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
@@ -8,10 +8,10 @@ import Toast from "react-bootstrap/Toast";
 
 export default function Catch(props) {
   const cardStyle = {
-    backgroundImage: `url(${bfg})`,
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+    // backgroundVideo: `url(${pokevideo})`,
+    // backgroundPosition: "center",
+    // backgroundSize: "cover",
+    // backgroundRepeat: "no-repeat",
     height: "100vh",
     display: "flex",
     justifyContent: "center",
@@ -172,14 +172,14 @@ export default function Catch(props) {
   ];
 
   const [isFetching, setIsFetching] = useState(false);
-  const [isToast, setIsToast] = useState('');
-  const [isTrainer, setIsTrainer] = useState()
+  const [isToast, setIsToast] = useState("");
+  const [isTrainer, setIsTrainer] = useState();
   const [showA, setShowA] = useState(true);
 
   const toggleShowA = () => {
-      setIsToast('');
-      setShowA(false);
-  }
+    setIsToast("");
+    setShowA(false);
+  };
 
   const handleButtonClick = () => {
     const getPoke = async () => {
@@ -212,28 +212,68 @@ export default function Catch(props) {
   };
 
   return (
-    <div style={cardStyle}>
-      <Button
-        className="btn-danger"
-        variant="secondary"
-        id="dropdown-battle"
-        onClick={()=>{handleButtonClick();
-          toggleShowA();}}
-        disabled={isFetching}
-      >
-        {isFetching ? (
-          <img
-            src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-            alt="fetching-pokemon"
-          />
-        ) : (
-          "Catch 'em All"
-        )}
-        <Toast>
-          <Toast.Body style={{ backgroundColor: "white",borderRadius: "10px", color: "black" }}>{isToast}</Toast.Body>
-        </Toast>
-      </Button>
-      {/* <PokeDex isTrainer={isTrainer}/> */}
-    </div>
+    <>
+      <div style={{ position: "relative" }}>
+        <video
+          src={pokevideo}
+          type="video/mp4"
+          autoPlay
+          loop
+          muted
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <Button
+              className="btn-danger"
+              variant="secondary"
+              id="dropdown-battle"
+              onClick={() => {
+                handleButtonClick();
+                toggleShowA();
+              }}
+              disabled={isFetching}
+            >
+              {isFetching ? (
+                <img
+                  src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                  alt="fetching-pokemon"
+                />
+              ) : (
+                "Catch 'em All"
+              )}
+              <Toast>
+                <Toast.Body
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                    color: "black",
+                  }}
+                >
+                  {isToast}
+                </Toast.Body>
+              </Toast>
+            </Button>
+          </div>
+
+          {/* <PokeDex isTrainer={isTrainer}/> */}
+        </div>
+      </div>
+    </>
   );
 }

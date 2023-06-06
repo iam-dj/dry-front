@@ -87,7 +87,7 @@ export default function Train(props) {
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
 
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
-
+        const isGymMaster = false
         setIsFetching(true);
         setTimeout(() => {
           // setIsFetching(false);
@@ -96,7 +96,8 @@ export default function Train(props) {
           const { result, battleLogData } = BattleSys.startBattle(
             myFilteredPokemons,
             NPCz[0].pokemons,
-            name
+            name, 
+            isGymMaster
           );
           //setting the state
           setBattleLog(battleLogData);

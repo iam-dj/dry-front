@@ -11,7 +11,7 @@ var lost = 0;
 var win = 1;
 var battleLogData = [];
 
-function startBattle(userPokemon, opponentPokemon, opp) {
+function startBattle(userPokemon, opponentPokemon, opp, gym) {
   battleLogData = [];
   const userPoke = userPokemon;
   const compPoke = opponentPokemon;
@@ -24,9 +24,14 @@ function startBattle(userPokemon, opponentPokemon, opp) {
 
   let randomUserMovePower = 0;
   let randomCompMovePower = 0;
+  var userMercyHelp;
+  var compMercyHelp;
 
-  const userMercyHelp = mercy.mercyRule(userPoke, compPoke);
-  const compMercyHelp = mercy.mercyRule(compPoke, userPoke);
+  if (gym == false)
+  {
+     userMercyHelp = mercy.mercyRule(userPoke, compPoke);
+     compMercyHelp = mercy.mercyRule(compPoke, userPoke);
+  }
 
   const updateMyHP = hpModify.updateHP(userPoke);
   const updateCompHP = hpModify.updateHP(compPoke);

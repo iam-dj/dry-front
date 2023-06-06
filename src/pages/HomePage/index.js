@@ -87,6 +87,7 @@ export default function HomePage(props) {
           // const oppFilteredPokemons = filterMainPokemon(myTrainerData);
 
           setIsFetching(true);
+          const isGymMaster = false
           setTimeout(() => {
             // setIsFetching(false);
             // console.log("pre-battle", battleLog);
@@ -94,7 +95,8 @@ export default function HomePage(props) {
             const { result, battleLogData } = BattleSys.startBattle(
               myFilteredPokemons,
               opp,
-              name
+              name,
+              isGymMaster
             );
             //setting the state
             setBattleLog(battleLogData);
