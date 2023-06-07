@@ -86,8 +86,8 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   function battle() {
     console.log("=========================");
 
-    console.log(compPoke[0].hp);
-    console.log(userPoke[0].hp);
+    // console.log(compPoke[0].hp);
+    // console.log(userPoke[0].hp);
 
     if (hitormiss.flip() === 10) {
       compPoke[0].hp = compPoke[0].hp - 0;
@@ -148,7 +148,7 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   }
 
   function userWon() {
-    console.log("You win!!");
+    // console.log("You win!!");
     // console.log(battleLogData);
     battleLogData.push("You win!!");
     return {
@@ -158,7 +158,7 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   }
 
   function compWon() {
-    console.log("You lose");
+    // console.log("You lose");
     // console.log(battleLogData);
     battleLogData.push("You lose");
     return {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 const weaknessPowerMod = require("./WeaknessPowerModifier");
 const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
@@ -44,8 +44,8 @@ function trackHealth (userPokemon, opponentPokemon, trackOpp, trackme) {
   const updateMyHP = hpModify.updateHP(userPoke);
   const updateCompHP = hpModify.updateHP(compPoke);
 
-  userPoke[0].hp = userPoke[0].hp + updateMyHP;
-  compPoke[0].hp = compPoke[0].hp + updateCompHP;
+  userPoke[0].hp = userPoke[0].hp + updateMyHP
+  compPoke[0].hp = compPoke[0].hp + updateCompHP
 
   const HorT = coinflip.flip();
 
@@ -84,6 +84,8 @@ function trackHealth (userPokemon, opponentPokemon, trackOpp, trackme) {
   }
 
   function battle() {
+    trackOpp(compPoke[0].hp);
+    trackme(userPoke[0].hp);
 
     console.log(compPoke[0].hp);
     console.log(userPoke[0].hp);
@@ -119,27 +121,36 @@ function trackHealth (userPokemon, opponentPokemon, trackOpp, trackme) {
 
     console.log("\n\n");
 
+function startGameWithInterval() {
+  const interval = setInterval(() => {
     startGame();
+  }, 5000);
+
+//   Clear the interval when needed
+  clearInterval(interval);
+}
+
+startGameWithInterval();
   }
 
   function userWon() {
-    console.log("You win!!");
+    // console.log("You win!!");
     // console.log(battleLogData);
-    battleLogData.push("You win!!");
-    return {
-      result: win,
-      battleLogData: battleLogData,
-    };
+    // battleLogData.push("You win!!");
+    // return {
+    //   result: win,
+    //   battleLogData: battleLogData,
+    // };
   }
 
   function compWon() {
-    console.log("You lose");
+    // console.log("You lose");
     // console.log(battleLogData);
-    battleLogData.push("You lose");
-    return {
-      result: lost,
-      battleLogData: battleLogData,
-    };
+    // battleLogData.push("You lose");
+    // return {
+    //   result: lost,
+    //   battleLogData: battleLogData,
+    // };
   }
 
   return startGame(); // Start the battle and return the result
