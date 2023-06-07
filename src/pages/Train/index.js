@@ -19,11 +19,32 @@ export default function Train(props) {
   const [pokemonChangeAlertWin, setPokemonChangeAlertWin] = useState([]);
   const [pokemonChangeAlertLoss, setPokemonChangeAlertLoss] = useState([]);
   const [battleResult, setBattleResult] = useState();
-  const [trainerPhoto, setTrainerPhoto] = useState("");
+  const [trainerPokemon, setTrainerPokemon] = useState("");
   const [trainerName, setTrainerName] = useState("");
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
+  const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
+  const [npcHealth, setNPCHealth] = useState();
+  const [trainerHealth, setTrainerHealth] = useState();
 
+  const topLeftImageStyle = {
+    position: "absolute",
+    top: 150,
+    left: 0,
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "25px",
+  };
+
+  const topRightImageStyle = {
+    position: "absolute",
+    top: 150,
+    right: 0,
+    width: "100px",
+    height: "100px",
+    objectFit: "contain",
+  };
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
     backgroundSize: "cover",
@@ -50,8 +71,7 @@ export default function Train(props) {
     maxHeight: "300px",
     minHeight: "300px",
     minWidth: "300px",
-    objectFit: "contain",
-    borderRadius: "30px",
+    // objectFit: "cover",
 
     // display: "none",
   };
@@ -61,6 +81,9 @@ export default function Train(props) {
   };
 
   const [isFetching, setIsFetching] = useState(false);
+  const [trainPic, setTrainPic] = useState("");
+  const [trainName, setTrainName] = useState("");
+  const [compName, setCompName] = useState("");
 
   const handleButtonClick = () => {
     // console.log("you've chosen to battle:", trainerId);
@@ -69,17 +92,22 @@ export default function Train(props) {
       try {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
 
+        const myTrainerData2 = await API.getBattlePoke(props.trainerId);
+        console.log("myTrainerData2.img_url", myTrainerData2[0].img_url);
         const randomNPC = NPC[Math.floor(Math.random() * NPC.length)];
         const NPCz = [randomNPC];
         // console.log("NPCz", NPCz[0].pokemons);
         const name = NPCz[0].name;
-        setNpcPhoto(NPCz[0].npcPicture_url);
-        setNpcName(NPCz[0].name);
-        setTrainerPhoto(myTrainerData.profilePicUrl);
-        setTrainerName(myTrainerData.name);
 
-        console.log(NPCz[0].pokemons);
-        // console.log(myTrainerData.profilePicUrl);
+        setNpcPhoto(NPCz[0].pokemons[0].img_url);
+        setNpcName(NPCz[0].pokemons[0].name);
+        setTrainerNpcPicture(NPCz[0].npcPicture_url);
+        setCompName(NPCz[0].name);
+
+        setTrainName(myTrainerData.name);
+        setTrainerPokemon(myTrainerData2[0].img_url);
+        setTrainerName(myTrainerData2[0].name);
+        setTrainPic(myTrainerData.profilePicUrl);
 
         function filterMainPokemon(myTrainerData) {
           return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
@@ -102,17 +130,17 @@ export default function Train(props) {
           );
           //setting the state
           setBattleLog(battleLogData);
-          // console.log("battleLog", battleLog);
-          // console.log("battle result is working?", battleLogData);
-          // console.log("result", result);
+          console.log("battleLog", battleLog);
+          console.log("battle result is working?", battleLogData);
+          console.log("result", result);
 
           const handleWin = async () => {
             try {
               const { experienceGained, levelChange, hpChange } =
                 await API.updateWin(props.trainerId);
-              // console.log("battle sys Experience Change:", experienceGained);
-              // console.log("battle sys Level Change:", levelChange);
-              // console.log("battle sys HP Change:", hpChange);
+              console.log("battle sys Experience Change:", experienceGained);
+              console.log("battle sys Level Change:", levelChange);
+              console.log("battle sys HP Change:", hpChange);
 
               const alerts = [];
               alerts.push("You Won!");
@@ -131,7 +159,7 @@ export default function Train(props) {
               }
 
               const alertMessage = alerts.join("\n");
-              // console.log("win Log", alerts);
+              console.log("win Log", alerts);
               setPokemonChangeAlertWin(alertMessage);
             } catch (error) {
               console.log(error);
@@ -142,9 +170,9 @@ export default function Train(props) {
             try {
               const { experienceChange, levelChange, hpChange } =
                 await API.updateLoss(props.trainerId);
-              // console.log("battle sys Experience Change:", experienceChange);
-              // console.log("battle sys Level Change:", levelChange);
-              // console.log("battle sys HP Change:", hpChange);
+              console.log("battle sys Experience Change:", experienceChange);
+              console.log("battle sys Level Change:", levelChange);
+              console.log("battle sys HP Change:", hpChange);
 
               const alerts = [];
               alerts.push("You Lost... :(");
@@ -165,7 +193,7 @@ export default function Train(props) {
               const alertMessage = alerts.join("\n");
               console.log("loss log", alerts);
               setPokemonChangeAlertLoss(alertMessage);
-              // console.log("Loss updated!");
+              console.log("Loss updated!");
             } catch (error) {
               console.log(error);
             }
@@ -192,12 +220,12 @@ export default function Train(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1 && isFetching === true) {
+        if (battleResult === 1) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertWin);
           console.log("useEffect log", pokemonChangeAlertWin);
         }
-        if (battleResult === 0 && isFetching === true) {
+        if (battleResult === 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertLoss);
           console.log("useEffect log", pokemonChangeAlertLoss);
@@ -245,35 +273,64 @@ export default function Train(props) {
     };
   }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
 
-  // console.log("trainerPhoto", trainerPhoto);
+  // console.log("trainerPokemon", trainerPokemon);
   return (
     <>
-      <div className="battle-log-overlay">
-        <div className="battle-log">
-          {battleLog.map((logEntry, index) => (
-            <p
-              className="font-text"
-              key={index}
-              style={{ display: index === currentLogIndex ? "block" : "none" }}
-            >
-              {logEntry.slice(0, currentCharIndex[index])}
-            </p>
-          ))}
-        </div>
-      </div>
-
       <div style={cardStyle} className="card-style">
         <div className="trainer-profile-photo">
-          <img src={trainerPhoto} style={trainerPic} />
-          <h3 className="font-text">{trainerName}</h3>
+          <img src={trainerPokemon} style={trainerPic} />
+          <p className="font-text">{trainName}</p>
+          <h3 className="font-text"> {trainerName}</h3>
+          <label
+            className="font-text"
+            style={{ fontSize: "x-small" }}
+            for="disk_b"
+          >
+            Health Meter:
+          </label>
+          <meter
+            id="disk_b"
+            value={trainerHealth}
+            min="0"
+            max={trainerHealth}
+          />
+          {trainPic && (
+            <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
+          )}
+
+          {npcTrainerPicture && (
+            <img
+              src={npcTrainerPicture}
+              style={topRightImageStyle}
+              alt="Top Right"
+            />
+          )}
         </div>
+        <div className="battle-log-overlay">
+          <div className="battle-log">
+            {battleLog.map((logEntry, index) => (
+              <p
+                className="font-text"
+                key={index}
+                style={{
+                  display: index === currentLogIndex ? "block" : "none",
+                }}
+              >
+                {logEntry.slice(0, currentCharIndex[index])}
+              </p>
+            ))}
+          </div>
+        </div>
+
         <div>
           <Button
             className="battle-button"
             style={{ margin: 0 }}
             variant="secondary"
             id="dropdown-battle"
-            onClick={() => handleButtonClick()}
+            onClick={() => {
+              handleButtonClick();
+            }}
             disabled={isFetching}
           >
             {isFetching ? (
@@ -289,7 +346,16 @@ export default function Train(props) {
         </div>
         <div className="npc-profile-photo">
           <img src={npcPhoto} style={photoStyle} />
+          <p className="font-text">{compName}</p>
           <h3 className="font-text">{npcName}</h3>
+          <label
+            className="font-text"
+            style={{ fontSize: "x-small" }}
+            for="disk_c"
+          >
+            Health Meter:
+          </label>
+          <meter id="disk_c" value={npcHealth} min="0" max={npcHealth} />
         </div>
       </div>
     </>
