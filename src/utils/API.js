@@ -147,7 +147,8 @@ const API = {
     })
       .then((res) => res.json())
       .then((data) => {
-        const { experienceGained, levelChange, hpChange } = data;
+        const { experienceGained, levelChange, hpChange, pokemonNewLevel } =
+          data;
         // console.log("API Experience Change:", experienceGained);
         // console.log("API Level Change:", levelChange);
         // console.log("API HP Change:", hpChange);
