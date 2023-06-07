@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 const weaknessPowerMod = require("./WeaknessPowerModifier");
 const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
-const mercy = require("./Mercy");
+// const mercy = require("./Mercy");
 
 var lost = 0;
 var win = 1;
 var battleLogData = [];
 
 function startBattle(userPokemon, opponentPokemon, opp, gym) {
-  console.log("oppenent pokemon", opponentPokemon.hp);
-  console.log("userpokemon", userPokemon);
+  // console.log("oppenent pokemon", opponentPokemon.hp);
+  // console.log("userpokemon", userPokemon);
   battleLogData = [];
   const userPoke = userPokemon;
   const compPoke = opponentPokemon;
   const name = opp;
 
-  console.log("battle sys check", compPoke.hp);
-  console.log("battle sys check", userPoke);
+  // console.log("battle sys check", compPoke.hp);
+  // console.log("battle sys check", userPoke);
   console.log(gym);
 
   let userTypeWeaknessModifier = 0;
