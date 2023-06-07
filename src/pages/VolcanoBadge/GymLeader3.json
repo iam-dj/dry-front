@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Blaine",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/blaine_f928nn.png",
+    "isGymMaster": true,
+    "pokemons": [
+      
+      {
+        "id": 78,
+        "name": "Rapidash",
+        "type": "fire",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 800,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896189/078rapidash_qmcy2n.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 50,
+        "move2Id": 395,
+        "move3Id": 22,
+        "move4Id": 126,
+        "move1": {
+          "id": 50,
+          "name": "Ember",
+          "power": 40,
+          "type": "Fire",
+          "description": "The target is attacked with small flames. It may also leave the target with a burn."
+        },
+        "move2": {
+          "id": 395,
+          "name": "Fire Spin",
+          "power": 35,
+          "type": "Fire",
+          "description": "The target becomes trapped within a fierce vortex of fire that continues to burn and deal damage for several turns."
+        },
+        "move3": {
+          "id": 22,
+          "name": "Stomp",
+          "power": 65,
+          "type": "Normal",
+          "description": "The target is stomped with a big foot. It may also make the target flinch."
+        },
+        "move4": {
+          "id": 126,
+          "name": "Fire Blast",
+          "power": 110,
+          "type": "Fire",
+          "description": "The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn."
+        }
+      }
+    ],
+    "gymId": 7
+  }
+]

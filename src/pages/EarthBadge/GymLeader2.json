@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Giovanni",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/giovanni_q50use.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 51,
+        "name": "Dugtrio",
+        "type": "ground",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 700,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896185/051dugtrio_cl3zuz.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 163,
+        "move2Id": 327,
+        "move3Id": 280,
+        "move4Id": 189,
+        "move1": {
+          "id": 163,
+          "name": "Slash",
+          "power": 70,
+          "type": "Normal",
+          "description": "The target is attacked with a slash of claws or blades. Critical hits land more easily."
+        },
+        "move2": {
+          "id": 327,
+          "name": "Earth Power",
+          "power": 90,
+          "type": "Ground",
+          "description": "The user makes the ground under the target erupt with power. It may also lower the target's Sp. Def."
+        },
+        "move3": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        },
+        "move4": {
+          "id": 189,
+          "name": "Stone Edge",
+          "power": 100,
+          "type": "Rock",
+          "description": "The user stabs the target from below with sharpened stones. Critical hits land more easily."
+        }
+      }
+    ],
+
+    "gymId": 8
+  }
+]

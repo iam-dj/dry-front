@@ -1,0 +1,60 @@
+[
+    {
+      "name": "Erika",
+      "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723628/erika_fjphdk.png",
+      "isGymMaster": true,
+      "pokemons": [
+       
+        {
+          "id": 70,
+          "name": "Weepinbell",
+          "type": "grass",
+          "secondary_type": "poison",
+          "level": 1,
+          "hp": 380,
+          "experience": 0,
+          "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896187/070weepinbell_ah69mp.png",
+          "evolutionId": 2,
+          "rarity": "uncommon",
+          "tier": 2,
+          "isCaught": false,
+          "TrainerId": 4,
+          "move1Id": 73,
+          "move2Id": 398,
+          "move3Id": 271,
+          "move4Id": 405,
+          "move1": {
+            "id": 73,
+            "name": "Razor Leaf",
+            "power": 55,
+            "type": "Grass",
+            "description": "Sharp-edged leaves are launched to slash at opposing Pokémon. Critical hits land more easily."
+          },
+          "move2": {
+            "id": 398,
+            "name": "Sludge Bomb",
+            "power": 90,
+            "type": "Poison",
+            "description": "The user strikes the target with a sludge bomb. It may also poison the target."
+          },
+          "move3": {
+            "id": 271,
+            "name": "Seed Bomb",
+            "power": 80,
+            "type": "Grass",
+            "description": "The user slams a barrage of hard-shelled seeds down on the target from above."
+          },
+          "move4": {
+            "id": 405,
+            "name": "Power Whip",
+            "power": 120,
+            "type": "Grass",
+            "description": "The user violently whips its vines or tentacles to strike the target. This may also make the target flinch."
+          }
+        }
+      ],
+  
+      "gymId": 4
+    }
+  ]
+  

@@ -4,7 +4,7 @@ import GymLeader_ from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
@@ -332,12 +332,9 @@ export default function BoulderBadge(props) {
       <div className="row">
         <div className="col">
           <img style={imgStyle} src={GymLeader_} alt="Brock gym leader" />
-          <p
-            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
-            className="font-text text-center"
-          >
-            {GymLeader[0].name}
-          </p>
+          <p style={{ border: "10px solid gold", backgroundColor: "#f0f1c8", }} className="font-text text-center">
+                {GymLeader[0].name}
+              </p>
         </div>
         <div className="col">
           <div
@@ -382,7 +379,7 @@ export default function BoulderBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-              <p className="font-text text-center">
+            <p className="font-text text-center">
                 {GymLeader2[0].pokemons[0].name}
               </p>
               <button
@@ -416,7 +413,7 @@ export default function BoulderBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-              <p className="font-text text-center">
+            <p className="font-text text-center">
                 {GymLeader3[0].pokemons[0].name}
               </p>
               <button

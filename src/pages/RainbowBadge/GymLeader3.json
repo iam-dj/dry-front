@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Erika",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723628/erika_fjphdk.png",
+    "isGymMaster": true,
+    "pokemons": [
+      
+      {
+        "id": 45,
+        "name": "Vileplume",
+        "type": "grass",
+        "secondary_type": "poison",
+        "level": 1,
+        "hp": 520,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896184/045vileplume_wrlvxl.png",
+        "evolutionId": 3,
+        "rarity": "rare",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 78,
+        "move2Id": 74,
+        "move3Id": 220,
+        "move4Id": 398,
+        "move1": {
+          "id": 78,
+          "name": "Petal Dance",
+          "power": 120,
+          "type": "Grass",
+          "description": "The user attacks the target by scattering petals for two to three turns. The user then becomes confused."
+        },
+        "move2": {
+          "id": 74,
+          "name": "Solar Beam",
+          "power": 120,
+          "type": "Normal",
+          "description": "In this two-turn attack, the user gathers energy and blasts a bundled beam on the next turn."
+        },
+        "move3": {
+          "id": 220,
+          "name": "Moonblast",
+          "power": 95,
+          "type": "Fairy",
+          "description": "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
+        },
+        "move4": {
+          "id": 398,
+          "name": "Sludge Bomb",
+          "power": 90,
+          "type": "Poison",
+          "description": "The user strikes the target with a sludge bomb. It may also poison the target."
+        }
+      }
+    ],
+
+    "gymId": 4
+  }
+]
