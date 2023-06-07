@@ -1,0 +1,58 @@
+[
+    {
+      "name": "Blaine",
+      "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/blaine_f928nn.png",
+      "isGymMaster": true,
+      "pokemons": [
+        {
+          "id": 58,
+          "name": "Growlithe",
+          "type": "fire",
+          "secondary_type": null,
+          "level": 1,
+          "hp": 380,
+          "experience": 0,
+          "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896186/058growlithe_ajrmg5.png",
+          "evolutionId": 1,
+          "rarity": "common",
+          "tier": 1,
+          "isCaught": false,
+          "TrainerId": 4,
+          "move1Id": 42,
+          "move2Id": 50,
+          "move3Id": 172,
+          "move4Id": 126,
+          "move1": {
+            "id": 42,
+            "name": "Bite",
+            "power": 60,
+            "type": "Dark",
+            "description": "The target is bitten with viciously sharp fangs. It may make the target flinch."
+          },
+          "move2": {
+            "id": 50,
+            "name": "Ember",
+            "power": 40,
+            "type": "Fire",
+            "description": "The target is attacked with small flames. It may also leave the target with a burn."
+          },
+          "move3": {
+            "id": 172,
+            "name": "Flame Wheel",
+            "power": 60,
+            "type": "Fire",
+            "description": "The user cloaks itself in fire and charges at the target. It may also leave the target with a burn."
+          },
+          "move4": {
+            "id": 126,
+            "name": "Fire Blast",
+            "power": 110,
+            "type": "Fire",
+            "description": "The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn."
+          }
+        }
+      ],
+      "gymId": 7
+    }
+  ]
+  

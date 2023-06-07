@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
-import Toast from "react-bootstrap/Toast";
 
 export default function Train(props) {
   // const navigate = useNavigate();
