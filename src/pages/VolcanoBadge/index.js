@@ -47,6 +47,9 @@ export default function VolcanoBadge(props) {
   const [battleResult, setBattleResult] = useState();
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
   const [currentGymStage, setCurrentGymStage] = useState([]);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
+  const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
+  const [BattleStatus, setBattleStatus] = useState(false);
 
   const photoStyle = {
     maxWidth: "300px",
@@ -57,6 +60,15 @@ export default function VolcanoBadge(props) {
 
     // display: "none",
   };
+
+  const fastForwardPicture = {
+    maxWidth: "35px",
+    maxHeight: "25px",
+    minHeight: "25px",
+    minWidth: "35px",
+    // objectFit: "contain",
+  };
+
   const getGymLeaderPokemon = () =>
     JSON.parse(JSON.stringify(GymLeader[0].pokemons));
   const getGymLeader2Pokemon = () =>
@@ -64,13 +76,20 @@ export default function VolcanoBadge(props) {
   const getGymLeader3Pokemon = () =>
     JSON.parse(JSON.stringify(GymLeader3[0].pokemons));
   //this is for the put route for a win
-  const gymId = 1;
+  const gymId = 7;
   // console.log(GymLeader[0].pokemons[0]);
   // console.log(GymLeader[0].pokemons[1]);
   // console.log(GymLeader[0].pokemons[2]);
 
   const showAlert = (alertMessage) => {
     window.alert(alertMessage);
+  };
+
+  const readerSpeedUp = () => {
+    if (battleLogReaderSpeed < 20)
+      setbattleLogReaderSpeed((prevSpeed) => prevSpeed + 3);
+    console.log(battleLogReaderSpeed);
+    if (battleLogReaderSpeed === 18) setMaxBattleLogReaderSpeed(true);
   };
 
   const [isFetching, setIsFetching] = useState(false);
@@ -80,14 +99,16 @@ export default function VolcanoBadge(props) {
       const response = await API.getOneTrainer(props.trainerId);
 
       const mainPokemon = response.pokemons.filter((pokemon) => pokemon.isMain);
-      console.log("this use effect is going off!", mainPokemon);
+      console.log("This useEffect is triggered!", mainPokemon);
       setCurrentGymStage(mainPokemon[0].gymSevenStage);
     };
 
     fetchCurrentGymStage();
-  }, []);
-
+  }, [props.trainerId, BattleStatus]);
   const handleButtonClick = (buttonId) => {
+    setBattleStatus(true);
+    setbattleLogReaderSpeed(3);
+    setMaxBattleLogReaderSpeed(false);
     console.log(currentGymMasterPokemon);
     console.log(GymLeader);
     console.log("pokemon 1", GymLeader[0].pokemons);
@@ -143,6 +164,7 @@ export default function VolcanoBadge(props) {
             let levelChange = 0;
             let hpChange = 0;
             let gymStageChange = "";
+            let pokemonNewLevel = 0;
             try {
               if (buttonId === "button1") {
                 const response = await API.updateWinStage1(
@@ -153,10 +175,12 @@ export default function VolcanoBadge(props) {
                 console.log("battle sys Level Change:", levelChange);
                 console.log("battle sys HP Change:", hpChange);
                 console.log("battle sys gymStageChange:", gymStageChange);
+                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
                 gymStageChange = response.gymStageChange;
+                pokemonNewLevel = response.pokemonNewLevel;
               } else if (buttonId === "button2") {
                 const response = await API.updateWinStage2(
                   props.trainerId,
@@ -166,10 +190,12 @@ export default function VolcanoBadge(props) {
                 console.log("battle sys Level Change:", levelChange);
                 console.log("battle sys HP Change:", hpChange);
                 console.log("battle sys gymStageChange:", gymStageChange);
+                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
                 gymStageChange = response.gymStageChange;
+                pokemonNewLevel = response.pokemonNewLevel;
               } else if (buttonId === "button3") {
                 const response = await API.updateWinStage3(
                   props.trainerId,
@@ -179,6 +205,8 @@ export default function VolcanoBadge(props) {
                 console.log("battle sys Level Change:", levelChange);
                 console.log("battle sys HP Change:", hpChange);
                 console.log("battle sys gymStageChange:", gymStageChange);
+                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                pokemonNewLevel = response.pokemonNewLevel;
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -197,6 +225,7 @@ export default function VolcanoBadge(props) {
               }
               if (levelChange > 0) {
                 alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
                 alerts.push(
@@ -217,11 +246,16 @@ export default function VolcanoBadge(props) {
 
           const handleLoss = async () => {
             try {
-              const { experienceChange, levelChange, hpChange } =
-                await API.updateLoss(props.trainerId);
+              const {
+                experienceChange,
+                levelChange,
+                hpChange,
+                pokemonNewLevel,
+              } = await API.updateLoss(props.trainerId);
               console.log("battle sys Experience Change:", experienceChange);
               console.log("battle sys Level Change:", levelChange);
               console.log("battle sys HP Change:", hpChange);
+              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
               alerts.push("You Lost... :(");
@@ -232,6 +266,7 @@ export default function VolcanoBadge(props) {
               }
               if (levelChange > 0) {
                 alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
                 alerts.push(
@@ -282,17 +317,18 @@ export default function VolcanoBadge(props) {
           // Check if battleLog has any elements
           if (battleResult === 1) {
             setIsFetching(false);
+            setBattleStatus(false);
             showAlert(pokemonChangeAlertWin);
             console.log("useEffect log", pokemonChangeAlertWin);
           } else {
             setIsFetching(false);
+            setBattleStatus(false);
             showAlert(pokemonChangeAlertLoss);
             console.log("useEffect log", pokemonChangeAlertLoss);
           }
         }
         return;
       }
-
       const logEntry = battleLog[logIndex];
       console.log(logEntry);
 
@@ -308,7 +344,7 @@ export default function VolcanoBadge(props) {
           clearTimeout(timeoutId);
 
           // Move to the next log entry
-          logIndex += 5;
+          logIndex += battleLogReaderSpeed;
           setCurrentLogIndex(logIndex);
           console.log("logIndex", logIndex);
           charIndex = 0;
@@ -331,7 +367,13 @@ export default function VolcanoBadge(props) {
       // Clear all the timeouts when component unmounts
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };
-  }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
+  }, [
+    battleLog,
+    battleResult,
+    pokemonChangeAlertWin,
+    pokemonChangeAlertLoss,
+    battleLogReaderSpeed,
+  ]);
 
   return (
     <div style={cardStyle}>
@@ -347,6 +389,18 @@ export default function VolcanoBadge(props) {
             </p>
           ))}
         </div>
+        <button
+          // style={fastForwardPicture}
+          className="btn btn-dark"
+          onClick={() => readerSpeedUp()}
+          disabled={maxBattleLogReaderSpeed}
+        >
+          <img
+            style={fastForwardPicture}
+            src="https://res.cloudinary.com/duaznt4wg/image/upload/v1686164391/fast_forward_pnzr2e.png"
+            alt="Speed Up"
+          />
+        </button>
       </div>
       <div className="row">
         <div className="col">

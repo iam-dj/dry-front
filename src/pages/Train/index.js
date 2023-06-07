@@ -136,11 +136,16 @@ export default function Train(props) {
 
           const handleWin = async () => {
             try {
-              const { experienceGained, levelChange, hpChange } =
-                await API.updateWin(props.trainerId);
+              const {
+                experienceGained,
+                levelChange,
+                hpChange,
+                pokemonNewLevel,
+              } = await API.updateWin(props.trainerId);
               console.log("battle sys Experience Change:", experienceGained);
               console.log("battle sys Level Change:", levelChange);
               console.log("battle sys HP Change:", hpChange);
+              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
               alerts.push("You Won!");
@@ -151,6 +156,7 @@ export default function Train(props) {
               }
               if (levelChange > 0) {
                 alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
                 alerts.push(
@@ -168,11 +174,16 @@ export default function Train(props) {
 
           const handleLoss = async () => {
             try {
-              const { experienceChange, levelChange, hpChange } =
-                await API.updateLoss(props.trainerId);
+              const {
+                experienceChange,
+                levelChange,
+                hpChange,
+                pokemonNewLevel,
+              } = await API.updateLoss(props.trainerId);
               console.log("battle sys Experience Change:", experienceChange);
               console.log("battle sys Level Change:", levelChange);
               console.log("battle sys HP Change:", hpChange);
+              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
               alerts.push("You Lost... :(");
@@ -183,6 +194,7 @@ export default function Train(props) {
               }
               if (levelChange > 0) {
                 alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
                 alerts.push(

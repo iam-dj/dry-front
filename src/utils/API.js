@@ -147,10 +147,12 @@ const API = {
     })
       .then((res) => res.json())
       .then((data) => {
-        const { experienceGained, levelChange, hpChange } = data;
+        const { experienceGained, levelChange, hpChange, pokemonNewLevel } =
+          data;
         console.log("API Experience Change:", experienceGained);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
+        console.log("API pokemonNewLevel", pokemonNewLevel);
         return data;
       })
       .catch((err) => {
@@ -168,12 +170,18 @@ const API = {
     )
       .then((res) => res.json())
       .then((data) => {
-        const { experienceGained, levelChange, hpChange, gymStageChange } =
-          data;
+        const {
+          experienceGained,
+          levelChange,
+          hpChange,
+          gymStageChange,
+          pokemonNewLevel,
+        } = data;
         console.log("API Experience Change:", experienceGained);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
         console.log("API gymStagechange:", gymStageChange);
+        console.log("API pokemonNewLevel", pokemonNewLevel);
         return data;
       })
       .catch((err) => {
@@ -190,12 +198,18 @@ const API = {
     )
       .then((res) => res.json())
       .then((data) => {
-        const { experienceGained, levelChange, hpChange, gymStageChange } =
-          data;
+        const {
+          experienceGained,
+          levelChange,
+          hpChange,
+          gymStageChange,
+          pokemonNewLevel,
+        } = data;
         console.log("API Experience Change:", experienceGained);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
         console.log("API gymStagechange:", gymStageChange);
+        console.log("API pokemonNewLevel", pokemonNewLevel);
         return data;
       })
       .catch((err) => {
@@ -212,12 +226,18 @@ const API = {
     )
       .then((res) => res.json())
       .then((data) => {
-        const { experienceGained, levelChange, hpChange, gymStageChange } =
-          data;
+        const {
+          experienceGained,
+          levelChange,
+          hpChange,
+          gymStageChange,
+          pokemonNewLevel,
+        } = data;
         console.log("API Experience Change:", experienceGained);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
         console.log("API gymStagechange:", gymStageChange);
+        console.log("API pokemonNewLevel", pokemonNewLevel);
         return data;
       })
       .catch((err) => {
@@ -231,10 +251,13 @@ const API = {
     })
       .then((res) => res.json())
       .then((data) => {
-        const { experienceChange, levelChange, hpChange } = data;
+        const { experienceChange, levelChange, hpChange, pokemonNewLevel } =
+          data;
         console.log("API Experience Change:", experienceChange);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
+        console.log("API pokemonNewLevel", pokemonNewLevel);
+
         return data;
       })
       .catch((err) => {
