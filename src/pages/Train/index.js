@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
-import Toast from "react-bootstrap/Toast";
 
 export default function Train(props) {
   // const navigate = useNavigate();
@@ -221,12 +220,12 @@ export default function Train(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1) {
+        if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertWin);
           console.log("useEffect log", pokemonChangeAlertWin);
         }
-        if (battleResult === 0) {
+        if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertLoss);
           console.log("useEffect log", pokemonChangeAlertLoss);

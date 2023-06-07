@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Misty",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/misty_dikrf2.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 121,
+        "name": "Starmie",
+        "type": "psychic",
+        "secondary_type": "water",
+        "level": 1,
+        "hp": 480,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896195/121starmie_eoheez.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 53,
+        "move2Id": 129,
+        "move3Id": 211,
+        "move4Id": 54,
+        "move1": {
+          "id": 53,
+          "name": "Water Gun",
+          "power": 40,
+          "type": "Water",
+          "description": "The target is blasted with a forceful shot of water."
+        },
+        "move2": {
+          "id": 129,
+          "name": "Swift",
+          "power": 60,
+          "type": "Normal",
+          "description": "Star-shaped rays are shot at the target. This attack never misses."
+        },
+        "move3": {
+          "id": 211,
+          "name": "Psychic",
+          "power": 90,
+          "type": "Psychic",
+          "description": "The target is hit by a strong telekinetic force. It may also reduce the target's Special Defense stat."
+        },
+        "move4": {
+          "id": 54,
+          "name": "Hydro Pump",
+          "power": 110,
+          "type": "Water",
+          "description": "The target is blasted with a giant volume of water launched under great pressure."
+        }
+      }
+    ],
+    "gymId": 2
+  }
+]

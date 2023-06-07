@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Lt. Surge",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723629/Lt._surge_dibq7t.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 26,
+        "name": "Raichu",
+        "type": "electric",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 480,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896181/026raichu_oi2nci.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 389,
+        "move2Id": 391,
+        "move3Id": 9,
+        "move4Id": 252,
+        "move1": {
+          "id": 389,
+          "name": "Quick Attack",
+          "power": 40,
+          "type": "Normal",
+          "description": "The user lunges at the target with incredible speed. This move always goes first."
+        },
+        "move2": {
+          "id": 391,
+          "name": "Thunder Shock",
+          "power": 40,
+          "type": "Electric",
+          "description": "A jolt of electricity is hurled at the target. This may also leave the target with paralysis."
+        },
+        "move3": {
+          "id": 9,
+          "name": "Thunder Punch",
+          "power": 75,
+          "type": "Electric",
+          "description": "The target is punched with an electrified fist. It may also leave the target with paralysis."
+        },
+        "move4": {
+          "id": 252,
+          "name": "Thunder",
+          "power": 110,
+          "type": "Electric",
+          "description": "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis."
+        }
+      }
+    ],
+
+    "gymId": 3
+  }
+]

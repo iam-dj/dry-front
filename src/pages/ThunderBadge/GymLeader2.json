@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Lt. Surge",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723629/Lt._surge_dibq7t.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 25,
+        "name": "Pikachu",
+        "type": "electric",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 280,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896181/025pikachu_q66dwq.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 389,
+        "move2Id": 391,
+        "move3Id": 32,
+        "move4Id": 243,
+        "move1": {
+          "id": 389,
+          "name": "Quick Attack",
+          "power": 40,
+          "type": "Normal",
+          "description": "The user lunges at the target with incredible speed. This move always goes first."
+        },
+        "move2": {
+          "id": 391,
+          "name": "Thunder Shock",
+          "power": 40,
+          "type": "Electric",
+          "description": "A jolt of electricity is hurled at the target. This may also leave the target with paralysis."
+        },
+        "move3": {
+          "id": 32,
+          "name": "Tackle",
+          "power": 40,
+          "type": "Normal",
+          "description": "A physical attack in which the user charges and slams into the target with its whole body."
+        },
+        "move4": {
+          "id": 243,
+          "name": "Thunderbolt",
+          "power": 90,
+          "type": "Electric",
+          "description": "A strong electric blast is loosed at the target. It may also paralyze the target."
+        }
+      }
+    ],
+
+    "gymId": 3
+  }
+]

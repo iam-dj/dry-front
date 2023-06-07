@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Misty",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/misty_dikrf2.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 116,
+        "name": "Horsea",
+        "type": "water",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 250,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/116horsea_vxowfy.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 145,
+        "move2Id": 53,
+        "move3Id": 59,
+        "move4Id": 39,
+        "move1": {
+          "id": 145,
+          "name": "Bubble",
+          "power": 40,
+          "type": "Water",
+          "description": "A spray of countless bubbles is jetted at the opposing team. It may lower the targets' Speed stats."
+        },
+        "move2": {
+          "id": 53,
+          "name": "Water Gun",
+          "power": 40,
+          "type": "Water",
+          "description": "The target is blasted with a forceful shot of water."
+        },
+        "move3": {
+          "id": 59,
+          "name": "Bubble Beam",
+          "power": 65,
+          "type": "Water",
+          "description": "A spray of bubbles is forcefully ejected at the target. It may also lower the target's Speed stat."
+        },
+        "move4": {
+          "id": 39,
+          "name": "Poison Sting",
+          "power": 15,
+          "type": "Poison",
+          "description": "The user stabs the target with a poisonous stinger. This may also poison the target."
+        }
+      }
+    ],
+    "gymId": 2
+  }
+]
