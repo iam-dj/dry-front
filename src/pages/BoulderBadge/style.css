@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Press+Start+2P&display=swap");
+
+.font-text {
+  font-family: "Atma", cursive;
+  font-family: "Press Start 2P", cursive;
+}
+
+.battle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.npc-profile-photo,
+.trainer-profile-photo {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.battle-button {
+  display: block;
+  margin: 0 auto;
+  background-color: #ff0000;
+  border-color: #ff0000;
+  transition: transform 0.3s;
+}
+
+.battle-button:hover {
+  transform: scale(1.1);
+}
+
+.battle-log-overlay {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 150px;
+  /* z-index: 9999; */
+  background-color: rgba(184, 181, 181, 0.7);
+  border-radius: 10px;
+  border: 5px solid rgb(24, 23, 23);
+}
+
+.battle-log {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #030303;
+  font-size: 10px;
+  text-align: center;
+}
+
+.gifConfig {
+  width: 450px;
+  height: 200px;
+  background-size: cover;
+}

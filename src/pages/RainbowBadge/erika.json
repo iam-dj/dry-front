@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Erika",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723628/erika_fjphdk.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 114,
+        "name": "Tangela",
+        "type": "grass",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 210,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/114tangela_wplxop.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 132,
+        "move2Id": 21,
+        "move3Id": 20,
+        "move4Id": 405,
+        "move1": {
+          "id": 132,
+          "name": "Constrict",
+          "power": 10,
+          "type": "Normal",
+          "description": "The target is attacked with long, creeping tentacles or vines. It may also lower the target's Speed stat."
+        },
+        "move2": {
+          "id": 21,
+          "name": "Vine Whip",
+          "power": 45,
+          "type": "Normal",
+          "description": "The target is struck with slender, whiplike vines to inflict damage."
+        },
+        "move3": {
+          "id": 20,
+          "name": "Slam",
+          "power": 80,
+          "type": "Normal",
+          "description": "The target is slammed with a long tail, vines, or the like to inflict damage."
+        },
+        "move4": {
+          "id": 405,
+          "name": "Power Whip",
+          "power": 120,
+          "type": "Grass",
+          "description": "The user violently whips its vines or tentacles to strike the target. This may also make the target flinch."
+        }
+      },
+      {
+        "id": 70,
+        "name": "Weepinbell",
+        "type": "grass",
+        "secondary_type": "poison",
+        "level": 1,
+        "hp": 380,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896187/070weepinbell_ah69mp.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 73,
+        "move2Id": 398,
+        "move3Id": 271,
+        "move4Id": 405,
+        "move1": {
+          "id": 73,
+          "name": "Razor Leaf",
+          "power": 55,
+          "type": "Grass",
+          "description": "Sharp-edged leaves are launched to slash at opposing Pokémon. Critical hits land more easily."
+        },
+        "move2": {
+          "id": 398,
+          "name": "Sludge Bomb",
+          "power": 90,
+          "type": "Poison",
+          "description": "The user strikes the target with a sludge bomb. It may also poison the target."
+        },
+        "move3": {
+          "id": 271,
+          "name": "Seed Bomb",
+          "power": 80,
+          "type": "Grass",
+          "description": "The user slams a barrage of hard-shelled seeds down on the target from above."
+        },
+        "move4": {
+          "id": 405,
+          "name": "Power Whip",
+          "power": 120,
+          "type": "Grass",
+          "description": "The user violently whips its vines or tentacles to strike the target. This may also make the target flinch."
+        }
+      },
+      {
+        "id": 45,
+        "name": "Vileplume",
+        "type": "grass",
+        "secondary_type": "poison",
+        "level": 1,
+        "hp": 520,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896184/045vileplume_wrlvxl.png",
+        "evolutionId": 3,
+        "rarity": "rare",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 78,
+        "move2Id": 74,
+        "move3Id": 220,
+        "move4Id": 398,
+        "move1": {
+          "id": 78,
+          "name": "Petal Dance",
+          "power": 120,
+          "type": "Grass",
+          "description": "The user attacks the target by scattering petals for two to three turns. The user then becomes confused."
+        },
+        "move2": {
+          "id": 74,
+          "name": "Solar Beam",
+          "power": 120,
+          "type": "Normal",
+          "description": "In this two-turn attack, the user gathers energy and blasts a bundled beam on the next turn."
+        },
+        "move3": {
+          "id": 220,
+          "name": "Moonblast",
+          "power": 95,
+          "type": "Fairy",
+          "description": "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
+        },
+        "move4": {
+          "id": 398,
+          "name": "Sludge Bomb",
+          "power": 90,
+          "type": "Poison",
+          "description": "The user strikes the target with a sludge bomb. It may also poison the target."
+        }
+      }
+    ],
+
+    "gymId": 4
+  }
+]

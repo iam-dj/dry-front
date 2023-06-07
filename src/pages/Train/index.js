@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
+import Toast from "react-bootstrap/Toast";
 
 export default function Train(props) {
   // const navigate = useNavigate();
@@ -75,9 +76,6 @@ export default function Train(props) {
 
     // display: "none",
   };
-  
-
-
 
   const showAlert = (alertMessage) => {
     window.alert(alertMessage);
@@ -129,7 +127,7 @@ export default function Train(props) {
             myFilteredPokemons,
             NPCz[0].pokemons,
             name,
-            isGymMaster, 
+            isGymMaster
           );
           //setting the state
           setBattleLog(battleLogData);
@@ -284,8 +282,19 @@ export default function Train(props) {
           <img src={trainerPokemon} style={trainerPic} />
           <p className="font-text">{trainName}</p>
           <h3 className="font-text"> {trainerName}</h3>
-          <label className="font-text" style={{fontSize:"x-small"}} for="disk_b">Health Meter:</label>
-          <meter id="disk_b" value={trainerHealth} min="0" max={trainerHealth}  />
+          <label
+            className="font-text"
+            style={{ fontSize: "x-small" }}
+            for="disk_b"
+          >
+            Health Meter:
+          </label>
+          <meter
+            id="disk_b"
+            value={trainerHealth}
+            min="0"
+            max={trainerHealth}
+          />
           {trainPic && (
             <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
           )}
@@ -320,7 +329,9 @@ export default function Train(props) {
             style={{ margin: 0 }}
             variant="secondary"
             id="dropdown-battle"
-            onClick={() => { handleButtonClick(); }}
+            onClick={() => {
+              handleButtonClick();
+            }}
             disabled={isFetching}
           >
             {isFetching ? (
@@ -338,9 +349,14 @@ export default function Train(props) {
           <img src={npcPhoto} style={photoStyle} />
           <p className="font-text">{compName}</p>
           <h3 className="font-text">{npcName}</h3>
-          <label className="font-text" style={{fontSize:"x-small"}} for="disk_c">Health Meter:</label>
+          <label
+            className="font-text"
+            style={{ fontSize: "x-small" }}
+            for="disk_c"
+          >
+            Health Meter:
+          </label>
           <meter id="disk_c" value={npcHealth} min="0" max={npcHealth} />
-           
         </div>
       </div>
     </>

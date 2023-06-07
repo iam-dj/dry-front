@@ -1,0 +1,151 @@
+[
+  {
+    "name": "Koga",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723626/koga_n9t79i.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 109,
+        "name": "Koffing",
+        "type": "poison",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 280,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896192/109koffing_i7yotl.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 32,
+        "move2Id": 124,
+        "move3Id": 123,
+        "move4Id": 411,
+        "move1": {
+          "id": 32,
+          "name": "Tackle",
+          "power": 40,
+          "type": "Normal",
+          "description": "A physical attack in which the user charges and slams into the target with its whole body."
+        },
+        "move2": {
+          "id": 124,
+          "name": "Sludge",
+          "power": 65,
+          "type": "Poison",
+          "description": "Unsanitary sludge is hurled at the target. It may also poison the target."
+        },
+        "move3": {
+          "id": 123,
+          "name": "Smog",
+          "power": 30,
+          "type": "Poison",
+          "description": "The target is attacked with a discharge of filthy gases. It may also poison the target."
+        },
+        "move4": {
+          "id": 411,
+          "name": "Self-Destruct",
+          "power": 100,
+          "type": "Normal",
+          "description": "The user blows up to inflict massive damage, but also faints in the process."
+        }
+      },
+      {
+        "id": 110,
+        "name": "Weezing",
+        "type": "poison",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 510,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/110weezing_nfjxlk.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 32,
+        "move2Id": 124,
+        "move3Id": 123,
+        "move4Id": 153,
+        "move1": {
+          "id": 32,
+          "name": "Tackle",
+          "power": 40,
+          "type": "Normal",
+          "description": "A physical attack in which the user charges and slams into the target with its whole body."
+        },
+        "move2": {
+          "id": 124,
+          "name": "Sludge",
+          "power": 65,
+          "type": "Poison",
+          "description": "Unsanitary sludge is hurled at the target. It may also poison the target."
+        },
+        "move3": {
+          "id": 123,
+          "name": "Smog",
+          "power": 30,
+          "type": "Poison",
+          "description": "The target is attacked with a discharge of filthy gases. It may also poison the target."
+        },
+        "move4": {
+          "id": 153,
+          "name": "Explosion",
+          "power": 250,
+          "type": "Fire",
+          "description": "The user explodes to inflict damage on all Pokémon in battle. The user faints upon using this move."
+        }
+      },
+      {
+        "id": 89,
+        "name": "Muk",
+        "type": "poison",
+        "secondary_type": "dark",
+        "level": 1,
+        "hp": 630,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896190/089muk_pnaen7.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 124,
+        "move2Id": 408,
+        "move3Id": 409,
+        "move4Id": 212,
+        "move1": {
+          "id": 124,
+          "name": "Sludge",
+          "power": 65,
+          "type": "Poison",
+          "description": "Unsanitary sludge is hurled at the target. It may also poison the target."
+        },
+        "move2": {
+          "id": 408,
+          "name": "Mud Bomb",
+          "power": 65,
+          "type": "Ground",
+          "description": "The user launches a glob of mud at the target. It may also lower the target's accuracy."
+        },
+        "move3": {
+          "id": 409,
+          "name": "Gunk Shot",
+          "power": 120,
+          "type": "Poison",
+          "description": "The user shoots filthy garbage at the target to attack. It may also poison the target."
+        },
+        "move4": {
+          "id": 212,
+          "name": "Dark Pulse",
+          "power": 80,
+          "type": "Dark",
+          "description": "The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch."
+        }
+      }
+    ],
+    "gymId": 5
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Brock3",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/brock_dwhz8a.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 95,
+        "name": "Onix",
+        "type": "rock",
+        "secondary_type": "ground",
+        "level": 1,
+        "hp": 50,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896191/095onix_pprb9h.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 407,
+        "move2Id": 300,
+        "move3Id": 157,
+        "move4Id": 189,
+        "move1": {
+          "id": 407,
+          "name": "Rock Throw",
+          "power": 50,
+          "type": "Rock",
+          "description": "The user throws rocks at the target to inflict damage."
+        },
+        "move2": {
+          "id": 300,
+          "name": "Iron Tail",
+          "power": 100,
+          "type": "Steel",
+          "description": "The target is slammed with a steel-hard tail. It may also lower the target's Defense stat."
+        },
+        "move3": {
+          "id": 157,
+          "name": "Rock Slide",
+          "power": 75,
+          "type": "Rock",
+          "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
+        },
+        "move4": {
+          "id": 189,
+          "name": "Stone Edge",
+          "power": 100,
+          "type": "Rock",
+          "description": "The user stabs the target from below with sharpened stones. Critical hits land more easily."
+        }
+      }
+    ]
+  }
+]

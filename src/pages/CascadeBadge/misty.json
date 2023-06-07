@@ -1,0 +1,151 @@
+[
+  {
+    "name": "Misty",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/misty_dikrf2.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 116,
+        "name": "Horsea",
+        "type": "water",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 130,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/116horsea_vxowfy.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 145,
+        "move2Id": 53,
+        "move3Id": 59,
+        "move4Id": 39,
+        "move1": {
+          "id": 145,
+          "name": "Bubble",
+          "power": 40,
+          "type": "Water",
+          "description": "A spray of countless bubbles is jetted at the opposing team. It may lower the targets' Speed stats."
+        },
+        "move2": {
+          "id": 53,
+          "name": "Water Gun",
+          "power": 40,
+          "type": "Water",
+          "description": "The target is blasted with a forceful shot of water."
+        },
+        "move3": {
+          "id": 59,
+          "name": "Bubble Beam",
+          "power": 65,
+          "type": "Water",
+          "description": "A spray of bubbles is forcefully ejected at the target. It may also lower the target's Speed stat."
+        },
+        "move4": {
+          "id": 39,
+          "name": "Poison Sting",
+          "power": 15,
+          "type": "Poison",
+          "description": "The user stabs the target with a poisonous stinger. This may also poison the target."
+        }
+      },
+      {
+        "id": 121,
+        "name": "Starmie",
+        "type": "psychic",
+        "secondary_type": "water",
+        "level": 1,
+        "hp": 230,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896195/121starmie_eoheez.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 53,
+        "move2Id": 129,
+        "move3Id": 211,
+        "move4Id": 54,
+        "move1": {
+          "id": 53,
+          "name": "Water Gun",
+          "power": 40,
+          "type": "Water",
+          "description": "The target is blasted with a forceful shot of water."
+        },
+        "move2": {
+          "id": 129,
+          "name": "Swift",
+          "power": 60,
+          "type": "Normal",
+          "description": "Star-shaped rays are shot at the target. This attack never misses."
+        },
+        "move3": {
+          "id": 211,
+          "name": "Psychic",
+          "power": 90,
+          "type": "Psychic",
+          "description": "The target is hit by a strong telekinetic force. It may also reduce the target's Special Defense stat."
+        },
+        "move4": {
+          "id": 54,
+          "name": "Hydro Pump",
+          "power": 110,
+          "type": "Water",
+          "description": "The target is blasted with a giant volume of water launched under great pressure."
+        }
+      },
+      {
+        "id": 120,
+        "name": "Staryu",
+        "type": "water",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 420,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896194/120staryu_dmpnmi.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 1,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 32,
+        "move2Id": 53,
+        "move3Id": 129,
+        "move4Id": 131,
+        "move1": {
+          "id": 32,
+          "name": "Tackle",
+          "power": 40,
+          "type": "Normal",
+          "description": "A physical attack in which the user charges and slams into the target with its whole body."
+        },
+        "move2": {
+          "id": 53,
+          "name": "Water Gun",
+          "power": 40,
+          "type": "Water",
+          "description": "The target is blasted with a forceful shot of water."
+        },
+        "move3": {
+          "id": 129,
+          "name": "Swift",
+          "power": 60,
+          "type": "Normal",
+          "description": "Star-shaped rays are shot at the target. This attack never misses."
+        },
+        "move4": {
+          "id": 131,
+          "name": "Spike Cannon",
+          "power": 20,
+          "type": "Rock",
+          "description": "Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row."
+        }
+      }
+    ],
+    "gymId": 2
+  }
+]

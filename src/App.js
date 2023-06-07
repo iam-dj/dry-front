@@ -36,7 +36,7 @@ function App() {
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-  }
+  };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -73,7 +73,12 @@ function App() {
           path="/"
           element={
             userId ? (
-              <HomePage style={cardStyle} token={token} userId={userId} trainerId={trainerId} />
+              <HomePage
+                style={cardStyle}
+                token={token}
+                userId={userId}
+                trainerId={trainerId}
+              />
             ) : (
               <Navigate to="/login" replace />
             )
@@ -115,7 +120,12 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <Dashboard style={cardStyle} token={token} userId={userId} trainerId={trainerId} />
+            <Dashboard
+              style={cardStyle}
+              token={token}
+              userId={userId}
+              trainerId={trainerId}
+            />
           }
         />
         <Route
@@ -146,6 +156,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -157,6 +168,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -168,6 +180,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -179,6 +192,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -190,6 +204,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -201,6 +216,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -212,6 +228,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
@@ -223,6 +240,7 @@ function App() {
               setUsername={setUsername}
               setToken={setToken}
               setTrainerId={setTrainerId}
+              trainerId={trainerId}
             />
           }
         />
