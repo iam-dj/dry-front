@@ -220,12 +220,12 @@ export default function Train(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1) {
+        if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertWin);
           console.log("useEffect log", pokemonChangeAlertWin);
         }
-        if (battleResult === 0) {
+        if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertLoss);
           console.log("useEffect log", pokemonChangeAlertLoss);
