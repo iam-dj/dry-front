@@ -6,8 +6,7 @@ import Button from "react-bootstrap/Button";
 // import { useNavigate } from "react-router-dom";
 import NPC from "./npc.json";
 import API from "../../utils/API";
-import Toast from 'react-bootstrap/Toast';
-
+import Toast from "react-bootstrap/Toast";
 
 export default function Train(props) {
   // const navigate = useNavigate();
@@ -20,11 +19,32 @@ export default function Train(props) {
   const [pokemonChangeAlertWin, setPokemonChangeAlertWin] = useState([]);
   const [pokemonChangeAlertLoss, setPokemonChangeAlertLoss] = useState([]);
   const [battleResult, setBattleResult] = useState();
-  const [trainerPhoto, setTrainerPhoto] = useState("");
+  const [trainerPokemon, setTrainerPokemon] = useState("");
   const [trainerName, setTrainerName] = useState("");
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
+  const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
+  const [npcHealth, setNPCHealth] = useState();
+  const [trainerHealth, setTrainerHealth] = useState();
 
+  const topLeftImageStyle = {
+    position: "absolute",
+    top: 150,
+    left: 0,
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "25px",
+  };
+
+  const topRightImageStyle = {
+    position: "absolute",
+    top: 150,
+    right: 0,
+    width: "100px",
+    height: "100px",
+    objectFit: "contain",
+  };
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
     backgroundSize: "cover",
@@ -51,17 +71,22 @@ export default function Train(props) {
     maxHeight: "300px",
     minHeight: "300px",
     minWidth: "300px",
-    objectFit: "contain",
-    borderRadius: "30px"
+    // objectFit: "cover",
 
     // display: "none",
   };
+  
+
+
 
   const showAlert = (alertMessage) => {
     window.alert(alertMessage);
   };
 
   const [isFetching, setIsFetching] = useState(false);
+  const [trainPic, setTrainPic] = useState("");
+  const [trainName, setTrainName] = useState("");
+  const [compName, setCompName] = useState("");
 
   const handleButtonClick = () => {
     // console.log("you've chosen to battle:", trainerId);
@@ -70,15 +95,22 @@ export default function Train(props) {
       try {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
 
+        const myTrainerData2 = await API.getBattlePoke(props.trainerId);
+        console.log("myTrainerData2.img_url", myTrainerData2[0].img_url);
         const randomNPC = NPC[Math.floor(Math.random() * NPC.length)];
         const NPCz = [randomNPC];
         // console.log("NPCz", NPCz[0].pokemons);
         const name = NPCz[0].name;
-        setNpcPhoto(NPCz[0].npcPicture_url);
-        setNpcName(NPCz[0].name);
-        setTrainerPhoto(myTrainerData.profilePicUrl);
-        setTrainerName(myTrainerData.name);
-        // console.log(myTrainerData.profilePicUrl);
+
+        setNpcPhoto(NPCz[0].pokemons[0].img_url);
+        setNpcName(NPCz[0].pokemons[0].name);
+        setTrainerNpcPicture(NPCz[0].npcPicture_url);
+        setCompName(NPCz[0].name);
+
+        setTrainName(myTrainerData.name);
+        setTrainerPokemon(myTrainerData2[0].img_url);
+        setTrainerName(myTrainerData2[0].name);
+        setTrainPic(myTrainerData.profilePicUrl);
 
         function filterMainPokemon(myTrainerData) {
           return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
@@ -87,7 +119,7 @@ export default function Train(props) {
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
 
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
-        const isGymMaster = false
+        const isGymMaster = false;
         setIsFetching(true);
         setTimeout(() => {
           // setIsFetching(false);
@@ -96,8 +128,8 @@ export default function Train(props) {
           const { result, battleLogData } = BattleSys.startBattle(
             myFilteredPokemons,
             NPCz[0].pokemons,
-            name, 
-            isGymMaster
+            name,
+            isGymMaster, 
           );
           //setting the state
           setBattleLog(battleLogData);
@@ -244,54 +276,73 @@ export default function Train(props) {
     };
   }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
 
-  // console.log("trainerPhoto", trainerPhoto);
+  // console.log("trainerPokemon", trainerPokemon);
   return (
     <>
-      <div className="battle-log-overlay">
-  <div className="battle-log">
-    {battleLog.map((logEntry, index) => (
-      <p
-        className="font-text"
-        key={index}
-        style={{ display: index === currentLogIndex ? "block" : "none" }}
-      >
-        {logEntry.slice(0, currentCharIndex[index])}
-      </p>
-    ))}
-  </div>
-</div>
+      <div style={cardStyle} className="card-style">
+        <div className="trainer-profile-photo">
+          <img src={trainerPokemon} style={trainerPic} />
+          <p className="font-text">{trainName}</p>
+          <h3 className="font-text"> {trainerName}</h3>
+          <label className="font-text" style={{fontSize:"x-small"}} for="disk_b">Health Meter:</label>
+          <meter id="disk_b" value={trainerHealth} min="0" max={trainerHealth}  />
+          {trainPic && (
+            <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
+          )}
 
-<div style={cardStyle} className="card-style">
-  <div className="trainer-profile-photo">
-    <img src={trainerPhoto} style={trainerPic}  />
-    <h3 className="font-text">{trainerName}</h3>
-  </div>
-  <div>
-    <Button
-      className="battle-button"
-      style={{ margin: 0 }}
-      variant="secondary"
-      id="dropdown-battle"
-      onClick={() => handleButtonClick()}
-      disabled={isFetching}
-    >
-      {isFetching ? (
-        <img
-          className="gifConfig"
-          src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-          alt="fetching-pokemon"
-        />
-      ) : (
-        "Battle NPC's"
-      )}
-    </Button>
-  </div>
-  <div className="npc-profile-photo">
-    <img src={npcPhoto} style={photoStyle} />
-    <h3 className="font-text">{npcName}</h3>
-  </div>
-</div>
+          {npcTrainerPicture && (
+            <img
+              src={npcTrainerPicture}
+              style={topRightImageStyle}
+              alt="Top Right"
+            />
+          )}
+        </div>
+        <div className="battle-log-overlay">
+          <div className="battle-log">
+            {battleLog.map((logEntry, index) => (
+              <p
+                className="font-text"
+                key={index}
+                style={{
+                  display: index === currentLogIndex ? "block" : "none",
+                }}
+              >
+                {logEntry.slice(0, currentCharIndex[index])}
+              </p>
+            ))}
+          </div>
+        </div>
 
+        <div>
+          <Button
+            className="battle-button"
+            style={{ margin: 0 }}
+            variant="secondary"
+            id="dropdown-battle"
+            onClick={() => { handleButtonClick(); }}
+            disabled={isFetching}
+          >
+            {isFetching ? (
+              <img
+                className="gifConfig"
+                src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                alt="fetching-pokemon"
+              />
+            ) : (
+              "Battle NPC's"
+            )}
+          </Button>
+        </div>
+        <div className="npc-profile-photo">
+          <img src={npcPhoto} style={photoStyle} />
+          <p className="font-text">{compName}</p>
+          <h3 className="font-text">{npcName}</h3>
+          <label className="font-text" style={{fontSize:"x-small"}} for="disk_c">Health Meter:</label>
+          <meter id="disk_c" value={npcHealth} min="0" max={npcHealth} />
+           
+        </div>
+      </div>
     </>
   );
 }
