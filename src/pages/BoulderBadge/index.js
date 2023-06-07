@@ -5,7 +5,9 @@ import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
 import Button from "react-bootstrap/Button";
-import Brock from "./brock.json";
+import Brock from "./brock1.json";
+import Brock2 from "./brock2.json";
+import Brock3 from "./brock3.json";
 import { useState, useEffect } from "react";
 
 export default function BoulderBadge(props) {
@@ -54,7 +56,11 @@ export default function BoulderBadge(props) {
 
     // display: "none",
   };
-
+  const getBrockPokemon = () => JSON.parse(JSON.stringify(Brock[0].pokemons));
+  const getBrock2Pokemon = () => JSON.parse(JSON.stringify(Brock2[0].pokemons));
+  const getBrock3Pokemon = () => JSON.parse(JSON.stringify(Brock3[0].pokemons));
+  //this is for the put route for a win
+  const gymId = 1;
   // console.log(Brock[0].pokemons[0]);
   // console.log(Brock[0].pokemons[1]);
   // console.log(Brock[0].pokemons[2]);
@@ -67,127 +73,186 @@ export default function BoulderBadge(props) {
 
   const handleButtonClick = (buttonId) => {
     console.log(currentGymMasterPokemon);
+    console.log(Brock);
+    console.log("pokemon 1", Brock[0].pokemons);
+    console.log("pokemon 2", Brock2[0].pokemons);
+    console.log("pokemon 3", Brock3[0].pokemons);
+
     const generateBattle = async () => {
-      let selectedPokemon;
-      if (buttonId === "button1") {
-        selectedPokemon = Brock[0].pokemons[0];
-        console.log("you clicked button 1", Brock[0].pokemons[0]);
-      } else if (buttonId === "button2") {
-        console.log("you clicked button 2", Brock[0].pokemons[1]);
-        selectedPokemon = Brock[0].pokemons[1];
-      } else if (buttonId === "button3") {
-        console.log("you clicked button 3", Brock[0].pokemons[2]);
-        selectedPokemon = Brock[0].pokemons[2];
-      }
-      if (selectedPokemon) {
-        try {
-          const myTrainerData = await API.getOneTrainer(props.trainerId);
+      let selectedPokemon = [];
 
-          function filterMainPokemon(myTrainerData) {
-            return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
-          }
+      const isGymMaster = true;
+      try {
+        const myTrainerData = await API.getOneTrainer(props.trainerId);
+        if (buttonId === "button1") {
+          selectedPokemon = getBrockPokemon();
+          console.log("you clicked button 1", Brock[0].pokemons);
+        } else if (buttonId === "button2") {
+          selectedPokemon = getBrock2Pokemon();
+          console.log("you clicked button 2", Brock2[0].pokemons);
+        } else if (buttonId === "button3") {
+          selectedPokemon = getBrock3Pokemon();
+          console.log("you clicked button 3", Brock3[0].pokemons);
+        }
 
-          const myFilteredPokemons = filterMainPokemon(myTrainerData);
+        function filterMainPokemon(myTrainerData) {
+          return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
+        }
+        console.log(myTrainerData);
+        const myFilteredPokemons = filterMainPokemon(myTrainerData);
+        // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
+        console.log("selected pokemon", selectedPokemon);
+        setIsFetching(true);
+        setTimeout(() => {
+          // setIsFetching(false);
+          console.log("pre-battle", battleLog);
+          setBattleLog([]);
+          const { result, battleLogData } = BattleSys.startBattle(
+            myFilteredPokemons,
+            selectedPokemon,
+            Brock[0].name,
+            isGymMaster
+          );
+          //setting the state
+          setBattleLog(battleLogData);
+          console.log("battleLog", battleLog);
+          console.log("battle result is working?", battleLogData);
+          console.log("result", result);
 
-          // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
-
-          setIsFetching(true);
-          setTimeout(() => {
-            // setIsFetching(false);
-            console.log("pre-battle", battleLog);
-            setBattleLog([]);
-            const { result, battleLogData } = BattleSys.startBattle(
-              myFilteredPokemons,
-              selectedPokemon,
-              Brock[0].name
-            );
-            //setting the state
-            setBattleLog(battleLogData);
-            console.log("battleLog", battleLog);
-            console.log("battle result is working?", battleLogData);
-            console.log("result", result);
-
-            const handleWin = async () => {
-              try {
-                const { experienceGained, levelChange, hpChange } =
-                  await API.updateWin(props.trainerId);
+          const handleWin = async () => {
+            let experienceGained = 0;
+            let levelChange = 0;
+            let hpChange = 0;
+            let gymStageChange = "";
+            try {
+              if (buttonId === "button1") {
+                const response = await API.updateWinStage1(
+                  props.trainerId,
+                  gymId
+                );
                 console.log("battle sys Experience Change:", experienceGained);
                 console.log("battle sys Level Change:", levelChange);
                 console.log("battle sys HP Change:", hpChange);
-
-                const alerts = [];
-                alerts.push("You Won!");
-                if (experienceGained > 0) {
-                  alerts.push(
-                    `Your pokemon earned: ${experienceGained} experience!\n`
-                  );
-                }
-                if (levelChange > 0) {
-                  alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
-                }
-                if (hpChange > 0) {
-                  alerts.push(
-                    `After leveling up, your pokemon gained: ${hpChange} hp!\n`
-                  );
-                }
-
-                const alertMessage = alerts.join("\n");
-                console.log("win Log", alerts);
-                setPokemonChangeAlertWin(alertMessage);
-              } catch (error) {
-                console.log(error);
-              }
-            };
-
-            const handleLoss = async () => {
-              try {
-                const { experienceChange, levelChange, hpChange } =
-                  await API.updateLoss(props.trainerId);
-                console.log("battle sys Experience Change:", experienceChange);
+                console.log("battle sys gymStageChange:", gymStageChange);
+                experienceGained = response.experienceGained;
+                levelChange = response.levelChange;
+                hpChange = response.hpChange;
+                gymStageChange = response.gymStageChange;
+              } else if (buttonId === "button2") {
+                const response = await API.updateWinStage2(
+                  props.trainerId,
+                  gymId
+                );
+                console.log("battle sys Experience Change:", experienceGained);
                 console.log("battle sys Level Change:", levelChange);
                 console.log("battle sys HP Change:", hpChange);
-
-                const alerts = [];
-                alerts.push("You Lost... :(");
-                if (experienceChange > 0) {
-                  alerts.push(
-                    `Your pokemon earned: ${experienceChange} experience!\n`
-                  );
-                }
-                if (levelChange > 0) {
-                  alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
-                }
-                if (hpChange > 0) {
-                  alerts.push(
-                    `After leveling up, your pokemon gained: ${hpChange} hp!\n`
-                  );
-                }
-
-                const alertMessage = alerts.join("\n");
-                console.log("loss log", alerts);
-                setPokemonChangeAlertLoss(alertMessage);
-                console.log("Loss updated!");
-              } catch (error) {
-                console.log(error);
+                console.log("battle sys gymStageChange:", gymStageChange);
+                experienceGained = response.experienceGained;
+                levelChange = response.levelChange;
+                hpChange = response.hpChange;
+                gymStageChange = response.gymStageChange;
+              } else if (buttonId === "button3") {
+                const response = await API.updateWinStage3(
+                  props.trainerId,
+                  gymId
+                );
+                console.log("battle sys Experience Change:", experienceGained);
+                console.log("battle sys Level Change:", levelChange);
+                console.log("battle sys HP Change:", hpChange);
+                console.log("battle sys gymStageChange:", gymStageChange);
+                experienceGained = response.experienceGained;
+                levelChange = response.levelChange;
+                hpChange = response.hpChange;
+                gymStageChange = response.gymStageChange;
+              } else {
+                console.log("Invalid button ID");
               }
-            };
-            if (result === 1) {
-              setBattleResult(1);
-              handleWin();
-            } else if (result === 0) {
-              setBattleResult(0);
-              handleLoss();
+
+              const alerts = [];
+              alerts.push("You Won!");
+
+              if (experienceGained > 0) {
+                alerts.push(
+                  `Your pokemon earned: ${experienceGained} experience!\n`
+                );
+              }
+              if (levelChange > 0) {
+                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+              }
+              if (hpChange > 0) {
+                alerts.push(
+                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                );
+              }
+              if (gymStageChange) {
+                alerts.push(gymStageChange + "\n");
+              }
+
+              const alertMessage = alerts.join("\n");
+              console.log("win Log", alertMessage);
+              setPokemonChangeAlertWin(alertMessage);
+            } catch (error) {
+              console.log(error);
             }
-          }, 3000);
-        } catch (error) {
-          console.log(error);
-        }
+          };
+
+          const handleLoss = async () => {
+            try {
+              const { experienceChange, levelChange, hpChange } =
+                await API.updateLoss(props.trainerId);
+              console.log("battle sys Experience Change:", experienceChange);
+              console.log("battle sys Level Change:", levelChange);
+              console.log("battle sys HP Change:", hpChange);
+
+              const alerts = [];
+              alerts.push("You Lost... :(");
+              if (experienceChange > 0) {
+                alerts.push(
+                  `Your pokemon earned: ${experienceChange} experience!\n`
+                );
+              }
+              if (levelChange > 0) {
+                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+              }
+              if (hpChange > 0) {
+                alerts.push(
+                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                );
+              }
+
+              const alertMessage = alerts.join("\n");
+              console.log("loss log", alerts);
+              setPokemonChangeAlertLoss(alertMessage);
+              console.log("Loss updated!");
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          if (result === 1) {
+            console.log("buttonId", buttonId);
+            setBattleResult(1);
+            handleWin(buttonId, gymId);
+            // selectedPokemon = [];
+          } else if (result === 0) {
+            setBattleResult(0);
+            handleLoss(buttonId);
+            console.log("buttonId", buttonId);
+            // selectedPokemon = [];
+          }
+        }, 3000);
+      } catch (error) {
+        console.log(error);
       }
     };
 
     generateBattle();
   };
   useEffect(() => {
+    console.log("useEffect triggered");
+    console.log("battleLog:", battleLog);
+    console.log("battleResult:", battleResult);
+    console.log("pokemonChangeAlertWin:", pokemonChangeAlertWin);
+    console.log("pokemonChangeAlertLoss:", pokemonChangeAlertLoss);
     let timeoutIds = [];
     let logIndex = 0;
     let charIndex = 0;
@@ -221,7 +286,7 @@ export default function BoulderBadge(props) {
           clearTimeout(timeoutId);
 
           // Move to the next log entry
-          logIndex += 8;
+          logIndex += 5;
           setCurrentLogIndex(logIndex);
           console.log("logIndex", logIndex);
           charIndex = 0;
@@ -247,10 +312,11 @@ export default function BoulderBadge(props) {
   }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
   return (
     <div style={cardStyle}>
-      {/* <div className="battle-log-overlay">
+      <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (
             <p
+              className="font-text"
               key={index}
               style={{ display: index === currentLogIndex ? "block" : "none" }}
             >
@@ -258,7 +324,7 @@ export default function BoulderBadge(props) {
             </p>
           ))}
         </div>
-      </div> */}
+      </div>
       <div className="row">
         <div className="col">
           <img style={imgStyle} src={brock} alt="Image" />
@@ -277,14 +343,15 @@ export default function BoulderBadge(props) {
                 onClick={() => handleButtonClick("button1")}
                 disabled={isFetching}
               >
-                {isFetching ? (
+                {/* {isFetching ? (
                   <img
                     src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
                     alt="fetching-pokemon"
                   />
                 ) : (
                   "Fight Brock's first Pokemon!"
-                )}
+                )} */}
+                Fight Brock's first Pokemon!
               </button>
             </div>
           </div>
@@ -293,7 +360,7 @@ export default function BoulderBadge(props) {
           <div className="card">
             <img
               style={pokePhotoStyle}
-              src={Brock[0].pokemons[1].img_url}
+              src={Brock2[0].pokemons[0].img_url}
               alt="Photo"
               className="card-img-top"
             />
@@ -303,14 +370,15 @@ export default function BoulderBadge(props) {
                 onClick={() => handleButtonClick("button2")}
                 disabled={isFetching}
               >
-                {isFetching ? (
+                Fight Brock's second Pokemon!
+                {/* {isFetching ? (
                   <img
-                    src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                    alt="fetching-pokemon"
+                  src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                  alt="fetching-pokemon"
                   />
-                ) : (
+                  ) : (
                   "Fight Brock's Second Pokemon!"
-                )}
+                )} */}
               </button>
             </div>
           </div>
@@ -319,7 +387,7 @@ export default function BoulderBadge(props) {
           <div className="card">
             <img
               style={pokePhotoStyle}
-              src={Brock[0].pokemons[2].img_url}
+              src={Brock3[0].pokemons[0].img_url}
               alt="Photo"
               className="card-img-top"
             />
@@ -329,14 +397,7 @@ export default function BoulderBadge(props) {
                 onClick={() => handleButtonClick("button3")}
                 disabled={isFetching}
               >
-                {isFetching ? (
-                  <img
-                    src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                    alt="fetching-pokemon"
-                  />
-                ) : (
-                  "Fight Brock's Third Pokemon!"
-                )}
+                Fight Brock's third Pokemon!
               </button>
             </div>
           </div>

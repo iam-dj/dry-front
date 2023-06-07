@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Brock2",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/brock_dwhz8a.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 75,
+        "name": "Graveler",
+        "type": "rock",
+        "secondary_type": "ground",
+        "level": 1,
+        "hp": 200,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896188/075graveler_lmzxsk.png",
+        "evolutionId": 2,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 407,
+        "move2Id": 401,
+        "move3Id": 157,
+        "move4Id": 280,
+        "move1": {
+          "id": 407,
+          "name": "Rock Throw",
+          "power": 50,
+          "type": "Rock",
+          "description": "The user throws rocks at the target to inflict damage."
+        },
+        "move2": {
+          "id": 401,
+          "name": "Magnitude",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user creates a ground-shaking tremor to deal damage. The power of this move varies."
+        },
+        "move3": {
+          "id": 157,
+          "name": "Rock Slide",
+          "power": 75,
+          "type": "Rock",
+          "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
+        },
+        "move4": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        }
+      }
+    ]
+  }
+]

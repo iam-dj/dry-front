@@ -1,4 +1,5 @@
 //for local development
+// const URL_PREFIX = "https://dry-pokemon-backend.herokuapp.com";
 const URL_PREFIX = "http://localhost:3001";
 //deployed
 // const URL_PREFIX = "";
@@ -150,6 +151,73 @@ const API = {
         console.log("API Experience Change:", experienceGained);
         console.log("API Level Change:", levelChange);
         console.log("API HP Change:", hpChange);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  updateWinStage1: (trainerId, gymId) => {
+    console.log(gymId);
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins-stage-1/${gymId}`,
+      {
+        method: "PUT",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const { experienceGained, levelChange, hpChange, gymStageChange } =
+          data;
+        console.log("API Experience Change:", experienceGained);
+        console.log("API Level Change:", levelChange);
+        console.log("API HP Change:", hpChange);
+        console.log("API gymStagechange:", gymStageChange);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  updateWinStage2: (trainerId, gymId) => {
+    console.log(gymId);
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins-stage-2/${gymId}`,
+      {
+        method: "PUT",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const { experienceGained, levelChange, hpChange, gymStageChange } =
+          data;
+        console.log("API Experience Change:", experienceGained);
+        console.log("API Level Change:", levelChange);
+        console.log("API HP Change:", hpChange);
+        console.log("API gymStagechange:", gymStageChange);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  updateWinStage3: (trainerId, gymId) => {
+    console.log(gymId);
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/increment-num-wins-stage-3/${gymId}`,
+      {
+        method: "PUT",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const { experienceGained, levelChange, hpChange, gymStageChange } =
+          data;
+        console.log("API Experience Change:", experienceGained);
+        console.log("API Level Change:", levelChange);
+        console.log("API HP Change:", hpChange);
+        console.log("API gymStagechange:", gymStageChange);
         return data;
       })
       .catch((err) => {
