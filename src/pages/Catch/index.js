@@ -179,6 +179,8 @@ export default function Catch(props) {
   const [showPoke, setShowPoke] = useState("");
   const pokeBallImageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1024px-Pok%C3%A9_Ball_icon.svg.png";
+    const [hasChances, setHasChances] = useState(5);
+
 
   const toggleShowA = () => {
     setIsToast("");
@@ -189,7 +191,12 @@ export default function Catch(props) {
     setShowPoke(pokeBallImageUrl);
   }, []);
 
+  const decrementChances = () => {
+    setHasChances((prevChances) => prevChances - 1);
+  };
+
   const handleButtonClick = () => {
+    if (hasChances > 0) {
     const getPoke = async () => {
       try {
         const allPokemon = await API.getAllPoke();
@@ -234,6 +241,10 @@ export default function Catch(props) {
     };
 
     getPoke();
+  } else {
+    setIsToast("No more chances left!");
+    // Handle logic when there are no more chances left
+  }
   };
 
   return (
@@ -271,6 +282,7 @@ export default function Catch(props) {
               onClick={() => {
                 handleButtonClick();
                 toggleShowA();
+                decrementChances();
               }}
               disabled={isFetching}
             >

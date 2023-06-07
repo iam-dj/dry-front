@@ -171,7 +171,7 @@ export default function Train(props) {
             name,
             isGymMaster
           );
-          var myResult = Health.trackHealth(
+          Health.trackHealth(
             myFilteredPokemons,
             NPCz[0].pokemons,
             setNPCHealth, //Starting Opponent Health
@@ -436,7 +436,7 @@ export default function Train(props) {
           >
             Health:
           </label>
-          <meter id="disk_c" value={NPCDamage} min="0" max="30" />
+          <meter id="disk_c" value={NPCDamage} min="0" max={trainerHealth} />
         </div>
       </div>
     </>
