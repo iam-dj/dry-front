@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import battlebg from "./assets/battle.jpg";
 import BattleSys from "../../utils/BattleSys";
+import Health from "../../utils/HealthBar";
 import Button from "react-bootstrap/Button";
 // import { useNavigate } from "react-router-dom";
 import NPC from "./npc.json";
@@ -24,6 +25,7 @@ export default function Train(props) {
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
   const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
+
   const [npcHealth, setNPCHealth] = useState();
   const [trainerHealth, setTrainerHealth] = useState();
 
@@ -76,6 +78,26 @@ export default function Train(props) {
     // display: "none",
   };
 
+  // useEffect(() => {
+
+  //     setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - NPCDamage);
+
+  // }, [trainerHealth]);
+
+  // useEffect(() => {
+
+  //     setNPCHealth((prevTrainerHealth) => prevTrainerHealth - MyDamage);
+
+  // }, [npcHealth]);
+
+  // useEffect(() => {
+  //   setTrainerHealth(10);
+  // }, []);
+
+  // useEffect(() => {
+  //   setNPCHealth(10);
+  // }, []);
+
   const showAlert = (alertMessage) => {
     window.alert(alertMessage);
   };
@@ -84,6 +106,8 @@ export default function Train(props) {
   const [trainPic, setTrainPic] = useState("");
   const [trainName, setTrainName] = useState("");
   const [compName, setCompName] = useState("");
+  const [NPCDamage, setNPCDamage] = useState();
+  const [MyDamage, setMyDamage] = useState();
 
   const handleButtonClick = () => {
     // console.log("you've chosen to battle:", trainerId);
@@ -93,7 +117,7 @@ export default function Train(props) {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
 
         const myTrainerData2 = await API.getBattlePoke(props.trainerId);
-        console.log("myTrainerData2.img_url", myTrainerData2[0].img_url);
+        // console.log("myTrainerData2.img_url", myTrainerData2[0].img_url);
         const randomNPC = NPC[Math.floor(Math.random() * NPC.length)];
         const NPCz = [randomNPC];
         // console.log("NPCz", NPCz[0].pokemons);
@@ -128,24 +152,39 @@ export default function Train(props) {
             name,
             isGymMaster
           );
-          //setting the state
+          var myResult = Health.trackHealth(
+            myFilteredPokemons,
+            NPCz[0].pokemons,
+            setNPCHealth, //Starting Opponent Health
+            setTrainerHealth,
+            setNPCDamage,
+            setMyDamage
+          );
+
+          //       setNPCHealth(NPCHealth);
+          // setTrainerHealth(trainerHealth);
+
+          console.log("MyDamage", MyDamage);
+          console.log("oppo damage", NPCDamage);
+
+          // setNPCHealth((prevNPCHealth) => prevNPCHealth - Math.random());
+          // setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - Math.random());
+
+          console.log("npcHealth", npcHealth);
+          console.log("trainerHealth", trainerHealth);
+
           setBattleLog(battleLogData);
-          console.log("battleLog", battleLog);
-          console.log("battle result is working?", battleLogData);
-          console.log("result", result);
+          // console.log("battleLog", battleLog);
+          // console.log("battle result is working?", battleLogData);
+          // console.log("result", result);
 
           const handleWin = async () => {
             try {
-              const {
-                experienceGained,
-                levelChange,
-                hpChange,
-                pokemonNewLevel,
-              } = await API.updateWin(props.trainerId);
-              console.log("battle sys Experience Change:", experienceGained);
-              console.log("battle sys Level Change:", levelChange);
-              console.log("battle sys HP Change:", hpChange);
-              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+              const { experienceGained, levelChange, hpChange } =
+                await API.updateWin(props.trainerId);
+              // console.log("battle sys Experience Change:", experienceGained);
+              // console.log("battle sys Level Change:", levelChange);
+              // console.log("battle sys HP Change:", hpChange);
 
               const alerts = [];
               alerts.push("You Won!");
@@ -165,7 +204,7 @@ export default function Train(props) {
               }
 
               const alertMessage = alerts.join("\n");
-              console.log("win Log", alerts);
+              // console.log("win Log", alerts);
               setPokemonChangeAlertWin(alertMessage);
             } catch (error) {
               console.log(error);
@@ -174,16 +213,11 @@ export default function Train(props) {
 
           const handleLoss = async () => {
             try {
-              const {
-                experienceChange,
-                levelChange,
-                hpChange,
-                pokemonNewLevel,
-              } = await API.updateLoss(props.trainerId);
-              console.log("battle sys Experience Change:", experienceChange);
-              console.log("battle sys Level Change:", levelChange);
-              console.log("battle sys HP Change:", hpChange);
-              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+              const { experienceChange, levelChange, hpChange } =
+                await API.updateLoss(props.trainerId);
+              // console.log("battle sys Experience Change:", experienceChange);
+              // console.log("battle sys Level Change:", levelChange);
+              // console.log("battle sys HP Change:", hpChange);
 
               const alerts = [];
               alerts.push("You Lost... :(");
@@ -203,9 +237,9 @@ export default function Train(props) {
               }
 
               const alertMessage = alerts.join("\n");
-              console.log("loss log", alerts);
+              // console.log("loss log", alerts);
               setPokemonChangeAlertLoss(alertMessage);
-              console.log("Loss updated!");
+              // console.log("Loss updated!");
             } catch (error) {
               console.log(error);
             }
@@ -225,6 +259,7 @@ export default function Train(props) {
 
     generateBattle();
   };
+
   useEffect(() => {
     let timeoutIds = [];
     let logIndex = 0;
@@ -235,18 +270,18 @@ export default function Train(props) {
         if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertWin);
-          console.log("useEffect log", pokemonChangeAlertWin);
+          // console.log("useEffect log", pokemonChangeAlertWin);
         }
         if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertLoss);
-          console.log("useEffect log", pokemonChangeAlertLoss);
+          // console.log("useEffect log", pokemonChangeAlertLoss);
         }
         return;
       }
 
       const logEntry = battleLog[logIndex];
-      console.log(logEntry);
+      // console.log(logEntry);
 
       const timeoutId = setTimeout(() => {
         setCurrentCharIndex((prevCharIndex) => ({
@@ -262,7 +297,7 @@ export default function Train(props) {
           // Move to the next log entry
           logIndex += 8;
           setCurrentLogIndex(logIndex);
-          console.log("logIndex", logIndex);
+          // console.log("logIndex", logIndex);
           charIndex = 0;
 
           // Start animating the next log entry after a delay
@@ -298,14 +333,9 @@ export default function Train(props) {
             style={{ fontSize: "x-small" }}
             for="disk_b"
           >
-            Health Meter:
+            Health:
           </label>
-          <meter
-            id="disk_b"
-            value={trainerHealth}
-            min="0"
-            max={trainerHealth}
-          />
+          <meter id="disk_b" value={MyDamage} min="0" max="30" />
           {trainPic && (
             <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
           )}
@@ -365,9 +395,9 @@ export default function Train(props) {
             style={{ fontSize: "x-small" }}
             for="disk_c"
           >
-            Health Meter:
+            Health:
           </label>
-          <meter id="disk_c" value={npcHealth} min="0" max={npcHealth} />
+          <meter id="disk_c" value={NPCDamage} min="0" max="30" />
         </div>
       </div>
     </>

@@ -4,11 +4,13 @@ import GymLeader_ from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
-import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
 import { useState, useEffect } from "react";
+import blainefight from "./assets/blainefight.mp4";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 export default function BoulderBadge(props) {
   const cardStyle = {
@@ -47,6 +49,18 @@ export default function BoulderBadge(props) {
   const [battleResult, setBattleResult] = useState();
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
   const [currentGymStage, setCurrentGymStage] = useState([]);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
+  const handleVideoModalOpen = () => {
+    setShowVideoModal(true);
+    setTimeout(() => {
+      setShowVideoModal(false);
+    }, 8000);
+  };
+
+  const handleVideoModalClose = () => {
+    setShowVideoModal(false);
+  };
   const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
   const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
   const [BattleStatus, setBattleStatus] = useState(false);
@@ -437,11 +451,40 @@ export default function BoulderBadge(props) {
               <button
                 className="btn btn-primary mx-auto"
                 style={{ display: "block", margin: "0 auto" }}
-                onClick={() => handleButtonClick("button1")}
+                onClick={() => {
+                  handleButtonClick("button1");
+                  handleVideoModalOpen();
+                }}
                 disabled={isFetching}
               >
                 First Challenge
               </button>
+              <Modal
+                show={showVideoModal}
+                onHide={handleVideoModalClose}
+                centered
+              >
+                <Modal.Body>
+                  <video
+                    style={{ width: "95%", height: "95%" }}
+                    controls
+                    autoPlay
+                  >
+                    <source src={blainefight} type="video/mp4" />
+                  </video>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      handleButtonClick("button2");
+                      handleVideoModalOpen();
+                    }}
+                  >
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
           </div>
         </div>
@@ -466,7 +509,10 @@ export default function BoulderBadge(props) {
                   currentGymStage < 2 ? "disabled-button" : ""
                 }`}
                 style={{ display: "block", margin: "0 auto" }}
-                onClick={() => handleButtonClick("button2")}
+                onClick={() => {
+                  handleButtonClick("button2");
+                  handleVideoModalOpen();
+                }}
                 disabled={currentGymStage < 2 || isFetching}
               >
                 {currentGymStage < 2
@@ -496,7 +542,10 @@ export default function BoulderBadge(props) {
                   currentGymStage < 3 ? "disabled-button" : ""
                 }`}
                 style={{ display: "block", margin: "0 auto" }}
-                onClick={() => handleButtonClick("button3")}
+                onClick={() => {
+                  handleButtonClick("button3");
+                  handleVideoModalOpen();
+                }}
                 disabled={currentGymStage < 3 || isFetching}
               >
                 {currentGymStage < 3

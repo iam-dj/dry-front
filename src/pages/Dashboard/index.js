@@ -78,7 +78,8 @@ export default function Dashboard(props) {
               <Row>
                 <Col xs={12} md={4} className="image-col">
                   <img
-                    className="profile"
+                    // style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                    className="profile "
                     alt="profile"
                     src={trainer.profilePicUrl}
                   />
