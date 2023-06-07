@@ -4,7 +4,7 @@ import Misty from "./assets/Misty.png";
 import cascade from "./assets/cascade.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
@@ -262,14 +262,17 @@ export default function BoulderBadge(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1) {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertWin);
-          console.log("useEffect log", pokemonChangeAlertWin);
-        } else {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertLoss);
-          console.log("useEffect log", pokemonChangeAlertLoss);
+        if (battleLog.length > 0) {
+          // Check if battleLog has any elements
+          if (battleResult === 1) {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertWin);
+            console.log("useEffect log", pokemonChangeAlertWin);
+          } else {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertLoss);
+            console.log("useEffect log", pokemonChangeAlertLoss);
+          }
         }
         return;
       }

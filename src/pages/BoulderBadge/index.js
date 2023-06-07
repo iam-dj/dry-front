@@ -262,14 +262,17 @@ export default function BoulderBadge(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1) {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertWin);
-          console.log("useEffect log", pokemonChangeAlertWin);
-        } else {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertLoss);
-          console.log("useEffect log", pokemonChangeAlertLoss);
+        if (battleLog.length > 0) {
+          // Check if battleLog has any elements
+          if (battleResult === 1) {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertWin);
+            console.log("useEffect log", pokemonChangeAlertWin);
+          } else {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertLoss);
+            console.log("useEffect log", pokemonChangeAlertLoss);
+          }
         }
         return;
       }

@@ -262,18 +262,20 @@ export default function EarthBadge(props) {
 
     const animateLogEntry = () => {
       if (logIndex >= battleLog.length) {
-        if (battleResult === 1) {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertWin);
-          console.log("useEffect log", pokemonChangeAlertWin);
-        } else {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertLoss);
-          console.log("useEffect log", pokemonChangeAlertLoss);
+        if (battleLog.length > 0) {
+          // Check if battleLog has any elements
+          if (battleResult === 1) {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertWin);
+            console.log("useEffect log", pokemonChangeAlertWin);
+          } else {
+            setIsFetching(false);
+            showAlert(pokemonChangeAlertLoss);
+            console.log("useEffect log", pokemonChangeAlertLoss);
+          }
         }
         return;
       }
-
       const logEntry = battleLog[logIndex];
       console.log(logEntry);
 
@@ -332,9 +334,12 @@ export default function EarthBadge(props) {
       <div className="row">
         <div className="col">
           <img style={imgStyle} src={gio} alt="Brock gym leader" />
-          <p style={{ border: "10px solid gold", backgroundColor: "#f0f1c8", }} className="font-text text-center">
-                {GymLeader[0].name}
-              </p>
+          <p
+            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
+            className="font-text text-center"
+          >
+            {GymLeader[0].name}
+          </p>
         </div>
         <div className="col">
           <div
@@ -379,7 +384,7 @@ export default function EarthBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-            <p className="font-text text-center">
+              <p className="font-text text-center">
                 {GymLeader2[0].pokemons[0].name}
               </p>
               <button
@@ -413,7 +418,7 @@ export default function EarthBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-            <p className="font-text text-center">
+              <p className="font-text text-center">
                 {GymLeader3[0].pokemons[0].name}
               </p>
               <button
