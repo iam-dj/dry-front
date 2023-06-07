@@ -85,6 +85,14 @@ export default function Train(props) {
   useEffect(() => {
     setNPCHealth((prevTrainerHealth) => prevTrainerHealth - .01);
   }, [npcHealth]);
+
+  useEffect(() => {
+    setTrainerHealth();
+  }, []);
+
+  useEffect(() => {
+    setNPCHealth();
+  }, []);
   
 
   const showAlert = (alertMessage) => {
