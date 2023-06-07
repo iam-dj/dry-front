@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Giovanni",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/giovanni_q50use.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 31,
+        "name": "Nidoqueen",
+        "type": "poison",
+        "secondary_type": "ground",
+        "level": 1,
+        "hp": 910,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896182/031nidoqueen_iyzwmv.png",
+        "evolutionId": 3,
+        "rarity": "rare",
+        "tier": 3,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 33,
+        "move2Id": 280,
+        "move3Id": 29,
+        "move4Id": 130,
+        "move1": {
+          "id": 33,
+          "name": "Body Slam",
+          "power": 85,
+          "type": "Normal",
+          "description": "The user drops onto the target with its full body weight. It may also leave the target with paralysis."
+        },
+        "move2": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
+        },
+        "move3": {
+          "id": 29,
+          "name": "Horn Attack",
+          "power": 65,
+          "type": "Ground",
+          "description": "The target is jabbed with a sharply pointed horn to inflict damage."
+        },
+        "move4": {
+          "id": 130,
+          "name": "Skull Bash",
+          "power": 130,
+          "type": "Rock",
+          "description": "The user tucks in its head to raise its Defense stat on the first turn, then rams the target on the next turn."
+        }
+      }
+    ],
+
+    "gymId": 8
+  }
+]

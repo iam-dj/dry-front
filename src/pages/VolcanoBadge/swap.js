@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
-import janine from "./assets/janine_soul.png";
-import soul from "./assets/soul.jpg";
+import GymLeader_ from "./assets/DP-Brock.png";
+import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
 // import Button from "react-bootstrap/Button";
@@ -10,9 +10,9 @@ import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
 import { useState, useEffect } from "react";
 
-export default function SoulBadge(props) {
+export default function BoulderBadge(props) {
   const cardStyle = {
-    backgroundImage: `url(${soul})`,
+    backgroundImage: `url(${boulder})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -24,8 +24,8 @@ export default function SoulBadge(props) {
   const imgStyle = {
     width: "220%",
     paddingRight: "130px",
-    maxHeight: "600px",
-    maxWidth: "600px",
+    maxHeight: "400px",
+    maxWidth: "400px",
     objectFit: "contain",
   };
 
@@ -331,7 +331,7 @@ export default function SoulBadge(props) {
       </div>
       <div className="row">
         <div className="col">
-          <img style={imgStyle} src={janine} alt="Brock gym leader" />
+          <img style={imgStyle} src={GymLeader_} alt="Brock gym leader" />
           <p style={{ border: "10px solid gold", backgroundColor: "#f0f1c8", }} className="font-text text-center">
                 {GymLeader[0].name}
               </p>

@@ -1,13 +1,13 @@
 import React from "react";
 import "./style.css";
-import brock from "./assets/DP-Brock.png";
+import GymLeader_ from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
 import Button from "react-bootstrap/Button";
-import Brock from "./brock1.json";
-import Brock2 from "./brock2.json";
-import Brock3 from "./brock3.json";
+import GymLeader from "./GymLeader1.json";
+import GymLeader2 from "./GymLeader2.json";
+import GymLeader3 from "./GymLeader3.json";
 import { useState, useEffect } from "react";
 
 export default function BoulderBadge(props) {
@@ -23,7 +23,7 @@ export default function BoulderBadge(props) {
   };
   const imgStyle = {
     width: "220%",
-    paddingRight: "20px",
+    paddingRight: "130px",
     maxHeight: "400px",
     maxWidth: "400px",
     objectFit: "contain",
@@ -56,14 +56,17 @@ export default function BoulderBadge(props) {
 
     // display: "none",
   };
-  const getBrockPokemon = () => JSON.parse(JSON.stringify(Brock[0].pokemons));
-  const getBrock2Pokemon = () => JSON.parse(JSON.stringify(Brock2[0].pokemons));
-  const getBrock3Pokemon = () => JSON.parse(JSON.stringify(Brock3[0].pokemons));
+  const getGymLeaderPokemon = () =>
+    JSON.parse(JSON.stringify(GymLeader[0].pokemons));
+  const getGymLeader2Pokemon = () =>
+    JSON.parse(JSON.stringify(GymLeader2[0].pokemons));
+  const getGymLeader3Pokemon = () =>
+    JSON.parse(JSON.stringify(GymLeader3[0].pokemons));
   //this is for the put route for a win
   const gymId = 1;
-  // console.log(Brock[0].pokemons[0]);
-  // console.log(Brock[0].pokemons[1]);
-  // console.log(Brock[0].pokemons[2]);
+  // console.log(GymLeader[0].pokemons[0]);
+  // console.log(GymLeader[0].pokemons[1]);
+  // console.log(GymLeader[0].pokemons[2]);
 
   const showAlert = (alertMessage) => {
     window.alert(alertMessage);
@@ -73,10 +76,10 @@ export default function BoulderBadge(props) {
 
   const handleButtonClick = (buttonId) => {
     console.log(currentGymMasterPokemon);
-    console.log(Brock);
-    console.log("pokemon 1", Brock[0].pokemons);
-    console.log("pokemon 2", Brock2[0].pokemons);
-    console.log("pokemon 3", Brock3[0].pokemons);
+    console.log(GymLeader);
+    console.log("pokemon 1", GymLeader[0].pokemons);
+    console.log("pokemon 2", GymLeader2[0].pokemons);
+    console.log("pokemon 3", GymLeader3[0].pokemons);
 
     const generateBattle = async () => {
       let selectedPokemon = [];
@@ -85,14 +88,14 @@ export default function BoulderBadge(props) {
       try {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
         if (buttonId === "button1") {
-          selectedPokemon = getBrockPokemon();
-          console.log("you clicked button 1", Brock[0].pokemons);
+          selectedPokemon = getGymLeaderPokemon();
+          console.log("you clicked button 1", GymLeader[0].pokemons);
         } else if (buttonId === "button2") {
-          selectedPokemon = getBrock2Pokemon();
-          console.log("you clicked button 2", Brock2[0].pokemons);
+          selectedPokemon = getGymLeader2Pokemon();
+          console.log("you clicked button 2", GymLeader2[0].pokemons);
         } else if (buttonId === "button3") {
-          selectedPokemon = getBrock3Pokemon();
-          console.log("you clicked button 3", Brock3[0].pokemons);
+          selectedPokemon = getGymLeader3Pokemon();
+          console.log("you clicked button 3", GymLeader3[0].pokemons);
         }
 
         function filterMainPokemon(myTrainerData) {
@@ -110,7 +113,7 @@ export default function BoulderBadge(props) {
           const { result, battleLogData } = BattleSys.startBattle(
             myFilteredPokemons,
             selectedPokemon,
-            Brock[0].name,
+            GymLeader[0].name,
             isGymMaster
           );
           //setting the state
@@ -310,6 +313,7 @@ export default function BoulderBadge(props) {
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };
   }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
+
   return (
     <div style={cardStyle}>
       <div className="battle-log-overlay">
@@ -327,77 +331,98 @@ export default function BoulderBadge(props) {
       </div>
       <div className="row">
         <div className="col">
-          <img style={imgStyle} src={brock} alt="Image" />
+          <img style={imgStyle} src={GymLeader_} alt="Brock gym leader" />
+          <p style={{ border: "10px solid gold", backgroundColor: "#f0f1c8", }} className="font-text text-center">
+                {GymLeader[0].name}
+              </p>
         </div>
         <div className="col">
-          <div className="card">
+          <div
+            className="card"
+            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
+          >
             <img
-              style={pokePhotoStyle}
-              src={Brock[0].pokemons[0].img_url}
+              style={{
+                ...pokePhotoStyle,
+                // boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+              }}
+              src={GymLeader[0].pokemons[0].img_url}
               alt="Photo"
-              className="card-img-top"
+              className="card-img-top mx-auto"
             />
             <div className="card-body">
+              <p className="font-text text-center">
+                {GymLeader[0].pokemons[0].name}
+              </p>
+
               <button
-                className="btn btn-primary"
+                className="btn btn-primary mx-auto"
+                style={{ display: "block", margin: "0 auto" }}
                 onClick={() => handleButtonClick("button1")}
                 disabled={isFetching}
               >
-                {/* {isFetching ? (
-                  <img
-                    src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                    alt="fetching-pokemon"
-                  />
-                ) : (
-                  "Fight Brock's first Pokemon!"
-                )} */}
-                Fight Brock's first Pokemon!
+                First Challenge
               </button>
             </div>
           </div>
         </div>
+
         <div className="col">
-          <div className="card">
+          <div
+            className="card"
+            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
+          >
             <img
               style={pokePhotoStyle}
-              src={Brock2[0].pokemons[0].img_url}
+              src={GymLeader2[0].pokemons[0].img_url}
               alt="Photo"
-              className="card-img-top"
+              className="card-img-top mx-auto"
             />
             <div className="card-body">
+            <p className="font-text text-center">
+                {GymLeader2[0].pokemons[0].name}
+              </p>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary mx-auto"
+                style={{ display: "block", margin: "0 auto" }}
                 onClick={() => handleButtonClick("button2")}
                 disabled={isFetching}
               >
-                Fight Brock's second Pokemon!
+                Second Challenge!
                 {/* {isFetching ? (
                   <img
                   src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
                   alt="fetching-pokemon"
                   />
                   ) : (
-                  "Fight Brock's Second Pokemon!"
+                  "Fight GymLeader's Second Pokemon!"
                 )} */}
               </button>
             </div>
           </div>
         </div>
         <div className="col">
-          <div className="card">
+          <div
+            className="card"
+            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
+          >
             <img
               style={pokePhotoStyle}
-              src={Brock3[0].pokemons[0].img_url}
+              src={GymLeader3[0].pokemons[0].img_url}
               alt="Photo"
-              className="card-img-top"
+              className="card-img-top mx-auto"
             />
             <div className="card-body">
+            <p className="font-text text-center">
+                {GymLeader3[0].pokemons[0].name}
+              </p>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary mx-auto"
+                style={{ display: "block", margin: "0 auto" }}
                 onClick={() => handleButtonClick("button3")}
                 disabled={isFetching}
               >
-                Fight Brock's third Pokemon!
+                Final Challenge!
               </button>
             </div>
           </div>
