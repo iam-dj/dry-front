@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Sabrina",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723628/sabrina_yrgr99.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 63,
+        "name": "Abra",
+        "type": "psychic",
+        "secondary_type": null,
+        "level": 1,
+        "hp": 300,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896187/063abra_ntkn7l.png",
+        "evolutionId": 1,
+        "rarity": "common",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 1,
+        "move2Id": 388,
+        "move3Id": 58,
+        "move4Id": 292,
+        "move1": {
+          "id": 1,
+          "name": "Pound",
+          "power": 40,
+          "type": "Normal",
+          "description": "The target is physically pounded with a long tail or a forelimb, etc."
+        },
+        "move2": {
+          "id": 388,
+          "name": "Confusion",
+          "power": 50,
+          "type": "Psychic",
+          "description": "The target is struck by a peculiar ray. This may also leave the target confused."
+        },
+        "move3": {
+          "id": 58,
+          "name": "Psybeam",
+          "power": 65,
+          "type": "Normal",
+          "description": "The target is attacked with a peculiar ray. It may also confuse the target."
+        },
+        "move4": {
+          "id": 292,
+          "name": "Shadow Ball",
+          "power": 80,
+          "type": "Ghost",
+          "description": "The user hurls a shadowy blob at the target. It may also lower the target's Special Defense stat."
+        }
+      }
+    ],
+    "gymId": 6
+  }
+]

@@ -332,9 +332,12 @@ export default function BoulderBadge(props) {
       <div className="row">
         <div className="col">
           <img style={imgStyle} src={GymLeader_} alt="Brock gym leader" />
-          <p style={{ border: "10px solid gold", backgroundColor: "#f0f1c8", }} className="font-text text-center">
-                {GymLeader[0].name}
-              </p>
+          <p
+            style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
+            className="font-text text-center"
+          >
+            {GymLeader[0].name}
+          </p>
         </div>
         <div className="col">
           <div
@@ -379,7 +382,7 @@ export default function BoulderBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-            <p className="font-text text-center">
+              <p className="font-text text-center">
                 {GymLeader2[0].pokemons[0].name}
               </p>
               <button
@@ -413,7 +416,7 @@ export default function BoulderBadge(props) {
               className="card-img-top mx-auto"
             />
             <div className="card-body">
-            <p className="font-text text-center">
+              <p className="font-text text-center">
                 {GymLeader3[0].pokemons[0].name}
               </p>
               <button
