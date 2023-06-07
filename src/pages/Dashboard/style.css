@@ -1,10 +1,9 @@
-/* .homePage {
-    /* background-image: url("/public/poke_bg.png"); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-} */
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Press+Start+2P&display=swap");
+
+.font-text {
+  font-weight: bolder;
+  font-family: "Press Start 2P";
+}
 
 html,
 body,
@@ -50,8 +49,15 @@ background: radial-gradient(circle, rgba(255,0,0,0.8982186624649859) 0%, rgba(16
 }
 
 .prof-card {
-  background-color: #f0f1c8;
-  border: 15px solid rgb(240, 241, 200);
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fbab7e 13%,
+    #f7ce68 32%,
+    #ffffff 58%,
+    #ffffff 100%
+  );  /* background-image: linear-gradient(0deg, #ffffff 0%, #9c9c9c 100%); */
+      border: 15px solid gold;
   border-radius: 10px;
 
   /* background-image: linear-gradient(62deg, #3366af 0%, #3366af 100%); */
@@ -66,7 +72,7 @@ background: radial-gradient(circle, rgba(255,0,0,0.8982186624649859) 0%, rgba(16
 }
 .card {
   background-color: white;
-  border: 15px solid rgb(235, 237, 127) ;
+  /* border: 15px solid gold ; */
   /* background-image: linear-gradient(62deg, #3366af 0%, #3366af 100%); */
   /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.5);
     max-width: 800px;
@@ -88,11 +94,11 @@ background: radial-gradient(circle, rgba(255,0,0,0.8982186624649859) 0%, rgba(16
 }
 
 .profile-name {
-  /* color: #ff0000;  */
+  color: #484747; 
   font-size: 4.0rem;
-  font-family: Helvetica, sans-serif;
   font-weight: bolder;
-  -webkit-text-stroke-color: black; /* Stroke color */
+  font-family: "Press Start 2P";
+  /* -webkit-text-stroke-color: rgb(255, 255, 255); Stroke color */
   /* Additional styles */
 }
 

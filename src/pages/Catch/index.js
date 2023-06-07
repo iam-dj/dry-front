@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import pokevideo from "./assets/pokeVideo.mp4";
 // import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 import PokeDex from "../../components/PokeDex";
 import Toast from "react-bootstrap/Toast";
+import PB from "./assets/pokeball.png";
 
 export default function Catch(props) {
   const cardStyle = {
@@ -175,34 +176,58 @@ export default function Catch(props) {
   const [isToast, setIsToast] = useState("");
   const [isTrainer, setIsTrainer] = useState();
   const [showA, setShowA] = useState(true);
+  const [showPoke, setShowPoke] = useState("");
+  const pokeBallImageUrl =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1024px-Pok%C3%A9_Ball_icon.svg.png";
 
   const toggleShowA = () => {
     setIsToast("");
     setShowA(false);
   };
 
+  useEffect(() => {
+    setShowPoke(pokeBallImageUrl);
+  }, []);
+
   const handleButtonClick = () => {
     const getPoke = async () => {
       try {
-        // const allPokemon = await API.getAllPoke();
-
+        const allPokemon = await API.getAllPoke();
+        
         const randPoke =
           pokemonNames[Math.floor(Math.random() * pokemonNames.length)];
 
-        console.log("poke", randPoke);
+        // console.log("poke", randPoke);
 
         await API.catchPokemon(props.trainerId, randPoke);
         const data = await API.getOneTrainer(props.trainerId);
         setIsTrainer(data);
         console.log("data", data);
 
+        const foundPoke = allPokemon.find(
+          (pokemon) => pokemon.name === randPoke
+        );
+
+        if (foundPoke) {
+          // RandPoke found in allPokemon
+          setTimeout(() => {
+            setShowPoke(foundPoke.img_url);
+          }, 1000);
+        } else {
+          // RandPoke not found in allPokemon
+          console.log("Pokemon not found.");
+        }
+        setTimeout(() => {
+          setShowPoke(pokeBallImageUrl);
+          setIsToast("");
+        }, 5000);
         setIsFetching(true);
         setTimeout(() => {
           setIsFetching(false);
 
           // alert(`Congrats you captured a ${randPoke}`);
           setIsToast(`You caught a ${randPoke}`);
-        }, 3000);
+        }, 1000);
       } catch (error) {
         console.log(error);
       }
@@ -257,7 +282,7 @@ export default function Catch(props) {
               ) : (
                 "Catch 'em All"
               )}
-              <Toast>
+              <Toast className="mx-auto" >
                 <Toast.Body
                   style={{
                     backgroundColor: "white",
@@ -266,6 +291,17 @@ export default function Catch(props) {
                   }}
                 >
                   {isToast}
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <img
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "contain",
+                      }}
+                      src={showPoke}
+                      alt="Pokemon"
+                    />
+                  </div>
                 </Toast.Body>
               </Toast>
             </Button>

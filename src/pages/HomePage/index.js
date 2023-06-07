@@ -49,7 +49,6 @@ export default function HomePage(props) {
     // maxHeight: "100vh",
     // display: "flex",
     // justifyContent: "center",
-    // alignItems: "center",
   };
   const cardStylee = {
     width: "250px",
@@ -87,7 +86,7 @@ export default function HomePage(props) {
           // const oppFilteredPokemons = filterMainPokemon(myTrainerData);
 
           setIsFetching(true);
-          const isGymMaster = false
+          const isGymMaster = false;
           setTimeout(() => {
             // setIsFetching(false);
             // console.log("pre-battle", battleLog);
@@ -283,7 +282,12 @@ export default function HomePage(props) {
   return (
     <>
       <div style={cardStyle}>
-        <Container>
+        <Container 
+        style={{
+          marginBottom: 25 + "px",
+          // border: "10px solid gold",
+        }}
+        >
           <img
             src={poke}
             className="profile32 mx-auto d-block"
@@ -300,49 +304,74 @@ export default function HomePage(props) {
             ) : (
               loadedTrainer.map((trainer) => (
                 <Col key={trainer.id} xs={12} md={6} lg={4}>
-                  <div className="prof-card">
+                  <div
+                    className="card"
+                    style={{
+                      marginBottom: 25 + "px",
+                      border: "10px solid gold",
+                    }}
+                  >
                     <Card.Body>
                       <Row>
-                        <Col className="col-2">
+                        <Col className="col-4">
                           <Row>
                             <img
-                              style={{ width: 200 + "px" }}
+                              style={{
+                                width: 100 + "px",
+                                height: 50 + "px",
+                                objectFit: "cover",
+                              }}
                               src={trainer.profilePicUrl}
                               alt="trainer profile"
                             />
                           </Row>
                         </Col>
-                        <Col className="col-10">
+                        <Col className="col-8">
                           <Row className="profile-name2">{trainer.name}</Row>
                           <Row>
-                            <h6 className="profile-record2">
-                              <span className="age-heading">Record:</span>{" "}
-                              <span className="numEffect">
-                                {trainer.numWins}
+                            <h6 className="profile-record2 justify-content-center">
+                              <span
+                                className="age-heading"
+                                style={{
+                                  marginBottom: 50 + "px",
+                                  marginTop: 50 + "px",
+                                  // paddingBottom: 25 + "px",
+                                }}
+                              >
+                                Record:
                               </span>{" "}
-                              -{" "}
-                              <span className="numEffect">
-                                {trainer.numLosses}
-                              </span>
+                              <span className="">{trainer.numWins}</span> -{" "}
+                              <span className="">{trainer.numLosses}</span>
                             </h6>
+                            <br />
+                            <br />
                           </Row>
                         </Col>
                       </Row>
 
-                      <Button
-                        variant="primary mx-auto d-block"
-                        onClick={() => {
-                          handleBattle(trainer.id);
-                          handleVideoModalOpen();
-                        }}
-                        className="btn-sm"
-                        type="button"
-                      >
-                        Friendly Battle
-                      </Button>
-                      <Button style={{ marginTop: 5 + "px" }} variant="primary mx-auto d-block" className="btn-sm" onClick={() => setShow(true)}>Show Battlelog</Button>
+                      <div className="d-flex justify-content-between">
+                        <Button
+                          variant="primary mx-auto d-block"
+                          onClick={() => {
+                            handleBattle(trainer.id);
+                            handleVideoModalOpen();
+                          }}
+                          className="btn-sm"
+                          type="button"
+                        >
+                          Friendly Battle
+                        </Button>
+                        <Button
+                          // style={{ marginTop: 5 + "px" }}
+                          variant="primary mx-auto d-block"
+                          className="btn-sm"
+                          type="button"
+                          onClick={() => setShow(true)}
+                        >
+                          Show Battlelog
+                        </Button>
+                      </div>
 
-                      {/* Modal for video */}
                       <Modal
                         show={showVideoModal}
                         onHide={handleVideoModalClose}
@@ -350,10 +379,7 @@ export default function HomePage(props) {
                       >
                         <Modal.Body>
                           <video controls autoPlay>
-                            <source
-                            src={Fight}
-                            type="video/mp4"
-                            />
+                            <source src={Fight} type="video/mp4" />
                           </video>
                         </Modal.Body>
                         <Modal.Footer>
@@ -363,7 +389,6 @@ export default function HomePage(props) {
                           >
                             Close
                           </Button>
-                         
                         </Modal.Footer>
                       </Modal>
                     </Card.Body>
@@ -376,33 +401,34 @@ export default function HomePage(props) {
         <Row>
           <Col xs={6}>
             <Toast
-              style={{ width: 2000 + "px", position:"absolute", left:50+"%" }}
+              style={{
+                width: 2000 + "px",
+                position: "absolute",
+                left: 50 + "%",
+                transform:"translateX(-50%)"
+              }}
               onClose={() => setShow(false)}
               show={show}
-              delay={3000}
+              delay={9000}
               autohide
-              
             >
               <Toast.Header>
                 <strong className="me-auto">Dry Pokemon</strong>
               </Toast.Header>
-              <Toast.Body >
-                  {battleLog.map((logEntry, index) => (
-                    <p
-                      className="font-text"
-                      key={index}
-                      style={{
-                        display: index === currentLogIndex ? "block" : "none",
-                      }}
-                    >
-                      {logEntry.slice(0, currentCharIndex[index])}
-                    </p>
-                  ))}
+              <Toast.Body>
+                {battleLog.map((logEntry, index) => (
+                  <p
+                    className="font-text"
+                    key={index}
+                    style={{
+                      display: index === currentLogIndex ? "block" : "none",
+                    }}
+                  >
+                    {logEntry.slice(0, currentCharIndex[index])}
+                  </p>
+                ))}
               </Toast.Body>
             </Toast>
-          </Col>
-          <Col>
-            
           </Col>
         </Row>
       </div>
