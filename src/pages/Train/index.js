@@ -78,21 +78,29 @@ export default function Train(props) {
     // display: "none",
   };
 
-  useEffect(() => {
-    setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - .01);
-  }, [trainerHealth]);
 
-  useEffect(() => {
-    setNPCHealth((prevTrainerHealth) => prevTrainerHealth - .01);
-  }, [npcHealth]);
 
-  useEffect(() => {
-    setTrainerHealth();
-  }, []);
+  // useEffect(() => {
+    
+  //     setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - NPCDamage);
 
-  useEffect(() => {
-    setNPCHealth();
-  }, []);
+  
+  // }, [trainerHealth]);
+
+  // useEffect(() => {
+  
+  //     setNPCHealth((prevTrainerHealth) => prevTrainerHealth - MyDamage);
+   
+  
+  // }, [npcHealth]);
+
+  // useEffect(() => {
+  //   setTrainerHealth(10);
+  // }, []);
+
+  // useEffect(() => {
+  //   setNPCHealth(10);
+  // }, []);
   
 
   const showAlert = (alertMessage) => {
@@ -103,9 +111,13 @@ export default function Train(props) {
   const [trainPic, setTrainPic] = useState("");
   const [trainName, setTrainName] = useState("");
   const [compName, setCompName] = useState("");
+  const [NPCDamage, setNPCDamage] = useState();
+  const [MyDamage, setMyDamage] = useState();
 
   const handleButtonClick = () => {
     // console.log("you've chosen to battle:", trainerId);
+      
+
 
     const generateBattle = async () => {
       try {
@@ -151,7 +163,15 @@ export default function Train(props) {
             myFilteredPokemons,
             NPCz[0].pokemons,
             setNPCHealth, //Starting Opponent Health
-            setTrainerHealth);
+            setTrainerHealth,
+            setNPCDamage,
+            setMyDamage);
+
+      //       setNPCHealth(NPCHealth);
+      // setTrainerHealth(trainerHealth);
+
+            console.log("MyDamage",MyDamage)
+            console.log("oppo damage",NPCDamage)
 
             
 
@@ -325,9 +345,9 @@ export default function Train(props) {
           </label>
           <meter
             id="disk_b"
-            value={trainerHealth}
+            value={MyDamage}
             min="0"
-            max='10'
+            max="30"
           />
           {trainPic && (
             <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
@@ -390,7 +410,7 @@ export default function Train(props) {
           >
             Health:
           </label>
-          <meter id="disk_c" value={npcHealth} min="0" max='10' />
+          <meter id="disk_c" value={NPCDamage} min="0" max="30" />
         </div>
       </div>
     </>
