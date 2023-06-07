@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import battlebg from "./assets/battle.jpg";
 import BattleSys from "../../utils/BattleSys";
+import Health from "../../utils/HealthBar";
 import Button from "react-bootstrap/Button";
 // import { useNavigate } from "react-router-dom";
 import NPC from "./npc.json";
@@ -24,6 +25,7 @@ export default function Train(props) {
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
   const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
+
   const [npcHealth, setNPCHealth] = useState();
   const [trainerHealth, setTrainerHealth] = useState();
 
@@ -128,7 +130,12 @@ export default function Train(props) {
             name,
             isGymMaster
           );
-          //setting the state
+          var {result1, result2} = Health.trackHealth (
+            myFilteredPokemons,
+            NPCz[0].pokemons,
+            name,
+            isGymMaster);
+            
           setBattleLog(battleLogData);
           console.log("battleLog", battleLog);
           console.log("battle result is working?", battleLogData);
@@ -286,7 +293,7 @@ export default function Train(props) {
             style={{ fontSize: "x-small" }}
             for="disk_b"
           >
-            Health Meter:
+            Health:
           </label>
           <meter
             id="disk_b"
@@ -353,7 +360,7 @@ export default function Train(props) {
             style={{ fontSize: "x-small" }}
             for="disk_c"
           >
-            Health Meter:
+            Health:
           </label>
           <meter id="disk_c" value={npcHealth} min="0" max={npcHealth} />
         </div>
