@@ -33,7 +33,7 @@
 
 .battle-log-overlay {
   position: fixed;
-  /* bottom: 5%; */
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 500px;

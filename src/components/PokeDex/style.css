@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Press+Start+2P&display=swap");
+
+
 .tab-link {
     /* background-color: white !important; */
     font-weight:normal;
@@ -31,6 +34,7 @@
     align-items: center;
     text-align: center;
     width: 200px;
+    /* background-color: salmon; */
   }
   
   .card-content {
@@ -40,20 +44,20 @@
   }
   
   .pokemon-image {
-    width: 100px;
-    height: 140px;
+    width: 100;
+    height: 168px;
     object-fit:contain;
     /* box-shadow: 0 2px 40px rgba(0, 0, 0, 0.2); */
     /* background-color: aquamarine; */
+    
 
   }
   
   .pokemon-card {
-    border: 15px solid rgb(240, 241, 200);
+    border: 15px solid gold;
     border-radius: 10px;
     width:250px;
     /* padding-right: 25px; */
-    font-size: x-small;
+    font-size: small;
     font-weight: bolder;
-    font-family:  Helvetica, sans-serif;
-  }
+    }

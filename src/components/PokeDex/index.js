@@ -75,11 +75,11 @@ export default function PokeDex(props) {
   
         <Tab.Content>
           <Tab.Pane eventKey="all-pokemon">
-            <Row xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row">
+            <Row   xs={1} sm={2} md={3} lg={4} xl={5} className="pokemon-row">
               {mainPokemon.map((p) => (
                 <Col key={p.id} className="mb-3">
-                  <Card className="pokemon-card">
-                    <div className="pokemon-card card-content">
+                  <Card style={{ border: "15px solid gold" }} className="pokemon-card">
+                    <div className="card-content">
                       <Card.Img
                         variant="top"
                         src={p.img_url}
@@ -87,7 +87,8 @@ export default function PokeDex(props) {
                         className="pokemon-image"
                       />
                       <Card.Body>
-                        <Card.Title>{p.name}</Card.Title>
+                        <p className="font-text" style={{fontSize: "medium",}}
+ >{p.name}</p>
                         <Card.Text>Type: {p.type}</Card.Text>
                         {/* Additional card content */}
                       </Card.Body>
