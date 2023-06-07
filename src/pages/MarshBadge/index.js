@@ -46,6 +46,7 @@ export default function BoulderBadge(props) {
   const [pokemonChangeAlertLoss, setPokemonChangeAlertLoss] = useState([]);
   const [battleResult, setBattleResult] = useState();
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
+  const [currentGymStage, setCurrentGymStage] = useState([]);
 
   const photoStyle = {
     maxWidth: "300px",
@@ -73,6 +74,19 @@ export default function BoulderBadge(props) {
   };
 
   const [isFetching, setIsFetching] = useState(false);
+
+  //this sets the state on page load for which gym stage the pokemon is on
+  useEffect(() => {
+    const fetchCurrentGymStage = async () => {
+      const response = await API.getOneTrainer(props.trainerId);
+
+      const mainPokemon = response.pokemons.filter((pokemon) => pokemon.isMain);
+      console.log("this use effect is going off!", mainPokemon);
+      setCurrentGymStage(mainPokemon[0].gymSixStage);
+    };
+
+    fetchCurrentGymStage();
+  }, []);
 
   const handleButtonClick = (buttonId) => {
     console.log(currentGymMasterPokemon);
@@ -103,6 +117,10 @@ export default function BoulderBadge(props) {
         }
         console.log(myTrainerData);
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
+
+        let gymStage = myFilteredPokemons[0].gymSixStage;
+        setCurrentGymStage(gymStage);
+        console.log("gym stage:", gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
         console.log("selected pokemon", selectedPokemon);
         setIsFetching(true);
@@ -389,20 +407,16 @@ export default function BoulderBadge(props) {
                 {GymLeader2[0].pokemons[0].name}
               </p>
               <button
-                className="btn btn-primary mx-auto"
+                className={`btn btn-primary mx-auto ${
+                  currentGymStage < 2 ? "disabled-button" : ""
+                }`}
                 style={{ display: "block", margin: "0 auto" }}
                 onClick={() => handleButtonClick("button2")}
-                disabled={isFetching}
+                disabled={currentGymStage < 2 || isFetching}
               >
-                Second Challenge!
-                {/* {isFetching ? (
-                  <img
-                  src="https://media3.giphy.com/media/uOSl1zbbaw3sShbnNd/giphy.gif?cid=ecf05e47st36ri3i6qyehgyfh0klmb3mmpa4laq3kofpkbms&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                  alt="fetching-pokemon"
-                  />
-                  ) : (
-                  "Fight GymLeader's Second Pokemon!"
-                )} */}
+                {currentGymStage < 2
+                  ? "Defeat previous pokemon to unlock"
+                  : "Second Challenge"}
               </button>
             </div>
           </div>
@@ -423,12 +437,16 @@ export default function BoulderBadge(props) {
                 {GymLeader3[0].pokemons[0].name}
               </p>
               <button
-                className="btn btn-primary mx-auto"
+                className={`btn btn-primary mx-auto ${
+                  currentGymStage < 3 ? "disabled-button" : ""
+                }`}
                 style={{ display: "block", margin: "0 auto" }}
-                onClick={() => handleButtonClick("button3")}
-                disabled={isFetching}
+                onClick={() => handleButtonClick("button2")}
+                disabled={currentGymStage < 3 || isFetching}
               >
-                Final Challenge!
+                {currentGymStage < 3
+                  ? "Defeat previous pokemon to unlock"
+                  : "Final Challenge"}
               </button>
             </div>
           </div>
