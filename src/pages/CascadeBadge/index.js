@@ -50,6 +50,9 @@ export default function CascadeBadge(props) {
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
   const [currentGymStage, setCurrentGymStage] = useState([]);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
+  const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
+  const [BattleStatus, setBattleStatus] = useState(false);
 
   const handleVideoModalOpen = () => {
     setShowVideoModal(true);
@@ -61,9 +64,6 @@ export default function CascadeBadge(props) {
   const handleVideoModalClose = () => {
     setShowVideoModal(false);
   };
-  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
-  const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
-  const [BattleStatus, setBattleStatus] = useState(false);
 
   const photoStyle = {
     maxWidth: "300px",
@@ -370,7 +370,7 @@ export default function CascadeBadge(props) {
           // Continue animating the current log entry
           animateLogEntry();
         }
-      }, 20); // Adjust the interval duration as desired (in milliseconds)
+      }, 45); // Adjust the interval duration as desired (in milliseconds)
 
       timeoutIds.push(timeoutId);
     };
@@ -473,7 +473,11 @@ export default function CascadeBadge(props) {
                 </video>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={handleVideoModalClose}>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={handleVideoModalClose}
+                >
                   Close
                 </Button>
               </Modal.Footer>
