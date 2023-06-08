@@ -8,16 +8,6 @@ import Toast from "react-bootstrap/Toast";
 import PB from "./assets/pokeball.png";
 
 export default function Catch(props) {
-  const cardStyle = {
-    // backgroundVideo: `url(${pokevideo})`,
-    // backgroundPosition: "center",
-    // backgroundSize: "cover",
-    // backgroundRepeat: "no-repeat",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
   const pokemonNames = [
     "Bulbasaur",
     "Ivysaur",
@@ -179,76 +169,103 @@ export default function Catch(props) {
   const [showPoke, setShowPoke] = useState("");
   const pokeBallImageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1024px-Pok%C3%A9_Ball_icon.svg.png";
-    const [hasChances, setHasChances] = useState(5);
-
+  const [hasChances, setHasChances] = useState();
 
   const toggleShowA = () => {
     setIsToast("");
     setShowA(false);
   };
 
+  const decrementChances = () => {
+    setHasChances((prevChances) => Math.max(prevChances - 1, 0));
+  };
+
   useEffect(() => {
     setShowPoke(pokeBallImageUrl);
   }, []);
 
-  const decrementChances = () => {
-    setHasChances((prevChances) => prevChances - 1);
-  };
-
-  const handleButtonClick = () => {
-    if (hasChances > 0) {
-    const getPoke = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
+        const data = await API.getNumSpins(props.trainerId);
+        if (data.numSpins === 0) {
+          setHasChances(0);
+        } else {
+          setHasChances(data.numSpins);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleButtonClick = async () => {
+    if (hasChances > 0) {
+      try {
+        setIsFetching(true);
+
         const allPokemon = await API.getAllPoke();
-        
         const randPoke =
           pokemonNames[Math.floor(Math.random() * pokemonNames.length)];
 
-        // console.log("poke", randPoke);
-
         await API.catchPokemon(props.trainerId, randPoke);
         const data = await API.getOneTrainer(props.trainerId);
+
         setIsTrainer(data);
-        console.log("data", data);
+
+        await API.getSubtractSpins(props.trainerId);
+        decrementChances();
 
         const foundPoke = allPokemon.find(
           (pokemon) => pokemon.name === randPoke
         );
 
         if (foundPoke) {
-          // RandPoke found in allPokemon
           setTimeout(() => {
             setShowPoke(foundPoke.img_url);
           }, 1000);
         } else {
-          // RandPoke not found in allPokemon
           console.log("Pokemon not found.");
         }
+
         setTimeout(() => {
           setShowPoke(pokeBallImageUrl);
           setIsToast("");
         }, 5000);
-        setIsFetching(true);
+
         setTimeout(() => {
           setIsFetching(false);
-
-          // alert(`Congrats you captured a ${randPoke}`);
           setIsToast(`You caught a ${randPoke}`);
         }, 1000);
       } catch (error) {
         console.log(error);
       }
-    };
-
-    getPoke();
-  } else {
-    setIsToast("No more chances left!");
-    // Handle logic when there are no more chances left
-  }
+    } else {
+      console.log("No more chances left!");
+      // Handle logic when there are no more chances left
+    }
   };
 
   return (
     <>
+      <div
+        style={{
+          position: "absolute",
+          top: 150,
+          right: 300,
+          backgroundColor: "#dc3545",
+          padding: "5px",
+          borderRadius: "5px",
+          color: "white",
+        }}
+      >
+        <p style={{ fontWeight: "bold" }}>
+  # of spin(s) left: {hasChances >= 0 ? hasChances : 0}
+</p>
+
+      </div>
       <div style={{ position: "relative" }}>
         <video
           src={pokevideo}
@@ -275,26 +292,14 @@ export default function Catch(props) {
               height: "100vh",
             }}
           >
-            <Button
-              className="btn-danger"
-              variant="secondary"
-              id="dropdown-battle"
-              onClick={() => {
-                handleButtonClick();
-                toggleShowA();
-                decrementChances();
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
-              disabled={isFetching}
             >
-              {isFetching ? (
-                <img
-                  src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                  alt="fetching-pokemon"
-                />
-              ) : (
-                "Catch 'em All"
-              )}
-              <Toast className="mx-auto" >
+              <Toast className="mx-auto">
                 <Toast.Body
                   style={{
                     backgroundColor: "white",
@@ -316,10 +321,24 @@ export default function Catch(props) {
                   </div>
                 </Toast.Body>
               </Toast>
-            </Button>
+              <Button
+                className="btn-danger mx-auto"
+                variant="secondary"
+                id="dropdown-battle"
+                onClick={handleButtonClick}
+                disabled={isFetching || hasChances === 0}
+              >
+                {isFetching ? (
+                  <img
+                    src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                    alt="fetching-pokemon"
+                  />
+                ) : (
+                  "Catch 'em All"
+                )}
+              </Button>
+            </div>
           </div>
-
-          {/* <PokeDex isTrainer={isTrainer}/> */}
         </div>
       </div>
     </>

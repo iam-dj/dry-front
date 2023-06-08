@@ -199,6 +199,10 @@ export default function Train(props) {
 
           const handleWin = async () => {
             try {
+               const numWins = await API.getNumWins(props.trainerId);
+               if (Math.random() < 0.95) {
+                await API.getAddOneSpin(props.trainerId);
+              }
               const {
                 experienceGained,
                 levelChange,
@@ -208,6 +212,8 @@ export default function Train(props) {
               // console.log("battle sys Experience Change:", experienceGained);
               // console.log("battle sys Level Change:", levelChange);
               // console.log("battle sys HP Change:", hpChange);
+
+             
 
               const alerts = [];
               alerts.push("You Won!");

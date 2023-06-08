@@ -78,6 +78,68 @@ const API = {
     );
   },
 
+  getNumSpins: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/spinNum/${trainerId}`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+  getNumWins: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/numwins/${trainerId}`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+// spin-add/:id
+  getAddOneSpin:(trainerId) => {
+    return fetch(`${URL_PREFIX}/api/trainers/spin-add/${trainerId}`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+
+  getSubtractSpins: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/numspins-sub`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
   updateMainPokemon: (trainerId, pokemonName) => {
     return fetch(
       `${URL_PREFIX}/api/trainers/${trainerId}/ismain/${pokemonName}`,
@@ -112,10 +174,9 @@ const API = {
       {
         method: "PUT",
       }
-    ).then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to update main Pokemon");
-      }
+    ).then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
     });
   },
 

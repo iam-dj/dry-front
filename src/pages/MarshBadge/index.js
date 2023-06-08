@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import sabrina from "./assets/Sabrina_Marsh.png";
-import marsh from "./assets/marsh.png";
+import marsh from "./assets/marsh.jpeg";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
 // import Button from "react-bootstrap/Button";

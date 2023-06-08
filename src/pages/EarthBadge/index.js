@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import gio from "./assets/giovanniEarth.png";
-import earth from "./assets/earth.png";
+import earth from "./assets/earth.jpg";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
 // import Button from "react-bootstrap/Button";
