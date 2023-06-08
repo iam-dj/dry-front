@@ -13,6 +13,7 @@ function NavTabs(props) {
 
   const dropdownSubmenuStyles = {
     backgroundColor: "whitesmoke",
+    paddingTop: "10px",
   };
 
   return (
@@ -37,6 +38,13 @@ function NavTabs(props) {
                   <Dropdown.Item
                     style={dropdownMenuStyles}
                     as={Link}
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
                     to="/train"
                   >
                     Train Your Pokemon
@@ -51,16 +59,16 @@ function NavTabs(props) {
                   <Dropdown.Item
                     style={dropdownMenuStyles}
                     as={Link}
-                    to="/dashboard"
+                    to="/setpoke"
                   >
-                    Dashboard
+                    Set Your Pokemon
                   </Dropdown.Item>
                   <Dropdown.Item
                     style={dropdownMenuStyles}
                     as={Link}
-                    to="/setpoke"
+                    to="/setmove"
                   >
-                    Set Your Pokemon
+                    Set Pokemon TM
                   </Dropdown.Item>
                   <Dropdown style={dropdownMenuStyles} as={Nav.Item}>
                     <Dropdown.Toggle
@@ -132,14 +140,28 @@ function NavTabs(props) {
                 </Dropdown.Menu>
               </Dropdown>
 
-              <button className="my-btn btn" style={{ marginRight: 10 + "px",marginLeft: 10 + "px",paddingBottom: 10 + "px"  }} onClick={props.logout}>
+              <button
+                className="my-btn btn"
+                style={{
+                  marginRight: "10px",
+                  marginLeft: "10px",
+                  float: "left",
+                  bottom: "10px",
+                  paddingBottom: "1px",
+                  paddingTop: "0",
+                  color: "white",
+                  backgroundColor: "red",
+                  borderRadius: "5px",
+                }}
+                onClick={props.logout}
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
               <Link
-                style={{ marginRight: 10 + "px",marginLeft: 10 + "px"  }}
+                style={{ marginRight: 10 + "px", marginLeft: 10 + "px" }}
                 className="btn btn-primary "
                 to="/signup"
               >

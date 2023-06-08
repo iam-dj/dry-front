@@ -88,7 +88,7 @@ export default function SetPokemon(props) {
     }
   };
 
-  const [pokemonPic, setPokemonPic] = useState("");
+  // const [pokemonPic, setPokemonPic] = useState("");
 
   const allPokemon = props.myTrainerData.pokemons;
   const mainPokemon = allPokemon.filter((p) => p.isMain);
