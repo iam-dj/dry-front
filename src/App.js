@@ -9,6 +9,7 @@ import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Train from "./pages/Train";
+import SetMove from "./pages/SetMove";
 import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
 import BoulderBadge from "./pages/BoulderBadge";
@@ -142,6 +143,13 @@ function App() {
           path="/catch"
           element={
             <Catch setUserId={setUserId} trainerId={trainerId} token={token} />
+          }
+        />
+
+        <Route
+          path="/setmove"
+          element={
+            <SetMove setUserId={setUserId} trainerId={trainerId} token={token} />
           }
         />
         <Route

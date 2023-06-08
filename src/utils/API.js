@@ -78,6 +78,112 @@ const API = {
     );
   },
 
+  changeMoveOne: (trainerId,
+    pokemonName,
+    newMove) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move1/${newMove}`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+  changeMoveTwo: (trainerId,
+    pokemonName,
+    newMove) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move2/${newMove}`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+  changeMoveThree: (trainerId,
+    pokemonName,
+    newMove) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move3/${newMove}`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+  changeMoveFour: (trainerId,
+    pokemonName,
+    newMove) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move4/${newMove}`,
+    {
+      method: "PUT",
+    }).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+  
+  getTrainerTm: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/tms`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+  
+  // spin-add/:id
+    getAddOneSpin:(trainerId) => {
+      return fetch(`${URL_PREFIX}/api/trainers/spin-add/${trainerId}`,
+      {
+        method: "PUT",
+      }).then((res) =>
+        res
+          .json()
+          .then((data) => {
+            return data;
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      );
+    },
   getNumSpins: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/spinNum/${trainerId}`).then((res) =>
@@ -95,22 +201,6 @@ const API = {
   getNumWins: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/numwins/${trainerId}`).then((res) =>
-      res
-        .json()
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  },
-// spin-add/:id
-  getAddOneSpin:(trainerId) => {
-    return fetch(`${URL_PREFIX}/api/trainers/spin-add/${trainerId}`,
-    {
-      method: "PUT",
-    }).then((res) =>
       res
         .json()
         .then((data) => {

@@ -18,8 +18,8 @@
   padding: 10px;
 }
 
-.my-btn {
-  padding: 15px;
+.btn {
+  /* padding-top:0 !important; */
 }
 .pokemon-image {
   /* width: 25px !important; */

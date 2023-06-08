@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Press+Start+2P&display=swap");
+
+.font-text{
+    font-family: "Press Start 2P";
+    /* font-size: 400%; */
+}
+.font-text2{
+    font-family: "Press Start 2P";
+    font-size: 300%;
+}
+.font-text3{
+    font-family: "Press Start 2P";
+    font-size: 190%;
+}
+
+
+.choose-button{
+    margin-top:50px;
+}
