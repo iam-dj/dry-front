@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import GymLeader_ from "./assets/DP-Brock.png";
+import brock from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
@@ -50,6 +50,9 @@ export default function BoulderBadge(props) {
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
   const [currentGymStage, setCurrentGymStage] = useState([]);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
+  const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
+  const [BattleStatus, setBattleStatus] = useState(false);
 
   const handleVideoModalOpen = () => {
     setShowVideoModal(true);
@@ -61,9 +64,6 @@ export default function BoulderBadge(props) {
   const handleVideoModalClose = () => {
     setShowVideoModal(false);
   };
-  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
-  const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
-  const [BattleStatus, setBattleStatus] = useState(false);
 
   const photoStyle = {
     maxWidth: "300px",
@@ -153,10 +153,8 @@ export default function BoulderBadge(props) {
         }
         console.log(myTrainerData);
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
-
-        let gymStage = myFilteredPokemons[0].gymOneStage;
+        let gymStage = myFilteredPokemons[0].gymTwoStage;
         setCurrentGymStage(gymStage);
-        console.log("gym stage:", gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
         console.log("selected pokemon", selectedPokemon);
         setIsFetching(true);
@@ -372,7 +370,7 @@ export default function BoulderBadge(props) {
           // Continue animating the current log entry
           animateLogEntry();
         }
-      }, 20); // Adjust the interval duration as desired (in milliseconds)
+      }, 45); // Adjust the interval duration as desired (in milliseconds)
 
       timeoutIds.push(timeoutId);
     };
@@ -421,7 +419,7 @@ export default function BoulderBadge(props) {
       </div>
       <div className="row">
         <div className="col">
-          <img style={imgStyle} src={GymLeader_} alt="Brock gym leader" />
+          <img style={imgStyle} src={brock} alt="Brock gym leader" />
           <p
             style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
             className="font-text text-center"
@@ -459,36 +457,33 @@ export default function BoulderBadge(props) {
               >
                 First Challenge
               </button>
-              <Modal
-                show={showVideoModal}
-                onHide={handleVideoModalClose}
-                centered
-              >
-                <Modal.Body>
-                  <video
-                    style={{ width: "95%", height: "95%" }}
-                    controls
-                    autoPlay
-                  >
-                    <source src={blainefight} type="video/mp4" />
-                  </video>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      handleButtonClick("button2");
-                      handleVideoModalOpen();
-                    }}
-                  >
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
             </div>
+            <Modal
+              show={showVideoModal}
+              onHide={handleVideoModalClose}
+              centered
+            >
+              <Modal.Body>
+                <video
+                  style={{ width: "95%", height: "95%" }}
+                  controls
+                  autoPlay
+                >
+                  <source src={blainefight} type="video/mp4" />
+                </video>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={handleVideoModalClose}
+                >
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
-
         <div className="col">
           <div
             className="card"

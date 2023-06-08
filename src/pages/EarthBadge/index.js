@@ -368,7 +368,7 @@ export default function EarthBadge(props) {
           // Continue animating the current log entry
           animateLogEntry();
         }
-      }, 20); // Adjust the interval duration as desired (in milliseconds)
+      }, 45); // Adjust the interval duration as desired (in milliseconds)
 
       timeoutIds.push(timeoutId);
     };
