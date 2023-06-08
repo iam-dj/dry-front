@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import NPC from "./npc.json";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export default function Train(props) {
   // const navigate = useNavigate();
@@ -25,11 +26,10 @@ export default function Train(props) {
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
   const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
-  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(6);
   const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
-
-  const [npcHealth, setNPCHealth] = useState();
-  const [trainerHealth, setTrainerHealth] = useState();
+  const [healthBarRunning, setHealthBarRunning] = useState(false);
+  const [healthBarSpeed, setHealthBarSpeed] = useState(1000);
 
   const topLeftImageStyle = {
     position: "absolute",
@@ -115,6 +115,7 @@ export default function Train(props) {
   const readerSpeedUp = () => {
     if (battleLogReaderSpeed < 20)
       setbattleLogReaderSpeed((prevSpeed) => prevSpeed + 3);
+    setHealthBarSpeed((prevSpeed) => prevSpeed - 100);
     console.log(battleLogReaderSpeed);
     if (battleLogReaderSpeed === 18) setMaxBattleLogReaderSpeed(true);
   };
@@ -123,8 +124,14 @@ export default function Train(props) {
   const [trainPic, setTrainPic] = useState("");
   const [trainName, setTrainName] = useState("");
   const [compName, setCompName] = useState("");
-  const [NPCDamage, setNPCDamage] = useState();
-  const [MyDamage, setMyDamage] = useState();
+
+  //healthbar states
+  // const [NPCDamage, setNPCDamage] = useState();
+  // const [MyDamage, setMyDamage] = useState();
+  // const [npcHealth, setNPCHealth] = useState();
+  // const [trainerHealth, setTrainerHealth] = useState();
+  const [trainerHealthArray, setTrainerHealthArray] = useState([]);
+  const [npcHealthArray, setNPCHealthArray] = useState([]);
 
   const handleButtonClick = () => {
     setbattleLogReaderSpeed(3);
@@ -164,44 +171,44 @@ export default function Train(props) {
         setTimeout(() => {
           // setIsFetching(false);
           // console.log("pre-battle", battleLog);
-          setBattleLog([]);
-          const { result, battleLogData } = BattleSys.startBattle(
-            myFilteredPokemons,
-            NPCz[0].pokemons,
-            name,
-            isGymMaster
-          );
-          Health.trackHealth(
-            myFilteredPokemons,
-            NPCz[0].pokemons,
-            setNPCHealth, //Starting Opponent Health
-            setTrainerHealth,
-            setNPCDamage,
-            setMyDamage
-          );
 
+          setBattleLog([]);
+          const { result, battleLogData, userHpArray, compHpArray } =
+            BattleSys.startBattle(
+              myFilteredPokemons,
+              NPCz[0].pokemons,
+              name,
+              isGymMaster
+            );
+
+          console.log("returned comp value in train.js", compHpArray);
+          console.log("returned user value in train.js", userHpArray);
           //       setNPCHealth(NPCHealth);
           // setTrainerHealth(trainerHealth);
 
-          console.log("MyDamage", MyDamage);
-          console.log("oppo damage", NPCDamage);
+          // console.log("MyDamage", MyDamage);
+          // console.log("oppo damage", NPCDamage);
 
-          // setNPCHealth((prevNPCHealth) => prevNPCHealth - Math.random());
-          // setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - Math.random());
+          // // setNPCHealth((prevNPCHealth) => prevNPCHealth - Math.random());
+          // // setTrainerHealth((prevTrainerHealth) => prevTrainerHealth - Math.random());
 
-          console.log("npcHealth", npcHealth);
-          console.log("trainerHealth", trainerHealth);
-
+          // console.log("npcHealth", npcHealth);
+          // console.log("trainerHealth", trainerHealth);
+          setTrainerHealthArray(userHpArray);
+          setNPCHealthArray(compHpArray);
           setBattleLog(battleLogData);
-          // console.log("battleLog", battleLog);
-          // console.log("battle result is working?", battleLogData);
+
+          console.log("battle result is working?", battleLogData);
           // console.log("result", result);
 
           const handleWin = async () => {
             try {
-               const numWins = await API.getNumWins(props.trainerId);
-               if (Math.random() < 0.95) {
+              const alerts = [];
+              if (Math.random() < 0.2) {
                 await API.getAddOneSpin(props.trainerId);
+                alerts.push(
+                  `You Earned another chance to catch a pokemon!! Head to Catch em' all!!\n`
+                );
               }
               const {
                 experienceGained,
@@ -213,9 +220,6 @@ export default function Train(props) {
               // console.log("battle sys Level Change:", levelChange);
               // console.log("battle sys HP Change:", hpChange);
 
-             
-
-              const alerts = [];
               alerts.push("You Won!");
               if (experienceGained > 0) {
                 alerts.push(
@@ -293,6 +297,14 @@ export default function Train(props) {
     generateBattle();
   };
 
+  //gets the value of updated hp out of the healthbar util
+  useEffect(() => {
+    // Perform actions that rely on the updated state
+    console.log("trainer hp array", trainerHealthArray);
+    console.log("NPC hp array", npcHealthArray);
+    // console.log("battleLog", battleLog);
+  }, [trainerHealthArray, npcHealthArray]);
+
   useEffect(() => {
     let timeoutIds = [];
     let logIndex = 0;
@@ -303,11 +315,13 @@ export default function Train(props) {
         if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertWin);
+
           // console.log("useEffect log", pokemonChangeAlertWin);
         }
         if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
           setIsFetching(false);
           showAlert(pokemonChangeAlertLoss);
+
           // console.log("useEffect log", pokemonChangeAlertLoss);
         }
         return;
@@ -328,13 +342,13 @@ export default function Train(props) {
           clearTimeout(timeoutId);
 
           // Move to the next log entry
-          logIndex += 8;
+          logIndex += battleLogReaderSpeed;
           setCurrentLogIndex(logIndex);
           // console.log("logIndex", logIndex);
           charIndex = 0;
 
           // Start animating the next log entry after a delay
-          setTimeout(animateLogEntry, 5); // Adjust the delay duration as desired (in milliseconds)
+          setTimeout(animateLogEntry, 2); // Adjust the delay duration as desired (in milliseconds)
         } else {
           // Continue animating the current log entry
           animateLogEntry();
@@ -351,7 +365,74 @@ export default function Train(props) {
       // Clear all the timeouts when component unmounts
       timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
     };
-  }, [battleLog, battleResult, pokemonChangeAlertWin, pokemonChangeAlertLoss]);
+  }, [
+    battleLog,
+    battleResult,
+    pokemonChangeAlertWin,
+    pokemonChangeAlertLoss,
+    healthBarRunning,
+  ]);
+
+  const [trainerHealth, setTrainerHealth] = useState(trainerHealthArray[0]);
+  const [npcHealth, setNpcHealth] = useState(npcHealthArray[0]);
+
+  useEffect(() => {
+    setHealthBarRunning(true);
+    const updateMeterValues = () => {
+      let trainerIndex = 1;
+      let npcIndex = 1;
+
+      const trainerInterval = setInterval(() => {
+        if (trainerIndex < trainerHealthArray.length) {
+          setTrainerHealth(trainerHealthArray[trainerIndex]);
+          console.log("trainer:", trainerHealthArray[trainerIndex]);
+          trainerIndex++;
+        } else {
+          clearInterval(trainerInterval);
+          // setHealthBarRunning(false);
+        }
+      }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
+
+      const npcInterval = setInterval(() => {
+        if (npcIndex < npcHealthArray.length) {
+          setNpcHealth(npcHealthArray[npcIndex]);
+          console.log("npc:", npcHealthArray[npcIndex]);
+          npcIndex++;
+        } else {
+          clearInterval(npcInterval);
+          // setHealthBarRunning(false);
+        }
+      }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
+    };
+
+    updateMeterValues();
+  }, [
+    trainerHealthArray,
+    npcHealthArray,
+    battleResult,
+    pokemonChangeAlertWin,
+    pokemonChangeAlertLoss,
+  ]);
+
+  // useEffect(() => {
+  //   if (
+  //     trainerIndex === trainerHealthArray.length ||
+  //     npcIndex === npcHealthArray.length
+  //   ) {
+  //     if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
+  //       setIsFetching(false);
+  //       showAlert(pokemonChangeAlertWin);
+
+  //       // console.log("useEffect log", pokemonChangeAlertWin);
+  //     }
+  //     if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
+  //       setIsFetching(false);
+  //       showAlert(pokemonChangeAlertLoss);
+
+  //       // console.log("useEffect log", pokemonChangeAlertLoss);
+  //     }
+  //   }
+  // }, [trainerIndex, trainerHealthArray, npcIndex, npcHealthArray]);
 
   // console.log("trainerPokemon", trainerPokemon);
   return (
@@ -361,14 +442,27 @@ export default function Train(props) {
           <img src={trainerPokemon} style={trainerPic} />
           <p className="font-text">{trainName}</p>
           <h3 className="font-text"> {trainerName}</h3>
+
           <label
             className="font-text"
             style={{ fontSize: "x-small" }}
-            for="disk_b"
+            htmlFor="trainerMeter"
           >
             Health:
           </label>
-          <meter id="disk_b" value={MyDamage} min="0" max="30" />
+          <ProgressBar
+            customLabel=" "
+            bgColor="#35b646"
+            baseBgColor="#df460d"
+            id="trainerMeter"
+            min="0"
+            maxCompleted={trainerHealthArray[0]}
+            low="30"
+            high="70"
+            completed={trainerHealth}
+          ></ProgressBar>
+
+          {/* <meter id="disk_b" value={MyDamage} min="0" max="30" /> */}
           {trainPic && (
             <img src={trainPic} style={topLeftImageStyle} alt="Top Left" />
           )}
@@ -438,11 +532,21 @@ export default function Train(props) {
           <label
             className="font-text"
             style={{ fontSize: "x-small" }}
-            for="disk_c"
+            htmlFor="npcMeter"
           >
             Health:
           </label>
-          <meter id="disk_c" value={NPCDamage} min="0" max={trainerHealth} />
+          <ProgressBar
+            customLabel=" "
+            bgColor="#35b646"
+            baseBgColor="#df460d"
+            id="npcMeter"
+            min="0"
+            maxCompleted={npcHealthArray[0]}
+            low="30"
+            high="70"
+            completed={npcHealth}
+          ></ProgressBar>
         </div>
       </div>
     </>
