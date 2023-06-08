@@ -282,11 +282,11 @@ export default function HomePage(props) {
   return (
     <>
       <div style={cardStyle}>
-        <Container 
-        style={{
-          marginBottom: 25 + "px",
-          // border: "10px solid gold",
-        }}
+        <Container
+          style={{
+            marginBottom: 25 + "px",
+            // border: "10px solid gold",
+          }}
         >
           <img
             src={poke}
@@ -348,6 +348,10 @@ export default function HomePage(props) {
                           </Row>
                         </Col>
                       </Row>
+                      
+                      {/* <div className="mx-auto d-block">
+                        <p className="text-center " >Current Main Pokemon</p>
+                      </div> */}
 
                       <div className="d-flex justify-content-between">
                         <Button
@@ -405,7 +409,7 @@ export default function HomePage(props) {
                 width: 2000 + "px",
                 position: "absolute",
                 left: 50 + "%",
-                transform:"translateX(-50%)"
+                transform: "translateX(-50%)",
               }}
               onClose={() => setShow(false)}
               show={show}
