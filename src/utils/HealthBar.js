@@ -5,30 +5,36 @@ const moveSelect = require("./MoveSelector");
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
+
 // const mercy = require("./Mercy");
 
 // var lost = 0;
 // var win = 1;
 var battleLogData = [];
 
+let userHpArray = [];
+let compHpArray = [];
+
 function trackHealth(
   userPokemon,
   opponentPokemon,
-  trackOpp,
-  trackme,
-  OpponentHp,
-  MyHp
+  setNPCHealth, //Starting Opponent Health
+  setTrainerHealth,
+  setNPCDamage,
+  setMyDamage
 ) {
   console.log("oppenent pokemon", opponentPokemon.hp);
   console.log("userpokemon", userPokemon);
   battleLogData = [];
+  userHpArray = [];
+  compHpArray = [];
   const userPoke = userPokemon;
   const compPoke = opponentPokemon;
-  const name = trackOpp;
+  // const name = trackOpp;
 
-  console.log("battle sys check", compPoke.hp);
+  console.log("battle sys check", compPoke);
   console.log("battle sys check", userPoke);
-  console.log(trackme);
+  console.log(setTrainerHealth);
 
   let userTypeWeaknessModifier = 0;
   let userTypeStrengthModifier = 0;
@@ -54,19 +60,25 @@ function trackHealth(
   userPoke[0].hp = userPoke[0].hp + updateMyHP;
   compPoke[0].hp = compPoke[0].hp + updateCompHP;
 
-  const startHpMe = userPoke[0].hp
-  const startHpComp = compPoke[0].hp
+  compHpArray.push(compPoke[0].hp);
+  userHpArray.push(userPoke[0].hp);
 
-  trackOpp(compPoke[0].hp);
-  trackme(userPoke[0].hp);
+  const startHpMe = userPoke[0].hp;
+  const startHpComp = compPoke[0].hp;
+
+  // setNPCHealth(compPoke[0].hp);
+  // setTrainerHealth(userPoke[0].hp);
 
   const HorT = coinflip.flip();
 
   if (HorT === 1 || HorT === 2) {
-    startGame();
+    startGame(userHpArray, compHpArray);
   }
 
-  function startGame() {
+  function startGame(userHpArray, compHpArray) {
+    // userHpArray = [];
+    // compHpArray = [];
+
     randomUserMovePower = moveSelect.randMovePower(userPoke);
     randomCompMovePower = moveSelect.randMovePower(compPoke);
 
@@ -88,31 +100,34 @@ function trackHealth(
     );
 
     if (userPoke[0].hp <= 0) {
-      return compWon(); // Return 0 if the opponent wins
+      console.log("health bar user array", userHpArray);
+      return compWon(userHpArray, compHpArray); // Return 0 if the opponent wins
     } else if (compPoke[0].hp <= 0) {
-      return userWon(); // Return 1 if the user wins
+      console.log("health bar comp array", compHpArray);
+      return userWon(userHpArray, compHpArray); // Return 1 if the user wins
     } else {
-      battle();
+      battle(userHpArray, compHpArray);
     }
   }
 
-  function battle() {
-    console.log("Opponent Hp", compPoke[0].hp);
-    console.log("My Hp", userPoke[0].hp);
+  function battle(userHpArray, compHpArray) {
+    console.log("=========================");
+
+    // console.log(compPoke[0].hp);
+    // console.log(userPoke[0].hp);
 
     if (hitormiss.flip() === 10) {
       compPoke[0].hp = compPoke[0].hp - 0;
     } else {
-      const damage = Math.trunc(
-        randomUserMovePower.randomMyMove *
-          0.1 *
-          userTypeWeaknessModifier *
-          userTypeStrengthModifier
-      );
+      const damage =
+        Math.trunc(
+          randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessModifier
+        ) * userTypeStrengthModifier;
       compPoke[0].hp = compPoke[0].hp - damage;
-      MyHp(damage);
-      if (damage >= 7) {
-      }
+      console.log("compHP after damage", compPoke[0].hp);
+      // compHpArray.push(`user damage was ${damage}`);
+      compHpArray.push(compPoke[0].hp);
+      console.log("recursive", compHpArray);
     }
 
     if (hitormiss.flip() === 10) {
@@ -122,40 +137,40 @@ function trackHealth(
         Math.trunc(
           randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier
         ) * compTypeStrengthModifier;
-      OpponentHp(damageTwo);
       userPoke[0].hp = userPoke[0].hp - damageTwo;
+      console.log("userHP after damage", userPoke[0].hp);
+      // userHpArray.push(`npc damage was ${damageTwo}`);
+      userHpArray.push(userPoke[0].hp);
+
+      console.log("recursive", userHpArray);
     }
 
     console.log("\n\n");
 
-  
-
-    startGame();
+    startGame(userHpArray, compHpArray);
   }
 
-  function userWon() {
+  function userWon(userHpArray, compHpArray) {
     // console.log("You win!!");
     // console.log(battleLogData);
     // battleLogData.push("You win!!");
-    // return {
-    //   result: win,
-    //   battleLogData: battleLogData,
-    // };
-    
+    return {
+      userHpArray: userHpArray,
+      compHpArray: compHpArray,
+    };
   }
 
-  function compWon() {
-
+  function compWon(userHpArray, compHpArray) {
     // console.log("You lose");
     // console.log(battleLogData);
     // battleLogData.push("You lose");
-    // return {
-    //   result: lost,
-    //   battleLogData: battleLogData,
-    // };
+    return {
+      userHpArray: userHpArray,
+      compHpArray: compHpArray,
+    };
   }
 
-  return startGame(); // Start the battle and return the result
+  return startGame(userHpArray, compHpArray); // Start the battle and return the result
 }
 
 export default { trackHealth };
