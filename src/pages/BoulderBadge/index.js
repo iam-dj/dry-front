@@ -3,7 +3,7 @@ import "./style.css";
 import brock from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
-import BattleSys from "../../utils/GymBattleSys";
+import BattleSys from "../../utils/GymBattleSys.js";
 import GymInstructions from "../../components/GymInstructions";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
