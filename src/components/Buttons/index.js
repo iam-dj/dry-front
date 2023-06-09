@@ -6,7 +6,7 @@ import btn4 from "./assets/btn4.png";
 import btn6 from "./assets/btn6.png";
 import btn7 from "./assets/btn7.png";
 import btn8 from "./assets/btn8.png";
-import btn9 from "./assets/btn9.png";
+import btn9 from "./assets/btn10.png";
 // import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -66,7 +66,7 @@ export default function Buttons() {
           </Link>
         </Col>
         <Col className="remove-it" xs={12} sm={6}>
-          <Link to="#">
+          <Link to="/setmove">
             <img
               style={{ marginTop: 10 + "px",marginLeft: 5 + "px" }}
               src={btn9}
