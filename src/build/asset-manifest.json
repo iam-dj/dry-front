@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a06c9e17.css",
-    "main.js": "/static/js/main.1d35add4.js",
+    "main.js": "/static/js/main.3562c3d3.js",
     "static/media/pokeVideo.mp4": "/static/media/pokeVideo.ec80dcaf2e680564f51f.mp4",
     "static/media/volcano.jpg": "/static/media/volcano.cb4cf9cd4b1c5dac4f58.jpg",
     "static/media/rainbow.jpg": "/static/media/rainbow.d40a53716b845e407e7a.jpg",
@@ -45,10 +45,10 @@
     "static/media/btn6.png": "/static/media/btn6.78cba6b957a447f792d6.png",
     "index.html": "/index.html",
     "main.a06c9e17.css.map": "/static/css/main.a06c9e17.css.map",
-    "main.1d35add4.js.map": "/static/js/main.1d35add4.js.map"
+    "main.3562c3d3.js.map": "/static/js/main.3562c3d3.js.map"
   },
   "entrypoints": [
     "static/css/main.a06c9e17.css",
-    "static/js/main.1d35add4.js"
+    "static/js/main.3562c3d3.js"
   ]
 }
