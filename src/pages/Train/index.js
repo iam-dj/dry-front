@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import TrainInstructions from "../../components/TrainInstructions";
 import battlebg from "./assets/battle.jpg";
 import BattleSys from "../../utils/BattleSys";
 import Health from "../../utils/HealthBar";
@@ -35,6 +36,11 @@ export default function Train(props) {
   const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
   const [healthBarRunning, setHealthBarRunning] = useState(false);
   const [healthBarSpeed, setHealthBarSpeed] = useState(2000);
+
+  const [showToast, setShowToast] = useState(false);
+  const handleToastClick = () => {
+    setShowToast(true);
+  };
 
   const topLeftImageStyle = {
     position: "absolute",
@@ -400,10 +406,12 @@ export default function Train(props) {
             if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
               setIsFetching(false);
               showAlert(pokemonChangeAlertWin);
+              setAlertShown(true);
             }
             if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
               setIsFetching(false);
               showAlert(pokemonChangeAlertLoss);
+              setAlertShown(true);
             }
           }
         }, 1000 * i); // Adjust the delay duration as desired (in milliseconds)
@@ -445,6 +453,7 @@ export default function Train(props) {
           console.log("trainer:", trainerHealthArray[trainerIndex]);
           trainerIndex++;
           console.log("trainer array length", trainerHealthArray.length);
+          console.log("trainer health", trainerHealth);
           console.log("trainer index:", trainerIndex);
         } else {
           clearInterval(trainerInterval);
@@ -459,6 +468,7 @@ export default function Train(props) {
           console.log("npc:", npcHealthArray[npcIndex]);
           npcIndex++;
           console.log("npc array length", npcHealthArray.length);
+          console.log("npc health", npcHealth);
           console.log("npc index:", npcIndex);
         } else {
           clearInterval(npcInterval);
@@ -502,8 +512,8 @@ export default function Train(props) {
         setbattleLogReaderSpeed(1000);
         setHealthBarSpeed(2000);
         setAlertShown(false);
-        setTrainerHealth([]);
-        setNpcHealth([]);
+        setTrainerHealth([1500]);
+        setNpcHealth([1500]);
         setTrainerHealthArray([]);
         setNPCHealthArray([]);
         //     setTrainName("");
@@ -519,6 +529,7 @@ export default function Train(props) {
 
   return (
     <>
+      <TrainInstructions></TrainInstructions>
       <div style={cardStyle} className="card-style">
         <div className="trainer-profile-photo">
           <img src={trainerPokemon} style={trainerPic} />
@@ -571,7 +582,7 @@ export default function Train(props) {
               </p>
             ))}
           </div>
-          <button
+          {/* <button
             // style={fastForwardPicture}
             className="btn btn-dark"
             onClick={() => readerSpeedUp()}
@@ -582,7 +593,7 @@ export default function Train(props) {
               src="https://res.cloudinary.com/duaznt4wg/image/upload/v1686164391/fast_forward_pnzr2e.png"
               alt="Speed Up"
             />
-          </button>
+          </button> */}
         </div>
 
         <div>
