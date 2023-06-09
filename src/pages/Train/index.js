@@ -217,12 +217,6 @@ export default function Train(props) {
           const handleWin = async () => {
             try {
               const alerts = [];
-              if (Math.random() < 0.2) {
-                await API.getAddOneSpin(props.trainerId);
-                alerts.push(
-                  `You Earned another chance to catch a pokemon or find a TM!!\n`
-                );
-              }
               const {
                 experienceGained,
                 levelChange,
@@ -237,6 +231,12 @@ export default function Train(props) {
               if (experienceGained > 0) {
                 alerts.push(
                   `Your pokemon earned: ${experienceGained} experience!\n`
+                );
+              }
+              if (Math.random() < 0.2) {
+                await API.getAddOneSpin(props.trainerId);
+                alerts.push(
+                  `You Earned another chance to catch a pokemon or find a TM!!\n`
                 );
               }
               if (levelChange > 0) {

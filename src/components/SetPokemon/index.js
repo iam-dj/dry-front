@@ -87,6 +87,7 @@ export default function SetPokemon(props) {
       setMove4Name(myPoke[0].move4.name);
       setMove4Power(myPoke[0].move4.power);
       setMove4Type(myPoke[0].move4.type);
+      setShowModal(false);
 
       console.log("myPoke", myPoke);
     } catch (error) {
