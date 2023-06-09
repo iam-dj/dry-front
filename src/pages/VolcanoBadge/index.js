@@ -3,7 +3,7 @@ import "./style.css";
 import blaine from "./assets/blaineVol.png";
 import volcano from "./assets/volcano.jpg";
 import API from "../../utils/API";
-import BattleSys from "../../utils/BattleSys";
+import BattleSys from "../../utils/GymBattleSys";
 // import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";

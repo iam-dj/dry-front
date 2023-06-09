@@ -3,7 +3,7 @@ import "./style.css";
 import sabrina from "./assets/Sabrina_Marsh.png";
 import marsh from "./assets/marsh.jpeg";
 import API from "../../utils/API";
-import BattleSys from "../../utils/BattleSys";
+import BattleSys from "../../utils/GymBattleSys";
 // import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";

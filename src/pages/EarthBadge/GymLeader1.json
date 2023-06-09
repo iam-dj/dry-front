@@ -1,59 +1,58 @@
 [
-    {
-      "name": "Giovanni",
-      "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/giovanni_q50use.png",
-      "isGymMaster": true,
-      "pokemons": [
-        {
-          "id": 111,
-          "name": "Rhyhorn",
-          "type": "ground",
-          "secondary_type": "rock",
-          "level": 1,
-          "hp": 430,
-          "experience": 0,
-          "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/111rhyhorn_yi6s1w.png",
-          "evolutionId": 1,
-          "rarity": "uncommon",
-          "tier": 2,
-          "isCaught": false,
-          "TrainerId": 4,
-          "move1Id": 29,
-          "move2Id": 22,
-          "move3Id": 157,
-          "move4Id": 280,
-          "move1": {
-            "id": 29,
-            "name": "Horn Attack",
-            "power": 65,
-            "type": "Ground",
-            "description": "The target is jabbed with a sharply pointed horn to inflict damage."
-          },
-          "move2": {
-            "id": 22,
-            "name": "Stomp",
-            "power": 65,
-            "type": "Normal",
-            "description": "The target is stomped with a big foot. It may also make the target flinch."
-          },
-          "move3": {
-            "id": 157,
-            "name": "Rock Slide",
-            "power": 75,
-            "type": "Rock",
-            "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
-          },
-          "move4": {
-            "id": 280,
-            "name": "Earthquake",
-            "power": 100,
-            "type": "Ground",
-            "description": "The user sets off an earthquake that strikes every Pokémon around it."
-          }
+  {
+    "name": "Giovanni",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685723627/giovanni_q50use.png",
+    "isGymMaster": true,
+    "pokemons": [
+      {
+        "id": 111,
+        "name": "Rhyhorn",
+        "type": "ground",
+        "secondary_type": "rock",
+        "level": 1,
+        "hp": 430,
+        "experience": 0,
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/111rhyhorn_yi6s1w.png",
+        "evolutionId": 1,
+        "rarity": "uncommon",
+        "tier": 2,
+        "isCaught": false,
+        "TrainerId": 4,
+        "move1Id": 29,
+        "move2Id": 22,
+        "move3Id": 157,
+        "move4Id": 280,
+        "move1": {
+          "id": 29,
+          "name": "Horn Attack",
+          "power": 65,
+          "type": "Ground",
+          "description": "The target is jabbed with a sharply pointed horn to inflict damage."
+        },
+        "move2": {
+          "id": 22,
+          "name": "Stomp",
+          "power": 65,
+          "type": "Normal",
+          "description": "The target is stomped with a big foot. It may also make the target flinch."
+        },
+        "move3": {
+          "id": 157,
+          "name": "Rock Slide",
+          "power": 75,
+          "type": "Rock",
+          "description": "Large boulders are hurled at the opposing team to inflict damage. It may also make the targets flinch."
+        },
+        "move4": {
+          "id": 280,
+          "name": "Earthquake",
+          "power": 100,
+          "type": "Ground",
+          "description": "The user sets off an earthquake that strikes every Pokémon around it."
         }
-      ],
-  
-      "gymId": 8
-    }
-  ]
-  
+      }
+    ],
+
+    "gymId": 8
+  }
+]

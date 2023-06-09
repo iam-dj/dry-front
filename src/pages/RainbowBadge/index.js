@@ -3,7 +3,7 @@ import "./style.css";
 import erika from "./assets/rainbow_Erika.png";
 import rainbow from "./assets/rainbow.jpg";
 import API from "../../utils/API";
-import BattleSys from "../../utils/BattleSys";
+import BattleSys from "../../utils/GymBattleSys";
 // import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
