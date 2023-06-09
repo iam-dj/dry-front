@@ -8,6 +8,7 @@ import BattleSys from "../../utils/BattleSys";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
+import GymInstructions from "../../components/GymInstructions";
 import { useState, useEffect } from "react";
 import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
@@ -399,6 +400,8 @@ export default function ThunderBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
+
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

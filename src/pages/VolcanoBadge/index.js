@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import blainefight from "./assets/blainefight.mp4";
+import GymInstructions from "../../components/GymInstructions";
 
 export default function VolcanoBadge(props) {
   const cardStyle = {
@@ -393,6 +394,8 @@ export default function VolcanoBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
+
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

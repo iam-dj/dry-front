@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import GymInstructions from "../../components/GymInstructions";
 
 export default function BoulderBadge(props) {
   useEffect(() => {
@@ -400,6 +401,8 @@ export default function BoulderBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
+
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (
