@@ -262,9 +262,11 @@ export default function Catch(props) {
         }}
       >
         <p style={{ fontWeight: "bold" }}>
-  # of spin(s) left: {hasChances >= 0 ? hasChances : 0}
-</p>
-
+          # of spin(s) left: 
+        </p>
+        <span style={{ display: "flex", justifyContent: "center", fontSize: "300%", background:"white", color:"black" }}>
+  {hasChances >= 0 ? hasChances : 0}
+</span>
       </div>
       <div style={{ position: "relative" }}>
         <video

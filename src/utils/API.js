@@ -270,6 +270,18 @@ const API = {
     });
   },
 
+  getMove: (trainerId, moveName) => {
+    return fetch(
+      `${URL_PREFIX}/api/trainers/${trainerId}/isnewmove/${moveName}`,
+      {
+        method: "PUT",
+      }
+    ).then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+    });
+  },
+
   getAllPoke: () => {
     return fetch(`${URL_PREFIX}/api/pokemon`)
       .then((res) => res.json())

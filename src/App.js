@@ -9,6 +9,7 @@ import Navbar from "./components/NavBar";
 import AuthForm from "./pages/AuthForm";
 import CreateTrainer from "./pages/CreateTrainer";
 import Train from "./pages/Train";
+import TM from "./pages/TM";
 import SetMove from "./pages/SetMove";
 import HomePage from "./pages/HomePage";
 import Catch from "./pages/Catch";
@@ -143,6 +144,13 @@ function App() {
           path="/catch"
           element={
             <Catch setUserId={setUserId} trainerId={trainerId} token={token} />
+          }
+        />
+
+        <Route
+          path="/tm"
+          element={
+            <TM setUserId={setUserId} trainerId={trainerId} token={token} />
           }
         />
 
