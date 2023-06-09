@@ -1,6 +1,7 @@
 // import React, { useState } from "react";
-const weaknessPowerMod = require("./WeaknessPowerModifier");
-const strengthPowerMod = require("./StrengthPowerModifier");
+const weaknessAndPowerMod = require("./Power&WeaknessPowerModifier");
+// const weaknessPowerMod = require("./WeaknessPowerModifier");
+// const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
@@ -23,9 +24,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   // console.log("battle sys check", userPoke);
   console.log(gym);
 
-  let userTypeWeaknessModifier = 0;
+  let userTypeWeaknessAndPowerModifier = 0;
   let userTypeStrengthModifier = 0;
-  let compTypeWeaknessModifier = 0;
+  let compTypeWeaknessAndPowerModifier = 0;
   let compTypeStrengthModifier = 0;
 
   let randomUserMovePower = 0;
@@ -57,22 +58,22 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     randomUserMovePower = moveSelect.randMovePower(userPoke);
     randomCompMovePower = moveSelect.randMovePower(compPoke);
 
-    userTypeWeaknessModifier = weaknessPowerMod.modifier(
+    userTypeWeaknessAndPowerModifier = weaknessAndPowerMod.modifier(
       randomUserMovePower.randomMoveType.toLowerCase(),
       compPoke[0].type.toLowerCase()
     );
-    userTypeStrengthModifier = strengthPowerMod.modifier(
-      randomUserMovePower.randomMoveType.toLowerCase(),
-      compPoke[0].type.toLowerCase()
-    );
-    compTypeWeaknessModifier = weaknessPowerMod.modifier(
+    // userTypeStrengthModifier = strengthPowerMod.modifier(
+    //   randomUserMovePower.randomMoveType.toLowerCase(),
+    //   compPoke[0].type.toLowerCase()
+    // );
+    compTypeWeaknessAndPowerModifier = weaknessAndPowerMod.modifier(
       randomCompMovePower.randomMoveType.toLowerCase(),
       userPoke[0].type.toLowerCase()
     );
-    compTypeStrengthModifier = strengthPowerMod.modifier(
-      randomCompMovePower.randomMoveType.toLowerCase(),
-      userPoke[0].type.toLowerCase()
-    );
+    // compTypeStrengthModifier = strengthPowerMod.modifier(
+    //   randomCompMovePower.randomMoveType.toLowerCase(),
+    //   userPoke[0].type.toLowerCase()
+    // );
 
     if (userPoke[0].hp <= 0) {
       return compWon(); // Return 0 if the opponent wins
@@ -100,8 +101,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     } else {
       const damage =
         Math.trunc(
-          randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessModifier
-        ) * userTypeStrengthModifier;
+          randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessAndPowerModifier
+        ) 
+        // * userTypeStrengthModifier;
       compPoke[0].hp = compPoke[0].hp - damage;
       if (damage >= 7) {
         console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
@@ -126,8 +128,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     } else {
       const damageTwo =
         Math.trunc(
-          randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessModifier
-        ) * compTypeStrengthModifier;
+          randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessAndPowerModifier
+        ) 
+        // * compTypeStrengthModifier;
       userPoke[0].hp = userPoke[0].hp - damageTwo;
 
       if (damageTwo >= 7) {
