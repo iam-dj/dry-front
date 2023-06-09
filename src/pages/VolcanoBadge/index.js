@@ -25,10 +25,10 @@ export default function VolcanoBadge(props) {
     alignItems: "center",
   };
   const imgStyle = {
-    width: "220%",
+    width: "138%",
     paddingRight: "130px",
-    maxHeight: "400px",
-    maxWidth: "400px",
+    // maxHeight: "400px",
+    // maxWidth: "400px",
     objectFit: "contain",
   };
 
@@ -420,7 +420,7 @@ export default function VolcanoBadge(props) {
       </div>
       <div className="row">
         <div className="col">
-          <img style={imgStyle} src={blaine} alt="Brock gym leader" />
+          <img style={imgStyle} src={blaine} alt="blaine gym leader" />
           <p
             style={{ border: "10px solid gold", backgroundColor: "#f0f1c8" }}
             className="font-text text-center"

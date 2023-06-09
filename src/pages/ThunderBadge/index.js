@@ -14,6 +14,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function ThunderBadge(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+
   const cardStyle = {
     backgroundImage: `url(${thunder})`,
     backgroundPosition: "center",
@@ -27,8 +33,8 @@ export default function ThunderBadge(props) {
   const imgStyle = {
     width: "220%",
     paddingRight: "130px",
-    maxHeight: "400px",
-    maxWidth: "400px",
+    maxHeight: "500px",
+    maxWidth: "500px",
     objectFit: "contain",
   };
 

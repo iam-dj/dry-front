@@ -16,6 +16,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default function Gym(props) {
+  
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+
   const navigate = useNavigate();
 
   useEffect(() => {

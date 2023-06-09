@@ -13,6 +13,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function CascadeBadge(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+
   const cardStyle = {
     backgroundImage: `url(${cascade})`,
     backgroundPosition: "center",
@@ -26,8 +32,8 @@ export default function CascadeBadge(props) {
   const imgStyle = {
     width: "220%",
     paddingRight: "130px",
-    maxHeight: "400px",
-    maxWidth: "400px",
+    maxHeight: "500px",
+    maxWidth: "500px",
     objectFit: "contain",
   };
 

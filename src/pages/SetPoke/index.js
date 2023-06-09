@@ -4,6 +4,12 @@ import API from "../../utils/API";
 import battlebg from "./assets/setbg.jpg";
 
 export default function SetPoke(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const [myTrainerData, setMyTrainerData] = useState(null);
   const [isLoading, setIsLoading] = useState(true); 
 
