@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import pokeball from "./assets/pokeball.png";
+import pokedex from "./assets/pokedex.png";
 import Tab from "react-bootstrap/Tab";
 // import Tabs from "react-bootstrap/Tabs";
 
@@ -26,16 +28,14 @@ export default function PokeDex(props) {
   // Filter Pokemon by selected type
   const filteredPokemon = pokemon.filter(
     (p) => p.type.toLowerCase() === activeType.toLowerCase()
+  );
+  console.log("filteredPokemon", filteredPokemon);
 
-    );
-    console.log("filteredPokemon", filteredPokemon)
+  const filteredCaughtPokemon = pokemon.filter((p) => p.isCaught === true);
+  console.log("filteredCaughtPokemon", filteredCaughtPokemon);
 
-  const filteredCaughtPokemon = pokemon.filter((p) => p.isCaught === true );
-  console.log("filteredCaughtPokemon", filteredCaughtPokemon)
-
-  const allPokemon = pokemon; 
-  console.log("allPokemon", allPokemon)
-
+  const allPokemon = pokemon;
+  console.log("allPokemon", allPokemon);
 
   // Filter caught and uncaught Pokemon if the button is toggled
   const caughtPokemon = showCaughtPokemon
@@ -78,6 +78,9 @@ export default function PokeDex(props) {
 
   return (
     <div style={{ paddingBottom: "75px" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={pokedex} alt="Pokedex" style={{ width: "25%" }} />
+      </div>
       <Container className="space-tab">
         <Tab.Container defaultActiveKey="all-pokemon">
           <div className="button-row d-flex justify-content-center">
@@ -87,9 +90,9 @@ export default function PokeDex(props) {
                 variant={type === activeType ? "primary" : "dark"}
                 onClick={() => {
                   setActiveType(type);
-                  setShowCaughtPokemon(false); 
+                  setShowCaughtPokemon(false);
                 }}
-                className="btn btn-sm"
+                className="btn btn-sm cool"
                 style={{
                   backgroundColor: typeColors[type.toLowerCase()] || "gray",
                   color: "white",
@@ -100,7 +103,7 @@ export default function PokeDex(props) {
               </Button>
             ))}
 
-            <Button
+            {/* <Button
               variant={caughtButtonVariant}
               onClick={() => {
                 if (showCaughtPokemon) {
@@ -121,7 +124,7 @@ export default function PokeDex(props) {
               className="btn btn-sm ml-2"
             >
               {caughtButtonLabel}
-            </Button>
+            </Button> */}
 
             {/* <Button
               variant={mainButtonVariant}
@@ -159,6 +162,18 @@ export default function PokeDex(props) {
                               {p.name}
                             </p>
                             <Card.Text>Type: {p.type}</Card.Text>
+                            <div key={p.id}>
+                              {p.isCaught ? (
+                                <p>
+                                  You've caught it
+                                  <img
+                                    src={pokeball}
+                                    style={{ width: "25%" }}
+                                    alt="Pokeball"
+                                  />
+                                </p>
+                              ) : null}
+                            </div>
                           </Card.Body>
                         </div>
                       </Card>

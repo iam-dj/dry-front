@@ -20,6 +20,17 @@
     top: 20px; 
   }
 
+  .cool {
+    filter: grayscale(0%); /* Initial state */
+    transition: filter 0.3s, transform 0.3s; /* Transition effects */
+    margin-right: 10px;
+  }
+
+  .cool:hover {
+    filter: grayscale(50%); /* Apply grayscale filter on hover */
+    transform: scale(1.05); /* Increase size on hover */
+  }
+
   .pokemon-row {
     display: flex;
     justify-content: center;
@@ -65,7 +76,7 @@
     }
 
   .pokemon-card:hover {
-    transform: scale(1.13);
+    /* transform: scale(1.13); */
 
     }
   .pokemon-card2 {

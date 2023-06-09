@@ -268,13 +268,15 @@ export default function SetPokemon(props) {
                   style={{
                     listStyleType: "none",
                     fontSize: "190%",
-                    paddingLeft: "50px",
+                    // paddingLeft: "50px",
                   }}
                 >
+                  <br/>
                   <li
                     style={{
                       borderRadius: "10px",
-                      // fontFamily: "Arial",
+                      // border: "1px solid black",
+                      textAlign: "center",
                     }}
                   >
                     {move1Name || p.move1.name} - {move1Power || p.move1.power}{" "}
@@ -285,6 +287,7 @@ export default function SetPokemon(props) {
                         color: "white",
                         borderRadius: 30,
                         padding: "5px 10px",
+                        
                       }}
                     >
                       {moveType1}
@@ -310,6 +313,8 @@ export default function SetPokemon(props) {
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
@@ -346,6 +351,8 @@ export default function SetPokemon(props) {
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
@@ -382,6 +389,8 @@ export default function SetPokemon(props) {
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
