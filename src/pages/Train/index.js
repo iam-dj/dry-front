@@ -12,6 +12,11 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 export default function Train(props) {
   // const navigate = useNavigate();
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
   const [battleLog, setBattleLog] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isBattleInProgress, setIsBattleInProgress] = useState(false);
@@ -136,6 +141,7 @@ export default function Train(props) {
   const handleButtonClick = () => {
     setbattleLogReaderSpeed(3);
     setMaxBattleLogReaderSpeed(false);
+    setEndGameReached(false);
     // console.log("you've chosen to battle:", trainerId);
 
     const generateBattle = async () => {
@@ -207,7 +213,7 @@ export default function Train(props) {
               if (Math.random() < 0.2) {
                 await API.getAddOneSpin(props.trainerId);
                 alerts.push(
-                  `You Earned another chance to catch a pokemon!! Head to Catch em' all!!\n`
+                  `You Earned another chance to catch a pokemon or find a TM!!\n`
                 );
               }
               const {
@@ -288,7 +294,7 @@ export default function Train(props) {
             setBattleResult(0);
             handleLoss();
           }
-        }, 3000);
+        }, 1500);
       } catch (error) {
         console.log(error);
       }
@@ -296,6 +302,8 @@ export default function Train(props) {
 
     generateBattle();
   };
+
+  const [endGameReached, setEndGameReached] = useState(false);
 
   //gets the value of updated hp out of the healthbar util
   useEffect(() => {
@@ -311,19 +319,20 @@ export default function Train(props) {
     let charIndex = 0;
 
     const animateLogEntry = () => {
-      if (logIndex >= battleLog.length) {
-        if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertWin);
+      if (logIndex >= battleLog.length || endGameReached) {
+        // if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
 
-          // console.log("useEffect log", pokemonChangeAlertWin);
-        }
-        if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
-          setIsFetching(false);
-          showAlert(pokemonChangeAlertLoss);
+        //   setIsFetching(false);
+        //   showAlert(pokemonChangeAlertWin);
 
-          // console.log("useEffect log", pokemonChangeAlertLoss);
-        }
+        //   // console.log("useEffect log", pokemonChangeAlertWin);
+        // }
+        // if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
+        //   setIsFetching(false);
+        //   showAlert(pokemonChangeAlertLoss);
+
+        //   // console.log("useEffect log", pokemonChangeAlertLoss);
+        // }
         return;
       }
 
@@ -371,13 +380,71 @@ export default function Train(props) {
     pokemonChangeAlertWin,
     pokemonChangeAlertLoss,
     healthBarRunning,
+    endGameReached,
   ]);
 
   const [trainerHealth, setTrainerHealth] = useState(trainerHealthArray[0]);
   const [npcHealth, setNpcHealth] = useState(npcHealthArray[0]);
+  const [alertShown, setAlertShown] = useState(false);
 
   useEffect(() => {
     setHealthBarRunning(true);
+    const endGame = (trainerIndex, npcIndex) => {
+      console.log("endgame npc array length", npcHealthArray.length);
+      console.log("endgame npc index:", npcIndex);
+      console.log("endgame  array length", trainerHealthArray.length);
+      console.log("endgame trainer index:", trainerIndex);
+      console.log("endgame battleResult:", battleResult);
+
+      if (
+        trainerIndex + 1 === trainerHealthArray.length &&
+        battleResult === 1 &&
+        pokemonChangeAlertWin.length > 0
+      ) {
+        showAlert(pokemonChangeAlertWin);
+        setEndGameReached(true);
+        console.log(endGameReached);
+        setAlertShown(true);
+        setIsFetching(false);
+        console.log("alertshown?:", alertShown);
+        console.log("game over trainer wins");
+      } else if (
+        trainerIndex + 1 === trainerHealthArray.length &&
+        battleResult === 0 &&
+        pokemonChangeAlertLoss.length > 0
+      ) {
+        showAlert(pokemonChangeAlertLoss);
+        setEndGameReached(true);
+        console.log(endGameReached);
+        setIsFetching(false);
+        setAlertShown(true);
+        console.log("game over trainer loses");
+      } else if (
+        npcIndex + 1 === npcHealthArray.length &&
+        battleResult === 0 &&
+        pokemonChangeAlertLoss.length > 0
+      ) {
+        console.log("game over npc wins");
+        showAlert(pokemonChangeAlertLoss);
+        setEndGameReached(true);
+        setAlertShown(true);
+        console.log("alertshown?:", alertShown);
+        setIsFetching(false);
+        console.log(endGameReached);
+      } else if (
+        npcIndex + 1 === npcHealthArray.length &&
+        battleResult === 1 &&
+        pokemonChangeAlertWin.length > 0
+      ) {
+        console.log("game over npc loses");
+        showAlert(pokemonChangeAlertWin);
+        setEndGameReached(true);
+        setAlertShown(true);
+        console.log("alertshown?:", alertShown);
+        setIsFetching(false);
+        console.log(endGameReached);
+      }
+    };
     const updateMeterValues = () => {
       let trainerIndex = 1;
       let npcIndex = 1;
@@ -387,8 +454,11 @@ export default function Train(props) {
           setTrainerHealth(trainerHealthArray[trainerIndex]);
           console.log("trainer:", trainerHealthArray[trainerIndex]);
           trainerIndex++;
+          console.log("trainer array length", trainerHealthArray.length);
+          console.log("trainer index:", trainerIndex);
         } else {
           clearInterval(trainerInterval);
+          endGame(npcIndex, trainerIndex);
           // setHealthBarRunning(false);
         }
       }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
@@ -398,8 +468,11 @@ export default function Train(props) {
           setNpcHealth(npcHealthArray[npcIndex]);
           console.log("npc:", npcHealthArray[npcIndex]);
           npcIndex++;
+          console.log("npc array length", npcHealthArray.length);
+          console.log("npc index:", npcIndex);
         } else {
           clearInterval(npcInterval);
+          endGame(npcIndex, trainerIndex);
           // setHealthBarRunning(false);
         }
       }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
@@ -414,27 +487,45 @@ export default function Train(props) {
     pokemonChangeAlertLoss,
   ]);
 
-  // useEffect(() => {
-  //   if (
-  //     trainerIndex === trainerHealthArray.length ||
-  //     npcIndex === npcHealthArray.length
-  //   ) {
-  //     if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
-  //       setIsFetching(false);
-  //       showAlert(pokemonChangeAlertWin);
+  useEffect(() => {
+    let timeoutId = null;
 
-  //       // console.log("useEffect log", pokemonChangeAlertWin);
-  //     }
-  //     if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
-  //       setIsFetching(false);
-  //       showAlert(pokemonChangeAlertLoss);
+    if (alertShown === true) {
+      console.log("state reset useffect is going off!", alertShown);
+      timeoutId = setTimeout(() => {
+        setBattleLog([]);
+        setCurrentIndex(0);
+        setIsBattleInProgress(false);
+        setCurrentLogIndex(20);
+        setCurrentCharIndex({});
+        setRenderedLogEntries([]);
+        setPokemonChangeAlertWin([]);
+        setPokemonChangeAlertLoss([]);
+        setTrainerPokemon("");
+        setTrainerName("");
+        setNpcPhoto("");
+        setNpcName("");
+        setTrainerNpcPicture("");
+        setbattleLogReaderSpeed(6);
+        setMaxBattleLogReaderSpeed(false);
+        setHealthBarRunning(false);
+        setHealthBarSpeed(1000);
+        setAlertShown(false);
+        setTrainerHealth([]);
+        setNpcHealth([]);
+        setTrainerHealthArray([]);
+        setNPCHealthArray([]);
+        setTrainName("");
+        setCompName("");
+        setTrainPic("");
+      }, 3000); // 3 seconds delay
+    }
 
-  //       // console.log("useEffect log", pokemonChangeAlertLoss);
-  //     }
-  //   }
-  // }, [trainerIndex, trainerHealthArray, npcIndex, npcHealthArray]);
+    return () => {
+      clearTimeout(timeoutId); // Clear the timeout if the component unmounts or the dependency changes before the delay
+    };
+  }, [alertShown]);
 
-  // console.log("trainerPokemon", trainerPokemon);
   return (
     <>
       <div style={cardStyle} className="card-style">
