@@ -10,6 +10,7 @@ import GymLeader3 from "./GymLeader3.json";
 import { useState, useEffect } from "react";
 import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
+import GymInstructions from "../../components/GymInstructions";
 import Modal from "react-bootstrap/Modal";
 
 export default function CascadeBadge(props) {
@@ -398,6 +399,8 @@ export default function CascadeBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
+
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

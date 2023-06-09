@@ -406,7 +406,11 @@ export default function Catch(props) {
     "https://archives.bulbagarden.net/media/upload/thumb/5/5b/TM_artwork_RTDX.png/120px-TM_artwork_RTDX.png";
   const [hasChances2, setHasChances2] = useState();
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
+  const handleToastClick = () => {
+    setShowToast(true);
+  };
   const toggleShowA = () => {
     setIsToast("");
     setShowA(false);
@@ -591,7 +595,7 @@ export default function Catch(props) {
                 variant="secondary"
                 id="dropdown-battle"
                 onClick={handleButtonClick}
-                disabled={isFetching || hasChances2 === 0 }
+                disabled={isFetching || hasChances2 === 0}
               >
                 {isFetching ? (
                   <img
@@ -602,6 +606,19 @@ export default function Catch(props) {
                   "Get a New Move for 2 Spins"
                 )}
               </Button>
+              <div>
+                <button onClick={handleToastClick}>Show Instructions</button>
+                <Toast show={showToast} onClose={() => setShowToast(false)}>
+                  <Toast.Header>
+                    <strong className="mr-auto">Instructions</strong>
+                  </Toast.Header>
+                  <Toast.Body>
+                  It's time to get a new TM! Click the but and give it a
+                    spin! Note: It costs 2 spins per click -- if you want to
+                    earn more spins go train or battle gym masters!
+                  </Toast.Body>
+                </Toast>
+              </div>
             </div>
           </div>
         </div>

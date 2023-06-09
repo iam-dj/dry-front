@@ -5,9 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
+import Toast from "react-bootstrap/Toast";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import API from "../../utils/API";
+import battle from "./assets/battle.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function SetPokemon(props) {
@@ -18,7 +20,11 @@ export default function SetPokemon(props) {
   const [selectedType, setSelectedType] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedHp, setSelectedHp] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
+  const handleToastClick = () => {
+    setShowToast(true);
+  };
   //move1
   const [move1Name, setMove1Name] = useState("");
   const [move1Power, setMove1Power] = useState(0);
@@ -102,6 +108,25 @@ export default function SetPokemon(props) {
 
   return (
     <div className="center-content">
+       <div>
+      <button onClick={handleToastClick}>Show Instructions</button>
+      <Toast style={{
+          position: "absolute",
+          top: 100,
+          left: 0,
+        }} show={showToast} onClose={() => setShowToast(false)}>
+        <Toast.Header>
+          <strong className="mr-auto">Instructions</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Set your main battle Pokemon. Click the "I Choose You" and choose one of the Pokemon you've caught and click "Select".
+          <br></br>
+          <br></br>
+          Battle Effective Strategies and Weaknesses
+          <img style={{ width: '100%' }} src={battle}></img> 
+        </Toast.Body>
+      </Toast>
+    </div>
       <Row className="justify-content-center">
         {mainPokemon.map((p) => (
           <Col

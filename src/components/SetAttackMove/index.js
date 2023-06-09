@@ -10,6 +10,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import API from "../../utils/API";
 import { useNavigate } from "react-router-dom";
 import battlebg from "./assets/setbg.jpg";
+import Toast from "react-bootstrap/Toast";
 
 export default function SetPokemon(props) {
   const cardStyle = {
@@ -85,6 +86,11 @@ export default function SetPokemon(props) {
     setShowModal(false);
   };
 
+  const [showToast, setShowToast] = useState(false);
+  const handleToastClick = () => {
+    setShowToast(true);
+  };
+
   // const navigate = useNavigate();
 
   const handleSelectButtonClick = async (
@@ -156,6 +162,11 @@ export default function SetPokemon(props) {
 
   const allTms = props.myTrainerTm.TMs;
 
+  useEffect(() => {
+    const filteredTMs = allTms.filter((tm) => tm.name === selectedTm);
+    console.log("filteredTMs", filteredTMs);
+  }, [selectedTm]);
+
   const mainPokemon = allPokemon.filter((p) => p.isMain);
 
   // const caughtPokemon = mainPokemon.filter((p) => p.isCaught);
@@ -207,7 +218,30 @@ export default function SetPokemon(props) {
   }
 
   return (
-    <div className="center-content">
+    <div className="">
+      <div>
+        <button onClick={handleToastClick}>Show Instructions</button>
+        <Toast
+          style={{
+            position: "absolute",
+            top: 100,
+            left: 0,
+          }}
+          show={showToast}
+          onClose={() => setShowToast(false)}
+        >
+          <Toast.Header>
+            <strong className="mr-auto">Instructions</strong>
+          </Toast.Header>
+          <Toast.Body>
+            On this page you're able to edit your Pokémon's moves. Select the
+            drop-down of "change this ⬆️ move" below the move you want to change
+            and then select a TM from your current inventory. After you've made
+            your pick click "Select", and the move will be updated. Note: the
+            move may not disappear from your selection list
+          </Toast.Body>
+        </Toast>
+      </div>
       <Row className="justify-content-center">
         {mainPokemon.map((p) => (
           <Col
@@ -224,19 +258,19 @@ export default function SetPokemon(props) {
               }}
             >
               <div className=" card-content">
-                  <div
-                    style={{
-                      border: "none",
-                      marginTop: "10px",
-                      display: "flex",
-                      fontSize: "150%",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    className="font-text2"
-                  >
-                    {selectedName || p.name}
-                  </div>
+                <div
+                  style={{
+                    border: "none",
+                    marginTop: "10px",
+                    display: "flex",
+                    fontSize: "150%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  className="font-text2"
+                >
+                  {selectedName || p.name}
+                </div>
                 <div className="">
                   <img
                     src={selectedPicture || p.img_url}
@@ -248,7 +282,6 @@ export default function SetPokemon(props) {
                 <Card.Body
                 // style={{ background: "#f0f1c8"  }}
                 >
-
                   <div style={{ display: "flex" }}>
                     <p className="font-text3">
                       Level {selectedLevel || p.level}&nbsp;&nbsp;
@@ -256,13 +289,18 @@ export default function SetPokemon(props) {
                     <p className="font-text3">HP {selectedHp || p.hp}</p>
                   </div>
 
-                  <p style={{
+                  <p
+                    style={{
                       border: "none",
                       marginTop: "10px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                    }} className="font-text3">Type: {selectedType || p.type}</p>
+                    }}
+                    className="font-text3"
+                  >
+                    Type: {selectedType || p.type}
+                  </p>
                 </Card.Body>
                 <ul
                   style={{
@@ -271,7 +309,7 @@ export default function SetPokemon(props) {
                     // paddingLeft: "50px",
                   }}
                 >
-                  <br/>
+                  <br />
                   <li
                     style={{
                       borderRadius: "10px",
@@ -287,7 +325,6 @@ export default function SetPokemon(props) {
                         color: "white",
                         borderRadius: 30,
                         padding: "5px 10px",
-                        
                       }}
                     >
                       {moveType1}

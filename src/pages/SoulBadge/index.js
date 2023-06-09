@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import GymInstructions from "../../components/GymInstructions";
 
 export default function SoulBadge(props) {
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function SoulBadge(props) {
       window.location.assign("/login");
     }
   }, [props.trainerId]);
-  
+
   const cardStyle = {
     backgroundImage: `url(${soul})`,
     backgroundPosition: "center",
@@ -399,6 +400,8 @@ export default function SoulBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
+
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

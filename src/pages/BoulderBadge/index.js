@@ -4,6 +4,7 @@ import brock from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
 import BattleSys from "../../utils/BattleSys";
+import GymInstructions from "../../components/GymInstructions";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";
@@ -398,6 +399,7 @@ export default function BoulderBadge(props) {
 
   return (
     <div style={cardStyle}>
+      <GymInstructions />
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (
