@@ -51,8 +51,8 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   userPoke[0].hp = userPoke[0].hp + updateMyHP;
   compPoke[0].hp = compPoke[0].hp + updateCompHP;
 
-  compHpArray.push(`${compPoke[0].hp}`);
-  userHpArray.push(`${userPoke[0].hp}`);
+  // compHpArray.push(`${compPoke[0].hp}`);
+  // userHpArray.push(`${userPoke[0].hp}`);
 
   const HorT = coinflip.flip();
 
@@ -170,7 +170,8 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   function userWon(userHpArray, compHpArray) {
     // console.log("You win!!");
     // console.log(battleLogData);
-    compHpArray.push("0");
+    compHpArray.push(0);
+    userHpArray.push(userPoke[0].hp);
     battleLogData.push("You win!!");
     console.log("function userWon is going off!");
     return {
@@ -184,7 +185,8 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
   function compWon(userHpArray, compHpArray) {
     // console.log("You lose");
     // console.log(battleLogData);
-    userHpArray.push("0");
+    userHpArray.push(0);
+    compHpArray.push(compPoke[0].hp);
     console.log("function userLost is going off!");
     battleLogData.push("You lose");
     return {

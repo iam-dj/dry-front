@@ -31,10 +31,10 @@ export default function Train(props) {
   const [npcPhoto, setNpcPhoto] = useState("");
   const [npcName, setNpcName] = useState("");
   const [npcTrainerPicture, setTrainerNpcPicture] = useState("");
-  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(6);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(1000);
   const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
   const [healthBarRunning, setHealthBarRunning] = useState(false);
-  const [healthBarSpeed, setHealthBarSpeed] = useState(1000);
+  const [healthBarSpeed, setHealthBarSpeed] = useState(2000);
 
   const topLeftImageStyle = {
     position: "absolute",
@@ -118,11 +118,11 @@ export default function Train(props) {
   };
 
   const readerSpeedUp = () => {
-    if (battleLogReaderSpeed < 20)
-      setbattleLogReaderSpeed((prevSpeed) => prevSpeed + 3);
-    setHealthBarSpeed((prevSpeed) => prevSpeed - 100);
+    if (battleLogReaderSpeed < 1500)
+      setbattleLogReaderSpeed((prevSpeed) => prevSpeed * 1.5);
+    setHealthBarSpeed((prevSpeed) => prevSpeed - 500);
     console.log(battleLogReaderSpeed);
-    if (battleLogReaderSpeed === 18) setMaxBattleLogReaderSpeed(true);
+    if (battleLogReaderSpeed === 1500) setMaxBattleLogReaderSpeed(true);
   };
 
   const [isFetching, setIsFetching] = useState(false);
@@ -139,7 +139,7 @@ export default function Train(props) {
   const [npcHealthArray, setNPCHealthArray] = useState([]);
 
   const handleButtonClick = () => {
-    setbattleLogReaderSpeed(3);
+    // setbattleLogReaderSpeed(3);
     setMaxBattleLogReaderSpeed(false);
     setEndGameReached(false);
     // console.log("you've chosen to battle:", trainerId);
@@ -203,6 +203,7 @@ export default function Train(props) {
           setTrainerHealthArray(userHpArray);
           setNPCHealthArray(compHpArray);
           setBattleLog(battleLogData);
+          console.log("battleResult after battle sys call", battleResult);
 
           console.log("battle result is working?", battleLogData);
           // console.log("result", result);
@@ -313,62 +314,106 @@ export default function Train(props) {
     // console.log("battleLog", battleLog);
   }, [trainerHealthArray, npcHealthArray]);
 
+  // useEffect(() => {
+  //   let timeoutIds = [];
+  //   let logIndex = 0;
+  //   let charIndex = 0;
+
+  //   const animateLogEntry = () => {
+  //     if (logIndex >= battleLog.length || endGameReached) {
+  //       if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
+  //         setIsFetching(false);
+  //         showAlert(pokemonChangeAlertWin);
+
+  //         // console.log("useEffect log", pokemonChangeAlertWin);
+  //       }
+  //       if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
+  //         setIsFetching(false);
+  //         showAlert(pokemonChangeAlertLoss);
+
+  //         // console.log("useEffect log", pokemonChangeAlertLoss);
+  //       }
+  //       return;
+  //     }
+
+  //     const logEntry = battleLog[logIndex];
+  //     // console.log(logEntry);
+
+  //     const timeoutId = setTimeout(() => {
+  //       setCurrentCharIndex((prevCharIndex) => ({
+  //         ...prevCharIndex,
+  //         [logIndex]: charIndex,
+  //       }));
+
+  //       charIndex++;
+
+  //       if (charIndex > logEntry.length) {
+  //         clearTimeout(timeoutId);
+
+  //         // Move to the next log entry
+  //         logIndex += battleLogReaderSpeed;
+  //         setCurrentLogIndex(logIndex);
+  //         // console.log("logIndex", logIndex);
+  //         charIndex = 0;
+
+  //         // Start animating the next log entry after a delay
+  //         setTimeout(animateLogEntry, 2); // Adjust the delay duration as desired (in milliseconds)
+  //       } else {
+  //         // Continue animating the current log entry
+  //         animateLogEntry();
+  //       }
+  //     }, 45); // Adjust the interval duration as desired (in milliseconds)
+
+  //     timeoutIds.push(timeoutId);
+  //   };
+
+  //   // Start animating log entries when battleLog updates
+  //   animateLogEntry();
+
+  //   return () => {
+  //     // Clear all the timeouts when component unmounts
+  //     timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
+  //   };
+  // }, [
+  //   battleLog,
+  //   battleResult,
+  //   pokemonChangeAlertWin,
+  //   pokemonChangeAlertLoss,
+  //   healthBarRunning,
+  //   endGameReached,
+  // ]);
+
   useEffect(() => {
     let timeoutIds = [];
-    let logIndex = 0;
-    let charIndex = 0;
 
-    const animateLogEntry = () => {
-      if (logIndex >= battleLog.length || endGameReached) {
-        // if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
+    const displayLogs = () => {
+      for (let i = 0; i < battleLog.length; i++) {
+        const logEntry = battleLog[i];
+        console.log(logEntry);
 
-        //   setIsFetching(false);
-        //   showAlert(pokemonChangeAlertWin);
+        const timeoutId = setTimeout(() => {
+          setCurrentLogIndex(i);
 
-        //   // console.log("useEffect log", pokemonChangeAlertWin);
-        // }
-        // if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
-        //   setIsFetching(false);
-        //   showAlert(pokemonChangeAlertLoss);
+          if (i === battleLog.length - 1) {
+            // Last log entry
 
-        //   // console.log("useEffect log", pokemonChangeAlertLoss);
-        // }
-        return;
+            if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
+              setIsFetching(false);
+              showAlert(pokemonChangeAlertWin);
+            }
+            if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
+              setIsFetching(false);
+              showAlert(pokemonChangeAlertLoss);
+            }
+          }
+        }, 1000 * i); // Adjust the delay duration as desired (in milliseconds)
+
+        timeoutIds.push(timeoutId);
       }
-
-      const logEntry = battleLog[logIndex];
-      // console.log(logEntry);
-
-      const timeoutId = setTimeout(() => {
-        setCurrentCharIndex((prevCharIndex) => ({
-          ...prevCharIndex,
-          [logIndex]: charIndex,
-        }));
-
-        charIndex++;
-
-        if (charIndex > logEntry.length) {
-          clearTimeout(timeoutId);
-
-          // Move to the next log entry
-          logIndex += battleLogReaderSpeed;
-          setCurrentLogIndex(logIndex);
-          // console.log("logIndex", logIndex);
-          charIndex = 0;
-
-          // Start animating the next log entry after a delay
-          setTimeout(animateLogEntry, 2); // Adjust the delay duration as desired (in milliseconds)
-        } else {
-          // Continue animating the current log entry
-          animateLogEntry();
-        }
-      }, 45); // Adjust the interval duration as desired (in milliseconds)
-
-      timeoutIds.push(timeoutId);
     };
 
-    // Start animating log entries when battleLog updates
-    animateLogEntry();
+    // Display logs when battleLog updates
+    displayLogs();
 
     return () => {
       // Clear all the timeouts when component unmounts
@@ -376,11 +421,11 @@ export default function Train(props) {
     };
   }, [
     battleLog,
+    endGameReached,
     battleResult,
     pokemonChangeAlertWin,
     pokemonChangeAlertLoss,
-    healthBarRunning,
-    endGameReached,
+    battleLogReaderSpeed,
   ]);
 
   const [trainerHealth, setTrainerHealth] = useState(trainerHealthArray[0]);
@@ -389,62 +434,7 @@ export default function Train(props) {
 
   useEffect(() => {
     setHealthBarRunning(true);
-    const endGame = (trainerIndex, npcIndex) => {
-      console.log("endgame npc array length", npcHealthArray.length);
-      console.log("endgame npc index:", npcIndex);
-      console.log("endgame  array length", trainerHealthArray.length);
-      console.log("endgame trainer index:", trainerIndex);
-      console.log("endgame battleResult:", battleResult);
 
-      if (
-        trainerIndex + 1 === trainerHealthArray.length &&
-        battleResult === 1 &&
-        pokemonChangeAlertWin.length > 0
-      ) {
-        showAlert(pokemonChangeAlertWin);
-        setEndGameReached(true);
-        console.log(endGameReached);
-        setAlertShown(true);
-        setIsFetching(false);
-        console.log("alertshown?:", alertShown);
-        console.log("game over trainer wins");
-      } else if (
-        trainerIndex + 1 === trainerHealthArray.length &&
-        battleResult === 0 &&
-        pokemonChangeAlertLoss.length > 0
-      ) {
-        showAlert(pokemonChangeAlertLoss);
-        setEndGameReached(true);
-        console.log(endGameReached);
-        setIsFetching(false);
-        setAlertShown(true);
-        console.log("game over trainer loses");
-      } else if (
-        npcIndex + 1 === npcHealthArray.length &&
-        battleResult === 0 &&
-        pokemonChangeAlertLoss.length > 0
-      ) {
-        console.log("game over npc wins");
-        showAlert(pokemonChangeAlertLoss);
-        setEndGameReached(true);
-        setAlertShown(true);
-        console.log("alertshown?:", alertShown);
-        setIsFetching(false);
-        console.log(endGameReached);
-      } else if (
-        npcIndex + 1 === npcHealthArray.length &&
-        battleResult === 1 &&
-        pokemonChangeAlertWin.length > 0
-      ) {
-        console.log("game over npc loses");
-        showAlert(pokemonChangeAlertWin);
-        setEndGameReached(true);
-        setAlertShown(true);
-        console.log("alertshown?:", alertShown);
-        setIsFetching(false);
-        console.log(endGameReached);
-      }
-    };
     const updateMeterValues = () => {
       let trainerIndex = 1;
       let npcIndex = 1;
@@ -458,7 +448,7 @@ export default function Train(props) {
           console.log("trainer index:", trainerIndex);
         } else {
           clearInterval(trainerInterval);
-          endGame(npcIndex, trainerIndex);
+          // endGame(npcIndex, trainerIndex);
           // setHealthBarRunning(false);
         }
       }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
@@ -472,7 +462,7 @@ export default function Train(props) {
           console.log("npc index:", npcIndex);
         } else {
           clearInterval(npcInterval);
-          endGame(npcIndex, trainerIndex);
+          // endGame(npcIndex, trainerIndex);
           // setHealthBarRunning(false);
         }
       }, healthBarSpeed); // Adjust the delay (in milliseconds) between each update
@@ -490,36 +480,36 @@ export default function Train(props) {
   useEffect(() => {
     let timeoutId = null;
 
-    if (alertShown === true) {
-      console.log("state reset useffect is going off!", alertShown);
-      timeoutId = setTimeout(() => {
-        setBattleLog([]);
-        setCurrentIndex(0);
-        setIsBattleInProgress(false);
-        setCurrentLogIndex(20);
-        setCurrentCharIndex({});
-        setRenderedLogEntries([]);
-        setPokemonChangeAlertWin([]);
-        setPokemonChangeAlertLoss([]);
-        setTrainerPokemon("");
-        setTrainerName("");
-        setNpcPhoto("");
-        setNpcName("");
-        setTrainerNpcPicture("");
-        setbattleLogReaderSpeed(6);
-        setMaxBattleLogReaderSpeed(false);
-        setHealthBarRunning(false);
-        setHealthBarSpeed(1000);
-        setAlertShown(false);
-        setTrainerHealth([]);
-        setNpcHealth([]);
-        setTrainerHealthArray([]);
-        setNPCHealthArray([]);
-        setTrainName("");
-        setCompName("");
-        setTrainPic("");
-      }, 3000); // 3 seconds delay
-    }
+    // if (alertShown === true) {
+    //   console.log("state reset useffect is going off!", alertShown);
+    //   timeoutId = setTimeout(() => {
+    //     setBattleLog([]);
+    //     setCurrentIndex(0);
+    //     setIsBattleInProgress(false);
+    //     setCurrentLogIndex(20);
+    //     setCurrentCharIndex({});
+    //     setRenderedLogEntries([]);
+    //     setPokemonChangeAlertWin([]);
+    //     setPokemonChangeAlertLoss([]);
+    //     setTrainerPokemon("");
+    //     setTrainerName("");
+    //     setNpcPhoto("");
+    //     setNpcName("");
+    //     setTrainerNpcPicture("");
+    //     setbattleLogReaderSpeed(6);
+    //     setMaxBattleLogReaderSpeed(false);
+    //     setHealthBarRunning(false);
+    //     setHealthBarSpeed(1000);
+    //     setAlertShown(false);
+    //     setTrainerHealth([]);
+    //     setNpcHealth([]);
+    //     setTrainerHealthArray([]);
+    //     setNPCHealthArray([]);
+    //     setTrainName("");
+    //     setCompName("");
+    //     setTrainPic("");
+    //   }, 3000); // 3 seconds delay
+    // }
 
     return () => {
       clearTimeout(timeoutId); // Clear the timeout if the component unmounts or the dependency changes before the delay
