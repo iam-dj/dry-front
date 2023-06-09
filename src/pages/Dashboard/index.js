@@ -16,6 +16,12 @@ import { Background } from "@cloudinary/url-gen/qualifiers";
 const STORAGE_KEY = "home_trainer_state";
 
 export default function Dashboard(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const params = useParams();
   const navigate = useNavigate();
 

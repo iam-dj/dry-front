@@ -14,6 +14,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function SoulBadge(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const cardStyle = {
     backgroundImage: `url(${soul})`,
     backgroundPosition: "center",

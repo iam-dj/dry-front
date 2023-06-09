@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import pokevideo from "./assets/pokeVideo.mp4";
-// import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
-import PokeDex from "../../components/PokeDex";
+// import PokeDex from "../../components/PokeDex";
 import Toast from "react-bootstrap/Toast";
-import PB from "./assets/pokeball.png";
+// import PB from "./assets/pokeball.png";
 
 export default function Catch(props) {
   const movesArray = [
@@ -487,109 +487,122 @@ export default function Catch(props) {
       // Handle logic when there are no more chances left
     }
   };
+    const navigate = useNavigate();
 
-  return (
-    <>
-      <div
-        style={{
-          position: "absolute",
-          top: 150,
-          right: 300,
-          backgroundColor: "#dc3545",
-          padding: "5px",
-          borderRadius: "5px",
-          color: "white",
-        }}
-      >
-        <p style={{ fontWeight: "bold" }}>
-          # of spin(s) left: 
-        </p>
-        <span style={{ display: "flex", justifyContent: "center", fontSize: "300%", background:"white", color:"black" }}>
-  {hasChances >= 0 ? hasChances : 0}
-</span>
+    useEffect(() => {
+      if (!props.trainerId) {
+        window.location.assign("/login");
+      }
+    }, [props.trainerId]);
 
-      </div>
-      <div style={{ position: "relative" }}>
-        <video
-          src={pokevideo}
-          type="video/mp4"
-          autoPlay
-          loop
-          muted
+    return (
+      <>
+        <div
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100vh",
-            objectFit: "cover",
-            zIndex: -1,
+            top: 150,
+            right: 300,
+            backgroundColor: "#dc3545",
+            padding: "5px",
+            borderRadius: "5px",
+            color: "white",
           }}
-        />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div
+        >
+          <p style={{ fontWeight: "bold" }}># of spin(s) left:</p>
+          <span
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              height: "100vh",
+              fontSize: "300%",
+              background: "white",
+              color: "black",
             }}
           >
+            {hasChances >= 0 ? hasChances : 0}
+          </span>
+        </div>
+        <div style={{ position: "relative" }}>
+          <video
+            src={pokevideo}
+            type="video/mp4"
+            autoPlay
+            loop
+            muted
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              objectFit: "cover",
+              zIndex: -1,
+            }}
+          />
+          <div style={{ position: "relative", zIndex: 1 }}>
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
+                height: "100vh",
               }}
             >
-              <Toast className="mx-auto">
-                <Toast.Body
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                    color: "black",
-                    textAligh: "center",
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <span style={{ fontWeight: "bold", fontSize: "155%" }}>
-                      {isToast}
-                    </span>
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <img
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        objectFit: "contain",
-                      }}
-                      src={showPoke}
-                      alt="Pokemon"
-                    />
-                  </div>
-                </Toast.Body>
-              </Toast>
-              <Button
-                className="btn-danger mx-auto"
-                variant="secondary"
-                id="dropdown-battle"
-                onClick={handleButtonClick}
-                disabled={isFetching || hasChances === 0}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
               >
-                {isFetching ? (
-                  <img
-                    src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                    alt="fetching-pokemon"
-                  />
-                ) : (
-                  "Get a New Move"
-                )}
-              </Button>
+                <Toast className="mx-auto">
+                  <Toast.Body
+                    style={{
+                      backgroundColor: "white",
+                      borderRadius: "10px",
+                      color: "black",
+                      textAligh: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <span style={{ fontWeight: "bold", fontSize: "155%" }}>
+                        {isToast}
+                      </span>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <img
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "contain",
+                        }}
+                        src={showPoke}
+                        alt="Pokemon"
+                      />
+                    </div>
+                  </Toast.Body>
+                </Toast>
+                <Button
+                  className="btn-danger mx-auto"
+                  variant="secondary"
+                  id="dropdown-battle"
+                  onClick={handleButtonClick}
+                  disabled={isFetching || hasChances === 0}
+                >
+                  {isFetching ? (
+                    <img
+                      src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                      alt="fetching-pokemon"
+                    />
+                  ) : (
+                    "Get a New Move"
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
-}
+      </>
+    );
+  };
+

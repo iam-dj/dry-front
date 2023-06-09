@@ -8,6 +8,12 @@ import Toast from "react-bootstrap/Toast";
 import PB from "./assets/pokeball.png";
 
 export default function Catch(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const pokemonNames = [
     "Bulbasaur",
     "Ivysaur",

@@ -16,6 +16,12 @@ import "./style.css";
 const ALL_TRAINERS = "all_trainer_state";
 
 export default function HomePage(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const [myWins, setMyWins] = useState();
   const [myLoss, setMyLoss] = useState();
   const [show, setShow] = useState(false);

@@ -4,6 +4,12 @@ import API from "../../utils/API";
 import battlebg from "./assets/setbg.jpg";
 
 export default function SetMove(props) {
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+  
   const [myTrainerDatas, setMyTrainerDatas] = useState(null);
   const [myTrainerTm, setMyTrainerTm] = useState(null);
   const [isLoadings, setIsLoadings] = useState(true); 
