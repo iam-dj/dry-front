@@ -59,16 +59,23 @@ function NavTabs(props) {
                   <Dropdown.Item
                     style={dropdownMenuStyles}
                     as={Link}
-                    to="/setpoke"
+                    to="/tm"
                   >
-                    Set Your Pokemon
+                    Find New TM
                   </Dropdown.Item>
                   <Dropdown.Item
                     style={dropdownMenuStyles}
                     as={Link}
                     to="/setmove"
                   >
-                    Set Pokemon TM
+                    Use TM
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    style={dropdownMenuStyles}
+                    as={Link}
+                    to="/setpoke"
+                  >
+                    Set Main Pokemon
                   </Dropdown.Item>
                   <Dropdown style={dropdownMenuStyles} as={Nav.Item}>
                     <Dropdown.Toggle

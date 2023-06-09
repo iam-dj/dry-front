@@ -85,8 +85,6 @@ export default function SetPokemon(props) {
     setShowModal(false);
   };
 
-  
-
   // const navigate = useNavigate();
 
   const handleSelectButtonClick = async (
@@ -95,22 +93,19 @@ export default function SetPokemon(props) {
     moveNum,
     newMove
   ) => {
-    console.log('trainerId',trainerId);
-    console.log('pokemonName',pokemonName);
-    console.log('moveNum',moveNum);
-    console.log('newMove',newMove);
+    console.log("trainerId", trainerId);
+    console.log("pokemonName", pokemonName);
+    console.log("moveNum", moveNum);
+    console.log("newMove", newMove);
     try {
-      if (moveNum == "move1") {        
-        await API.changeMoveOne(trainerId,pokemonName,newMove);
-      }
-      else if (moveNum === "move2") {
-        await API.changeMoveTwo(trainerId,pokemonName,newMove);
-      }
-      else if (moveNum === "move3") {
-        await API.changeMoveThree(trainerId,pokemonName,newMove);
-      }
-      else {
-        await API.changeMoveFour(trainerId,pokemonName,newMove);
+      if (moveNum == "move1") {
+        await API.changeMoveOne(trainerId, pokemonName, newMove);
+      } else if (moveNum === "move2") {
+        await API.changeMoveTwo(trainerId, pokemonName, newMove);
+      } else if (moveNum === "move3") {
+        await API.changeMoveThree(trainerId, pokemonName, newMove);
+      } else {
+        await API.changeMoveFour(trainerId, pokemonName, newMove);
       }
 
       const myPoke = await API.getBattlePoke(trainerId);
@@ -150,8 +145,6 @@ export default function SetPokemon(props) {
       // console.log("myPoke", myPoke);
       setSelectedTm(null);
       setShowModal(false);
-
-
     } catch (error) {
       console.log(error);
     }
@@ -171,6 +164,47 @@ export default function SetPokemon(props) {
     const selected = allTms.find((tm) => tm.TM_name === eventKey);
     setSelectedTm(selected);
   };
+
+  const moveType1 = move1Type || mainPokemon[0].move1.type;
+  const moveType2 = move2Type || mainPokemon[0].move2.type;
+  const moveType3 = move3Type || mainPokemon[0].move3.type;
+  const moveType4 = move4Type || mainPokemon[0].move4.type;
+
+  let typeColor1 = "#000000";
+  let typeColor2 = "#000000";
+  let typeColor3 = "#000000";
+  let typeColor4 = "#000000";
+
+  const typeColors = {
+    Normal: "#A8A77A",
+    Fire: "#EE8130",
+    Water: "#6390F0",
+    Electric: "#F7D02C",
+    Grass: "#7AC74C",
+    Ice: "#96D9D6",
+    Fighting: "#C22E28",
+    Poison: "#A33EA1",
+    Ground: "#E2BF65",
+    Flying: "#A98FF3",
+    Psychic: "#F95587",
+    Bug: "#A6B91A",
+    Rock: "#B6A136",
+    Ghost: "#735797",
+    Dragon: "#6F35FC",
+  };
+
+  if (typeColors.hasOwnProperty(moveType1)) {
+    typeColor1 = typeColors[moveType1];
+  }
+  if (typeColors.hasOwnProperty(moveType2)) {
+    typeColor2 = typeColors[moveType2];
+  }
+  if (typeColors.hasOwnProperty(moveType3)) {
+    typeColor3 = typeColors[moveType3];
+  }
+  if (typeColors.hasOwnProperty(moveType4)) {
+    typeColor4 = typeColors[moveType4];
+  }
 
   return (
     <div className="center-content">
@@ -209,9 +243,9 @@ export default function SetPokemon(props) {
 
                   <div style={{ display: "flex" }}>
                     <p className="font-text2">
-                      Level: {selectedLevel || p.level}&nbsp;&nbsp;
+                      Level {selectedLevel || p.level}&nbsp;&nbsp;
                     </p>
-                    <p className="font-text2">HP: {selectedHp || p.hp}</p>
+                    <p className="font-text2">HP {selectedHp || p.hp}</p>
                   </div>
 
                   <p className="font-text3">Type: {selectedType || p.type}</p>
@@ -230,8 +264,18 @@ export default function SetPokemon(props) {
                     }}
                   >
                     {move1Name || p.move1.name} - {move1Power || p.move1.power}{" "}
-                    - {move1Type || p.move1.type}{" "}
-                    {move1Desc || p.move1.description}
+                    -{" "}
+                    <span
+                      style={{
+                        background: typeColor1,
+                        color: "white",
+                        borderRadius: 30,
+                        padding: "5px 10px",
+                      }}
+                    >
+                      {moveType1}
+                    </span>{" "}
+                    - {move1Desc || p.move1.description}
                     <Button
                       id="move1"
                       onClick={handleButtonClick}
@@ -256,8 +300,18 @@ export default function SetPokemon(props) {
                     }}
                   >
                     {move2Name || p.move2.name} - {move2Power || p.move2.power}{" "}
-                    - {move2Type || p.move2.type}{" "}
-                    {move2Desc || p.move2.description}
+                    -{" "}
+                    <span
+                      style={{
+                        background: typeColor2,
+                        color: "white",
+                        borderRadius: 30,
+                        padding: "5px 10px",
+                      }}
+                    >
+                      {moveType2}
+                    </span>{" "}
+                    - {move2Desc || p.move2.description}
                     <Button
                       id="move2"
                       onClick={handleButtonClick2}
@@ -282,8 +336,18 @@ export default function SetPokemon(props) {
                     }}
                   >
                     {move3Name || p.move3.name} - {move3Power || p.move3.power}{" "}
-                    - {move3Type || p.move3.type}{" "}
-                    {move3Desc || p.move3.description}
+                    -{" "}
+                    <span
+                      style={{
+                        background: typeColor3,
+                        color: "white",
+                        borderRadius: 30,
+                        padding: "5px 10px",
+                      }}
+                    >
+                      {moveType3}
+                    </span>{" "}
+                    - {move3Desc || p.move3.description}
                     <Button
                       id="move3"
                       onClick={handleButtonClick3}
@@ -308,8 +372,18 @@ export default function SetPokemon(props) {
                     }}
                   >
                     {move4Name || p.move4.name} - {move4Power || p.move4.power}{" "}
-                    - {move4Type || p.move4.type}{" "}
-                    {move4Desc || p.move4.description}
+                    -{" "}
+                    <span
+                      style={{
+                        background: typeColor4,
+                        color: "white",
+                        borderRadius: 30,
+                        padding: "5px 10px",
+                      }}
+                    >
+                      {moveType4}
+                    </span>{" "}
+                    - {move4Desc || p.move4.description}
                     <Button
                       id="move4"
                       onClick={handleButtonClick4}
