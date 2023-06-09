@@ -480,36 +480,37 @@ export default function Train(props) {
   useEffect(() => {
     let timeoutId = null;
 
-    // if (alertShown === true) {
-    //   console.log("state reset useffect is going off!", alertShown);
-    //   timeoutId = setTimeout(() => {
-    //     setBattleLog([]);
-    //     setCurrentIndex(0);
-    //     setIsBattleInProgress(false);
-    //     setCurrentLogIndex(20);
-    //     setCurrentCharIndex({});
-    //     setRenderedLogEntries([]);
-    //     setPokemonChangeAlertWin([]);
-    //     setPokemonChangeAlertLoss([]);
-    //     setTrainerPokemon("");
-    //     setTrainerName("");
-    //     setNpcPhoto("");
-    //     setNpcName("");
-    //     setTrainerNpcPicture("");
-    //     setbattleLogReaderSpeed(6);
-    //     setMaxBattleLogReaderSpeed(false);
-    //     setHealthBarRunning(false);
-    //     setHealthBarSpeed(1000);
-    //     setAlertShown(false);
-    //     setTrainerHealth([]);
-    //     setNpcHealth([]);
-    //     setTrainerHealthArray([]);
-    //     setNPCHealthArray([]);
-    //     setTrainName("");
-    //     setCompName("");
-    //     setTrainPic("");
-    //   }, 3000); // 3 seconds delay
-    // }
+    if (alertShown === true) {
+      console.log("state reset useffect is going off!", alertShown);
+      timeoutId = setTimeout(() => {
+        setBattleLog([]);
+        //     setCurrentIndex(0);
+        //     setIsBattleInProgress(false);
+        //     setCurrentLogIndex(20);
+        //     setCurrentCharIndex({});
+        setRenderedLogEntries([]);
+        //     setPokemonChangeAlertWin([]);
+        //     setPokemonChangeAlertLoss([]);
+        //     setTrainerPokemon("");
+        //     setTrainerName("");
+        setNpcPhoto("");
+        setNpcName("");
+        setTrainerNpcPicture("");
+        //     setbattleLogReaderSpeed(6);
+        //     setMaxBattleLogReaderSpeed(false);
+        //     setHealthBarRunning(false);
+        setbattleLogReaderSpeed(1000);
+        setHealthBarSpeed(2000);
+        setAlertShown(false);
+        setTrainerHealth([]);
+        setNpcHealth([]);
+        setTrainerHealthArray([]);
+        setNPCHealthArray([]);
+        //     setTrainName("");
+        setCompName("");
+        setTrainPic("");
+      }, 2000); // 3 seconds delay
+    }
 
     return () => {
       clearTimeout(timeoutId); // Clear the timeout if the component unmounts or the dependency changes before the delay
