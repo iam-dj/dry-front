@@ -3,7 +3,7 @@ import "./style.css";
 import surge from "./assets/Lt._Surge.png";
 import thunder from "./assets/thunder.jpg";
 import API from "../../utils/API";
-import BattleSys from "../../utils/BattleSys";
+import BattleSys from "../../utils/GymBattleSys";
 // import Button from "react-bootstrap/Button";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";

@@ -3,7 +3,7 @@ import "./style.css";
 import Misty from "./assets/Misty.png";
 import cascade from "./assets/cascade.png";
 import API from "../../utils/API";
-import BattleSys from "../../utils/BattleSys";
+import BattleSys from "../../utils/GymBattleSys";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
 import GymLeader3 from "./GymLeader3.json";

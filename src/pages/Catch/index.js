@@ -352,7 +352,7 @@ export default function Catch(props) {
                     <strong className="mr-auto">Instructions</strong>
                   </Toast.Header>
                   <Toast.Body>
-                    It's time to catch Pokemon! Click the but and give it a
+                    It's time to catch Pokemon! Click the button and give it a
                     spin! Note: It costs 2 spins per click -- if you want to
                     earn more spins go train or battle gym masters!
                   </Toast.Body>
