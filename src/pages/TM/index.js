@@ -3,6 +3,7 @@ import pokevideo from "./assets/pokeVideo.mp4";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
+import tm from "./assets/tm.png";
 
 export default function Catch(props) {
   const movesArray = [
@@ -427,7 +428,7 @@ export default function Catch(props) {
   }, [props.trainerId]);
 
   useEffect(() => {
-    setShowPoke(pokeBallImageUrl);
+    setShowPoke(tm);
   }, []);
 
   useEffect(() => {
