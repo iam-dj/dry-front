@@ -82,8 +82,10 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
     );
 
     if (userPoke[0].hp <= 0) {
+      console.log("user pokemon hp check:", userPoke[0].hp);
       return compWon(userHpArray, compHpArray); // Return 0 if the opponent wins
     } else if (compPoke[0].hp <= 0) {
+      console.log("comp pokemon hp check:", compPoke[0].hp);
       return userWon(userHpArray, compHpArray); // Return 1 if the user wins
     } else {
       battle(userHpArray, compHpArray);
@@ -101,8 +103,8 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
       // console.log(
       //   `Your pokemon ${userPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
       // );
-      battleLogData.push(`Your pokemon ${userPoke[0].name} missed. \n`);
-      compHpArray.push(`Your pokemon ${userPoke[0].name} missed. \n`);
+      // battleLogData.push(`Your pokemon ${userPoke[0].name} missed. \n`);
+      // compHpArray.push(`Your pokemon ${userPoke[0].name} missed. \n`);
     } else {
       const damage =
         Math.trunc(
@@ -112,9 +114,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
       console.log("recursive", compHpArray);
       compHpArray.push(`${compPoke[0].hp}`);
       if (damage >= 7) {
-        console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
-        battleLogData.push("Your attack was SUPER effective!\n");
-        compHpArray.push("Your attack was SUPER effective!\n");
+        // console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
+        // battleLogData.push("Your attack was SUPER effective!\n");
+        // compHpArray.push("Your attack was SUPER effective!\n");
       }
       if (compPoke[0].hp >= 0) {
         console.log(
@@ -131,9 +133,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
 
     if (hitormiss.flip() === 10) {
       userPoke[0].hp = userPoke[0].hp - 0;
-      console.log(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
-      battleLogData.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
-      userHpArray.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
+      // console.log(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
+      // battleLogData.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
+      // userHpArray.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
     } else {
       const damageTwo =
         Math.trunc(
@@ -143,9 +145,9 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
       userHpArray.push(`${userPoke[0].hp}`);
       console.log("recursive", userHpArray);
       if (damageTwo >= 7) {
-        console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
-        battleLogData.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
-        userHpArray.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
+        // console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
+        // battleLogData.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
+        // compHpArray.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
       }
       if (userPoke[0].hp >= 0) {
         console.log(
