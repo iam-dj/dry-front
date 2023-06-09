@@ -20,11 +20,22 @@
     top: 20px; 
   }
 
+  .cool {
+    filter: grayscale(0%); /* Initial state */
+    transition: filter 0.3s, transform 0.3s; /* Transition effects */
+    margin-right: 10px;
+  }
+
+  .cool:hover {
+    filter: grayscale(50%); /* Apply grayscale filter on hover */
+    transform: scale(1.05); /* Increase size on hover */
+  }
+
   .pokemon-row {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
   }
   
   .pokemon-card {
@@ -57,7 +68,27 @@
     border: 15px solid gold;
     border-radius: 10px;
     width:250px;
-    /* padding-right: 25px; */
     font-size: small;
     font-weight: bolder;
+    padding-right: 10px;
+    transition: transform 0.3s;
+
+    }
+
+  .pokemon-card:hover {
+    /* transform: scale(1.13); */
+
+    }
+  .pokemon-card2 {
+    border: 15px solid gold;
+    border-radius: 10px;
+    width:250px;
+    font-size: small;
+    font-weight: bolder;
+    padding-right: 10px;
+
+    }
+
+  .pokemon-card2:hover {
+
     }

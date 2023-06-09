@@ -213,16 +213,30 @@ export default function SetPokemon(props) {
           <Col
             key={p.id}
             className="d-flex justify-content-center align-items-center"
+            style={{ paddingBottom: "95px" }}
           >
             <div
-              className="prof-card pokemon-card "
+              className="prof-card pokemon-card2 "
               style={{
                 background: "#f0f1c8",
                 width: "800px",
-                height: "1280px",
+                height: "1430px",
               }}
             >
               <div className=" card-content">
+                  <div
+                    style={{
+                      border: "none",
+                      marginTop: "10px",
+                      display: "flex",
+                      fontSize: "150%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    className="font-text2"
+                  >
+                    {selectedName || p.name}
+                  </div>
                 <div className="">
                   <img
                     src={selectedPicture || p.img_url}
@@ -234,33 +248,35 @@ export default function SetPokemon(props) {
                 <Card.Body
                 // style={{ background: "#f0f1c8"  }}
                 >
-                  <Card.Title
-                    style={{ border: "none", marginTop: "10px" }}
-                    className="font-text2"
-                  >
-                    {selectedName || p.name}
-                  </Card.Title>
 
                   <div style={{ display: "flex" }}>
-                    <p className="font-text2">
+                    <p className="font-text3">
                       Level {selectedLevel || p.level}&nbsp;&nbsp;
                     </p>
-                    <p className="font-text2">HP {selectedHp || p.hp}</p>
+                    <p className="font-text3">HP {selectedHp || p.hp}</p>
                   </div>
 
-                  <p className="font-text3">Type: {selectedType || p.type}</p>
+                  <p style={{
+                      border: "none",
+                      marginTop: "10px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }} className="font-text3">Type: {selectedType || p.type}</p>
                 </Card.Body>
                 <ul
                   style={{
                     listStyleType: "none",
                     fontSize: "190%",
-                    paddingLeft: "0",
+                    // paddingLeft: "50px",
                   }}
                 >
+                  <br/>
                   <li
                     style={{
                       borderRadius: "10px",
-                      // fontFamily: "Arial",
+                      // border: "1px solid black",
+                      textAlign: "center",
                     }}
                   >
                     {move1Name || p.move1.name} - {move1Power || p.move1.power}{" "}
@@ -271,6 +287,7 @@ export default function SetPokemon(props) {
                         color: "white",
                         borderRadius: 30,
                         padding: "5px 10px",
+                        
                       }}
                     >
                       {moveType1}
@@ -289,13 +306,15 @@ export default function SetPokemon(props) {
                         // background: "#f0f1c8",
                       }}
                     >
-                      Choose a Move
+                      Change this ⬆️ Move
                     </Button>
                   </li>
                   <br />
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
@@ -325,13 +344,15 @@ export default function SetPokemon(props) {
                         // background: "#f0f1c8",
                       }}
                     >
-                      Choose a Move
+                      Change this ⬆️ Move
                     </Button>
                   </li>
                   <br />
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
@@ -361,13 +382,15 @@ export default function SetPokemon(props) {
                         // background: "#f0f1c8",
                       }}
                     >
-                      Choose a Move
+                      Change this ⬆️ Move
                     </Button>
                   </li>
                   <br />
                   <li
                     style={{
                       borderRadius: "10px",
+                      textAlign: "center",
+
                       // fontFamily: "Arial",
                     }}
                   >
@@ -397,7 +420,7 @@ export default function SetPokemon(props) {
                         // background: "#f0f1c8",
                       }}
                     >
-                      Choose a Move
+                      Change this ⬆️ Move
                     </Button>
                   </li>
                 </ul>
