@@ -127,6 +127,7 @@ export default function SetPokemon(props) {
                     title="See Move List"
                     variant="primary"
                     size="sm"
+                    // className="d-flex justify-content-center"
                   >
                     <Dropdown.Item eventKey="move1">
                       {move1Name || p.move1.name} - {move1Power||p.move1.power} - {move1Type||p.move1.type}
@@ -150,7 +151,8 @@ export default function SetPokemon(props) {
                     className="font-text"
                   >
                     {selectedName || p.name}
-                  </Card.Title>
+                  </Card.Title >
+                  
                   <Card.Text>Level: {selectedLevel || p.level}</Card.Text>
                   <Card.Text>HP: {selectedHp || p.hp}</Card.Text>
                   <Card.Text>Type: {selectedType || p.type}</Card.Text>

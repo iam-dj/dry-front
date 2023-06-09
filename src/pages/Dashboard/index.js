@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import "./style.css";
 import bfg from "./assets/bg.png";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PokeDex from "../../components/PokeDex";
-import SetPoke from "../SetPoke";
+// import SetPoke from "../SetPoke";
 import Badges from "../../components/Badges";
 import Button from "../../components/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Background } from "@cloudinary/url-gen/qualifiers";
+// import { Background } from "@cloudinary/url-gen/qualifiers";
 
 const STORAGE_KEY = "home_trainer_state";
 
@@ -21,8 +21,8 @@ export default function Dashboard(props) {
       window.location.assign("/login");
     }
   }, [props.trainerId]);
-  
-  const params = useParams();
+
+  // const params = useParams();
   const navigate = useNavigate();
 
   const [trainer, setTrainer] = useState(() => {
@@ -40,7 +40,7 @@ export default function Dashboard(props) {
 
   const cardStyle = {
     backgroundImage: `url(${bfg})`,
-    backgroundSize: "auto",
+    // backgroundSize: "auto",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
@@ -76,15 +76,14 @@ export default function Dashboard(props) {
           <img src="https://media2.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif?cid=ecf05e47k85t9m2qyl4mmumvieo89xc5yj3f1zyb23gax2r2&ep=v1_gifs_search&rid=giphy.gif&ct=g" />
         </div>
       ) : (
-        <div>
-          <body style={cardStyle}>
-            <Container 
+        <div >
+          <div style={cardStyle} >
+            <div 
             
             className="prof-card">
               <Row>
                 <Col xs={12} md={4} className="image-col">
                   <img
-                    // style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     className="profile "
                     alt="profile"
                     src={trainer.profilePicUrl}
@@ -129,12 +128,12 @@ export default function Dashboard(props) {
                   <Button variant="primary">Click me</Button>
                 </Col>
               </Row>
-            </Container>
+            </div>
 
             <br />
 
             <PokeDex  style={{ paddingRight: 20 + "px" }} trainer={trainer} />
-          </body>
+          </div>
         </div>
       )}
     </>

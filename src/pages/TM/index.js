@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import pokevideo from "./assets/pokeVideo.mp4";
-import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
-// import PokeDex from "../../components/PokeDex";
 import Toast from "react-bootstrap/Toast";
-// import PB from "./assets/pokeball.png";
 
 export default function Catch(props) {
   const movesArray = [
@@ -400,8 +397,6 @@ export default function Catch(props) {
     "Twister",
   ];
 
-  console.log(movesArray);
-
   const [isFetching, setIsFetching] = useState(false);
   const [isToast, setIsToast] = useState("");
   const [isTrainer, setIsTrainer] = useState();
@@ -409,16 +404,23 @@ export default function Catch(props) {
   const [showPoke, setShowPoke] = useState("");
   const pokeBallImageUrl =
     "https://archives.bulbagarden.net/media/upload/thumb/5/5b/TM_artwork_RTDX.png/120px-TM_artwork_RTDX.png";
-  const [hasChances, setHasChances] = useState();
+  const [hasChances2, setHasChances2] = useState();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const toggleShowA = () => {
     setIsToast("");
     setShowA(false);
   };
 
-  const decrementChances = () => {
-    setHasChances((prevChances) => Math.max(prevChances - 1, 0));
-  };
+  const decrementChances = useCallback(async () => {
+    setHasChances2((prevChances) => Math.max(prevChances - 2, 0));
+
+    try {
+      await API.getSubtractSpins(props.trainerId);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [props.trainerId]);
 
   useEffect(() => {
     setShowPoke(pokeBallImageUrl);
@@ -427,11 +429,14 @@ export default function Catch(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await API.getNumSpins(props.trainerId);
-        if (data.numSpins === 0) {
-          setHasChances(0);
+        const spinData = await API.getNumSpins(props.trainerId);
+        // console.log("spinData", spinData);
+        // console.log("");
+
+        if (spinData.numSpins === 0) {
+          setHasChances2(0);
         } else {
-          setHasChances(data.numSpins);
+          setHasChances2(spinData.numSpins);
         }
       } catch (error) {
         console.log(error);
@@ -441,38 +446,26 @@ export default function Catch(props) {
     fetchData();
   }, []);
 
-  const handleButtonClick = async () => {
-    if (hasChances > 0) {
+  const handleButtonClick = useCallback(async () => {
+    if (hasChances2 > 0) {
       try {
         setIsFetching(true);
 
-        const allPokemon = await API.getAllPoke();
         const randMove =
           movesArray[Math.floor(Math.random() * movesArray.length)];
 
         await API.getMove(props.trainerId, randMove);
+
         const data = await API.getOneTrainer(props.trainerId);
 
         setIsTrainer(data);
 
-        await API.getSubtractSpins(props.trainerId);
         decrementChances();
-
-        const foundPoke = allPokemon.find(
-          (pokemon) => pokemon.name === randMove
-        );
-
-        if (foundPoke) {
-          setTimeout(() => {
-            setShowPoke(foundPoke.img_url);
-          }, 1000);
-        } else {
-          console.log("Move not found.");
-        }
 
         setTimeout(() => {
           setShowPoke(pokeBallImageUrl);
           setIsToast("");
+          setButtonDisabled(true);
         }, 5000);
 
         setTimeout(() => {
@@ -484,125 +477,135 @@ export default function Catch(props) {
       }
     } else {
       console.log("No more chances left!");
-      // Handle logic when there are no more chances left
     }
-  };
-    const navigate = useNavigate();
+  }, [props.trainerId, hasChances2, decrementChances]);
 
-    useEffect(() => {
-      if (!props.trainerId) {
-        window.location.assign("/login");
+  useEffect(() => {
+    if (!props.trainerId) {
+      window.location.assign("/login");
+    }
+  }, [props.trainerId]);
+
+  useEffect(() => {
+    const fetchNumSpins = async () => {
+      try {
+        const spinData = await API.getNumSpins(props.trainerId);
+        setHasChances2(spinData.numSpins || 0);
+      } catch (error) {
+        console.log(error);
       }
-    }, [props.trainerId]);
+    };
 
-    return (
-      <>
-        <div
+    fetchNumSpins();
+  }, [props.trainerId]);
+
+  return (
+    <>
+      <div
+        style={{
+          position: "absolute",
+          top: 150,
+          right: 300,
+          backgroundColor: "#dc3545",
+          padding: "5px",
+          borderRadius: "5px",
+          color: "white",
+        }}
+      >
+        <p style={{ fontWeight: "bold" }}># of spin(s) left:</p>
+        <span
           style={{
-            position: "absolute",
-            top: 150,
-            right: 300,
-            backgroundColor: "#dc3545",
-            padding: "5px",
-            borderRadius: "5px",
-            color: "white",
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "300%",
+            background: "white",
+            color: "black",
           }}
         >
-          <p style={{ fontWeight: "bold" }}># of spin(s) left:</p>
-          <span
+          {hasChances2 >= 0 ? hasChances2 : 0}
+        </span>
+      </div>
+      <div style={{ position: "relative" }}>
+        <video
+          src={pokevideo}
+          type="video/mp4"
+          autoPlay
+          loop
+          muted
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div
             style={{
               display: "flex",
               justifyContent: "center",
-              fontSize: "300%",
-              background: "white",
-              color: "black",
+              alignItems: "center",
+              height: "100vh",
             }}
           >
-            {hasChances >= 0 ? hasChances : 0}
-          </span>
-        </div>
-        <div style={{ position: "relative" }}>
-          <video
-            src={pokevideo}
-            type="video/mp4"
-            autoPlay
-            loop
-            muted
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100vh",
-              objectFit: "cover",
-              zIndex: -1,
-            }}
-          />
-          <div style={{ position: "relative", zIndex: 1 }}>
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                flexDirection: "column",
                 alignItems: "center",
-                height: "100vh",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Toast className="mx-auto">
-                  <Toast.Body
-                    style={{
-                      backgroundColor: "white",
-                      borderRadius: "10px",
-                      color: "black",
-                      textAligh: "center",
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <span style={{ fontWeight: "bold", fontSize: "155%" }}>
-                        {isToast}
-                      </span>
-                    </div>
-
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <img
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                          objectFit: "contain",
-                        }}
-                        src={showPoke}
-                        alt="Pokemon"
-                      />
-                    </div>
-                  </Toast.Body>
-                </Toast>
-                <Button
-                  className="btn-danger mx-auto"
-                  variant="secondary"
-                  id="dropdown-battle"
-                  onClick={handleButtonClick}
-                  disabled={isFetching || hasChances === 0}
+              <Toast className="mx-auto">
+                <Toast.Body
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "10px",
+                    color: "black",
+                    textAligh: "center",
+                  }}
                 >
-                  {isFetching ? (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <span style={{ fontWeight: "bold", fontSize: "155%" }}>
+                      {isToast}
+                    </span>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "center" }}>
                     <img
-                      src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
-                      alt="fetching-pokemon"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "contain",
+                      }}
+                      src={showPoke}
+                      alt="Pokemon"
                     />
-                  ) : (
-                    "Get a New Move"
-                  )}
-                </Button>
-              </div>
+                  </div>
+                </Toast.Body>
+              </Toast>
+              <Button
+                className="btn-danger mx-auto"
+                variant="secondary"
+                id="dropdown-battle"
+                onClick={handleButtonClick}
+                disabled={isFetching || hasChances2 === 0 }
+              >
+                {isFetching ? (
+                  <img
+                    src="https://media3.giphy.com/media/dGD5YHl8xW6c/giphy.gif?cid=ecf05e479h8f5shzhb7oypucnalyj5v7bg5quyve5p2dpznb&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+                    alt="fetching-pokemon"
+                  />
+                ) : (
+                  "Get a New Move for 2 Spins"
+                )}
+              </Button>
             </div>
           </div>
         </div>
-      </>
-    );
-  };
-
+      </div>
+    </>
+  );
+}
