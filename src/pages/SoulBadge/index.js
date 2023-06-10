@@ -175,7 +175,8 @@ export default function SoulBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].soulBadgeVictory
           );
           //setting the state
           setBattleLog(battleLogData);

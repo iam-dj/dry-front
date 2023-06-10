@@ -174,7 +174,8 @@ export default function RainbowBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].rainbowBadgeVictory
           );
           //setting the state
           setBattleLog(battleLogData);

@@ -173,7 +173,8 @@ export default function BoulderBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].boulderBadgeVictory
           );
           //setting the state
           setBattleLog(battleLogData);
