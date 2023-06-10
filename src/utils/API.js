@@ -24,7 +24,7 @@ const API = {
       method: "POST",
       body: JSON.stringify(userObj),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
       },
     }).then((res) => {
       if (res.ok) {
