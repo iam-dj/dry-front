@@ -1,8 +1,7 @@
 //for local development
-// const URL_PREFIX = "https://dry-pokemon-backend.herokuapp.com";
-const URL_PREFIX = "http://localhost:3001";
+// const URL_PREFIX = "http://localhost:3001";
 //deployed
-// const URL_PREFIX = "https://dry-pokemon-backend.herokuapp.com";
+const URL_PREFIX = "https://dry-pokemon-database.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -48,6 +47,7 @@ const API = {
       }
     });
   },
+
   createTrainer: (userObj) => {
     return fetch(`${URL_PREFIX}/api/trainers`, {
       method: "POST",

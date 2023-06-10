@@ -2,6 +2,11 @@
 const weaknessAndPowerMod = require("./Power&WeaknessPowerModifier");
 // const strengthPowerMod = require("./StrengthPowerModifier");
 const moveSelect = require("./MoveSelector");
+
+const myAttackModbylvl = require("./MyAttack");
+const tierAttackMod = require("./AttackModifierTier");
+const npcHealth = require("./NPCAttack");
+
 const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
@@ -47,6 +52,24 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
 
   const updateMyHP = hpModify.updateHP(userPoke);
   const updateCompHP = hpModify.updateHP(compPoke);
+
+  const updateMyAttack = myAttackModbylvl.modAttack(userPoke);
+  //returns a attack mod to add to the user attack
+
+  const updateCompHPbaseOnlvl = npcHealth.modCompHealthBasedOnUserLevel(userPoke);
+  //returns a number to add to the comp hp
+
+  const myTierAttack = tierAttackMod.tierAttack(userPoke)
+  //returns a number to add to damage
+
+  const compTierAttack = tierAttackMod.tierAttack(compPoke)
+  //returns a number to add to damage
+
+
+
+
+
+
 
   userPoke[0].hp = userPoke[0].hp + updateMyHP;
   compPoke[0].hp = compPoke[0].hp + updateCompHP;
@@ -106,15 +129,16 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
       // battleLogData.push(`Your pokemon ${userPoke[0].name} missed. \n`);
       // compHpArray.push(`Your pokemon ${userPoke[0].name} missed. \n`);
     } else {
-      const damage =
-        Math.trunc(
-          randomUserMovePower.randomMyMove * 0.1 * userTypeWeaknessAndPowerModifier
-        ) 
+      const damage = Math.trunc(
+        randomUserMovePower.randomMyMove *
+          (0.1 + updateMyAttack + myTierAttack) *
+          userTypeWeaknessAndPowerModifier
+      );
         // * userTypeStrengthModifier;
       compPoke[0].hp = compPoke[0].hp - damage;
       console.log("recursive", compHpArray);
       compHpArray.push(`${compPoke[0].hp}`);
-      if (damage >= 7) {
+      if (damage >= 20) {
         // console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
         // battleLogData.push("Your attack was SUPER effective!\n");
         // compHpArray.push("Your attack was SUPER effective!\n");
@@ -138,15 +162,16 @@ function startBattle(userPokemon, opponentPokemon, opp, gym) {
       // battleLogData.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
       // userHpArray.push(`${name}'s pokemon ${compPoke[0].name} missed. \n`);
     } else {
-      const damageTwo =
-        Math.trunc(
-          randomCompMovePower.randomMyMove * 0.1 * compTypeWeaknessAndPowerModifier
-        ) 
+      const damageTwo = Math.trunc(
+        randomCompMovePower.randomMyMove *
+          (0.1 + compTierAttack) *
+          compTypeWeaknessAndPowerModifier
+      );
         // * compTypeStrengthModifier;
       userPoke[0].hp = userPoke[0].hp - damageTwo;
       userHpArray.push(`${userPoke[0].hp}`);
       console.log("recursive", userHpArray);
-      if (damageTwo >= 7) {
+      if (damageTwo >= 20) {
         // console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
         // battleLogData.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
         // compHpArray.push(`${name}'s Pokemon's attack was SUPER effective!\n`);

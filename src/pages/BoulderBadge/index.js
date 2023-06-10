@@ -3,7 +3,7 @@ import "./style.css";
 import brock from "./assets/DP-Brock.png";
 import boulder from "./assets/boulder.png";
 import API from "../../utils/API";
-import BattleSys from "../../utils/GymBattleSys";
+import BattleSys from "../../utils/GymBattleSys.js";
 import GymInstructions from "../../components/GymInstructions";
 import GymLeader from "./GymLeader1.json";
 import GymLeader2 from "./GymLeader2.json";
@@ -146,41 +146,48 @@ export default function BoulderBadge(props) {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
         if (buttonId === "button1") {
           selectedPokemon = getGymLeaderPokemon();
-          console.log("you clicked button 1", GymLeader[0].pokemons);
+          // console.log("you clicked button 1", GymLeader[0].pokemons);
         } else if (buttonId === "button2") {
           selectedPokemon = getGymLeader2Pokemon();
-          console.log("you clicked button 2", GymLeader2[0].pokemons);
+          // console.log("you clicked button 2", GymLeader2[0].pokemons);
         } else if (buttonId === "button3") {
           selectedPokemon = getGymLeader3Pokemon();
-          console.log("you clicked button 3", GymLeader3[0].pokemons);
+          // console.log("you clicked button 3", GymLeader3[0].pokemons);
         }
 
         function filterMainPokemon(myTrainerData) {
           return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
         }
-        console.log(myTrainerData);
+        // console.log(myTrainerData);
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
         let gymStage = myFilteredPokemons[0].gymTwoStage;
         setCurrentGymStage(gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
-        console.log("selected pokemon", selectedPokemon);
+
+       
+
         setIsFetching(true);
         setTimeout(() => {
           // setIsFetching(false);
-          console.log("pre-battle", battleLog);
+          // console.log("pre-battle", battleLog);
           setBattleLog([]);
-          const { result, battleLogData } = BattleSys.startBattle(
+
+          const { result, battleLogData } = 
+          BattleSys.startBattle(
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
             isGymMaster,
             myFilteredPokemons[0].boulderBadgeVictory
+            isGymMaster,
+            myFilteredPokemons[0].boulderBadgeVictory
           );
+
           //setting the state
           setBattleLog(battleLogData);
-          console.log("battleLog", battleLog);
-          console.log("battle result is working?", battleLogData);
-          console.log("result", result);
+          // console.log("battleLog", battleLog);
+          // console.log("battle result is working?", battleLogData);
+          // console.log("result", result);
 
           const handleWin = async () => {
             let experienceGained = 0;
@@ -194,11 +201,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -209,11 +216,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -224,11 +231,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -275,10 +282,10 @@ export default function BoulderBadge(props) {
                 hpChange,
                 pokemonNewLevel,
               } = await API.updateLoss(props.trainerId);
-              console.log("battle sys Experience Change:", experienceChange);
-              console.log("battle sys Level Change:", levelChange);
-              console.log("battle sys HP Change:", hpChange);
-              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+              // console.log("battle sys Experience Change:", experienceChange);
+              // console.log("battle sys Level Change:", levelChange);
+              // console.log("battle sys HP Change:", hpChange);
+              // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
               alerts.push("You Lost... ");
@@ -306,14 +313,14 @@ export default function BoulderBadge(props) {
             }
           };
           if (result === 1) {
-            console.log("buttonId", buttonId);
+            // console.log("buttonId", buttonId);
             setBattleResult(1);
             handleWin(buttonId, gymId);
             // selectedPokemon = [];
           } else if (result === 0) {
             setBattleResult(0);
             handleLoss(buttonId);
-            console.log("buttonId", buttonId);
+            // console.log("buttonId", buttonId);
             // selectedPokemon = [];
           }
         }, 3000);
