@@ -234,11 +234,25 @@ export default function SetPokemon(props) {
             <strong className="mr-auto">Instructions</strong>
           </Toast.Header>
           <Toast.Body>
-            On this page you're able to edit your Pokémon's moves. Select the
-            drop-down of "change this ⬆️ move" below the move you want to change
-            and then select a TM from your current inventory. After you've made
-            your pick click "Select", and the move will be updated. Note: the
-            move may not disappear from your selection list
+            On this page you're able to edit your Pokémon's moves.<br></br>{" "}
+            <br></br>
+            Select the drop-down: "change this ⬆️ move" below the move you want
+            to change and select a TM from your current inventory.<br></br>
+            <br></br>
+            After you've made your pick click "Select", and the move will be
+            updated! <br></br> <br></br>
+            <strong>
+              Please note: TM's can only be used once, and then they disappear
+              from your inventory, so choose wisely!
+            </strong>{" "}
+            <br></br>
+            <em>*Until you find them again in the "Find new TM" page</em>
+            <br></br>
+            <br></br>
+            <em>
+              Note: the move may not disappear from your selection list until
+              page refresh
+            </em>
           </Toast.Body>
         </Toast>
       </div>

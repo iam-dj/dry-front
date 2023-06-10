@@ -10,6 +10,8 @@ import NPC from "./npc.json";
 import API from "../../utils/API";
 import Toast from "react-bootstrap/Toast";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Train(props) {
   // const navigate = useNavigate();
@@ -26,6 +28,11 @@ export default function Train(props) {
   const [renderedLogEntries, setRenderedLogEntries] = useState([]);
   const [pokemonChangeAlertWin, setPokemonChangeAlertWin] = useState([]);
   const [pokemonChangeAlertLoss, setPokemonChangeAlertLoss] = useState([]);
+  const [pokemonChangeAlertLevel, setPokemonChangeAlertLevel] = useState([]);
+  const [pokemonChangeAlertExperience, setPokemonChangeAlertExperience] =
+    useState([]);
+  const [pokemonChangeAlertHp, setPokemonChangeAlertHp] = useState([]);
+  const [pokemonChangeAlertSpins, setPokemonChangeAlertSpins] = useState([]);
   const [battleResult, setBattleResult] = useState();
   const [trainerPokemon, setTrainerPokemon] = useState("");
   const [trainerName, setTrainerName] = useState("");
@@ -217,6 +224,10 @@ export default function Train(props) {
           const handleWin = async () => {
             try {
               const alerts = [];
+              const levelAlerts = [];
+              const experienceAlerts = [];
+              const hpAlerts = [];
+              const spinAlerts = [];
               const {
                 experienceGained,
                 levelChange,
@@ -227,31 +238,36 @@ export default function Train(props) {
               // console.log("battle sys Level Change:", levelChange);
               // console.log("battle sys HP Change:", hpChange);
 
-              alerts.push("You Won!");
+              alerts.push("You Won!                \n");
               if (experienceGained > 0) {
                 alerts.push(
-                  `Your pokemon earned: ${experienceGained} experience!\n`
+                  `Your pokemon earned: ${experienceGained} XP!                      \n`
                 );
               }
               if (Math.random() < 0.2) {
                 await API.getAddOneSpin(props.trainerId);
                 alerts.push(
-                  `You Earned another chance to catch a pokemon or find a TM!!\n`
+                  `You Earned another chance to catch a pokemon or find a TM!!                \n`
                 );
               }
               if (levelChange > 0) {
-                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
-                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
+                alerts.push(
+                  `Your Pokemon is now level ${pokemonNewLevel}!                 \n`
+                );
               }
               if (hpChange > 0) {
                 alerts.push(
-                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                  `After leveling up, your pokemon gained: ${hpChange} hp!                  \n`
                 );
               }
 
-              const alertMessage = alerts.join("\n");
+              // const alertMessage = alerts.join("\n");
               // console.log("win Log", alerts);
-              setPokemonChangeAlertWin(alertMessage);
+              setPokemonChangeAlertWin(alerts);
+              // setPokemonChangeAlertExperience(experienceAlerts);
+              // setPokemonChangeAlertHp(hpAlerts);
+              // setPokemonChangeAlertSpins(spinAlerts);
+              // setPokemonChangeAlertLevel(levelAlerts);
             } catch (error) {
               console.log(error);
             }
@@ -268,27 +284,33 @@ export default function Train(props) {
               // console.log("battle sys Experience Change:", experienceChange);
               // console.log("battle sys Level Change:", levelChange);
               // console.log("battle sys HP Change:", hpChange);
-
+              const levelAlerts = [];
+              const experienceAlerts = [];
+              const hpAlerts = [];
               const alerts = [];
-              alerts.push("You Lost... :(");
+              alerts.push("You Lost...                     ");
               if (experienceChange > 0) {
                 alerts.push(
-                  `Your pokemon earned: ${experienceChange} experience!\n`
+                  `Your pokemon earned: ${experienceChange} experience!                     \n`
                 );
               }
               if (levelChange > 0) {
-                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
-                alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
+                alerts.push(
+                  `Your Pokemon gained a level and is now level ${pokemonNewLevel}!                 \n`
+                );
               }
               if (hpChange > 0) {
                 alerts.push(
-                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                  `After leveling up, your pokemon gained: ${hpChange} hp!               \n`
                 );
               }
 
-              const alertMessage = alerts.join("\n");
+              // const alertMessage = alerts.join("\n");
               // console.log("loss log", alerts);
-              setPokemonChangeAlertLoss(alertMessage);
+              setPokemonChangeAlertLoss(alerts);
+              //        setPokemonChangeAlertExperience(experienceAlerts);
+              // setPokemonChangeAlertHp(hpAlerts);
+              // setPokemonChangeAlertLevel(levelAlerts);
               // console.log("Loss updated!");
             } catch (error) {
               console.log(error);
@@ -405,12 +427,12 @@ export default function Train(props) {
 
             if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
               setIsFetching(false);
-              showAlert(pokemonChangeAlertWin);
+              displaySequentialAlerts(pokemonChangeAlertWin);
               setAlertShown(true);
             }
             if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
               setIsFetching(false);
-              showAlert(pokemonChangeAlertLoss);
+              displaySequentialAlerts(pokemonChangeAlertLoss);
               setAlertShown(true);
             }
           }
@@ -418,6 +440,31 @@ export default function Train(props) {
 
         timeoutIds.push(timeoutId);
       }
+    };
+
+    const displaySequentialAlerts = async (alertArray) => {
+      for (let i = 0; i < alertArray.length; i++) {
+        const alert = alertArray[i];
+        await displayAlertWithDelay(alert, i * 1000);
+      }
+    };
+
+    const displayAlertWithDelay = (alert, delay) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          toast(alert, {
+            position: "top-center",
+            autoClose: 7000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          resolve();
+        }, delay);
+      });
     };
 
     // Display logs when battleLog updates
@@ -529,6 +576,18 @@ export default function Train(props) {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <TrainInstructions></TrainInstructions>
       <div style={cardStyle} className="card-style">
         <div className="trainer-profile-photo">

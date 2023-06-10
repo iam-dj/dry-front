@@ -12,7 +12,6 @@ const hpModify = require("./HPModifier");
 const coinflip = require("./CoinFlip");
 const hitormiss = require("./HitOrMiss");
 // const mercy = require("./Mercy");
-
 var lost = 0;
 var win = 1;
 var battleLogData = [];
@@ -25,23 +24,23 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
   const compPoke = opponentPokemon;
   const name = opp;
   const gymPowerMod = gymMod;
-  var increaseAttack =0;
+  var increaseAttack = 0;
 
   console.log("gymPowerMod", gymPowerMod);
 
   if (gymPowerMod === 1) {
     increaseAttack = 0;
- } else if (gymPowerMod === 2) {
+  } else if (gymPowerMod === 2) {
     increaseAttack = 0.15;
- } else if (gymPowerMod === 3) {
+  } else if (gymPowerMod === 3) {
     increaseAttack = 0.25;
- } else if (gymPowerMod === 4) {
+  } else if (gymPowerMod === 4) {
     increaseAttack = 0.35;
- }else if (gymPowerMod === 5) {
+  } else if (gymPowerMod === 5) {
     increaseAttack = 0.9;
- } else {
-   increaseAttack =1
- }
+  } else {
+    increaseAttack = 1;
+  }
 
   // console.log("battle sys check", compPoke.hp);
   // console.log("battle sys check", userPoke);
@@ -51,12 +50,10 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
   let userTypeStrengthModifier = 0;
   let compTypeWeaknessAndPowerModifier = 0;
   let compTypeStrengthModifier = 0;
-
   let randomUserMovePower = 0;
   let randomCompMovePower = 0;
   // var userMercyHelp;
   // var compMercyHelp;
-
   // if (gym === false) {
   //   userMercyHelp = mercy.mercyRule(userPoke, compPoke);
   //   compMercyHelp = mercy.mercyRule(compPoke, userPoke);
@@ -64,34 +61,31 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
   //   compMercyHelp = 0;
   //   userMercyHelp = 0;
   // }
-
   const updateMyHP = hpModify.updateHP(userPoke);
   const updateCompHP = hpModify.updateHP(compPoke);
 
   const updateMyAttack = myAttackModbylvl.modAttack(userPoke);
   //returns a attack mod to add to the user attack
 
-  const updateCompHPbaseOnlvl = npcHealth.modCompHealthBasedOnUserLevel(userPoke);
+  const updateCompHPbaseOnlvl =
+    npcHealth.modCompHealthBasedOnUserLevel(userPoke);
   //returns a number to add to the comp hp
 
-  const myTierAttack = tierAttackMod.tierAttack(userPoke)
+  const myTierAttack = tierAttackMod.tierAttack(userPoke);
   //returns a number to add to damage
 
-  const compTierAttack = tierAttackMod.tierAttack(compPoke)
+  const compTierAttack = tierAttackMod.tierAttack(compPoke);
   //returns a number to add to damage
-
 
   userPoke[0].hp = userPoke[0].hp + updateMyHP;
   compPoke[0].hp = compPoke[0].hp + updateCompHP;
   // compPoke[0].hp = compPoke[0].hp + updateCompHP + updateCompHPbaseOnlvl;
 
   const HorT = coinflip.flip();
-
   if (HorT === 1 || HorT === 2) {
     startGame();
     // return "YOU SHALL NOT PASS! Remove this and then uncomment startgame";
   }
-
   function startGame() {
     randomUserMovePower = moveSelect.randMovePower(userPoke);
     randomCompMovePower = moveSelect.randMovePower(compPoke);
@@ -121,13 +115,10 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
       battle();
     }
   }
-
   function battle() {
     console.log("=========================");
-
     // console.log(compPoke[0].hp);
     // console.log(userPoke[0].hp);
-
     if (hitormiss.flip() === 10) {
       compPoke[0].hp = compPoke[0].hp - 0;
       console.log(
@@ -148,22 +139,22 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
         console.log("YOUR ATTACK WAS SUPER EFFECTIVE!\n");
         battleLogData.push("Your attack was SUPER effective!\n");
       }
-      console.log(
-        `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `Your pokemon ${userPoke[0].name} used ${randomUserMovePower.randomMoveName}. It did ${damage} damage. ${userPoke[0].name} has ${userPoke[0].hp} hp left! ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
       );
     }
-
     if (hitormiss.flip() === 10) {
       userPoke[0].hp = userPoke[0].hp - 0;
-      console.log(
-        `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
-      );
-      battleLogData.push(
-        `${name}'s pokemon ${compPoke[0].name} missed. Your ${userPoke[0].name} has ${userPoke[0].hp} hp left! ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `${name}'s pokemon ${compPoke[0].name} missed. You have ${userPoke[0].hp} hp left! ${name} has ${compPoke[0].hp} hp left!\n`
+      // );
+      battleLogData
+        .push
+        // `${name}'s pokemon ${compPoke[0].name} missed. Your ${userPoke[0].name} has ${userPoke[0].hp} hp left! ${compPoke[0].name} has ${compPoke[0].hp} hp left!\n`
+        ();
     } else {
       const damageTwo = Math.trunc(
         randomCompMovePower.randomMyMove *
@@ -177,19 +168,16 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
         console.log(`${name}'S POKEMON'S ATTACK WAS SUPER EFFECTIVE!\n`);
         battleLogData.push(`${name}'s Pokemon's attack was SUPER effective!\n`);
       }
-      console.log(
-        `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
-      );
+      // console.log(
+      //   `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! You have ${userPoke[0].hp} hp left!\n`
+      // );
       battleLogData.push(
         `${name}'s pokemon ${compPoke[0].name} used ${randomCompMovePower.randomMoveName}. It did ${damageTwo} damage. They have ${compPoke[0].hp} hp left! Your ${userPoke[0].name} has ${userPoke[0].hp} hp left!\n`
       );
     }
-
     console.log("\n\n");
-
     startGame();
   }
-
   function userWon() {
     // console.log("You win!!");
     // console.log(battleLogData);
@@ -200,7 +188,6 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
       battleLogData: battleLogData,
     };
   }
-
   function compWon() {
     // console.log("You lose");
     // console.log(battleLogData);
@@ -211,8 +198,6 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
       battleLogData: battleLogData,
     };
   }
-
   return startGame(); // Start the battle and return the result
 }
-
 export default { startBattle };
