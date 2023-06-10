@@ -10,7 +10,7 @@
         "type": "water",
         "secondary_type": null,
         "level": 1,
-        "hp": 250,
+        "hp": 180,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/116horsea_vxowfy.png",
         "evolutionId": 1,

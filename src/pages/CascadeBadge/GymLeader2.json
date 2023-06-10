@@ -10,7 +10,7 @@
         "type": "water",
         "secondary_type": null,
         "level": 1,
-        "hp": 400,
+        "hp": 240,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896194/120staryu_dmpnmi.png",
         "evolutionId": 1,
