@@ -13,6 +13,8 @@ import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import GymInstructions from "../../components/GymInstructions";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RainbowBadge(props) {
   useEffect(() => {
@@ -34,8 +36,8 @@ export default function RainbowBadge(props) {
   const imgStyle = {
     width: "220%",
     paddingRight: "130px",
-    maxHeight: "400px",
-    maxWidth: "400px",
+    maxHeight: "500px",
+    maxWidth: "500px",
     objectFit: "contain",
   };
 
@@ -57,11 +59,10 @@ export default function RainbowBadge(props) {
   const [battleResult, setBattleResult] = useState();
   const [currentGymMasterPokemon, setCurrentGymMasterPokemon] = useState([]);
   const [currentGymStage, setCurrentGymStage] = useState([]);
-  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(3);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [battleLogReaderSpeed, setbattleLogReaderSpeed] = useState(1300);
   const [maxBattleLogReaderSpeed, setMaxBattleLogReaderSpeed] = useState(false);
   const [BattleStatus, setBattleStatus] = useState(false);
-
-  const [showVideoModal, setShowVideoModal] = useState(false);
 
   const handleVideoModalOpen = () => {
     setShowVideoModal(true);
@@ -73,6 +74,7 @@ export default function RainbowBadge(props) {
   const handleVideoModalClose = () => {
     setShowVideoModal(false);
   };
+
   const photoStyle = {
     maxWidth: "300px",
     maxHeight: "300px",
@@ -108,14 +110,13 @@ export default function RainbowBadge(props) {
   };
 
   const readerSpeedUp = () => {
-    if (battleLogReaderSpeed < 20)
-      setbattleLogReaderSpeed((prevSpeed) => prevSpeed + 3);
+    setbattleLogReaderSpeed((prevSpeed) => prevSpeed - 100);
     console.log(battleLogReaderSpeed);
-    if (battleLogReaderSpeed === 18) setMaxBattleLogReaderSpeed(true);
+    if (battleLogReaderSpeed === 500) setMaxBattleLogReaderSpeed(true);
   };
-
   const [isFetching, setIsFetching] = useState(false);
 
+  //this sets the state on page load for which gym stage the pokemon is on
   useEffect(() => {
     const fetchCurrentGymStage = async () => {
       const response = await API.getOneTrainer(props.trainerId);
@@ -130,8 +131,8 @@ export default function RainbowBadge(props) {
 
   const handleButtonClick = (buttonId) => {
     setBattleStatus(true);
-    setbattleLogReaderSpeed(3);
     setMaxBattleLogReaderSpeed(false);
+    setAlertShown(false);
     console.log(currentGymMasterPokemon);
     console.log(GymLeader);
     console.log("pokemon 1", GymLeader[0].pokemons);
@@ -162,7 +163,6 @@ export default function RainbowBadge(props) {
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
         let gymStage = myFilteredPokemons[0].gymFourStage;
         setCurrentGymStage(gymStage);
-        console.log("gym stage:", gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
         console.log("selected pokemon", selectedPokemon);
         setIsFetching(true);
@@ -178,9 +178,9 @@ export default function RainbowBadge(props) {
           );
           //setting the state
           setBattleLog(battleLogData);
-          console.log("battleLog", battleLog);
-          console.log("battle result is working?", battleLogData);
-          console.log("result", result);
+          // console.log("battleLog", battleLog);
+          // console.log("battle result is working?", battleLogData);
+          // console.log("result", result);
 
           const handleWin = async () => {
             let experienceGained = 0;
@@ -243,11 +243,11 @@ export default function RainbowBadge(props) {
 
               if (experienceGained > 0) {
                 alerts.push(
-                  `Your pokemon earned: ${experienceGained} experience!\n`
+                  `Your pokemon earned ${experienceGained} experience!\n`
                 );
               }
               if (levelChange > 0) {
-                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon gained ${levelChange} level!\n`);
                 alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
@@ -261,7 +261,7 @@ export default function RainbowBadge(props) {
 
               const alertMessage = alerts.join("\n");
               console.log("win Log", alertMessage);
-              setPokemonChangeAlertWin(alertMessage);
+              setPokemonChangeAlertWin(alerts);
             } catch (error) {
               console.log(error);
             }
@@ -284,22 +284,22 @@ export default function RainbowBadge(props) {
               alerts.push("You Lost... ");
               if (experienceChange > 0) {
                 alerts.push(
-                  `Your pokemon earned: ${experienceChange} experience!\n`
+                  `Your pokemon earned ${experienceChange} experience!\n`
                 );
               }
               if (levelChange > 0) {
-                alerts.push(`Your Pokemon gained: ${levelChange} level!\n`);
+                alerts.push(`Your Pokemon gained ${levelChange} level!\n`);
                 alerts.push(`Your Pokemon is now level ${pokemonNewLevel}!\n`);
               }
               if (hpChange > 0) {
                 alerts.push(
-                  `After leveling up, your pokemon gained: ${hpChange} hp!\n`
+                  `After leveling up, your pokemon gained ${hpChange} hp!\n`
                 );
               }
 
               const alertMessage = alerts.join("\n");
               console.log("loss log", alerts);
-              setPokemonChangeAlertLoss(alertMessage);
+              setPokemonChangeAlertLoss(alerts);
               console.log("Loss updated!");
             } catch (error) {
               console.log(error);
@@ -324,67 +324,67 @@ export default function RainbowBadge(props) {
 
     generateBattle();
   };
+
+  const [alertShown, setAlertShown] = useState(false);
   useEffect(() => {
-    console.log("useEffect triggered");
-    console.log("battleLog:", battleLog);
-    console.log("battleResult:", battleResult);
-    console.log("pokemonChangeAlertWin:", pokemonChangeAlertWin);
-    console.log("pokemonChangeAlertLoss:", pokemonChangeAlertLoss);
     let timeoutIds = [];
-    let logIndex = 0;
-    let charIndex = 0;
 
-    const animateLogEntry = () => {
-      if (logIndex >= battleLog.length) {
-        if (battleLog.length > 0) {
-          // Check if battleLog has any elements
-          if (battleResult === 1) {
-            setIsFetching(false);
-            setBattleStatus(false);
-            showAlert(pokemonChangeAlertWin);
-            console.log("useEffect log", pokemonChangeAlertWin);
-          } else {
-            setIsFetching(false);
-            setBattleStatus(false);
-            showAlert(pokemonChangeAlertLoss);
-            console.log("useEffect log", pokemonChangeAlertLoss);
+    const displayLogs = () => {
+      for (let i = 0; i < battleLog.length; i++) {
+        const logEntry = battleLog[i];
+
+        const timeoutId = setTimeout(() => {
+          setCurrentLogIndex(i);
+
+          if (i === battleLog.length - 1) {
+            // Last log entry
+
+            if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
+              setIsFetching(false);
+              setBattleStatus(false);
+              displaySequentialAlerts(pokemonChangeAlertWin);
+              setAlertShown(true);
+            }
+            if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
+              setIsFetching(false);
+              setBattleStatus(false);
+              displaySequentialAlerts(pokemonChangeAlertLoss);
+              setAlertShown(true);
+            }
           }
-        }
-        return;
+        }, battleLogReaderSpeed * i); // Adjust the delay duration as desired (in milliseconds)
+
+        timeoutIds.push(timeoutId);
       }
-      const logEntry = battleLog[logIndex];
-      console.log(logEntry);
-
-      const timeoutId = setTimeout(() => {
-        setCurrentCharIndex((prevCharIndex) => ({
-          ...prevCharIndex,
-          [logIndex]: charIndex,
-        }));
-
-        charIndex++;
-
-        if (charIndex > logEntry.length) {
-          clearTimeout(timeoutId);
-
-          // Move to the next log entry
-          logIndex += battleLogReaderSpeed;
-          setCurrentLogIndex(logIndex);
-          console.log("logIndex", logIndex);
-          charIndex = 0;
-
-          // Start animating the next log entry after a delay
-          setTimeout(animateLogEntry, 5); // Adjust the delay duration as desired (in milliseconds)
-        } else {
-          // Continue animating the current log entry
-          animateLogEntry();
-        }
-      }, 45); // Adjust the interval duration as desired (in milliseconds)
-
-      timeoutIds.push(timeoutId);
     };
 
-    // Start animating log entries when battleLog updates
-    animateLogEntry();
+    const displaySequentialAlerts = async (alertArray) => {
+      for (let i = 0; i < alertArray.length; i++) {
+        const alert = alertArray[i];
+        await displayAlertWithDelay(alert, i * 1000);
+      }
+    };
+
+    const displayAlertWithDelay = (alert, delay) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          toast(alert, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          resolve();
+        }, delay);
+      });
+    };
+
+    // Display logs when battleLog updates
+    displayLogs();
 
     return () => {
       // Clear all the timeouts when component unmounts
@@ -398,10 +398,41 @@ export default function RainbowBadge(props) {
     battleLogReaderSpeed,
   ]);
 
+  useEffect(() => {
+    let timeoutId = null;
+
+    if (alertShown === true) {
+      console.log("state reset useffect is going off!", alertShown);
+      timeoutId = setTimeout(() => {
+        setBattleLog([]);
+        setRenderedLogEntries([]);
+        setAlertShown(false);
+        setPokemonChangeAlertLoss([]);
+        setPokemonChangeAlertWin([]);
+        setbattleLogReaderSpeed(1300);
+      }, 2000); // 3 seconds delay
+    }
+
+    return () => {
+      clearTimeout(timeoutId); // Clear the timeout if the component unmounts or the dependency changes before the delay
+    };
+  }, [alertShown]);
+
   return (
     <div style={cardStyle}>
       <GymInstructions />
-
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

@@ -261,9 +261,9 @@ export default function Train(props) {
                 );
               }
 
-              const alertMessage = alerts.join("\n");
+              // const alertMessage = alerts.join("\n");
               // console.log("win Log", alerts);
-              setPokemonChangeAlertWin(alertMessage);
+              setPokemonChangeAlertWin(alerts);
               // setPokemonChangeAlertExperience(experienceAlerts);
               // setPokemonChangeAlertHp(hpAlerts);
               // setPokemonChangeAlertSpins(spinAlerts);
@@ -296,10 +296,7 @@ export default function Train(props) {
               }
               if (levelChange > 0) {
                 alerts.push(
-                  `Your Pokemon gained: ${levelChange} level!                    \n`
-                );
-                alerts.push(
-                  `Your Pokemon is now level ${pokemonNewLevel}!                 \n`
+                  `Your Pokemon gained a level and is now level ${pokemonNewLevel}!                 \n`
                 );
               }
               if (hpChange > 0) {
@@ -308,9 +305,9 @@ export default function Train(props) {
                 );
               }
 
-              const alertMessage = alerts.join("\n");
+              // const alertMessage = alerts.join("\n");
               // console.log("loss log", alerts);
-              setPokemonChangeAlertLoss(alertMessage);
+              setPokemonChangeAlertLoss(alerts);
               //        setPokemonChangeAlertExperience(experienceAlerts);
               // setPokemonChangeAlertHp(hpAlerts);
               // setPokemonChangeAlertLevel(levelAlerts);
@@ -430,51 +427,44 @@ export default function Train(props) {
 
             if (battleResult === 1 && pokemonChangeAlertWin.length > 0) {
               setIsFetching(false);
-              toast(pokemonChangeAlertWin, {
-                position: "top-center",
-                autoClose: 7000,
-
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-              // showAlert(pokemonChangeAlertWin);
+              displaySequentialAlerts(pokemonChangeAlertWin);
               setAlertShown(true);
             }
             if (battleResult === 0 && pokemonChangeAlertLoss.length > 0) {
               setIsFetching(false);
-              toast(pokemonChangeAlertLoss, {
-                position: "top-center",
-                autoClose: 7000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-              // showAlert(pokemonChangeAlertLoss);
+              displaySequentialAlerts(pokemonChangeAlertLoss);
               setAlertShown(true);
-
-              toast(pokemonChangeAlertLoss, {
-                position: "top-center",
-                autoClose: 7000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
             }
           }
         }, 1000 * i); // Adjust the delay duration as desired (in milliseconds)
 
         timeoutIds.push(timeoutId);
       }
+    };
+
+    const displaySequentialAlerts = async (alertArray) => {
+      for (let i = 0; i < alertArray.length; i++) {
+        const alert = alertArray[i];
+        await displayAlertWithDelay(alert, i * 1000);
+      }
+    };
+
+    const displayAlertWithDelay = (alert, delay) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          toast(alert, {
+            position: "top-center",
+            autoClose: 7000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          resolve();
+        }, delay);
+      });
     };
 
     // Display logs when battleLog updates
