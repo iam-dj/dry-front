@@ -10,7 +10,7 @@
         "type": "rock",
         "secondary_type": "ground",
         "level": 1,
-        "hp": 100,
+        "hp": 130,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896188/074geodude_qmwjbw.png",
         "evolutionId": 1,

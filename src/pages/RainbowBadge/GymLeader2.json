@@ -11,7 +11,7 @@
           "type": "grass",
           "secondary_type": "poison",
           "level": 1,
-          "hp": 380,
+          "hp": 355,
           "experience": 0,
           "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896187/070weepinbell_ah69mp.png",
           "evolutionId": 2,

@@ -10,7 +10,7 @@
         "type": "psychic",
         "secondary_type": "water",
         "level": 1,
-        "hp": 480,
+        "hp": 300,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896195/121starmie_eoheez.png",
         "evolutionId": 2,

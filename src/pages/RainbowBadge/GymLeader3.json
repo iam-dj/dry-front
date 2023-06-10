@@ -11,7 +11,7 @@
         "type": "grass",
         "secondary_type": "poison",
         "level": 1,
-        "hp": 520,
+        "hp": 390,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896184/045vileplume_wrlvxl.png",
         "evolutionId": 3,

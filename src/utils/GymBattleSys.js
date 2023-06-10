@@ -28,18 +28,18 @@ function startBattle(userPokemon, opponentPokemon, opp, gym, gymMod) {
 
   console.log("gymPowerMod", gymPowerMod);
 
-  if (gymPowerMod === 1) {
+  if (gymPowerMod === 0) {
     increaseAttack = 0;
-  } else if (gymPowerMod === 2) {
+  } else if (gymPowerMod === 1) {
     increaseAttack = 0.15;
-  } else if (gymPowerMod === 3) {
+  } else if (gymPowerMod === 2) {
     increaseAttack = 0.25;
-  } else if (gymPowerMod === 4) {
+  } else if (gymPowerMod === 3) {
     increaseAttack = 0.35;
-  } else if (gymPowerMod === 5) {
-    increaseAttack = 0.9;
+  } else if (gymPowerMod === 4) {
+    increaseAttack = 0.6;
   } else {
-    increaseAttack = 1;
+    increaseAttack = 2;
   }
 
   // console.log("battle sys check", compPoke.hp);
