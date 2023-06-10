@@ -240,7 +240,7 @@ export default function BoulderBadge(props) {
               }
 
               const alerts = [];
-              alerts.push("You Won!");
+              alerts.push("You Won!\n");
 
               if (experienceGained > 0) {
                 alerts.push(
@@ -282,7 +282,7 @@ export default function BoulderBadge(props) {
               console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
-              alerts.push("You Lost... :(");
+              alerts.push("You Lost... ");
               if (experienceChange > 0) {
                 alerts.push(
                   `Your pokemon earned: ${experienceChange} experience!\n`

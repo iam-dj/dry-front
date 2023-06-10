@@ -13,6 +13,8 @@ import { useState, useEffect } from "react";
 import blainefight from "./assets/blainefight.mp4";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ThunderBadge(props) {
   useEffect(() => {
@@ -239,7 +241,7 @@ export default function ThunderBadge(props) {
               }
 
               const alerts = [];
-              alerts.push("You Won!");
+              alerts.push("You Won!\n");
 
               if (experienceGained > 0) {
                 alerts.push(
@@ -281,7 +283,7 @@ export default function ThunderBadge(props) {
               console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
-              alerts.push("You Lost... :(");
+              alerts.push("You Lost... ");
               if (experienceChange > 0) {
                 alerts.push(
                   `Your pokemon earned: ${experienceChange} experience!\n`
@@ -341,12 +343,31 @@ export default function ThunderBadge(props) {
           if (battleResult === 1) {
             setIsFetching(false);
             setBattleStatus(false);
-            showAlert(pokemonChangeAlertWin);
+            toast(pokemonChangeAlertWin, {
+              position: "top-center",
+              autoClose: 7000,
+
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             console.log("useEffect log", pokemonChangeAlertWin);
           } else {
             setIsFetching(false);
             setBattleStatus(false);
-            showAlert(pokemonChangeAlertLoss);
+            toast(pokemonChangeAlertLoss, {
+              position: "top-center",
+              autoClose: 7000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             console.log("useEffect log", pokemonChangeAlertLoss);
           }
         }
@@ -401,7 +422,18 @@ export default function ThunderBadge(props) {
   return (
     <div style={cardStyle}>
       <GymInstructions />
-
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="battle-log-overlay">
         <div className="battle-log">
           {battleLog.map((logEntry, index) => (

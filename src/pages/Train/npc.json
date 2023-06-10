@@ -1086,7 +1086,7 @@
   },
   {
     "name": "Donovan Mitchell",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726529/donovan_mitchell_gcmgsx.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353488/donavan_mitchell_jtxlwq.webp",
     "pokemons": [
       {
         "id": 14,
@@ -1306,7 +1306,7 @@
   },
   {
     "name": "Ja Morant",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726537/Ja_morant_zo9tdm.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353484/ja_morant_hrb1sx.jpg",
     "pokemons": [
       {
         "id": 25,
@@ -1361,7 +1361,7 @@
   },
   {
     "name": "Michael Jordan",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685726532/michael_jordan_oh7vqm.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353483/michael_jordan_fkbmox.jpg",
     "pokemons": [
       {
         "id": 44,
@@ -2526,7 +2526,7 @@
         "level": 1,
         "hp": 100,
         "experience": 0,
-        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684901802/mew-png_jppzde.png",
+        "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686354397/mew_qslktv.png",
         "evolutionId": 1,
         "rarity": "Legendary",
         "tier": 3,
@@ -2681,7 +2681,7 @@
   },
   {
     "name": "Beth Smith",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/beth_smith_ds9wo7.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353485/beth_smith_yvovir.jpg",
     "pokemons": [
       {
         "id": 141,
@@ -2791,7 +2791,7 @@
   },
   {
     "name": "Birdperson",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730246/birdperson_b28sc5.jpg",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353484/birdperson_b1md3k.jpg",
     "pokemons": [
       {
         "id": 128,
@@ -2901,7 +2901,7 @@
   },
   {
     "name": "Mr. Meeseeks",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730243/mr_meeseeks_knqsl6.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353483/mr_meseeks_qknfpg.jpg",
     "pokemons": [
       {
         "id": 119,
@@ -2956,7 +2956,7 @@
   },
   {
     "name": "Evil Morty",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730245/evil_morty_pjmxoc.jpg",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353482/evil_morty_xclsem.png",
     "pokemons": [
       {
         "id": 117,
@@ -3065,8 +3065,8 @@
     "pokemon_3": null
   },
   {
-    "name": "Unity",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730244/unity_g5ular.jpg",
+    "name": "Naruto",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353484/naruto_wjjs3o.jpg",
     "pokemons": [
       {
         "id": 110,
@@ -3121,7 +3121,7 @@
   },
   {
     "name": "Noob-Noob",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1685730243/noob_noob_vjzqfm.jpg",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686355122/noob_noob_anxjlv.jpg",
     "pokemons": [
       {
         "id": 105,
@@ -3284,7 +3284,7 @@
   },
   {
     "name": "Hermione Granger",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686154640/hermione_nasmao.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353485/hermione_xwmidd.jpg",
     "pokemons": [
       {
         "id": 37,
@@ -3384,7 +3384,7 @@
   },
   {
     "name": "Ron Weasley",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686154638/ron_weasley_ls6igt.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353484/ron_weaslet_cksbgr.jpg",
     "pokemons": [
       {
         "id": 20,
@@ -3596,7 +3596,7 @@
   },
   {
     "name": "Draco Malfoy",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686154634/malfoy_qsehsl.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353834/malfoy2_f73qwu.jpg",
     "pokemons": [
       {
         "id": 125,
@@ -3755,7 +3755,7 @@
   },
   {
     "name": "Remus Lupin",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686154635/lupin_ikzkja.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353484/remus_lupin_gzhmxm.jpg",
     "pokemons": [
       {
         "id": 135,
@@ -3861,7 +3861,7 @@
   },
   {
     "name": "Gandalf the Grey",
-    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686155906/gandalf_tu0df1.png",
+    "npcPicture_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1686353482/gandalf_w3wcfz.jpg",
     "pokemons": [
       {
         "id": 78,
@@ -4335,5 +4335,55 @@
         }
       }
     ]
+  },
+  {
+    "name": "Tyrion Lannister",
+    "npcPicture_url": "http://example.com/tyrion_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Daenerys Targaryen",
+    "npcPicture_url": "http://example.com/daenerys_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Jon Snow",
+    "npcPicture_url": "http://example.com/jon_snow_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Arya Stark",
+    "npcPicture_url": "http://example.com/arya_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Cersei Lannister",
+    "npcPicture_url": "http://example.com/cersei_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Jaime Lannister",
+    "npcPicture_url": "http://example.com/jaime_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Sansa Stark",
+    "npcPicture_url": "http://example.com/sansa_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Bran Stark",
+    "npcPicture_url": "http://example.com/bran_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Tormund Giantsbane",
+    "npcPicture_url": "http://example.com/tormund_picture.jpg",
+    "pokemons": []
+  },
+  {
+    "name": "Brienne of Tarth",
+    "npcPicture_url": "http://example.com/brienne_picture.jpg",
+    "pokemons": []
   }
 ]
