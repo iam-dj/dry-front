@@ -173,7 +173,9 @@ export default function CascadeBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].cascadeBadgeVictory
+
           );
           //setting the state
           setBattleLog(battleLogData);

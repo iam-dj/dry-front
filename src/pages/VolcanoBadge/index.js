@@ -168,7 +168,9 @@ export default function VolcanoBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].volcanoBadgeVictory
+
           );
           //setting the state
           setBattleLog(battleLogData);

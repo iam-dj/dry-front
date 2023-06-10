@@ -173,7 +173,9 @@ export default function ThunderBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].thunderBadgeVictory
+
           );
           //setting the state
           setBattleLog(battleLogData);

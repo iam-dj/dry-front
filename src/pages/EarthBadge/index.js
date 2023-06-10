@@ -172,7 +172,9 @@ export default function EarthBadge(props) {
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].earthBadgeVictory
+
           );
           //setting the state
           setBattleLog(battleLogData);

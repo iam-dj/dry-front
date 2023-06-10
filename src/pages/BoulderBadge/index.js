@@ -109,7 +109,7 @@ export default function BoulderBadge(props) {
   const readerSpeedUp = () => {
     if (battleLogReaderSpeed < 20)
       setbattleLogReaderSpeed((prevSpeed) => prevSpeed + 3);
-    console.log(battleLogReaderSpeed);
+    // console.log(battleLogReaderSpeed);
     if (battleLogReaderSpeed === 18) setMaxBattleLogReaderSpeed(true);
   };
 
@@ -132,11 +132,11 @@ export default function BoulderBadge(props) {
     setBattleStatus(true);
     setbattleLogReaderSpeed(3);
     setMaxBattleLogReaderSpeed(false);
-    console.log(currentGymMasterPokemon);
-    console.log(GymLeader);
-    console.log("pokemon 1", GymLeader[0].pokemons);
-    console.log("pokemon 2", GymLeader2[0].pokemons);
-    console.log("pokemon 3", GymLeader3[0].pokemons);
+    // console.log(currentGymMasterPokemon);
+    // console.log(GymLeader);
+    // console.log("pokemon 1", GymLeader[0].pokemons);
+    // console.log("pokemon 2", GymLeader2[0].pokemons);
+    // console.log("pokemon 3", GymLeader3[0].pokemons);
 
     const generateBattle = async () => {
       let selectedPokemon = [];
@@ -146,40 +146,46 @@ export default function BoulderBadge(props) {
         const myTrainerData = await API.getOneTrainer(props.trainerId);
         if (buttonId === "button1") {
           selectedPokemon = getGymLeaderPokemon();
-          console.log("you clicked button 1", GymLeader[0].pokemons);
+          // console.log("you clicked button 1", GymLeader[0].pokemons);
         } else if (buttonId === "button2") {
           selectedPokemon = getGymLeader2Pokemon();
-          console.log("you clicked button 2", GymLeader2[0].pokemons);
+          // console.log("you clicked button 2", GymLeader2[0].pokemons);
         } else if (buttonId === "button3") {
           selectedPokemon = getGymLeader3Pokemon();
-          console.log("you clicked button 3", GymLeader3[0].pokemons);
+          // console.log("you clicked button 3", GymLeader3[0].pokemons);
         }
 
         function filterMainPokemon(myTrainerData) {
           return myTrainerData.pokemons.filter((pokemon) => pokemon.isMain);
         }
-        console.log(myTrainerData);
+        // console.log(myTrainerData);
         const myFilteredPokemons = filterMainPokemon(myTrainerData);
         let gymStage = myFilteredPokemons[0].gymTwoStage;
         setCurrentGymStage(gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
-        console.log("selected pokemon", selectedPokemon);
+
+       
+
         setIsFetching(true);
         setTimeout(() => {
           // setIsFetching(false);
-          console.log("pre-battle", battleLog);
+          // console.log("pre-battle", battleLog);
           setBattleLog([]);
-          const { result, battleLogData } = BattleSys.startBattle(
+
+          const { result, battleLogData } = 
+          BattleSys.startBattle(
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster
+            isGymMaster,
+            myFilteredPokemons[0].boulderBadgeVictory
           );
+
           //setting the state
           setBattleLog(battleLogData);
-          console.log("battleLog", battleLog);
-          console.log("battle result is working?", battleLogData);
-          console.log("result", result);
+          // console.log("battleLog", battleLog);
+          // console.log("battle result is working?", battleLogData);
+          // console.log("result", result);
 
           const handleWin = async () => {
             let experienceGained = 0;
@@ -193,11 +199,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -208,11 +214,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -223,11 +229,11 @@ export default function BoulderBadge(props) {
                   props.trainerId,
                   gymId
                 );
-                console.log("battle sys Experience Change:", experienceGained);
-                console.log("battle sys Level Change:", levelChange);
-                console.log("battle sys HP Change:", hpChange);
-                console.log("battle sys gymStageChange:", gymStageChange);
-                console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+                // console.log("battle sys Experience Change:", experienceGained);
+                // console.log("battle sys Level Change:", levelChange);
+                // console.log("battle sys HP Change:", hpChange);
+                // console.log("battle sys gymStageChange:", gymStageChange);
+                // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
                 experienceGained = response.experienceGained;
                 levelChange = response.levelChange;
                 hpChange = response.hpChange;
@@ -259,7 +265,7 @@ export default function BoulderBadge(props) {
               }
 
               const alertMessage = alerts.join("\n");
-              console.log("win Log", alertMessage);
+              // console.log("win Log", alertMessage);
               setPokemonChangeAlertWin(alertMessage);
             } catch (error) {
               console.log(error);
@@ -274,10 +280,10 @@ export default function BoulderBadge(props) {
                 hpChange,
                 pokemonNewLevel,
               } = await API.updateLoss(props.trainerId);
-              console.log("battle sys Experience Change:", experienceChange);
-              console.log("battle sys Level Change:", levelChange);
-              console.log("battle sys HP Change:", hpChange);
-              console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
+              // console.log("battle sys Experience Change:", experienceChange);
+              // console.log("battle sys Level Change:", levelChange);
+              // console.log("battle sys HP Change:", hpChange);
+              // console.log("battle sys pokemonNewLevel:", pokemonNewLevel);
 
               const alerts = [];
               alerts.push("You Lost... :(");
@@ -297,22 +303,22 @@ export default function BoulderBadge(props) {
               }
 
               const alertMessage = alerts.join("\n");
-              console.log("loss log", alerts);
+              // console.log("loss log", alerts);
               setPokemonChangeAlertLoss(alertMessage);
-              console.log("Loss updated!");
+              // console.log("Loss updated!");
             } catch (error) {
               console.log(error);
             }
           };
           if (result === 1) {
-            console.log("buttonId", buttonId);
+            // console.log("buttonId", buttonId);
             setBattleResult(1);
             handleWin(buttonId, gymId);
             // selectedPokemon = [];
           } else if (result === 0) {
             setBattleResult(0);
             handleLoss(buttonId);
-            console.log("buttonId", buttonId);
+            // console.log("buttonId", buttonId);
             // selectedPokemon = [];
           }
         }, 3000);
@@ -324,11 +330,11 @@ export default function BoulderBadge(props) {
     generateBattle();
   };
   useEffect(() => {
-    console.log("useEffect triggered");
-    console.log("battleLog:", battleLog);
-    console.log("battleResult:", battleResult);
-    console.log("pokemonChangeAlertWin:", pokemonChangeAlertWin);
-    console.log("pokemonChangeAlertLoss:", pokemonChangeAlertLoss);
+    // console.log("useEffect triggered");
+    // console.log("battleLog:", battleLog);
+    // console.log("battleResult:", battleResult);
+    // console.log("pokemonChangeAlertWin:", pokemonChangeAlertWin);
+    // console.log("pokemonChangeAlertLoss:", pokemonChangeAlertLoss);
     let timeoutIds = [];
     let logIndex = 0;
     let charIndex = 0;
@@ -341,12 +347,12 @@ export default function BoulderBadge(props) {
             setIsFetching(false);
             setBattleStatus(false);
             showAlert(pokemonChangeAlertWin);
-            console.log("useEffect log", pokemonChangeAlertWin);
+            // console.log("useEffect log", pokemonChangeAlertWin);
           } else {
             setIsFetching(false);
             setBattleStatus(false);
             showAlert(pokemonChangeAlertLoss);
-            console.log("useEffect log", pokemonChangeAlertLoss);
+            // console.log("useEffect log", pokemonChangeAlertLoss);
           }
         }
         return;
@@ -368,7 +374,7 @@ export default function BoulderBadge(props) {
           // Move to the next log entry
           logIndex += battleLogReaderSpeed;
           setCurrentLogIndex(logIndex);
-          console.log("logIndex", logIndex);
+          // console.log("logIndex", logIndex);
           charIndex = 0;
 
           // Start animating the next log entry after a delay

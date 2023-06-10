@@ -27,7 +27,7 @@ export default function CreateTrainer(props) {
   };
 
   let imageUrl = "";
-
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   //   let profilePicUploadUrl = "";
@@ -41,6 +41,10 @@ export default function CreateTrainer(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(name && age && imageUrl){
+      setButtonDisabled(true);
+    }
 
     API.createTrainer({
       name: name,
@@ -111,6 +115,7 @@ export default function CreateTrainer(props) {
             Upload files
           </button>
           <button
+            type="submit" disabled={buttonDisabled}
             style={{ margin: 10 + "px" }}
             className="btn btn-sm btn-danger"
           >
