@@ -164,21 +164,16 @@ export default function BoulderBadge(props) {
         setCurrentGymStage(gymStage);
         // console.log("myFilteredPokemons", myFilteredPokemons[0].name);
 
-       
-
         setIsFetching(true);
         setTimeout(() => {
           // setIsFetching(false);
           // console.log("pre-battle", battleLog);
           setBattleLog([]);
 
-          const { result, battleLogData } = 
-          BattleSys.startBattle(
+          const { result, battleLogData } = BattleSys.startBattle(
             myFilteredPokemons,
             selectedPokemon,
             GymLeader[0].name,
-            isGymMaster,
-            myFilteredPokemons[0].boulderBadgeVictory
             isGymMaster,
             myFilteredPokemons[0].boulderBadgeVictory
           );
