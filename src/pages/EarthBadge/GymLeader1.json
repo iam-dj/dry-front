@@ -10,7 +10,7 @@
         "type": "ground",
         "secondary_type": "rock",
         "level": 1,
-        "hp": 430,
+        "hp": 530,
         "experience": 0,
         "img_url": "https://res.cloudinary.com/duaznt4wg/image/upload/v1684896193/111rhyhorn_yi6s1w.png",
         "evolutionId": 1,
