@@ -62,7 +62,11 @@ const GymInstructions = () => {
             </strong>{" "}
             <br />
             <br />
-            Good luck!
+            Good luck!<br></br>
+            <em>
+              note: the fastforward button will reset the battleLog, so you can
+              see it at your desired speed
+            </em>
           </div>
         </Toast.Body>
       </Toast>

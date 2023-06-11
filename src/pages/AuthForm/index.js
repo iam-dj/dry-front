@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import API from "../../utils/API";
 import "./style.css";
 import bfg from "./assets/poke_bg.png";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AuthForm(props) {
   const navigate = useNavigate();
@@ -15,6 +18,17 @@ export default function AuthForm(props) {
     height: "100vh",
     width: "100%",
   };
+
+  //checks to see if there is a redirect in the params, and shows toast
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const redirect = queryParams.get("redirect");
+
+  useEffect(() => {
+    if (!props.trainerId && redirect === "true") {
+    }
+  }, [props.trainerId, redirect]);
 
   const formStyle = {
     display: "flex",
@@ -96,6 +110,18 @@ export default function AuthForm(props) {
   };
   return (
     <main className="AuthForm" style={cardStyle}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <form style={formStyle} onSubmit={handleSubmit}>
         <input
           style={{ margin: 10 + "px" }}
