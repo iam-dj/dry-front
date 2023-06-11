@@ -200,7 +200,7 @@ changeMoveFour: (trainerId, pokemonName, newMove) => {
         .catch((err) => {
           console.log(err);
         })
-    );
+    ); 
   },
 
   getNumSpins: (trainerId) => {
