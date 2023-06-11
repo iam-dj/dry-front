@@ -2,7 +2,7 @@
 // const URL_PREFIX = "http://localhost:3001";
 //deployed
 const URL_PREFIX = "https://dry-pokemon-project.herokuapp.com";
- 
+
 const API = {
   login: (userObj) => {
     return fetch(`${URL_PREFIX}/api/users/login`, {
@@ -25,7 +25,7 @@ const API = {
       method: "POST",
       body: JSON.stringify(userObj),
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
     }).then((res) => {
       if (res.ok) {
@@ -161,6 +161,7 @@ const API = {
       res
         .json()
         .then((data) => {
+          console.log(data);
           return data;
         })
         .catch((err) => {
