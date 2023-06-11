@@ -2,10 +2,10 @@
 function updateHP(pokemon) {
     
     if (pokemon[0].tier == 3){
-        return 100; 
+        return 1; 
     } 
     else if (pokemon[0].tier == 2){
-        return 50; 
+        return 1; 
     } 
     else {
         return 1; 

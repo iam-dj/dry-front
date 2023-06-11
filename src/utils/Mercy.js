@@ -1,13 +1,18 @@
 
 function mercyRule(myPokemon,opponPokemon) {
-    
-    if (myPokemon[0].hp < opponPokemon[0].hp){
-        // const hpShare = 1-(myPokemon[0].hp / opponPokemon[0].hp ) 
-        return .069;
-    } 
-    else {
-        return 0; 
-    } 
+
+    const levelDifference = myPokemon[0].level - opponPokemon[0].level;
+
+    if (levelDifference >= 10 && levelDifference <= 90) {
+        for (let i = 10; i <= 90; i += 10) {
+          if (levelDifference <= i) {
+            return i / 200; 
+          }
+        }
+      }
+      
+      // If the level difference is outside the specified range, return a default value
+      return 0;
     
     
     
