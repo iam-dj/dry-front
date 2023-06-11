@@ -53,8 +53,8 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     left: 0,
-    width: "100px",
-    height: "100px",
+    width: "175px",
+    height: "175px",
     objectFit: "cover",
     borderRadius: "25px",
   };
@@ -63,9 +63,10 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     right: 0,
-    width: "100px",
-    height: "100px",
-    objectFit: "contain",
+    width: "175px",
+    height: "175px",
+    objectFit: "cover",
+    borderRadius: "25px",
   };
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
@@ -454,7 +455,7 @@ export default function Train(props) {
         setTimeout(() => {
           toast(alert, {
             position: "top-center",
-            autoClose: 7000,
+            autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
