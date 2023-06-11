@@ -156,11 +156,13 @@ export default function SetPokemon(props) {
     }
   };
 
-  // const [pokemonPic, setPokemonPic] = useState("");
+  const [allTms, setAllTms] = useState(props.myTrainerTm.TMs);
 
   const allPokemon = props.myTrainerDatas.pokemons;
 
-  const allTms = props.myTrainerTm.TMs;
+  useEffect(() => {
+    setAllTms(props.myTrainerTm.TMs);
+  }, [allTms]);
 
   useEffect(() => {
     const filteredTMs = allTms.filter((tm) => tm.name === selectedTm);

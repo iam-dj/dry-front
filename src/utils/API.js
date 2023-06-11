@@ -1,7 +1,7 @@
 //for local development
 const URL_PREFIX = "http://localhost:3001";
 //deployed
-const URL_PREFIX = "https://dry-pokemon-api.herokuapp.com";
+// const URL_PREFIX = "https://dry-pokemon-api.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -161,6 +161,7 @@ const API = {
       res
         .json()
         .then((data) => {
+          console.log(data);
           return data;
         })
         .catch((err) => {
