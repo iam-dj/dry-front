@@ -80,6 +80,20 @@ const API = {
     );
   },
 
+  getOneTrainerTm: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/getmove`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
   changeMoveOne: (trainerId, pokemonName, newMove) => {
     // console.log(trainerId);
     return fetch(
