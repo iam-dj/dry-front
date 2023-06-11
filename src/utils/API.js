@@ -35,6 +35,7 @@ const API = {
       }
     });
   },
+
   verifyToken: (token) => {
     return fetch(`${URL_PREFIX}/api/users/verifytoken`, {
       headers: {
@@ -80,70 +81,82 @@ const API = {
   },
 
   changeMoveOne: (trainerId, pokemonName, newMove) => {
-    // console.log(trainerId);
-    return fetch(
-      `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move1/${newMove}`,
-      {
-        method: "PUT",
-      }
-    ).then((res) =>
-      res
-        .json()
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  },
+  return fetch(
+    `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move1/${newMove}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+    }
+  ).then((res) =>
+    res
+      .json()
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  );
+},
 
-  changeMoveTwo: (trainerId, pokemonName, newMove) => {
-    // console.log(trainerId);
-    return fetch(
-      `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move2/${newMove}`,
-      {
-        method: "PUT",
-      }
-    ).then((res) =>
-      res
-        .json()
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  },
 
-  changeMoveThree: (trainerId, pokemonName, newMove) => {
-    // console.log(trainerId);
-    return fetch(
-      `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move3/${newMove}`,
-      {
-        method: "PUT",
-      }
-    ).then((res) =>
-      res
-        .json()
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    );
-  },
+changeMoveTwo: (trainerId, pokemonName, newMove) => {
+  return fetch(
+    `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move2/${newMove}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+    }
+  ).then((res) =>
+    res
+      .json()
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  );
+},
 
-  changeMoveFour: (trainerId, pokemonName, newMove) => {
-    // console.log(trainerId);
-    return fetch(
-      `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move4/${newMove}`,
-      {
-        method: "PUT",
-      }
-    ).then((res) =>
+
+changeMoveThree: (trainerId, pokemonName, newMove) => {
+  return fetch(
+    `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move3/${newMove}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+    }
+  ).then((res) =>
+    res
+      .json()
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  );
+},
+
+
+changeMoveFour: (trainerId, pokemonName, newMove) => {
+  return fetch(
+    `${URL_PREFIX}/api/tms/${trainerId}/pokemon/${pokemonName}/update-move4/${newMove}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+    }
+  )
+    .then((res) =>
       res
         .json()
         .then((data) => {
@@ -152,8 +165,12 @@ const API = {
         .catch((err) => {
           console.log(err);
         })
-    );
-  },
+    )
+    .catch((err) => {
+      console.log(err);
+    });
+},
+
 
   getTrainerTm: (trainerId) => {
     // console.log(trainerId);
@@ -185,6 +202,7 @@ const API = {
         })
     );
   },
+
   getNumSpins: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/spinNum/${trainerId}`).then(
@@ -236,13 +254,21 @@ const API = {
       `${URL_PREFIX}/api/trainers/${trainerId}/ismain/${pokemonName}`,
       {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json", 
+        },
       }
-    ).then((res) => {
-      if (!res.ok) {
-        throw new Error("Failed to update main Pokemon");
-      }
-    });
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to update main Pokemon");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
+  
 
   updatePokemonHp: (trainerId, pokemonName) => {
     return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/hp/${pokemonName}`, {
@@ -264,6 +290,9 @@ const API = {
       `${URL_PREFIX}/api/trainers/${trainerId}/iscaught/${pokemonName}`,
       {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json", 
+        },
       }
     )
       .then((res) => res.json())
@@ -271,12 +300,16 @@ const API = {
         console.log(err);
       });
   },
+  
 
   getMove: (trainerId, moveName) => {
     return fetch(
       `${URL_PREFIX}/api/trainers/${trainerId}/isnewmove/${moveName}`,
       {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json", 
+        },
       }
     )
       .then((res) => res.json())
@@ -284,6 +317,7 @@ const API = {
         console.log(err);
       });
   },
+  
 
   getAllPoke: () => {
     return fetch(`${URL_PREFIX}/api/pokemon`)
@@ -353,6 +387,7 @@ const API = {
         console.log(err);
       });
   },
+
   updateWinStage2: (trainerId, gymId) => {
     console.log(gymId);
     return fetch(
