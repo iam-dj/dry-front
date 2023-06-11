@@ -97,7 +97,7 @@ const API = {
           console.log(err);
         })
     );
-  },
+  },   
 
   changeMoveTwo: (trainerId, pokemonName, newMove) => {
     // console.log(trainerId);
