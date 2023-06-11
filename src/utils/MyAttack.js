@@ -10,25 +10,25 @@ function modAttack(pokemon) {
     return 0.08;
   } else if (pokemon[0].level >= 30 && pokemon[0].level <= 39) {
 
-    return 0.1;
+    return 0.11;
   } else if (pokemon[0].level >= 40 && pokemon[0].level <= 49) {
 
-    return 0.13;
+    return 0.14;
   } else if (pokemon[0].level >= 50 && pokemon[0].level <= 59) {
 
-    return 0.15;
+    return 0.18;
   } else if (pokemon[0].level >= 60 && pokemon[0].level <= 69) {
 
-    return 0.196;
+    return 0.21;
   } else if (pokemon[0].level >= 70 && pokemon[0].level <= 79) {
 
-    return 0.2;
+    return 0.24;
   } else if (pokemon[0].level >= 80 && pokemon[0].level <= 89) {
 
-    return 0.23;
+    return 0.27;
   } else if (pokemon[0].level >= 90 && pokemon[0].level <= 99) {
 
-    return 0.27;
+    return 0.30;
   } else  {
 
     return 1;

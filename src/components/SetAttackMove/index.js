@@ -188,6 +188,9 @@ export default function SetPokemon(props) {
 
   const typeColors = {
     Normal: "#A8A77A",
+    Steel: "#B8B8D0",
+    Dark: "#705848",
+    Fairy: "#D685AD",
     Fire: "#EE8130",
     Water: "#6390F0",
     Electric: "#F7D02C",
@@ -268,7 +271,7 @@ export default function SetPokemon(props) {
               style={{
                 background: "#f0f1c8",
                 width: "800px",
-                height: "1430px",
+                height: "1530px",
               }}
             >
               <div className=" card-content">

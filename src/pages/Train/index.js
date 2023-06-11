@@ -53,8 +53,8 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     left: 0,
-    width: "175px",
-    height: "175px",
+    width: "145px",
+    height: "145px",
     objectFit: "cover",
     borderRadius: "25px",
   };
@@ -63,10 +63,12 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     right: 0,
-    width: "175px",
-    height: "175px",
-    objectFit: "cover",
+    width: "145px",
+    height: "145px",
+    objectFit: "contain",
     borderRadius: "25px",
+    zIndex: 0,
+
   };
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
@@ -81,20 +83,22 @@ export default function Train(props) {
   };
 
   const photoStyle = {
-    maxWidth: "300px",
-    maxHeight: "300px",
-    minHeight: "300px",
-    minWidth: "300px",
+    maxWidth: "320px",
+    maxHeight: "320px",
+    minHeight: "320px",
+    minWidth: "320px",
     objectFit: "contain",
+
 
     // display: "none",
   };
   const trainerPic = {
-    maxWidth: "300px",
-    maxHeight: "300px",
-    minHeight: "300px",
-    minWidth: "300px",
-    // objectFit: "cover",
+    maxWidth: "320px",
+    maxHeight: "320px",
+    minHeight: "320px",
+    minWidth: "320px",
+    objectFit: "contain",
+    // objectFit: "contain",
 
     // display: "none",
   };
@@ -201,8 +205,8 @@ export default function Train(props) {
               isGymMaster
             );
 
-          console.log("returned comp value in train.js", compHpArray);
-          console.log("returned user value in train.js", userHpArray);
+          // console.log("returned comp value in train.js", compHpArray);
+          // console.log("returned user value in train.js", userHpArray);
           //       setNPCHealth(NPCHealth);
           // setTrainerHealth(trainerHealth);
 
@@ -217,9 +221,9 @@ export default function Train(props) {
           setTrainerHealthArray(userHpArray);
           setNPCHealthArray(compHpArray);
           setBattleLog(battleLogData);
-          console.log("battleResult after battle sys call", battleResult);
+          // console.log("battleResult after battle sys call", battleResult);
 
-          console.log("battle result is working?", battleLogData);
+          // console.log("battle result is working?", battleLogData);
           // console.log("result", result);
 
           const handleWin = async () => {
@@ -338,8 +342,8 @@ export default function Train(props) {
   //gets the value of updated hp out of the healthbar util
   useEffect(() => {
     // Perform actions that rely on the updated state
-    console.log("trainer hp array", trainerHealthArray);
-    console.log("NPC hp array", npcHealthArray);
+    // console.log("trainer hp array", trainerHealthArray);
+    // console.log("NPC hp array", npcHealthArray);
     // console.log("battleLog", battleLog);
   }, [trainerHealthArray, npcHealthArray]);
 
@@ -418,7 +422,7 @@ export default function Train(props) {
     const displayLogs = () => {
       for (let i = 0; i < battleLog.length; i++) {
         const logEntry = battleLog[i];
-        console.log(logEntry);
+        // console.log(logEntry);
 
         const timeoutId = setTimeout(() => {
           setCurrentLogIndex(i);
@@ -498,11 +502,11 @@ export default function Train(props) {
       const trainerInterval = setInterval(() => {
         if (trainerIndex < trainerHealthArray.length) {
           setTrainerHealth(trainerHealthArray[trainerIndex]);
-          console.log("trainer:", trainerHealthArray[trainerIndex]);
+          // console.log("trainer:", trainerHealthArray[trainerIndex]);
           trainerIndex++;
-          console.log("trainer array length", trainerHealthArray.length);
-          console.log("trainer health", trainerHealth);
-          console.log("trainer index:", trainerIndex);
+          // console.log("trainer array length", trainerHealthArray.length);
+          // console.log("trainer health", trainerHealth);
+          // console.log("trainer index:", trainerIndex);
         } else {
           clearInterval(trainerInterval);
           // endGame(npcIndex, trainerIndex);
@@ -513,11 +517,11 @@ export default function Train(props) {
       const npcInterval = setInterval(() => {
         if (npcIndex < npcHealthArray.length) {
           setNpcHealth(npcHealthArray[npcIndex]);
-          console.log("npc:", npcHealthArray[npcIndex]);
+          // console.log("npc:", npcHealthArray[npcIndex]);
           npcIndex++;
-          console.log("npc array length", npcHealthArray.length);
-          console.log("npc health", npcHealth);
-          console.log("npc index:", npcIndex);
+          // console.log("npc array length", npcHealthArray.length);
+          // console.log("npc health", npcHealth);
+          // console.log("npc index:", npcIndex);
         } else {
           clearInterval(npcInterval);
           // endGame(npcIndex, trainerIndex);
@@ -539,7 +543,7 @@ export default function Train(props) {
     let timeoutId = null;
 
     if (alertShown === true) {
-      console.log("state reset useffect is going off!", alertShown);
+      // console.log("state reset useffect is going off!", alertShown);
       timeoutId = setTimeout(() => {
         setBattleLog([]);
         //     setCurrentIndex(0);

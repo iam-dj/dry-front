@@ -1,7 +1,7 @@
 //for local development
 const URL_PREFIX = "http://localhost:3001";
 //deployed
-// const URL_PREFIX = "https://dry-pokemon-database.herokuapp.com";
+const URL_PREFIX = "https://dry-pokemon-api.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -19,6 +19,7 @@ const API = {
       }
     });
   },
+
   signup: (userObj) => {
     return fetch(`${URL_PREFIX}/api/users`, {
       method: "POST",
