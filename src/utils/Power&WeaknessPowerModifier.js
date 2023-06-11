@@ -3,6 +3,9 @@ function modifier(attackerMoveType, defenderPokemonType) {
     const typeChart = {
       normal: {
         ghost: 0,
+        steel: 0.75,
+        dark: 0.75,
+
       },
       fire: {
         fire: 0.75,

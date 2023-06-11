@@ -9,7 +9,7 @@ import Toast from "react-bootstrap/Toast";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import API from "../../utils/API";
-import battle from "./assets/battle.jpg";
+import battle from "./assets/battle.png";
 import { useNavigate } from "react-router-dom";
 
 export default function SetPokemon(props) {
@@ -18,6 +18,7 @@ export default function SetPokemon(props) {
   const [selectedPicture, setSelectedPicture] = useState("");
   const [selectedName, setSelectedName] = useState("");
   const [selectedType, setSelectedType] = useState("");
+  const [selectedTier, setSelectedTier] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedHp, setSelectedHp] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -68,6 +69,7 @@ export default function SetPokemon(props) {
       setSelectedName(myPoke[0].name);
       setSelectedType(myPoke[0].type);
       setSelectedLevel(myPoke[0].level);
+      setSelectedTier(myPoke[0].tier);
       setSelectedHp(myPoke[0].hp);
       setSelectedPicture(myPoke[0].img_url);
 
@@ -115,12 +117,18 @@ export default function SetPokemon(props) {
           position: "absolute",
           top: 100,
           left: 0,
+          zIndex: 9999,
+
         }} show={showToast} onClose={() => setShowToast(false)}>
         <Toast.Header>
           <strong className="mr-auto">Instructions</strong>
         </Toast.Header>
         <Toast.Body>
-          Set your main battle Pokemon. Click the "I Choose You" and choose one of the Pokemon you've caught and click "Select".
+          Click the "I Choose You" and choose one of the Pokemon you've caught and click "Select".           
+          <br></br>
+          <br></br>
+
+          <strong>Note:</strong> A Pokemon's tier does affect the HP and damage percentage. Tier one being the lowest and tier 3 being the highest.
           <br></br>
           <br></br>
           Battle Effective Strategies and Weaknesses
@@ -179,7 +187,7 @@ export default function SetPokemon(props) {
                     {selectedName || p.name}
                   </Card.Title >
                   
-                  <Card.Text>Level: {selectedLevel || p.level}</Card.Text>
+                  <Card.Text>  Level: {selectedLevel || p.level} |  Tier: {selectedTier || p.tier}</Card.Text>
                   <Card.Text>HP: {selectedHp || p.hp}</Card.Text>
                   <Card.Text>Type: {selectedType || p.type}</Card.Text>
                 </Card.Body>
@@ -301,7 +309,7 @@ export default function SetPokemon(props) {
                       paddingBottom: 0 + "px",
                     }}
                   >
-                    <Card.Text>HP: {p.hp}</Card.Text>
+                    <Card.Text>HP: {p.hp}  Tier:{p.tier}</Card.Text>
                     Type: {p.type}
                   </Card.Text>
                 </Card.Body>

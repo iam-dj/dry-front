@@ -53,8 +53,8 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     left: 0,
-    width: "175px",
-    height: "175px",
+    width: "145px",
+    height: "145px",
     objectFit: "cover",
     borderRadius: "25px",
   };
@@ -63,10 +63,12 @@ export default function Train(props) {
     position: "absolute",
     top: 150,
     right: 0,
-    width: "175px",
-    height: "175px",
-    objectFit: "cover",
+    width: "145px",
+    height: "145px",
+    objectFit: "contain",
     borderRadius: "25px",
+    zIndex: 0,
+
   };
   const cardStyle = {
     backgroundImage: `url(${battlebg})`,
@@ -81,20 +83,22 @@ export default function Train(props) {
   };
 
   const photoStyle = {
-    maxWidth: "300px",
-    maxHeight: "300px",
-    minHeight: "300px",
-    minWidth: "300px",
+    maxWidth: "320px",
+    maxHeight: "320px",
+    minHeight: "320px",
+    minWidth: "320px",
     objectFit: "contain",
+
 
     // display: "none",
   };
   const trainerPic = {
-    maxWidth: "300px",
-    maxHeight: "300px",
-    minHeight: "300px",
-    minWidth: "300px",
-    // objectFit: "cover",
+    maxWidth: "320px",
+    maxHeight: "320px",
+    minHeight: "320px",
+    minWidth: "320px",
+    objectFit: "contain",
+    // objectFit: "contain",
 
     // display: "none",
   };
