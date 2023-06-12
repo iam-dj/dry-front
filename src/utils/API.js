@@ -1,7 +1,7 @@
 //for local development
-// const URL_PREFIX = "http://localhost:3001";
+const URL_PREFIX = "http://localhost:3001";
 //deployed
-const URL_PREFIX = "https://dry-pokemon-project.herokuapp.com";
+// const URL_PREFIX = "https://dry-pokemon-project.herokuapp.com";
 
 const API = {
   login: (userObj) => {
@@ -66,6 +66,22 @@ const API = {
     });
   },
 
+  //returns the trainer and their TMs
+  returnTrainerTm: (trainerId) => {
+    // console.log(trainerId);
+    return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/tms`).then((res) =>
+      res
+        .json()
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
+  },
+
+  //Returns the trainer and his pokemon
   getOneTrainer: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/${trainerId}`).then((res) =>
@@ -80,6 +96,7 @@ const API = {
     );
   },
 
+  //Retuns the train and all of the TMs True and False
   getOneTrainerTm: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/getmove`).then((res) =>
@@ -170,6 +187,7 @@ const API = {
     );
   },
 
+//this returns TM where inInvetory is true
   getTrainerTm: (trainerId) => {
     // console.log(trainerId);
     return fetch(`${URL_PREFIX}/api/trainers/${trainerId}/tms`).then((res) =>

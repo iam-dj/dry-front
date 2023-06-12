@@ -28,8 +28,11 @@ export default function SetMove(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await API.getOneTrainerTm(props.trainerId);
-        const trainTm= await API.getTrainerTm(trainerId);
+        const dataWithTm_TF = await API.getOneTrainerTm(props.trainerId);
+        
+        const data = await API.getOneTrainer(props.trainerId);
+
+        const trainTm= await API.returnTrainerTm(trainerId);
 
         const trainInfo = data;
         const tmInfo = trainTm;
