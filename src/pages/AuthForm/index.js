@@ -6,6 +6,7 @@ import bfg from "./assets/poke_bg.png";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { image } from "@cloudinary/url-gen/qualifiers/source";
 
 export default function AuthForm(props) {
   const navigate = useNavigate();
@@ -48,7 +49,6 @@ export default function AuthForm(props) {
   var imageUrl = "";
 
   const handleChange = (e) => {
-    // setButtonDisabled(true);
     if (e.target.name === "username") {
       setUsername(e.target.value);
     } else if (e.target.name === "name") {
@@ -70,12 +70,12 @@ export default function AuthForm(props) {
     }
   };
 
+  // const handleSubmit2 = (e) => {
+
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // if (name && age && imageUrl) {
-    //   setButtonDisabled(true);
-    // }
 
     if (props.usage === "Login") {
       API.login({
@@ -100,22 +100,28 @@ export default function AuthForm(props) {
           localStorage.removeItem("token");
         });
     } else {
-      if (password === passwordCheck) {
+      //props.usage === "Signup"
+      if (
+        username &&
+        password &&
+        name &&
+        age &&
+        password === passwordCheck
+      ) {
+        setButtonDisabled(true);
         API.signup({
           username: username,
           password: password,
         })
           .then((data) => {
-            // console.log(data);
             if (data.user) {
               props.setUserId(data.user.id);
               props.setUsername(data.user.username);
               props.setToken(data.token);
               localStorage.setItem("token", data.token);
 
-              if (name && age && imageUrl) {
+              if (name && age) {
                 setButtonDisabled(true);
-
                 API.createTrainer({
                   name: name,
                   age: age,
@@ -137,7 +143,6 @@ export default function AuthForm(props) {
                   })
                   .catch((err) => {
                     console.log(err);
-                    // localStorage.removeItem("token");
                   });
               }
             } else {
@@ -149,8 +154,10 @@ export default function AuthForm(props) {
             localStorage.removeItem("token");
           });
       } else {
-        toast.error("Passwords Don't Match, Sorry!");
-        window.location.assign("/signup");
+        toast.error("Form incorrectly filled out");
+        setInterval(() => {
+          window.location.assign("/signup");
+        }, 2000);
         return;
       }
     }
@@ -167,7 +174,8 @@ export default function AuthForm(props) {
           // setImageUrl(result.url);
           imageUrl = result.info.url;
           // setWidgetButtonDisabled(true);
-        }
+        } 
+        
       }
     );
     myWidget.open();
@@ -257,6 +265,8 @@ export default function AuthForm(props) {
 
           <button
             type="submit"
+            disabled={buttonDisabled}
+            // onClick={handleSubmit2}
             style={{ margin: 20 + "px" }}
             className="btn btn-sm btn-danger"
           >
