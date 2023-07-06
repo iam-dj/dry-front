@@ -106,6 +106,8 @@ function App() {
               setUserId={setUserId}
               setUsername={setUsername}
               setToken={setToken}
+              userId={userId}
+              setTrainerId={setTrainerId}
             />
           }
         />
